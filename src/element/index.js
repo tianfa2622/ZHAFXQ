@@ -15,9 +15,13 @@ import {
   MenuItemGroup,
   Submenu,
   Link,
-  Card
+  Card,
+  Tabs,
+  TabPane
 } from "element-ui";
 
+Vue.use(Tabs);
+Vue.use(TabPane);
 Vue.use(Card);
 Vue.use(Link);
 Vue.use(Submenu);

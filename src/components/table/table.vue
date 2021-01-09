@@ -6,7 +6,7 @@
       :body-style="CardAttributes.body"
       :shadow="CardAttributes.shadow"
     >
-      <div slot="header">
+      <div slot="header" v-if="CardAttributes.title">
         <span>{{ CardAttributes.title }}</span>
       </div>
       <el-table
@@ -19,6 +19,8 @@
         style="width: 100%"
         class="flex1"
         height="100%"
+        :header-cell-style="HeaderCellStyle"
+        :row-style="RowStyle"
         @sort-change="handleSortChange"
       >
         <el-table-column
@@ -96,16 +98,28 @@ export default {
     //   type: String,
     //   default:''
     // },
+    HeaderCellStyle: {
+      type: Object,
+      default: () => {
+        return {};
+      }
+    },
+    RowStyle: {
+      type: Object,
+      default: () => {
+        return {};
+      }
+    },
     CardAttributes: {
       type: Object,
       default: () => {
-        return [];
+        return {};
       }
     },
     size: {
       // table表格尺寸
       type: String,
-      default: "medium "
+      default: ""
     },
     tableData: {
       // 表格数据

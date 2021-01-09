@@ -3,9 +3,11 @@ const options = {
     title: "设备信息",
     class: "h-100 w-100",
     // style:'over-flow: hidden',
-    body: "padding:0px",
+    body: "padding:10px",
     shadow: "never"
   },
+  HeaderCellStyle: { background: " #333333!important", color: "#fff" },
+  RowStyle: { background: "#141d49 !important", color: "#fff" },
   // 表头数据
   tableColumns: [
     {
@@ -38,25 +40,6 @@ const options = {
       }
     }
   ],
-  // 表格操作
-  // tableOption: {
-  //   align: 'center',
-  //   options: [
-  //     // {
-  //     //   label: '编辑',
-  //     //   type: 'primary',
-  //     //   size: 'mini',
-  //     //   methods: 'del',
-  //     //   class: 'btn'
-  //     // },
-  //     {
-  //       label: '删除',
-  //       type: 'danger',
-  //       size: 'mini',
-  //       methods: 'del'
-  //     }
-  //   ]
-  // },
   // 表格数据
   tableData: [
     {

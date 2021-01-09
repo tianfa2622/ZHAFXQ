@@ -34,16 +34,16 @@ const options = {
   title: {
     text: "{name|" + title + "}\n{val|" + total + "}",
     top: "center",
-    left: "17%",
+    left: "13%",
     textStyle: {
       rich: {
         name: {
-          fontSize: 14 * scale,
+          fontSize: 12 * scale,
           color: titleColor,
-          padding: [10, 0]
+          padding: [5, 0]
         },
         val: {
-          fontSize: 14 * scale,
+          fontSize: 12 * scale,
           color: titleColor,
           padding: [0, 6]
         }
@@ -53,29 +53,29 @@ const options = {
   legend: {
     orient: "vertical",
     icon: "rect",
-    x: "60%",
+    x: "50%",
     y: "center",
-    itemWidth: 16 * scale,
-    itemHeight: 16 * scale,
+    itemWidth: 14 * scale,
+    itemHeight: 14 * scale,
     align: "left",
     textStyle: {
       rich: {
         name: {
-          fontSize: 16 * scale,
+          fontSize: 14 * scale,
           color: titleColor
         },
         value: {
-          fontSize: 16 * scale,
+          fontSize: 14 * scale,
           padding: [0, 8, 0, 15],
           color: "#66ff99"
         },
         unit: {
-          fontSize: 14 * scale,
+          fontSize: 12 * scale,
           color: titleColor
         }
       }
     },
-    formatter: function(name) {
+    formatter: function (name) {
       let res = echartData.filter(v => v.name === name);
       res = res[0] || {};
       let unit = res.unit || "";
@@ -89,7 +89,7 @@ const options = {
     {
       type: "pie",
       radius: ["30%", "60%"],
-      center: ["25%", "50%"],
+      center: ["20%", "50%"],
       data: echartData,
 
       itemStyle: {
