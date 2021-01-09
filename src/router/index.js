@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/index/Home.vue";
+// import Home from "../views/index/Home.vue";
 
 Vue.use(VueRouter);
 
@@ -8,7 +8,9 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home
+    component: () =>
+      import(/* webpackChunkName: "Home" */ "../views/index/Home.vue"),
+    meta: { hidden: true, title: "首页" }
   },
   {
     path: "/dom",

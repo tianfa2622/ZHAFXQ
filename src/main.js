@@ -8,7 +8,12 @@ import echarts from "echarts";
 
 Vue.config.productionTip = false;
 Vue.prototype.$echarts = echarts;
-
+router.beforeEach((to, from, next) => {
+  if (to.meta.title) {
+    document.title = to.meta.title;
+  }
+  next();
+});
 new Vue({
   router,
   store,
