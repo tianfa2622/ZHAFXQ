@@ -5,9 +5,14 @@ import store from "./store";
 import "./element/index";
 import "./style/css/global.css";
 import echarts from "echarts";
+import VueArealinkage from "vue-area-linkage";
+import "vue-area-linkage/dist/index.css";
+import PCAA from "area-data/pcaa";
 
 Vue.config.productionTip = false;
+Vue.prototype.$PCAA = PCAA;
 Vue.prototype.$echarts = echarts;
+Vue.use(VueArealinkage);
 router.beforeEach((to, from, next) => {
   if (to.meta.title) {
     document.title = to.meta.title;

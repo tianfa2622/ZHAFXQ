@@ -17,9 +17,29 @@ import {
   Link,
   Card,
   Tabs,
-  TabPane
+  TabPane,
+  Breadcrumb,
+  BreadcrumbItem,
+  Form,
+  FormItem,
+  Input,
+  Pagination,
+  Radio,
+  Option,
+  OptionGroup,
+  DatePicker
 } from "element-ui";
 
+Vue.use(DatePicker);
+Vue.use(Option);
+Vue.use(OptionGroup);
+Vue.use(Radio);
+Vue.use(Pagination);
+Vue.use(Form);
+Vue.use(FormItem);
+Vue.use(Input);
+Vue.use(Breadcrumb);
+Vue.use(BreadcrumbItem);
 Vue.use(Tabs);
 Vue.use(TabPane);
 Vue.use(Card);

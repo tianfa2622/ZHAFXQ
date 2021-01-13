@@ -63,6 +63,7 @@ var seriesOption = [
           show: true,
           position: "outside",
           color: "#ddd",
+          // eslint-disable-next-line prettier/prettier
           formatter: function (params) {
             var percent = 0;
             var total = 0;

@@ -212,6 +212,10 @@ a {
   margin-bottom: 20px !important;
 }
 
+.pb-25 {
+  padding-bottom: 25px !important;
+}
+
 .pb-30 {
   padding-bottom: 30px !important;
 }
@@ -363,6 +367,10 @@ a {
 
 .w-30 {
   width: 30% !important;
+}
+
+.w-70 {
+  width: 70% !important;
 }
 
 .w-75 {

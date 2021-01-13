@@ -13,10 +13,85 @@ const routes = [
     meta: { hidden: true, title: "首页" }
   },
   {
-    path: "/dom",
-    name: "dom",
+    path: "/Comprehensive",
+    name: "Comprehensive",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/index1.vue")
+      import(
+        /* webpackChunkName: "about" */ "../views/Data_management/Comprehensive/Comprehensive.vue"
+      ),
+    meta: { hidden: true, title: "综合管理" }
+  },
+  {
+    path: "/personnel",
+    name: "personnel",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/Data_management/personnel/personnel.vue"
+      ),
+    meta: { hidden: true, title: "人员管理" }
+  },
+  {
+    path: "/vehicle",
+    name: "vehicle",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/Data_management/vehicle/vehicle.vue"
+      ),
+    meta: { hidden: true, title: "车辆管理" }
+  },
+  {
+    path: "/housing",
+    name: "Housing",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/Data_management/Housing/Housing.vue"
+      ),
+    meta: { hidden: true, title: "房屋管理" }
+  },
+  {
+    path: "/CommunityUnit",
+    name: "CommunityUnit",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/Data_management/CommunityUnit/CommunityUnit.vue"
+      ),
+    meta: { hidden: true, title: "小区单位管理" }
+  },
+  {
+    path: "/StaffAnalysis",
+    name: "StaffAnalysis",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/PublicSecurity/StaffAnalysis/StaffAnalysis.vue"
+      ),
+    meta: { hidden: true, title: "实有人口分析" }
+  },
+  {
+    path: "/AnomalyAnalysis",
+    name: "AnomalyAnalysis",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/PublicSecurity/AnomalyAnalysis/AnomalyAnalysis.vue"
+      ),
+    meta: { hidden: true, title: "异常研判分析" }
+  },
+  {
+    path: "/KeyObjectControl",
+    name: "KeyObjectControl",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/PublicSecurity/KeyObjectControl/KeyObjectControl.vue"
+      ),
+    meta: { hidden: true, title: "重点对象管控" }
+  },
+  {
+    path: "/VerifyFeedback",
+    name: "VerifyFeedback",
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/PublicSecurity/VerifyFeedback/VerifyFeedback.vue"
+      ),
+    meta: { hidden: true, title: "信息核实反馈" }
   }
   // {
   //   path: '/about',

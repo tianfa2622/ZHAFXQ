@@ -61,6 +61,7 @@
               :type="item.type"
               :icon="item.icon"
               :class="item.class"
+              :style="item.style"
               :size="item.size"
               :resizable="false"
               @click="handleButton(item.methods, scope.$index, scope.row)"
@@ -71,14 +72,15 @@
         </el-table-column>
       </el-table>
       <el-pagination
-        v-if="pagination === true"
+        :background="pagination.isBackC"
+        v-if="pagination.isShow === true"
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
-        :current-page="currentPage"
+        :current-page="pagination.currentPage"
         :page-sizes="[5, 10, 15, 20]"
-        :page-size="rows"
+        :page-size="pagination.rows"
         layout="total, sizes, prev, pager, next, jumper"
-        :total="total"
+        :total="pagination.total"
         class="posi-abs b-10 ta-c offset"
       >
       </el-pagination>
@@ -143,30 +145,32 @@ export default {
         return {};
       }
     },
-    currentPage: {
-      // 当前页
-      type: Number,
-      default: () => {
-        return 1;
-      }
-    },
-    rows: {
-      // 当前页展示数
-      type: Number,
-      default: () => {
-        return 10;
-      }
-    },
-    total: {
-      // 总数
-      type: Number,
-      default: () => {
-        return 0;
-      }
-    },
+    // currentPage: {
+    //   // 当前页
+    //   type: Number,
+    //   default: () => {
+    //     return 1;
+    //   }
+    // },
+    // rows: {
+    //   // 当前页展示数
+    //   type: Number,
+    //   default: () => {
+    //     return 10;
+    //   }
+    // },
+    // total: {
+    //   // 总数
+    //   type: Number,
+    //   default: () => {
+    //     return 0;
+    //   }
+    // },
     pagination: {
-      type: Boolean,
-      default: false
+      type: Object,
+      default: () => {
+        return {};
+      }
     }
   },
   methods: {

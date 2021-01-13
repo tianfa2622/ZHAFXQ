@@ -75,6 +75,7 @@ const options = {
         }
       }
     },
+    // eslint-disable-next-line prettier/prettier
     formatter: function (name) {
       let res = echartData.filter(v => v.name === name);
       res = res[0] || {};
