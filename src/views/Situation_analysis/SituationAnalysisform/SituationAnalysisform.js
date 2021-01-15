@@ -1,9 +1,8 @@
 const options = {
   rules: {},
   formData: {
-    ReleaseType: "",
-    PublishContent: "",
-    ReleaseDate: ""
+    area: [],
+    Date: ""
   },
   form: {
     inline: true,
@@ -11,34 +10,16 @@ const options = {
   },
   itemColumns: [
     {
-      span: 7,
-      label: " 发布类型：",
-      prop: "ReleaseType",
-      type: "select",
-      class: "",
-      options: [
-        {
-          label: "机动车",
-          value: 1
-        },
-        {
-          label: "电动车",
-          value: 2
-        }
-      ]
+      span: 9,
+      label: "",
+      prop: "area",
+      type: "area",
+      level: 2
     },
     {
-      span: 7,
-      label: "发布内容：",
-      prop: "PublishContent",
-      type: "text",
-      clearable: true,
-      class: ""
-    },
-    {
-      span: 7,
-      label: "发布时间：",
-      prop: "ReleaseDate",
+      span: 9,
+      label: "",
+      prop: "Date",
       type: "daterange",
       class: "",
       clearable: true,
@@ -87,7 +68,7 @@ const options = {
         style: "",
         size: "small",
         methods: "Increase",
-        label: "新增"
+        label: "导出"
       }
     ]
   }

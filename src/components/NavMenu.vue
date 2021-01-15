@@ -29,9 +29,9 @@
         <el-menu-item index="/AnomalyAnalysis">异常研判分析</el-menu-item>
         <el-menu-item index="/KeyObjectControl">重点对象管控</el-menu-item>
         <el-menu-item index="/VerifyFeedback">信息核实反馈</el-menu-item>
-        <el-menu-item index="4-5">预警处理</el-menu-item>
+        <el-menu-item index="/EarlyWarningDisposal">预警处理</el-menu-item>
       </el-submenu>
-      <el-menu-item index="5">态势分析</el-menu-item>
+      <el-menu-item index="/SituationAnalysis">态势分析</el-menu-item>
       <el-submenu index="6">
         <template slot="title">系统管理</template>
         <el-menu-item index="6-1">用户管理</el-menu-item>

@@ -44,7 +44,9 @@ export default {
     PeriodofTime() {
       let time = new Date();
       let Hour = time.getHours(); // 时
-      if (6 <= Hour && Hour < 11) {
+      if (6 <= Hour < 9) {
+        return "早上好";
+      } else if (6 <= Hour && Hour < 11) {
         return "上午好";
       } else if (11 <= Hour && Hour < 14) {
         return "中午好";

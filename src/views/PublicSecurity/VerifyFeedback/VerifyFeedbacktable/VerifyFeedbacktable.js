@@ -45,7 +45,7 @@ const options = {
       {
         label: "详情",
         type: "text",
-        // size: "mini",
+        size: "mini",
         methods: "toView",
         style: "color:#39c5aa"
       }

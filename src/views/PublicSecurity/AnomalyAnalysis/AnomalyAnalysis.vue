@@ -12,6 +12,7 @@
           :formData="MyformData.formData"
           :form="MyformData.form"
           :itemColumns="MyformData.itemColumns"
+          :btnData="MyformData.btnData"
           @clickButton="clickButton"
         ></Myform>
       </el-card>

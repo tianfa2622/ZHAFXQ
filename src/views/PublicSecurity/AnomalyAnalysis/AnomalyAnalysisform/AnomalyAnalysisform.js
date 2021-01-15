@@ -26,7 +26,6 @@ const options = {
   ],
   btnData: {
     span: 5,
-    style: "flex:auto;     text-align: end;",
     BtndataList: [
       {
         type: "success",

@@ -17,7 +17,7 @@ const routes = [
     name: "Comprehensive",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/Data_management/Comprehensive/Comprehensive.vue"
+        /* webpackChunkName: "Comprehensive" */ "../views/Data_management/Comprehensive/Comprehensive.vue"
       ),
     meta: { hidden: true, title: "综合管理" }
   },
@@ -26,7 +26,7 @@ const routes = [
     name: "personnel",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/Data_management/personnel/personnel.vue"
+        /* webpackChunkName: "personnel" */ "../views/Data_management/personnel/personnel.vue"
       ),
     meta: { hidden: true, title: "人员管理" }
   },
@@ -35,7 +35,7 @@ const routes = [
     name: "vehicle",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/Data_management/vehicle/vehicle.vue"
+        /* webpackChunkName: "vehicle" */ "../views/Data_management/vehicle/vehicle.vue"
       ),
     meta: { hidden: true, title: "车辆管理" }
   },
@@ -44,7 +44,7 @@ const routes = [
     name: "Housing",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/Data_management/Housing/Housing.vue"
+        /* webpackChunkName: "Housing" */ "../views/Data_management/Housing/Housing.vue"
       ),
     meta: { hidden: true, title: "房屋管理" }
   },
@@ -53,7 +53,7 @@ const routes = [
     name: "CommunityUnit",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/Data_management/CommunityUnit/CommunityUnit.vue"
+        /* webpackChunkName: "CommunityUnit" */ "../views/Data_management/CommunityUnit/CommunityUnit.vue"
       ),
     meta: { hidden: true, title: "小区单位管理" }
   },
@@ -62,7 +62,7 @@ const routes = [
     name: "StaffAnalysis",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/PublicSecurity/StaffAnalysis/StaffAnalysis.vue"
+        /* webpackChunkName: "StaffAnalysis" */ "../views/PublicSecurity/StaffAnalysis/StaffAnalysis.vue"
       ),
     meta: { hidden: true, title: "实有人口分析" }
   },
@@ -71,7 +71,7 @@ const routes = [
     name: "AnomalyAnalysis",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/PublicSecurity/AnomalyAnalysis/AnomalyAnalysis.vue"
+        /* webpackChunkName: "AnomalyAnalysis" */ "../views/PublicSecurity/AnomalyAnalysis/AnomalyAnalysis.vue"
       ),
     meta: { hidden: true, title: "异常研判分析" }
   },
@@ -80,7 +80,7 @@ const routes = [
     name: "KeyObjectControl",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/PublicSecurity/KeyObjectControl/KeyObjectControl.vue"
+        /* webpackChunkName: "KeyObjectControl" */ "../views/PublicSecurity/KeyObjectControl/KeyObjectControl.vue"
       ),
     meta: { hidden: true, title: "重点对象管控" }
   },
@@ -89,9 +89,27 @@ const routes = [
     name: "VerifyFeedback",
     component: () =>
       import(
-        /* webpackChunkName: "about" */ "../views/PublicSecurity/VerifyFeedback/VerifyFeedback.vue"
+        /* webpackChunkName: "VerifyFeedback" */ "../views/PublicSecurity/VerifyFeedback/VerifyFeedback.vue"
       ),
     meta: { hidden: true, title: "信息核实反馈" }
+  },
+  {
+    path: "/EarlyWarningDisposal",
+    name: "EarlyWarningDisposal",
+    component: () =>
+      import(
+        /* webpackChunkName: "EarlyWarningDisposal" */ "../views/PublicSecurity/EarlyWarningDisposal/EarlyWarningDisposal.vue"
+      ),
+    meta: { hidden: true, title: "预警处理" }
+  },
+  {
+    path: "/SituationAnalysis",
+    name: "SituationAnalysis",
+    component: () =>
+      import(
+        /* webpackChunkName: "SituationAnalysis" */ "../views/Situation_analysis/SituationAnalysis.vue"
+      ),
+    meta: { hidden: true, title: "态势分析" }
   }
   // {
   //   path: '/about',

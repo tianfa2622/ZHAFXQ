@@ -29,7 +29,7 @@ const options = {
     span: 5,
     BtndataList: [
       {
-        type: "primary",
+        type: "success",
         class: "",
         style: "",
         size: "small",

@@ -22,6 +22,7 @@
         :header-cell-style="HeaderCellStyle"
         :row-style="RowStyle"
         @sort-change="handleSortChange"
+        @row-click="handleRowClick"
       >
         <el-table-column
           type="index"
@@ -33,6 +34,7 @@
           v-for="(item, index) in tableColumns"
           :key="index"
           :prop="item.param"
+          :column-key="item.columnKey"
           :width="item.width ? item.width : ''"
           :sortable="item.sortable ? true : false"
           :label="item.label"
@@ -55,19 +57,20 @@
           v-if="tableOption.label === '操作'"
         >
           <template slot-scope="scope">
-            <el-button
-              v-for="(item, index) in tableOption.options"
-              :key="index"
-              :type="item.type"
-              :icon="item.icon"
-              :class="item.class"
-              :style="item.style"
-              :size="item.size"
-              :resizable="false"
-              @click="handleButton(item.methods, scope.$index, scope.row)"
-            >
-              {{ item.label }}
-            </el-button>
+            <div v-for="(item, index) in tableOption.options" :key="index">
+              <el-button
+                v-if="item.isShow !== true"
+                :type="item.type"
+                :icon="item.icon"
+                :class="item.class"
+                :style="item.style"
+                :size="item.size"
+                :resizable="false"
+                @click="handleButton(item.methods, scope.$index, scope.row)"
+              >
+                {{ item.label }}
+              </el-button>
+            </div>
           </template>
         </el-table-column>
       </el-table>
@@ -190,6 +193,10 @@ export default {
     // 点击排序
     handleSortChange(val) {
       this.$emit("sortChange", val);
+    },
+    // 某一行被点击
+    handleRowClick(row) {
+      this.$emit("click-events", row);
     }
   }
 };

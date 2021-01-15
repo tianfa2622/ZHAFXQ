@@ -1,44 +1,52 @@
 const options = {
   rules: {},
   formData: {
-    ReleaseType: "",
-    PublishContent: "",
-    ReleaseDate: ""
+    PlanName: "",
+    KeyWords: "",
+    EntryTime: ""
   },
   form: {
     inline: true,
     size: "small"
   },
   itemColumns: [
+    // {
+    //   span: 7,
+    //   label: " 发布类型：",
+    //   prop: "ReleaseType",
+    //   type: "select",
+    //   class: "",
+    //   options: [
+    //     {
+    //       label: "机动车",
+    //       value: 1
+    //     },
+    //     {
+    //       label: "电动车",
+    //       value: 2
+    //     }
+    //   ]
+    // },
     {
       span: 7,
-      label: " 发布类型：",
-      prop: "ReleaseType",
-      type: "select",
-      class: "",
-      options: [
-        {
-          label: "机动车",
-          value: 1
-        },
-        {
-          label: "电动车",
-          value: 2
-        }
-      ]
-    },
-    {
-      span: 7,
-      label: "发布内容：",
-      prop: "PublishContent",
+      label: "巡查预案名称：",
+      prop: "PlanName",
       type: "text",
       clearable: true,
       class: ""
     },
     {
       span: 7,
-      label: "发布时间：",
-      prop: "ReleaseDate",
+      label: "关键词：",
+      prop: "KeyWords",
+      type: "text",
+      clearable: true,
+      class: ""
+    },
+    {
+      span: 7,
+      label: "录入时间：",
+      prop: "EntryTime",
       type: "daterange",
       class: "",
       clearable: true,

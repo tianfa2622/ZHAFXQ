@@ -40,6 +40,7 @@ const options = {
       {
         label: "查看",
         type: "text",
+        size: "mini",
         methods: "toView"
       }
     ]
