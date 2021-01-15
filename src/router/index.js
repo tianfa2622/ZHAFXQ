@@ -110,6 +110,42 @@ const routes = [
         /* webpackChunkName: "SituationAnalysis" */ "../views/Situation_analysis/SituationAnalysis.vue"
       ),
     meta: { hidden: true, title: "态势分析" }
+  },
+  {
+    path: "/UserManagement",
+    name: "UserManagement",
+    component: () =>
+      import(
+        /* webpackChunkName: "UserManagement" */ "../views/System_management/UserManagement/UserManagement.vue"
+      ),
+    meta: { hidden: true, title: "用户管理" }
+  },
+  {
+    path: "/EquipmentManagement",
+    name: "EquipmentManagement",
+    component: () =>
+      import(
+        /* webpackChunkName: "EquipmentManagement" */ "../views/System_management/EquipmentManagement/Equipment.vue"
+      ),
+    meta: { hidden: true, title: "设备管理" }
+  },
+  {
+    path: "/LogManagement",
+    name: "LogManagement",
+    component: () =>
+      import(
+        /* webpackChunkName: "LogManagement" */ "../views/System_management/LogManagement/LogManagement.vue"
+      ),
+    meta: { hidden: true, title: "日记管理" }
+  },
+  {
+    path: "/ExceptionSetting",
+    name: "ExceptionSetting",
+    component: () =>
+      import(
+        /* webpackChunkName: "ExceptionSetting" */ "../views/System_management/ExceptionSetting/ExceptionSetting.vue"
+      ),
+    meta: { hidden: true, title: "异常设置" }
   }
   // {
   //   path: '/about',

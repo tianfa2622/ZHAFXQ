@@ -21,7 +21,8 @@ const options = {
       append: true,
       prop: "CommunityName",
       type: "text",
-      class: ""
+      class: "",
+      methods: "search"
     }
   ]
 };

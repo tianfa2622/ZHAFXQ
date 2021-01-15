@@ -28,20 +28,20 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       tableData: [
         {
-          VehicleColor: '褐色',
-          idNumber: '123123123123123123',
-          address: '往家里检查站，城西检查站'
+          VehicleColor: "褐色",
+          idNumber: "123123123123123123",
+          address: "往家里检查站，城西检查站"
         }
       ],
-      src: 'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg'
-
-    }
+      src:
+        "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg"
+    };
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

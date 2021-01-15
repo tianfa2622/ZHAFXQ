@@ -57,20 +57,19 @@
           v-if="tableOption.label === '操作'"
         >
           <template slot-scope="scope">
-            <div v-for="(item, index) in tableOption.options" :key="index">
-              <el-button
-                v-if="item.isShow !== true"
-                :type="item.type"
-                :icon="item.icon"
-                :class="item.class"
-                :style="item.style"
-                :size="item.size"
-                :resizable="false"
-                @click="handleButton(item.methods, scope.$index, scope.row)"
-              >
-                {{ item.label }}
-              </el-button>
-            </div>
+            <el-button
+              v-for="(item, index) in tableOption.options"
+              :key="index"
+              :type="item.type"
+              :icon="item.icon"
+              :class="item.class"
+              :style="item.style"
+              :size="item.size"
+              :resizable="false"
+              @click="handleButton(item.methods, scope.row, scope.$index)"
+            >
+              {{ item.label }}
+            </el-button>
           </template>
         </el-table-column>
       </el-table>

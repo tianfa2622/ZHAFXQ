@@ -91,6 +91,12 @@ export default {
       this.page = val;
       console.log(`当前页: ${val}`);
     },
+    // 点击事件
+    clickButton(val) {
+      // 调用事件
+      console.log(val);
+      this[val.methods](val.row);
+    },
     search() {
       console.log("搜索");
     }

@@ -18,6 +18,7 @@
           v-for="(columns, i) in itemColumns"
           :key="i"
           :span="columns.span"
+          :style="columns.style"
         >
           <el-form-item
             :label="columns.label"
@@ -90,6 +91,16 @@
             </el-select>
             <!-- 日期选择 -->
             <el-date-picker
+              v-else-if="columns.type === 'date'"
+              v-model="formData[columns.prop]"
+              align="right"
+              :type="columns.type"
+              placeholder="请选择日期"
+              :clearable="columns.clearable"
+              :picker-options="columns.pickerOptions"
+            >
+            </el-date-picker>
+            <el-date-picker
               v-else-if="columns.type === 'daterange'"
               v-model="formData[columns.prop]"
               :type="columns.type"
@@ -101,6 +112,7 @@
               start-placeholder="开始日期"
               end-placeholder="结束日期"
               :picker-options="columns.pickerOptions"
+              placeholder="请选择"
             >
             </el-date-picker>
             <!-- 日期时间选择器 -->
@@ -113,6 +125,7 @@
               :class="columns.class"
               start-placeholder="开始日期"
               end-placeholder="结束日期"
+              placeholder="请选择"
             >
             </el-date-picker>
             <!-- 区域选择 -->
@@ -136,11 +149,13 @@
               :suffix-icon="columns.icon"
               :prefix-icon="columns.icon"
               :class="columns.class"
+              :style="columns.style"
             >
               <el-button
                 v-if="columns.append"
                 slot="append"
                 icon="el-icon-search"
+                @click="handleButton(columns.methods)"
               ></el-button>
             </el-input>
           </el-form-item>

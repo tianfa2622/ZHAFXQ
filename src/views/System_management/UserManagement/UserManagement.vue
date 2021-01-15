@@ -1,8 +1,10 @@
 <template>
   <div class="h-100 w-100 bgc dflex direction-column">
     <div class="felx1">
-      <el-breadcrumb separator="/">
-        <el-breadcrumb-item>小区单位档案</el-breadcrumb-item>
+      <el-breadcrumb separator=">>">
+        <!-- :to="{ path: '/UserManagement' }" -->
+        <el-breadcrumb-item> 系统管理 </el-breadcrumb-item>
+        <el-breadcrumb-item>用户管理</el-breadcrumb-item>
       </el-breadcrumb>
       <el-card class="card_style" body-style="padding-bottom: 0px;">
         <Myform
@@ -17,16 +19,16 @@
     <div class="vehicle_bottom dflex">
       <!-- <div class="h-100 w-69"> -->
       <Mytable
-        :size="UnitData.size"
-        :tableData="UnitData.tableData"
-        :tableColumns="UnitData.tableColumns"
-        :tableOption="UnitData.tableOption"
-        :HeaderCellStyle="UnitData.HeaderCellStyle"
+        :size="MyTableData.size"
+        :tableData="MyTableData.tableData"
+        :tableColumns="MyTableData.tableColumns"
+        :tableOption="MyTableData.tableOption"
+        :HeaderCellStyle="MyTableData.HeaderCellStyle"
         @sizeChange="sizeChange"
         @pageChange="pageChange"
         @clickButton="clickButton"
-        :CardAttributes="UnitData.CardAttributes"
-        :pagination="UnitData.pagination"
+        :CardAttributes="MyTableData.CardAttributes"
+        :pagination="MyTableData.pagination"
       ></Mytable>
       <!-- </div> -->
     </div>
@@ -36,8 +38,8 @@
 <script>
 import Mytable from "../../../components/table/table"; // table组件
 import Myform from "../../../components/Form/Form.vue";
-import MyformData from "./Unitform/Unitform";
-import UnitData from "./Unittable/Unittable";
+import MyformData from "./UserManagementform/UserManagementform";
+import MyTableData from "./UserManagementtable/UserManagementtable";
 export default {
   components: {
     Myform,
@@ -46,7 +48,7 @@ export default {
   data() {
     return {
       MyformData,
-      UnitData
+      MyTableData
     };
   },
   methods: {
@@ -69,12 +71,12 @@ export default {
       console.log(val);
       this[val.methods](val.row);
     },
-    toView(val) {
-      // 我是查看
+    Authority(val) {
+      // 我是权限
       console.log(val);
     },
-    editor(val) {
-      // 我是编辑
+    Disable(val) {
+      // 我是禁用
       console.log(val);
     },
     search() {

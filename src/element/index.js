@@ -27,9 +27,15 @@ import {
   Radio,
   Option,
   OptionGroup,
-  DatePicker
+  DatePicker,
+  InputNumber,
+  TimePicker,
+  divider
 } from "element-ui";
 
+Vue.use(divider);
+Vue.use(InputNumber);
+Vue.use(TimePicker);
 Vue.use(DatePicker);
 Vue.use(Option);
 Vue.use(OptionGroup);

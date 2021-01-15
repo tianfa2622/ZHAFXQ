@@ -1,8 +1,12 @@
 <template>
   <div class="h-100 w-100 bgc dflex direction-column">
     <div class="felx1">
-      <el-breadcrumb separator="/">
-        <el-breadcrumb-item>小区单位档案</el-breadcrumb-item>
+      <el-breadcrumb separator=">>">
+        <!-- :to="{ path: '/UserManagement' }" -->
+        <el-breadcrumb-item :to="{ path: '/UserManagement' }">
+          系统管理
+        </el-breadcrumb-item>
+        <el-breadcrumb-item>日志管理</el-breadcrumb-item>
       </el-breadcrumb>
       <el-card class="card_style" body-style="padding-bottom: 0px;">
         <Myform
@@ -15,20 +19,18 @@
       </el-card>
     </div>
     <div class="vehicle_bottom dflex">
-      <!-- <div class="h-100 w-69"> -->
       <Mytable
-        :size="UnitData.size"
-        :tableData="UnitData.tableData"
-        :tableColumns="UnitData.tableColumns"
-        :tableOption="UnitData.tableOption"
-        :HeaderCellStyle="UnitData.HeaderCellStyle"
+        :size="MyTableData.size"
+        :tableData="MyTableData.tableData"
+        :tableColumns="MyTableData.tableColumns"
+        :tableOption="MyTableData.tableOption"
+        :HeaderCellStyle="MyTableData.HeaderCellStyle"
         @sizeChange="sizeChange"
         @pageChange="pageChange"
         @clickButton="clickButton"
-        :CardAttributes="UnitData.CardAttributes"
-        :pagination="UnitData.pagination"
+        :CardAttributes="MyTableData.CardAttributes"
+        :pagination="MyTableData.pagination"
       ></Mytable>
-      <!-- </div> -->
     </div>
   </div>
 </template>
@@ -36,8 +38,8 @@
 <script>
 import Mytable from "../../../components/table/table"; // table组件
 import Myform from "../../../components/Form/Form.vue";
-import MyformData from "./Unitform/Unitform";
-import UnitData from "./Unittable/Unittable";
+import MyformData from "./LogManagementform/LogManagementform";
+import MyTableData from "./LogManagementtable/LogManagementtable";
 export default {
   components: {
     Myform,
@@ -46,7 +48,7 @@ export default {
   data() {
     return {
       MyformData,
-      UnitData
+      MyTableData
     };
   },
   methods: {
@@ -69,19 +71,12 @@ export default {
       console.log(val);
       this[val.methods](val.row);
     },
-    toView(val) {
-      // 我是查看
-      console.log(val);
-    },
-    editor(val) {
-      // 我是编辑
+    Details(val) {
+      // 我是详情
       console.log(val);
     },
     search() {
       console.log("搜索");
-    },
-    Increase() {
-      console.log("新增");
     }
   }
 };
@@ -92,7 +87,7 @@ export default {
   background-color: #fff;
   .vehicle_bottom {
     width: 100%;
-    height: calc(100% - 168px);
+    height: calc(100% - 117px);
     margin-top: 10px;
     .w-69 {
       width: 69%;

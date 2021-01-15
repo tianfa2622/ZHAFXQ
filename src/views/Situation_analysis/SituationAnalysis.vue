@@ -13,6 +13,7 @@
         @tab-click="handleClick"
       >
         <el-tab-pane
+          :lazy="true"
           v-for="(item, index) in tabs"
           :key="index"
           :label="item.label"
@@ -71,14 +72,11 @@
                 <!-- <div slot="header">
                   <span>信息核实</span>
                 </div> -->
-                <MyEcharts
-                  v-if="activeName === 'first'"
-                  :option="BytimeEcharts"
-                ></MyEcharts>
-                <MyEcharts
-                  v-if="activeName === 'second'"
+                <MyEcharts :option="options"></MyEcharts>
+                <!-- <MyEcharts
+                  v-if="'second' === activeName"
                   :option="ByAreaEcharts"
-                ></MyEcharts>
+                ></MyEcharts> -->
               </el-card>
             </div>
           </div>
@@ -110,19 +108,18 @@ export default {
       MyformData,
       BytimeEcharts,
       ByAreaEcharts,
+      options: {},
       tabsData: {},
       Community: "",
       activeName: "first",
       tabs: [
         {
           label: "按时间",
-          name: "first",
-          number: 2182
+          name: "first"
         },
         {
           label: "按区域",
-          name: "second",
-          number: 2182
+          name: "second"
         }
       ],
       CommunityData: [
@@ -159,8 +156,10 @@ export default {
     tabsdata() {
       if (this.activeName === "first") {
         this.tabsData = Bytimetabel;
+        this.options = this.BytimeEcharts;
       } else {
         this.tabsData = ByAreatabel;
+        this.options = this.ByAreaEcharts;
       }
     },
     // onSubmit() {

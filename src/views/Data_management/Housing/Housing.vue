@@ -2,7 +2,7 @@
   <div class="h-100 w-100 bgc dflex direction-column">
     <div class="felx1">
       <el-breadcrumb separator="/">
-        <el-breadcrumb-item>小区车辆档案</el-breadcrumb-item>
+        <el-breadcrumb-item>小区房屋档案</el-breadcrumb-item>
       </el-breadcrumb>
       <el-card class="card_style" body-style="padding-bottom: 0px;">
         <Myform

@@ -32,11 +32,12 @@
         <el-menu-item index="/EarlyWarningDisposal">预警处理</el-menu-item>
       </el-submenu>
       <el-menu-item index="/SituationAnalysis">态势分析</el-menu-item>
-      <el-submenu index="6">
+      <el-submenu index="/SystemManagement">
         <template slot="title">系统管理</template>
-        <el-menu-item index="6-1">用户管理</el-menu-item>
-        <el-menu-item index="6-2">设备管理</el-menu-item>
-        <el-menu-item index="6-2">日志管理</el-menu-item>
+        <el-menu-item index="/UserManagement">用户管理</el-menu-item>
+        <el-menu-item index="/EquipmentManagement">设备管理</el-menu-item>
+        <el-menu-item index="/LogManagement">日志管理</el-menu-item>
+        <el-menu-item index="/ExceptionSetting">异常设置</el-menu-item>
       </el-submenu>
     </el-menu>
   </div>
