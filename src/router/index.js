@@ -146,6 +146,24 @@ const routes = [
         /* webpackChunkName: "ExceptionSetting" */ "../views/System_management/ExceptionSetting/ExceptionSetting.vue"
       ),
     meta: { hidden: true, title: "异常设置" }
+  },
+  {
+    path: "/RealTime",
+    name: "RealTime",
+    component: () =>
+      import(
+        /* webpackChunkName: "RealTime" */ "../views/VideoMonitoring/Real-time/RealTime.vue"
+      ),
+    meta: { hidden: true, title: "实时监控" }
+  },
+  {
+    path: "/HistoricalMonitoring",
+    name: "HistoricalMonitoring",
+    component: () =>
+      import(
+        /* webpackChunkName: "HistoricalMonitoring" */ "../views/VideoMonitoring/HistoricalMonitoring/Historical.vue"
+      ),
+    meta: { hidden: true, title: "历史监控" }
   }
   // {
   //   path: '/about',

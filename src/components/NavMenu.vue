@@ -9,11 +9,13 @@
       active-text-color="#ffd04b"
       router
     >
-      <el-menu-item index="/">首页</el-menu-item>
+      <el-menu-item index="/">
+        <span slot="title">首页</span>
+      </el-menu-item>
       <el-submenu index="/VideoSurveillance">
         <template slot="title">视频监控</template>
-        <el-menu-item index="2-1">实时监控</el-menu-item>
-        <el-menu-item index="2-2">历史监控</el-menu-item>
+        <el-menu-item index="/RealTime">实时监控</el-menu-item>
+        <el-menu-item index="/HistoricalMonitoring">历史监控</el-menu-item>
       </el-submenu>
       <el-submenu index="/DataManagement">
         <template slot="title">数据管理</template>
@@ -58,4 +60,4 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="less" scoped></style>

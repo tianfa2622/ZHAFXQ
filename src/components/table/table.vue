@@ -7,7 +7,7 @@
       :shadow="CardAttributes.shadow"
     >
       <div slot="header" v-if="CardAttributes.title">
-        <span>{{ CardAttributes.title }}</span>
+        <span style="font-size: 16px">{{ CardAttributes.title }}</span>
       </div>
       <el-table
         ref="table"

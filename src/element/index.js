@@ -30,9 +30,13 @@ import {
   DatePicker,
   InputNumber,
   TimePicker,
-  divider
+  divider,
+  CheckboxGroup,
+  Checkbox
 } from "element-ui";
 
+Vue.use(Checkbox);
+Vue.use(CheckboxGroup);
 Vue.use(divider);
 Vue.use(InputNumber);
 Vue.use(TimePicker);
