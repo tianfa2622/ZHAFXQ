@@ -26,6 +26,11 @@ const options = {
       label: "单位地址",
       param: "UnitAddress",
       align: "center"
+    },
+    {
+      label: "小区名称",
+      param: "CommunityName",
+      align: "center"
     }
   ],
   tableOption: {
@@ -52,25 +57,29 @@ const options = {
       companyName: "湖南华润科技有限公司",
       SocialCreditCode: "914301020749881625",
       CorporateName: "张三",
-      UnitAddress: "长沙市芙蓉区宽寓大厦"
+      UnitAddress: "长沙市芙蓉区宽寓大厦",
+      CommunityName: ""
     },
     {
       companyName: "湖南华润科技有限公司",
       SocialCreditCode: "914301020749881625",
       CorporateName: "张三",
-      UnitAddress: "长沙市芙蓉区宽寓大厦"
+      UnitAddress: "长沙市芙蓉区宽寓大厦",
+      CommunityName: ""
     },
     {
       companyName: "湖南华润科技有限公司",
       SocialCreditCode: "914301020749881625",
       CorporateName: "张三",
-      UnitAddress: "长沙市芙蓉区宽寓大厦"
+      UnitAddress: "长沙市芙蓉区宽寓大厦",
+      CommunityName: ""
     },
     {
       companyName: "湖南华润科技有限公司",
       SocialCreditCode: "914301020749881625",
       CorporateName: "张三",
-      UnitAddress: "长沙市芙蓉区宽寓大厦"
+      UnitAddress: "长沙市芙蓉区宽寓大厦",
+      CommunityName: ""
     }
   ],
   pagination: {

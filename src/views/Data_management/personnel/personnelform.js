@@ -2,7 +2,11 @@ const options = {
   rules: {},
   formData: {
     area: [],
-    VillageName: ""
+    CommunityName: "",
+    // VillageName: "",
+    Name: "",
+    IDCardNum: "",
+    CurrentAddress: ""
   },
   form: {
     inline: true,
@@ -10,23 +14,50 @@ const options = {
   },
   itemColumns: [
     {
-      span: 9,
+      span: 8,
       label: "",
       prop: "area",
       type: "area",
       level: 2
     },
     {
-      span: 5,
-      label: "小区名称",
-      prop: "VillageName",
+      span: 6,
+      label: "小区名称:",
+      prop: "CommunityName",
       type: "text",
       clearable: true,
       class: ""
+    },
+    {
+      span: 6,
+      label: "姓名:",
+      prop: "Name",
+      type: "text",
+      clearable: true,
+      class: ""
+    },
+    {
+      span: 8,
+      label: "身份证号码:",
+      prop: "IDCardNum",
+      type: "text",
+      clearable: true,
+      class: "",
+      style: "text-align:center"
+    },
+    {
+      span: 6,
+      label: "现住地址:",
+      prop: "CurrentAddress",
+      type: "text",
+      clearable: true,
+      class: ""
+      // style: "text-align:center"
     }
   ],
   btnData: {
-    span: 5,
+    span: 6,
+    // style: "flex:auto;     text-align: end;",
     BtndataList: [
       {
         type: "success",

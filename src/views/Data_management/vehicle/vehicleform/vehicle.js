@@ -2,6 +2,7 @@ const options = {
   rules: {},
   formData: {
     area: [],
+    CommunityName: "",
     ownerName: "",
     LicensePlateNumber: "",
     VehicleCategory: ""
@@ -20,6 +21,14 @@ const options = {
     },
     {
       span: 5,
+      label: "小区名称：",
+      prop: "CommunityName",
+      type: "text",
+      clearable: true,
+      class: ""
+    },
+    {
+      span: 5,
       label: "车主姓名：",
       prop: "ownerName",
       type: "text",
@@ -35,11 +44,12 @@ const options = {
       class: ""
     },
     {
-      span: 5,
+      span: 7,
       label: "车辆类别：",
       prop: "VehicleCategory",
       type: "select",
       class: "",
+      style: "text-align:center",
       options: [
         {
           label: "机动车",

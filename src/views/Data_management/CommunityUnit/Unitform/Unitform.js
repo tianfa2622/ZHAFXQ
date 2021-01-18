@@ -2,6 +2,7 @@ const options = {
   rules: {},
   formData: {
     area: [],
+    CommunityName: "",
     companyName: "",
     CorporateName: "",
     SocialCreditCode: ""
@@ -20,11 +21,11 @@ const options = {
     },
     {
       span: 5,
-      label: "单位名称：",
-      prop: "companyName",
+      label: "小区名称:",
+      prop: "CommunityName",
       type: "text",
-      class: "",
-      clearable: true
+      clearable: true,
+      class: ""
     },
     {
       span: 5,
@@ -35,12 +36,21 @@ const options = {
       class: ""
     },
     {
-      span: 6,
+      span: 5,
+      label: "单位名称：",
+      prop: "companyName",
+      type: "text",
+      class: "",
+      clearable: true
+    },
+    {
+      span: 7,
       label: "统一社会信用代码：",
       prop: "SocialCreditCode",
       type: "text",
       class: "",
-      clearable: true
+      clearable: true,
+      style: "text-align:center"
     }
   ],
   btnData: {

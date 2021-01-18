@@ -32,9 +32,13 @@ import {
   TimePicker,
   divider,
   CheckboxGroup,
-  Checkbox
+  Checkbox,
+  Image,
+  Popover
 } from "element-ui";
 
+Vue.use(Image);
+Vue.use(Popover);
 Vue.use(Checkbox);
 Vue.use(CheckboxGroup);
 Vue.use(divider);

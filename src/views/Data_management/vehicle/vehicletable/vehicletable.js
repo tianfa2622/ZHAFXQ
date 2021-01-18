@@ -18,13 +18,18 @@ const options = {
       align: "center"
     },
     {
-      label: "联系方式",
-      param: "contact",
+      label: "联系电话",
+      param: "contactNumber",
       align: "center"
     },
     {
       label: "车辆类别",
       param: "VehicleCategory",
+      align: "center"
+    },
+    {
+      label: "小区名称",
+      param: "CommunityName",
       align: "center"
     }
   ],
@@ -51,20 +56,23 @@ const options = {
     {
       ownerName: "张三",
       LicensePlateNumber: "湘A59SU2",
-      contact: 15571239876,
-      VehicleCategory: "电动车"
+      contactNumber: 15571239876,
+      VehicleCategory: "电动车",
+      CommunityName: "辉煌国际"
     },
     {
       ownerName: "李四",
       LicensePlateNumber: "430111198107115034",
-      contact: 15571239876,
-      VehicleCategory: "自行车"
+      contactNumber: 15571239876,
+      VehicleCategory: "自行车",
+      CommunityName: "辉煌国际"
     },
     {
       ownerName: "张三",
       LicensePlateNumber: "430111198107115034",
-      contact: 15571239876,
-      VehicleCategory: "自行车"
+      contactNumber: 15571239876,
+      VehicleCategory: "自行车",
+      CommunityName: "辉煌国际"
     }
   ],
   pagination: {

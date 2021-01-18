@@ -13,6 +13,7 @@
         type="flex"
         :justify="RowData.justify || 'space-around'"
         :align="RowData.align || 'middle'"
+        :class="RowData.class"
       >
         <el-col
           v-for="(columns, i) in itemColumns"

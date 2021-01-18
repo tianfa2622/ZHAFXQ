@@ -127,6 +127,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.row_warp {
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
 .card_bottom {
   height: calc(100% - 91px);
 }

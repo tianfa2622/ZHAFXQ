@@ -125,6 +125,9 @@ export default {
     // onSubmit() {
     //   console.log("submit!");
     // },
+    // Jump() {
+    //   this.$router.push("/HistoricalMonitoring/DeviceInformation");
+    // },
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
     },

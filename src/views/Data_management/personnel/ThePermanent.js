@@ -18,13 +18,18 @@ const options = {
       align: "center"
     },
     {
+      label: "民族",
+      param: "national",
+      align: "center"
+    },
+    {
       label: "联系方式",
       param: "contact",
       align: "center"
     },
     {
-      label: "民族",
-      param: "national",
+      label: "现住地址",
+      param: "CurrentAddress",
       align: "center"
     }
   ],
@@ -52,25 +57,29 @@ const options = {
       name: "张三",
       IDCardNumber: "430111198107115034",
       contact: 15571239876,
-      national: "汉"
+      national: "汉",
+      CurrentAddress: ""
     },
     {
       name: "李四",
       IDCardNumber: "430111198107115034",
+      national: "汉",
       contact: 15571239876,
-      national: "汉"
+      CurrentAddress: ""
     },
     {
       name: "张三",
       IDCardNumber: "430111198107115034",
+      national: "汉",
       contact: 15571239876,
-      national: "汉"
+      CurrentAddress: ""
     },
     {
       name: "李四",
       IDCardNumber: "430111198107115034",
+      national: "汉",
       contact: 15571239876,
-      national: "汉"
+      CurrentAddress: ""
     }
   ],
   pagination: {

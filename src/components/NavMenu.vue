@@ -24,6 +24,7 @@
         <el-menu-item index="/vehicle">小区车辆档案</el-menu-item>
         <el-menu-item index="/housing">小区房屋档案</el-menu-item>
         <el-menu-item index="/CommunityUnit">小区单位档案</el-menu-item>
+        <el-menu-item index="/IntegratedQuery">综合查询</el-menu-item>
       </el-submenu>
       <el-submenu index="/PublicSecurity">
         <template slot="title">治安防范</template>

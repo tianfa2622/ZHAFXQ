@@ -38,20 +38,21 @@
         <div class="VideoContent">
           <el-card
             class="pb-40 flex1 posi-rel over-h"
+            style="border: none"
             body-style="height: 100%;overflow:auto; padding-bottom:0px"
           >
             <el-row type="flex" :gutter="20" class="row_warp">
               <el-col
                 :span="8"
-                v-for="(o, index) in 6"
+                v-for="(o, index) in 1"
                 :key="index"
                 class="mb-10"
               >
                 <el-card body-style=" padding:0px; text-align:center">
-                  <img
-                    src="../../../assets/images/Equipment/u4236.svg"
-                    class="image"
-                  />
+                  <div class="w-100 h-100">
+                    <VideoPlayer></VideoPlayer>
+                  </div>
+                  <!-- <img src="../../../assets/images/Equipment/u4236.svg" /> -->
                   <div style="padding: 14px">
                     <p>
                       <span class="equipment">{{ EquipmentName }}</span>
@@ -99,6 +100,7 @@
 </template>
 
 <script>
+import VideoPlayer from "../../../components/VideoPlayer/VideoPlayer";
 import Mytable from "../../../components/table/table"; // table组件
 import Myform from "../../../components/Form/Form";
 import MyformData from "./RealTimeForm/RealTimeForm";
@@ -106,7 +108,8 @@ import MytableData from "./RealTimeTable/RealTimeTable";
 export default {
   components: {
     Myform,
-    Mytable
+    Mytable,
+    VideoPlayer
   },
   data() {
     return {

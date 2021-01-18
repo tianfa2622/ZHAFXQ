@@ -58,6 +58,15 @@ const routes = [
     meta: { hidden: true, title: "小区单位管理" }
   },
   {
+    path: "/IntegratedQuery",
+    name: "IntegratedQuery",
+    component: () =>
+      import(
+        /* webpackChunkName: "IntegratedQuery" */ "../views/Data_management/IntegratedQuery/IntegratedQuery.vue"
+      ),
+    meta: { hidden: true, title: "综合查询" }
+  },
+  {
     path: "/StaffAnalysis",
     name: "StaffAnalysis",
     component: () =>
@@ -163,7 +172,17 @@ const routes = [
       import(
         /* webpackChunkName: "HistoricalMonitoring" */ "../views/VideoMonitoring/HistoricalMonitoring/Historical.vue"
       ),
-    meta: { hidden: true, title: "历史监控" }
+    meta: { hidden: true, title: "历史监控" },
+    children: [
+      {
+        path: "DeviceInformation",
+        name: "DeviceInformation",
+        component: () =>
+          import(
+            /* webpackChunkName: "DeviceInformation" */ "../views/VideoMonitoring/HistoricalMonitoring/DeviceInformation.vue"
+          )
+      }
+    ]
   }
   // {
   //   path: '/about',

@@ -13,14 +13,36 @@ const options = {
   },
   itemColumns: [
     {
-      span: 7,
+      span: 8,
+      label: "",
+      prop: "category",
+      type: "select",
+      class: "",
+      style: "text-align:center;",
+      options: [
+        {
+          label: "按人员",
+          value: 1
+        },
+        {
+          label: "按车辆",
+          value: 2
+        },
+        {
+          label: "按房屋",
+          value: 3
+        }
+      ]
+    },
+    {
+      span: 8,
       label: "",
       prop: "area",
       type: "area",
       level: 2
     },
     {
-      span: 5,
+      span: 7,
       label: "小区名称:",
       prop: "CommunityName",
       type: "text",
@@ -28,34 +50,18 @@ const options = {
       class: ""
     },
     {
-      span: 5,
-      label: "房屋类别：",
-      prop: "HousingCategory",
-      type: "select",
-      class: "",
-      options: [
-        {
-          label: "机动车",
-          value: 1
-        },
-        {
-          label: "电动车",
-          value: 2
-        }
-      ]
-    },
-    {
-      span: 5,
+      span: 7,
       label: "户主姓名：",
       prop: "Householder",
       type: "text",
       class: "",
+      style: "text-align:center",
       clearable: true
     },
     {
-      span: 7,
-      label: "身份证号码：",
-      prop: "IDNumber",
+      span: 8,
+      label: "房屋地址:",
+      prop: "HouseAddress",
       type: "text",
       clearable: true,
       class: "",
@@ -64,21 +70,14 @@ const options = {
   ],
   btnData: {
     span: 5,
-    style: "flex:auto;     text-align: end;",
+    style: "flex:auto;text-align: center;",
     BtndataList: [
       {
         type: "success",
         style: "",
         size: "small",
         methods: "search",
-        label: "搜索"
-      },
-      {
-        type: "primary",
-        style: "",
-        size: "small",
-        methods: "Increase",
-        label: "新增"
+        label: "查询"
       }
     ]
   }
