@@ -20,18 +20,18 @@
               url: 'http://developer.baidu.com/map/jsdemo/img/fox.gif',
               size: { width: 300, height: 157 }
             }" -->
-        <template v-for="(marker, index) in markers">
+        <template v-for="(item, index) in markers">
           <bm-marker
             :key="index"
-            :position="marker.markerPoint"
-            :title="marker.name"
-            @click="look(marker)"
+            :position="item.markerPoint"
+            :title="item.name"
+            @click="look(item)"
           >
             <bm-info-window
-              :posiniton="marker.markerPoint"
+              :posiniton="item.markerPoint"
               :show="show"
-              @close="infoWindowClose(marker)"
-              @open="infoWindowOpen(marker)"
+              @close="infoWindowClose(item)"
+              @open="infoWindowOpen(item)"
             >
               <p>{{ from.xianghao }}</p>
               <p>{{ from.adds }}</p>
@@ -111,8 +111,9 @@ export default {
       this.show = true;
     },
     look(items) {
+      console.log(items);
       this.from = items;
-      this.position = items.markerPoint;
+      // this.position = items.markerPoint;
       this.show = true;
     },
     clickButton(val) {
