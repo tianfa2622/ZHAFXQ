@@ -43,7 +43,10 @@
           show-overflow-tooltip
         >
           <template slot-scope="scope">
-            <span v-if="item.render" :class="item.class(scope.row)">
+            <span
+              v-if="item.render"
+              :class="functionHandle(item.class, scope.row)"
+            >
               {{ item.render(scope.row) }}
             </span>
             <span v-else>{{ scope.row[item.param] }}</span>
@@ -57,19 +60,21 @@
           v-if="tableOption.label === '操作'"
         >
           <template slot-scope="scope">
-            <el-button
-              v-for="(item, index) in tableOption.options"
-              :key="index"
-              :type="item.type"
-              :icon="item.icon"
-              :class="item.class"
-              :style="item.style"
-              :size="item.size"
-              :resizable="false"
-              @click="handleButton(item.methods, scope.row, scope.$index)"
-            >
-              {{ item.label }}
-            </el-button>
+            <template v-for="(item, index) in tableOption.options">
+              <el-button
+                v-if="functionHandle(item.condition, scope.row)"
+                :key="index"
+                :type="item.type"
+                :icon="item.icon"
+                :class="item.class"
+                :style="item.style"
+                :size="item.size"
+                :resizable="false"
+                @click="handleButton(item.methods, scope.row, scope.$index)"
+              >
+                {{ item.label }}
+              </el-button>
+            </template>
           </template>
         </el-table-column>
       </el-table>
@@ -196,6 +201,15 @@ export default {
     // 某一行被点击
     handleRowClick(row) {
       this.$emit("click-events", row);
+    },
+    functionHandle(fn, row) {
+      if (fn instanceof Function) {
+        return fn(row);
+      } else if (fn === undefined) {
+        return true;
+      } else {
+        return fn;
+      }
     }
   }
 };

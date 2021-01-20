@@ -1,4 +1,16 @@
 module.exports = {
+  publicPath: process.env.NODE_ENV === "production" ? "./" : "/",
+
+  outputDir: "dist",
+
+  assetsDir: "assets",
+
+  filenameHashing: false,
+
+  lintOnSave: true,
+
+  productionSourceMap: false,
+
   configureWebpack: {
     externals: {
       AMap: "AMap",

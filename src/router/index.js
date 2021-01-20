@@ -17,7 +17,7 @@ const routes = [
     name: "Comprehensive",
     component: () =>
       import(
-        /* webpackChunkName: "Comprehensive" */ "../views/Data_management/Comprehensive/Comprehensive.vue"
+        /* webpackChunkName: "Comprehensive" */ "../views/Data_management/Comprehensive/components/MapComponent.vue"
       ),
     meta: { hidden: true, title: "综合管理" }
   },
@@ -175,8 +175,8 @@ const routes = [
     meta: { hidden: true, title: "历史监控" },
     children: [
       {
-        path: "DeviceInformation",
-        name: "DeviceInformation",
+        path: "deviceInformation",
+        name: "deviceInformation",
         component: () =>
           import(
             /* webpackChunkName: "DeviceInformation" */ "../views/VideoMonitoring/HistoricalMonitoring/DeviceInformation.vue"
@@ -192,7 +192,7 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  mode: "history",
+  mode: "hash",
   base: process.env.BASE_URL,
   routes
 });

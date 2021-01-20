@@ -97,9 +97,7 @@ export default {
           );
           var weather = new AMap.Weather();
           // 执行实时天气信息查询
-          weather.getLive("长沙市", function(err, data) {
-            console.log(err, data);
-          });
+          weather.getLive("长沙市", function(err, data) {});
         }
       );
     },

@@ -1,9 +1,9 @@
+/* eslint-disable no-unused-vars */
 <template>
   <div>
     <el-menu
-      :default-active="activeIndex"
+      :default-active="$route.path"
       mode="horizontal"
-      @select="handleSelect"
       background-color="#040a3e"
       text-color="#fff"
       active-text-color="#ffd04b"
@@ -47,18 +47,7 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      activeIndex: "/"
-    };
-  },
-  methods: {
-    handleSelect(key, keyPath) {
-      console.log(key, keyPath);
-    }
-  }
-};
+export default {};
 </script>
 
 <style lang="less" scoped></style>

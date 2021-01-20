@@ -13,6 +13,11 @@ Vue.config.productionTip = false;
 Vue.prototype.$PCAA = PCAA;
 Vue.prototype.$echarts = echarts;
 Vue.use(VueArealinkage);
+// eslint-disable-next-line no-undef
+Vue.use(VueBaiduMap.default, {
+  ak: "YOUR_APP_KEY"
+});
+
 router.beforeEach((to, from, next) => {
   if (to.meta.title) {
     document.title = to.meta.title;

@@ -72,7 +72,14 @@
                 <!-- <div slot="header">
                   <span>信息核实</span>
                 </div> -->
-                <MyEcharts :option="options"></MyEcharts>
+                <MyEcharts
+                  v-show="activeName === 'first'"
+                  :option="BytimeEcharts"
+                ></MyEcharts>
+                <MyEcharts
+                  v-show="activeName === 'second'"
+                  :option="ByAreaEcharts"
+                ></MyEcharts>
                 <!-- <MyEcharts
                   v-if="'second' === activeName"
                   :option="ByAreaEcharts"
@@ -108,7 +115,6 @@ export default {
       MyformData,
       BytimeEcharts,
       ByAreaEcharts,
-      options: {},
       tabsData: {},
       Community: "",
       activeName: "first",
@@ -156,37 +162,27 @@ export default {
     tabsdata() {
       if (this.activeName === "first") {
         this.tabsData = Bytimetabel;
-        this.options = this.BytimeEcharts;
       } else {
         this.tabsData = ByAreatabel;
-        this.options = this.ByAreaEcharts;
       }
     },
     // onSubmit() {
-    //   console.log("submit!");
     // },
     // 切换当前一页展示多少条
     sizeChange(val) {
       this.rows = val;
-      console.log(`每页 ${val} 条`);
     },
     // 翻页
     pageChange(val) {
       this.page = val;
-      console.log(`当前页: ${val}`);
     },
     // 点击事件
     clickButton(val) {
       // 调用事件
-      console.log(val);
       this[val.methods](val.row);
     },
-    search() {
-      console.log("搜索");
-    },
-    Increase() {
-      console.log("导出");
-    }
+    search() {},
+    Increase() {}
   }
 };
 </script>

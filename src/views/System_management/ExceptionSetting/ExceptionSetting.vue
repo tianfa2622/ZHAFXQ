@@ -177,12 +177,8 @@ export default {
     };
   },
   methods: {
-    Clear() {
-      console.log("清除");
-    },
-    Save() {
-      console.log("保存");
-    }
+    Clear() {},
+    Save() {}
   }
 };
 </script>

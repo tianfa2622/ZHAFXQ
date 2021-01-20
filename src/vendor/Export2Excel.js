@@ -13,7 +13,6 @@ export function ExportToExcel(jsonData, headKey, fileName) {
   } else {
     data = jsonData;
   }
-  console.log(data);
   const workbook = XLSX.utils.book_new();
   const workSheet = XLSX.utils.json_to_sheet(data);
   XLSX.utils.book_append_sheet(workbook, workSheet, "Sheet1");

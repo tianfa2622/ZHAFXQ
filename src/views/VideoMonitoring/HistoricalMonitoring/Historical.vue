@@ -42,6 +42,7 @@
             class="pb-40 flex1 posi-rel over-h"
             body-style="height: 100%;overflow:auto; padding-bottom:0px"
           >
+            <router-view></router-view>
             <el-row type="flex" :gutter="20" class="row_warp">
               <el-col
                 :span="6"
@@ -52,7 +53,8 @@
                 <el-card body-style=" padding:0px; text-align:center">
                   <img
                     src="../../../assets/images/Equipment/u249.svg"
-                    class="image"
+                    class="pointer"
+                    @click="$router.push({ name: 'deviceInformation' })"
                   />
                   <div style="padding: 14px; border-top: 1px solid #ccc">
                     <p>
@@ -123,26 +125,18 @@ export default {
   },
   methods: {
     // onSubmit() {
-    //   console.log("submit!");
     // },
     // Jump() {
     //   this.$router.push("/HistoricalMonitoring/DeviceInformation");
     // },
-    handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
-    },
-    handleCurrentChange(val) {
-      console.log(`当前页: ${val}`);
-    },
+    handleSizeChange(val) {},
+    handleCurrentChange(val) {},
     // 点击事件
     clickButton(val) {
       // 调用事件
-      console.log(val);
       this[val.methods](val.row);
     },
-    search() {
-      console.log("搜索");
-    }
+    search() {}
   }
 };
 </script>
@@ -156,8 +150,6 @@ export default {
   .row_warp {
     flex-wrap: wrap;
     align-content: flex-start;
-    // .image {
-    // }
   }
   .equipment {
     font-size: 14px;

@@ -57,11 +57,24 @@ const options = {
     align: "center",
     options: [
       {
-        label: "处理",
+        label: "处 理",
         type: "primary",
         size: "mini",
         methods: "dealWith",
-        style: "background-color:#363636; border-color:#363636;"
+        style: "background-color:#363636; border-color:#363636;",
+        condition: row => {
+          return row.KeyPersonnel === 0;
+        }
+      },
+      {
+        label: "未处理",
+        type: "primary",
+        size: "mini",
+        methods: "dealWith",
+        style: "background-color:#363636; border-color:#363636;",
+        condition: row => {
+          return row.KeyPersonnel === 1;
+        }
       }
     ]
   },

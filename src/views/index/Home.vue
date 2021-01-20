@@ -206,15 +206,15 @@ export default {
   height: 2%;
 }
 ::v-deep .el-table {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0);
 }
 ::v-deep .el-card {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0);
   border: none;
   height: 100%;
   .el-card__header {
     // background-color: rgb(0, 51, 102);
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0);
     font-size: 16px;
     padding: 10px 20px !important;
     border: none;
@@ -222,11 +222,11 @@ export default {
   }
   .el-card__body {
     // background-color: rgb(51, 51, 153);
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0);
     width: 100%;
     height: calc(100% - 41px);
     .el-table__body-wrapper {
-      background-color: rgba(0, 0, 0, 0.1);
+      background-color: rgba(0, 0, 0, 0);
     }
   }
 }
@@ -284,6 +284,11 @@ export default {
   background-image: url(../../assets/images/index/yjbj.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  // -moz-border-image: url(../../assets/images/index/yjbj.png) 16 23 20 14 round; /* Old Firefox */
+  // -webkit-border-image: url(../../assets/images/index/yjbj.png) 16 23 20 14
+  //   round; /* Safari and Chrome */
+  // -o-border-image: url(../../assets/images/index/yjbj.png) 16 23 20 14 round; /* Opera */
+  // border-image: url(../../assets/images/index/yjbj.png) 16 23 20 14 round;
 }
 ::v-deep .el-table--enable-row-hover .el-table__body tr:hover > td {
   background-color: #006291;

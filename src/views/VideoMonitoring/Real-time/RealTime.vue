@@ -141,23 +141,15 @@ export default {
   },
   methods: {
     // onSubmit() {
-    //   console.log("submit!");
     // },
-    handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
-    },
-    handleCurrentChange(val) {
-      console.log(`当前页: ${val}`);
-    },
+    handleSizeChange(val) {},
+    handleCurrentChange(val) {},
     // 点击事件
     clickButton(val) {
       // 调用事件
-      console.log(val);
       this[val.methods](val.row);
     },
-    search() {
-      console.log("搜索");
-    }
+    search() {}
   }
 };
 </script>

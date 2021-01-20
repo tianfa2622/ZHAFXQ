@@ -16,6 +16,9 @@ body {
   min-width: 1600px;
 }
 
+.pointer {
+  cursor: pointer;
+}
 #app {
   overflow: hidden;
   background-image: url(../../assets/images/index/indexbgimg.jpg);

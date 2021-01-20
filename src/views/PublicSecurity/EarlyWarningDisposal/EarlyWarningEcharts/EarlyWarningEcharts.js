@@ -2,7 +2,6 @@
 // import myChart from "echarts";
 // // eslint-disable-next-line prettier/prettier
 // myChart.on("click", function (params) {
-//   console.log(params.name);
 //   window.open(params.data.url);
 //   // window.open('https://www.baidu.com/s?wd=' + encodeURIComponent(params.value));
 // });
