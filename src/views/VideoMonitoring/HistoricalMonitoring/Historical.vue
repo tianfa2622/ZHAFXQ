@@ -90,12 +90,8 @@
 </template>
 
 <script>
-import Myform from "../../../components/Form/Form";
 import MyformData from "./HistoricalForm/HistoricalForm";
 export default {
-  components: {
-    Myform
-  },
   data() {
     return {
       MyformData,
@@ -129,8 +125,12 @@ export default {
     // Jump() {
     //   this.$router.push("/HistoricalMonitoring/DeviceInformation");
     // },
-    handleSizeChange(val) {},
-    handleCurrentChange(val) {},
+    handleSizeChange(val) {
+      console.log(val);
+    },
+    handleCurrentChange(val) {
+      console.log(val);
+    },
     // 点击事件
     clickButton(val) {
       // 调用事件

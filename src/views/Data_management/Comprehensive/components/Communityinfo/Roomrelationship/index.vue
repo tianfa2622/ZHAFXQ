@@ -47,7 +47,22 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "Roomrelationship",
+  props: {
+    currentPage: {
+      type: String,
+      required: true
+    }
+  },
+  methods: {
+    // 跳转页面
+    changePage(target) {
+      // 更新父组件传入的prop ‘currentPage’
+      this.$emit("update:currentPage", target);
+    }
+  }
+};
 </script>
 
 <style lang="less" scoped>

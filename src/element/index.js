@@ -34,9 +34,11 @@ import {
   CheckboxGroup,
   Checkbox,
   Image,
-  Popover
+  Popover,
+  Dialog
 } from "element-ui";
 
+Vue.use(Dialog);
 Vue.use(Image);
 Vue.use(Popover);
 Vue.use(Checkbox);

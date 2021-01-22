@@ -94,20 +94,12 @@
 </template>
 
 <script>
-import Mytable from "../../components/table/table.vue"; // table组件
-import Myform from "../../components/Form/Form.vue";
-import MyEcharts from "../../components/echarts/index";
 import MyformData from "./SituationAnalysisform/SituationAnalysisform";
 import Bytimetabel from "./SituationAnalysistable/Bytimetabel";
 import ByAreatabel from "./SituationAnalysistable/ByAreatabel";
 import BytimeEcharts from "./SituationAnalysisEcharts/BytimeEcharts";
 import ByAreaEcharts from "./SituationAnalysisEcharts/ByAreaEcharts";
 export default {
-  components: {
-    Mytable,
-    Myform,
-    MyEcharts
-  },
   data() {
     return {
       Bytimetabel,

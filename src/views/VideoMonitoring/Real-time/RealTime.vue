@@ -100,17 +100,9 @@
 </template>
 
 <script>
-import VideoPlayer from "../../../components/VideoPlayer/VideoPlayer";
-import Mytable from "../../../components/table/table"; // table组件
-import Myform from "../../../components/Form/Form";
 import MyformData from "./RealTimeForm/RealTimeForm";
 import MytableData from "./RealTimeTable/RealTimeTable";
 export default {
-  components: {
-    Myform,
-    Mytable,
-    VideoPlayer
-  },
   data() {
     return {
       MyformData,
@@ -142,8 +134,12 @@ export default {
   methods: {
     // onSubmit() {
     // },
-    handleSizeChange(val) {},
-    handleCurrentChange(val) {},
+    handleSizeChange(val) {
+      console.log(val);
+    },
+    handleCurrentChange(val) {
+      console.log(val);
+    },
     // 点击事件
     clickButton(val) {
       // 调用事件

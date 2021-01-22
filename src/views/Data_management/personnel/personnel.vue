@@ -44,17 +44,11 @@
 </template>
 
 <script>
-import Mytable from "../../../components/table/table"; // table组件
 import ThePermanent from "./ThePermanent";
 import FloatingPopulation from "./FloatingPopulation";
-import Myform from "../../../components/Form/Form.vue";
 import MyformData from "./personnelform";
 
 export default {
-  components: {
-    Mytable,
-    Myform
-  },
   data() {
     return {
       ThePermanent,
@@ -95,13 +89,32 @@ export default {
     // 点击事件
     clickButton(val) {
       // 调用事件
-      this[val.methods](val.row);
+      // this[val.methods](val.row);
+      if (val.methods !== "search") {
+        this.openEditor(val.methods, val.row);
+      } else {
+        this[val.methods](val.row);
+      }
     },
-    toView(val) {
-      // 我是查看
+    openEditor(type, row) {
+      console.log(type, row);
+      switch (type) {
+        case "Increase":
+          this.editorType = "add";
+          break;
+        case "editor":
+          this.editorType = "edit";
+          break;
+        case "toView":
+          this.editorType = "view";
+          break;
+      }
+      this.editorVisible = true;
     },
-    editor(val) {
-      // 我是编辑
+    confirm(formData) {
+      console.log(formData);
+      // 请求接口提交数据 等等
+      this.editorVisible = false;
     },
     handleClick() {
       this.tabsdata();

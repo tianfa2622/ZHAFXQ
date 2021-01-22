@@ -61,12 +61,8 @@
 </template>
 
 <script>
-import Myform from "../../../components/Form/Form.vue";
 import MyformData from "./Equipmentform/Equipmentform";
 export default {
-  components: {
-    Myform
-  },
   data() {
     return {
       MyformData,
@@ -79,8 +75,12 @@ export default {
     // onSubmit() {
     // },
     // 切换当前一页展示多少条
-    handleSizeChange(val) {},
-    handleCurrentChange(val) {},
+    handleSizeChange(val) {
+      console.log(val);
+    },
+    handleCurrentChange(val) {
+      console.log(val);
+    },
     // 点击事件
     clickButton(val) {
       // 调用事件

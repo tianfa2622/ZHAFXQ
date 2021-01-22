@@ -95,8 +95,12 @@ export default {
   methods: {
     // onSubmit() {
     // },
-    handleSizeChange(val) {},
-    handleCurrentChange(val) {},
+    handleSizeChange(val) {
+      console.log(val);
+    },
+    handleCurrentChange(val) {
+      console.log(val);
+    },
     // 点击事件
     clickButton(val) {
       // 调用事件

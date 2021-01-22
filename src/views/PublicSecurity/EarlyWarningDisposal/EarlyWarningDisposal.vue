@@ -49,18 +49,10 @@
 </template>
 
 <script>
-import Mytable from "../../../components/table/table"; // table组件
-import Myform from "../../../components/Form/Form.vue";
-import MyEcharts from "../../../components/echarts/index";
 import MyformData from "./EarlyWarningform/EarlyWarningform";
 import MytableData from "./EarlyWarningtable/EarlyWarningtable";
 import options from "./EarlyWarningEcharts/EarlyWarningEcharts";
 export default {
-  components: {
-    Myform,
-    Mytable,
-    MyEcharts
-  },
   data() {
     return {
       MyformData,
@@ -85,9 +77,11 @@ export default {
       this[val.methods](val.row);
     },
     dealWith(val) {
+      console.log(val);
       // 我是处理
     },
     processResult(val) {
+      console.log(val);
       // 我是处理结果
     },
     search() {},

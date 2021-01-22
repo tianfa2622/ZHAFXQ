@@ -43,57 +43,26 @@
           ></Mytable>
         </el-tab-pane>
       </el-tabs>
-
-      <!-- <div class="h-100 w-40">
-        <el-card
-          class="w-100 h-50"
-          :body-style="{ padding: '0px', height: 'calc(100% - 53px)' }"
-        >
-          <div slot="header">
-            <span>小区人员分析</span>
-          </div>
-          <MyEcharts :option="options"></MyEcharts>
-        </el-card>
-        <div class="h-1"></div>
-        <el-card
-          class="w-100 h-49"
-          :body-style="{ padding: '0px', height: 'calc(100% - 53px)' }"
-        >
-          <div slot="header">
-            <span>行政区域人员分析</span>
-          </div>
-          <MyEcharts :option="options1"></MyEcharts>
-        </el-card>
-      </div>
-      <div class="w-1"></div>
-      <div class="w-59 h-100">
-        <Mytable
-          :size="MytableData.size"
-          :tableData="MytableData.tableData"
-          :tableColumns="MytableData.tableColumns"
-          :HeaderCellStyle="MytableData.HeaderCellStyle"
-          @sizeChange="sizeChange"
-          @pageChange="pageChange"
-          :CardAttributes="MytableData.CardAttributes"
-          :pagination="MytableData.pagination"
-        ></Mytable>
-      </div> -->
     </div>
+    <Editor
+      :type="editorType"
+      :visible.sync="editorVisible"
+      :inline="inline"
+      :fields="fields"
+      :width="width"
+      @confirm="confirm"
+    />
   </div>
 </template>
 
 <script>
-import Mytable from "../../../components/table/table"; // table组件
-import Myform from "../../../components/Form/Form.vue";
 import MyformData from "./AnomalyAnalysisform/AnomalyAnalysisform";
 import personnelTable from "./AnomalyAnalysistable/personnelTable";
 import vehicleTable from "./AnomalyAnalysistable/vehicleTable";
 import GatherTable from "./AnomalyAnalysistable/GatherTable";
+import fields from "./editor";
+
 export default {
-  components: {
-    Myform,
-    Mytable
-  },
   data() {
     return {
       MyformData,
@@ -101,6 +70,11 @@ export default {
       vehicleTable,
       GatherTable,
       tabsData: {},
+      fields,
+      editorType: "edit",
+      inline: false,
+      width: "25%",
+      editorVisible: false,
       activeName: "first",
       tabs: [
         {
@@ -137,8 +111,36 @@ export default {
         this.tabsData = GatherTable;
       }
     },
-    // onSubmit() {
-    // },
+    // 点击事件
+    clickButton(val) {
+      // 调用事件
+      // this[val.methods](val.row);
+      if (val.methods !== "search") {
+        this.openEditor(val.methods, val.row);
+      } else {
+        this[val.methods](val.row);
+      }
+    },
+    openEditor(type, row) {
+      console.log(type, row);
+      // switch (type) {
+      //   case "dealWith":
+      //     this.editorType = "add";
+      //     break;
+      //   case "editor":
+      //     this.editorType = "edit";
+      //     break;
+      //   case "toView":
+      //     this.editorType = "view";
+      //     break;
+      // }
+      this.editorVisible = true;
+    },
+    confirm(formData) {
+      console.log(formData);
+      // 请求接口提交数据 等等
+      this.editorVisible = false;
+    },
     // 切换当前一页展示多少条
     sizeChange(val) {
       this.rows = val;
@@ -146,14 +148,6 @@ export default {
     // 翻页
     pageChange(val) {
       this.page = val;
-    },
-    // 点击事件
-    clickButton(val) {
-      // 调用事件
-      this[val.methods](val.row);
-    },
-    dealWith(val) {
-      // 我是处理
     },
     search() {}
   }

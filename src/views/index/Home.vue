@@ -39,7 +39,7 @@
               <div slot="header">
                 <span>车辆统计</span>
               </div>
-              <EchartsPackage :option="options"></EchartsPackage>
+              <MyEcharts :option="options"></MyEcharts>
             </el-card>
           </div>
         </div>
@@ -107,7 +107,7 @@
           <div slot="header">
             <span>房屋使用情况</span>
           </div>
-          <EchartsPackage :option="options1"></EchartsPackage>
+          <MyEcharts :option="options1"></MyEcharts>
         </el-card>
       </div>
     </div>
@@ -115,19 +115,15 @@
 </template>
 
 <script>
-import EchartsPackage from "../../components/echarts/index"; // echarts 组件
 import options from "./indexEchartsData/VehicleStatistics"; // echarts 车辆统计数据
 import options1 from "./indexEchartsData/HousingUsage"; // echarts 房屋使用情况数据
 import IndexMap from "./map/indexMap"; // 地图
-import Mytable from "../../components/table/table"; // table组件
 import tableoptions from "./tableData/Equipment"; // 设备table数据
 import Inspection from "./tableData/Inspection"; // 巡查table数据
 import Perceive from "./tableData/Perceive"; // 感知table数据
 export default {
   components: {
-    EchartsPackage,
-    IndexMap,
-    Mytable
+    IndexMap
   },
   data() {
     return {

@@ -39,8 +39,6 @@
 </template>
 
 <script>
-import Mytable from "@/components/table/table"; // table组件
-import Myform from "@/components/Form/Form.vue";
 import MyformData from "./CommunityinfoForm/Communityinfo";
 import MyTableData from "./CommunityinfoTable/Communityinfo";
 export default {
@@ -50,10 +48,6 @@ export default {
       type: String,
       required: true
     }
-  },
-  components: {
-    Myform,
-    Mytable
   },
   data() {
     return {

@@ -37,15 +37,9 @@
 </template>
 
 <script>
-import Mytable from "../../../components/table/table"; // table组件
-import Myform from "../../../components/Form/Form.vue";
 import MyformData from "./UserManagementform/UserManagementform";
 import MyTableData from "./UserManagementtable/UserManagementtable";
 export default {
-  components: {
-    Myform,
-    Mytable
-  },
   data() {
     return {
       MyformData,

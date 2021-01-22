@@ -56,19 +56,11 @@
 </template>
 
 <script>
-import Mytable from "../../../components/table/table"; // table组件
-import Myform from "../../../components/Form/Form.vue";
-import MyEcharts from "../../../components/echarts/index";
 import MyformData from "./StaffAnalysisform/StaffAnalysisform";
 import MytableData from "./StaffAnalysistable/StaffAnalysistable";
 import options1 from "./StaffAnalysisEcharts/administrative";
 import options from "./StaffAnalysisEcharts/Community";
 export default {
-  components: {
-    Myform,
-    Mytable,
-    MyEcharts
-  },
   data() {
     return {
       MyformData,

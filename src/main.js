@@ -9,6 +9,7 @@ import VueArealinkage from "vue-area-linkage";
 import "vue-area-linkage/dist/index.css";
 import PCAA from "area-data/pcaa";
 import BaiduMap from "vue-baidu-map";
+import "@/components/index";
 
 Vue.config.productionTip = false;
 Vue.prototype.$PCAA = PCAA;

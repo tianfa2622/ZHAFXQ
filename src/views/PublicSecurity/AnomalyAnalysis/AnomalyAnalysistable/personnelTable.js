@@ -61,21 +61,21 @@ const options = {
         type: "primary",
         size: "mini",
         methods: "dealWith",
-        style: "background-color:#363636; border-color:#363636;",
-        condition: row => {
-          return row.KeyPersonnel === 0;
-        }
-      },
-      {
-        label: "未处理",
-        type: "primary",
-        size: "mini",
-        methods: "dealWith",
-        style: "background-color:#363636; border-color:#363636;",
-        condition: row => {
-          return row.KeyPersonnel === 1;
-        }
+        style: "background-color:#363636; border-color:#363636;"
+        // condition: row => {
+        //   return row.KeyPersonnel === 0;
+        // }
       }
+      // {
+      //   label: "未处理",
+      //   type: "primary",
+      //   size: "mini",
+      //   methods: "dealWith",
+      //   style: "background-color:#363636; border-color:#363636;",
+      //   condition: row => {
+      //     return row.KeyPersonnel === 1;
+      //   }
+      // }
     ]
   },
   // 表格数据

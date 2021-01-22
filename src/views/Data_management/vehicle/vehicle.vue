@@ -60,22 +60,22 @@
         </el-card>
       </div>
     </div>
+    <Editor
+      :type="editorType"
+      :visible.sync="editorVisible"
+      :fields="fields"
+      @confirm="confirm"
+      :labelWidth="labelWidth"
+    />
   </div>
 </template>
 
 <script>
-import Mytable from "../../../components/table/table"; // table组件
-import Myform from "../../../components/Form/Form.vue";
-import MyEcharts from "../../../components/echarts/index";
 import MyformData from "./vehicleform/vehicle";
 import vehicleData from "./vehicletable/vehicletable";
 import options from "./vehicleEcharts/vehicleEcharts";
+import fields from "./editor";
 export default {
-  components: {
-    Myform,
-    Mytable,
-    MyEcharts
-  },
   data() {
     return {
       MyformData,
@@ -87,12 +87,70 @@ export default {
           MotorVehicles: 504,
           ElectricVehicle: 312
         }
-      ]
+      ],
+      editorType: "add",
+      editorVisible: false,
+      labelWidth: "160px",
+      fields
+      // fields: [
+      //   {
+      //     label: "姓名",
+      //     field: "username",
+      //     type: "input",
+      //     dataType: "string",
+      //     required: true,
+      //     validateTrigger: "blur",
+      //     // rules: [
+      //     //   {required: true, message: '请输入姓名', trigger: 'blur'}
+      //     // ],
+      //     hidden: ["view"]
+      //   },
+      //   {
+      //     label: "性别",
+      //     field: "sex",
+      //     type: "select",
+      //     required: true,
+      //     options: [
+      //       {
+      //         label: "男",
+      //         value: 0
+      //       },
+      //       {
+      //         label: "女",
+      //         value: 1
+      //       }
+      //     ]
+      //   },
+      //   {
+      //     label: "年龄",
+      //     field: "age",
+      //     type: "input",
+      //     dataType: "number"
+      //   }
+      // ]
     };
   },
   methods: {
-    // onSubmit() {
-    // },
+    openEditor(type, row) {
+      console.log(type, row);
+      switch (type) {
+        case "Increase":
+          this.editorType = "add";
+          break;
+        case "editor":
+          this.editorType = "edit";
+          break;
+        case "toView":
+          this.editorType = "view";
+          break;
+      }
+      this.editorVisible = true;
+    },
+    confirm(formData) {
+      console.log(formData);
+      // 请求接口提交数据 等等
+      this.editorVisible = false;
+    },
     // 切换当前一页展示多少条
     sizeChange(val) {
       this.rows = val;
@@ -104,16 +162,17 @@ export default {
     // 点击事件
     clickButton(val) {
       // 调用事件
-      this[val.methods](val.row);
+      // this[val.methods](val.row);
+      if (val.methods !== "search") {
+        this.openEditor(val.methods, val.row);
+      } else {
+        this[val.methods](val.row);
+      }
     },
-    toView(val) {
-      // 我是查看
-    },
-    editor(val) {
-      // 我是编辑
-    },
-    search() {},
-    Increase() {}
+    search() {
+      console.log("搜索");
+    }
+    // Increase() {}
   }
 };
 </script>

@@ -48,23 +48,35 @@
         </el-tab-pane>
       </el-tabs>
     </div>
+    <Editor
+      :type="editorType"
+      :visible.sync="editorVisible"
+      :fields="fieldsData"
+      :labelWidth="labelWidth"
+      @confirm="confirm"
+    />
   </div>
 </template>
 
 <script>
-import Mytable from "../../../components/table/table"; // table组件
 import personnelTable from "./KeyObjectControltable/personnelTable";
 import vehicleTable from "./KeyObjectControltable/vehicleTable";
+import fields from "./editor";
+import carfields from "./careditor";
 export default {
-  components: {
-    Mytable
-  },
   data() {
     return {
       personnelTable,
       vehicleTable,
       tabsData: {},
       input3: "",
+      fields,
+      carfields,
+      fieldsData: fields,
+      editorType: "view",
+      labelWidth: "170px",
+      // inline: false,
+      editorVisible: false,
       activeName: "first",
       tabs: [
         {
@@ -94,8 +106,33 @@ export default {
         this.tabsData = vehicleTable;
       }
     },
-    // onSubmit() {
-    // },
+    // 点击事件
+    clickButton(val) {
+      // 调用事件
+      // this[val.methods](val.row);
+      if (val.methods !== "search") {
+        this.openEditor(val.methods, val.row);
+      } else {
+        this[val.methods](val.row);
+      }
+    },
+    openEditor(type, row) {
+      console.log(type, row);
+      switch (type) {
+        case "toView":
+          this.fieldsData = this.fields;
+          break;
+        case "cartoView":
+          this.fieldsData = this.carfields;
+          break;
+      }
+      this.editorVisible = true;
+    },
+    confirm(formData) {
+      console.log(formData);
+      // 请求接口提交数据 等等
+      this.editorVisible = false;
+    },
     // 切换当前一页展示多少条
     sizeChange(val) {
       this.rows = val;
@@ -103,14 +140,6 @@ export default {
     // 翻页
     pageChange(val) {
       this.page = val;
-    },
-    // 点击事件
-    clickButton(val) {
-      // 调用事件
-      this[val.methods](val.row);
-    },
-    toView(val) {
-      // 我是查看
     },
     search() {}
   }

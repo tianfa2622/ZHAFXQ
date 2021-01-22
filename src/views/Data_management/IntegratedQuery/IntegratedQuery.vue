@@ -34,15 +34,9 @@
 </template>
 
 <script>
-import Mytable from "../../../components/table/table"; // table组件
-import Myform from "../../../components/Form/Form.vue";
 import MyformData from "./IntegratedQueryForm/IntegratedQueryForm";
 import MyTableData from "./IntegratedQueryTable/IntegratedQueryTable";
 export default {
-  components: {
-    Myform,
-    Mytable
-  },
   data() {
     return {
       MyformData,

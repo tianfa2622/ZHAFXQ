@@ -124,7 +124,6 @@
 </template>
 
 <script>
-import Myform from "@/components/Form/Form";
 import MyformData from "./Mapform";
 
 export default {
@@ -134,9 +133,6 @@ export default {
       type: String,
       required: true
     }
-  },
-  components: {
-    Myform
   },
   data() {
     return {

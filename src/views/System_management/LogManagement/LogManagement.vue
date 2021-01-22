@@ -36,15 +36,9 @@
 </template>
 
 <script>
-import Mytable from "../../../components/table/table"; // table组件
-import Myform from "../../../components/Form/Form.vue";
 import MyformData from "./LogManagementform/LogManagementform";
 import MyTableData from "./LogManagementtable/LogManagementtable";
 export default {
-  components: {
-    Myform,
-    Mytable
-  },
   data() {
     return {
       MyformData,
@@ -68,6 +62,7 @@ export default {
       this[val.methods](val.row);
     },
     Details(val) {
+      console.log(val);
       // 我是详情
     },
     search() {}
