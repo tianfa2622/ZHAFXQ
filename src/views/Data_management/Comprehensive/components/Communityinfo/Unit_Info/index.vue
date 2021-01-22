@@ -4,9 +4,13 @@
     <div class="felx1">
       <el-breadcrumb separator=">>">
         <!-- :to="{ path: '/UserManagement' }" -->
-        <el-breadcrumb-item> 小区综合档案 </el-breadcrumb-item>
-        <el-breadcrumb-item>辉煌国际停车场</el-breadcrumb-item>
-        <el-breadcrumb-item>停车位概况</el-breadcrumb-item>
+        <el-breadcrumb-item>
+          <span @click="changePage('1')" class="pointer"> 小区综合档案 </span>
+        </el-breadcrumb-item>
+        <el-breadcrumb-item>
+          <span @click="changePage('5')" class="pointer"> 辉煌国际 </span>
+        </el-breadcrumb-item>
+        <el-breadcrumb-item>3栋</el-breadcrumb-item>
       </el-breadcrumb>
       <el-card class="card_style" body-style="padding-bottom: 0px;">
         <Myform
@@ -38,11 +42,18 @@
 </template>
 
 <script>
-import Mytable from "../../../components/table/table"; // table组件
-import Myform from "../../../components/Form/Form.vue";
-import MyformData from "./GeneralSituationform/GeneralSituationform";
-import MyTableData from "./GeneralSituationtable/GeneralSituationtable";
+import Mytable from "@/components/table/table"; // table组件
+import Myform from "@/components/Form/Form.vue";
+import MyformData from "./Unit_InfoForm/Unit_Info";
+import MyTableData from "./Unit_InfoTable/Unit_Info";
 export default {
+  name: "Unit_info",
+  props: {
+    currentPage: {
+      type: String,
+      required: true
+    }
+  },
   components: {
     Myform,
     Mytable
@@ -70,8 +81,21 @@ export default {
       this[val.methods](val.row);
     },
     // eslint-disable-next-line no-unused-vars
-    Details(val) {},
-    search() {}
+    details(val) {
+      // 我是详情
+    },
+    // eslint-disable-next-line no-unused-vars
+    unitImg(val) {},
+    // eslint-disable-next-line no-unused-vars
+    HousingInfo(val) {
+      this.changePage("9");
+    },
+    search() {},
+    // 跳转页面
+    changePage(target) {
+      // 更新父组件传入的prop ‘currentPage’
+      this.$emit("update:currentPage", target);
+    }
   }
 };
 </script>
@@ -81,7 +105,7 @@ export default {
   background-color: #fff;
   .vehicle_bottom {
     width: 100%;
-    height: calc(100% - 168px);
+    height: calc(100% - 70px);
     margin-top: 10px;
     .w-69 {
       width: 69%;

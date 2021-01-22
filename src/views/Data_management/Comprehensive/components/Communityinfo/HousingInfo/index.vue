@@ -4,9 +4,16 @@
     <div class="felx1">
       <el-breadcrumb separator=">>">
         <!-- :to="{ path: '/UserManagement' }" -->
-        <el-breadcrumb-item> 小区综合档案 </el-breadcrumb-item>
-        <el-breadcrumb-item>辉煌国际门禁</el-breadcrumb-item>
-        <el-breadcrumb-item>2栋门禁</el-breadcrumb-item>
+        <el-breadcrumb-item>
+          <span @click="changePage('1')" class="pointer"> 小区综合档案 </span>
+        </el-breadcrumb-item>
+        <el-breadcrumb-item>
+          <span @click="changePage('5')" class="pointer"> 辉煌国际 </span>
+        </el-breadcrumb-item>
+        <el-breadcrumb-item>
+          <span @click="changePage('8')" class="pointer"> 3栋 </span>
+        </el-breadcrumb-item>
+        <el-breadcrumb-item>2单元</el-breadcrumb-item>
       </el-breadcrumb>
       <el-card class="card_style" body-style="padding-bottom: 0px;">
         <Myform
@@ -40,9 +47,16 @@
 <script>
 import Mytable from "@/components/table/table"; // table组件
 import Myform from "@/components/Form/Form.vue";
-import MyformData from "./BuildingAccessControlForm/BuildingAccessControl";
-import MyTableData from "./BuildingAccessControlTable/BuildingAccessControl";
+import MyformData from "./HousingInfoForm/HousingInfo";
+import MyTableData from "./HousingInfoTable/HousingInfo";
 export default {
+  name: "HousingInfo",
+  props: {
+    currentPage: {
+      type: String,
+      required: true
+    }
+  },
   components: {
     Myform,
     Mytable
@@ -70,14 +84,19 @@ export default {
       this[val.methods](val.row);
     },
     // eslint-disable-next-line no-unused-vars
-    Authority(val) {
-      // 我是权限
+    details(val) {
+      // 我是详情
     },
     // eslint-disable-next-line no-unused-vars
-    Details(val) {
-      // 我是禁用
+    ViewRelationship(val) {
+      this.changePage("10");
     },
-    search() {}
+    search() {},
+    // 跳转页面
+    changePage(target) {
+      // 更新父组件传入的prop ‘currentPage’
+      this.$emit("update:currentPage", target);
+    }
   }
 };
 </script>

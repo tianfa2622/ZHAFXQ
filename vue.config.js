@@ -7,7 +7,7 @@ module.exports = {
 
   filenameHashing: false,
 
-  lintOnSave: true,
+  lintOnSave: false,
 
   productionSourceMap: false,
 

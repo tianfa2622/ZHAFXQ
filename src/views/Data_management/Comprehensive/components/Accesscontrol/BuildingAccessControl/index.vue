@@ -1,8 +1,16 @@
+/* eslint-disable no-unused-vars */
 <template>
   <div class="h-100 w-100 bgc dflex direction-column">
     <div class="felx1">
-      <el-breadcrumb separator="/">
-        <el-breadcrumb-item>综合查询</el-breadcrumb-item>
+      <el-breadcrumb separator=">>">
+        <!-- :to="{ path: '/UserManagement' }" -->
+        <el-breadcrumb-item>
+          <span @click="changePage('1')" class="pointer"> 小区综合档案 </span>
+        </el-breadcrumb-item>
+        <el-breadcrumb-item>
+          <span @click="changePage('6')" class="pointer"> 辉煌国际门禁 </span>
+        </el-breadcrumb-item>
+        <el-breadcrumb-item>2栋门禁</el-breadcrumb-item>
       </el-breadcrumb>
       <el-card class="card_style" body-style="padding-bottom: 0px;">
         <Myform
@@ -34,11 +42,18 @@
 </template>
 
 <script>
-import Mytable from "../../../components/table/table"; // table组件
-import Myform from "../../../components/Form/Form.vue";
-import MyformData from "./IntegratedQueryForm/IntegratedQueryForm";
-import MyTableData from "./IntegratedQueryTable/IntegratedQueryTable";
+import Mytable from "@/components/table/table"; // table组件
+import Myform from "@/components/Form/Form.vue";
+import MyformData from "./BuildingAccessControlForm/BuildingAccessControl";
+import MyTableData from "./BuildingAccessControlTable/BuildingAccessControl";
 export default {
+  name: "BuildingAccessControl",
+  props: {
+    currentPage: {
+      type: String,
+      required: true
+    }
+  },
   components: {
     Myform,
     Mytable
@@ -65,10 +80,20 @@ export default {
       // 调用事件
       this[val.methods](val.row);
     },
-    Details(val) {
-      // 我是详情
+    // eslint-disable-next-line no-unused-vars
+    Authority(val) {
+      // 我是权限
     },
-    search() {}
+    // eslint-disable-next-line no-unused-vars
+    Details(val) {
+      // 我是禁用
+    },
+    search() {},
+    // 跳转页面
+    changePage(target) {
+      // 更新父组件传入的prop ‘currentPage’
+      this.$emit("update:currentPage", target);
+    }
   }
 };
 </script>
@@ -78,7 +103,7 @@ export default {
   background-color: #fff;
   .vehicle_bottom {
     width: 100%;
-    height: calc(100% - 168px);
+    height: calc(100% - 70px);
     margin-top: 10px;
     .w-69 {
       width: 69%;
@@ -96,8 +121,5 @@ export default {
 }
 .card_style {
   overflow: visible !important;
-}
-::v-deep .area-select-wrap {
-  text-align: left;
 }
 </style>

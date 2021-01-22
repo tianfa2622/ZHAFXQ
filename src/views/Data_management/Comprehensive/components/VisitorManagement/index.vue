@@ -2,7 +2,9 @@
   <div class="h-100 w-100 bgc dflex direction-column">
     <div class="felx1">
       <el-breadcrumb separator=">>">
-        <el-breadcrumb-item> 小区综合档案 </el-breadcrumb-item>
+        <el-breadcrumb-item>
+          <span @click="changePage('1')" class="pointer"> 小区综合档案 </span>
+        </el-breadcrumb-item>
         <el-breadcrumb-item>辉煌国际访客信息</el-breadcrumb-item>
       </el-breadcrumb>
       <el-card class="card_style" body-style="padding-bottom: 0px;">
@@ -54,6 +56,13 @@ import MyformData from "./VisitorManagementForm/VisitorManagementForm";
 import MytableData from "./VisitorManagementTable/VisitorManagementTable";
 // import options from "./HousingEcharts/HousingEcharts";
 export default {
+  name: "VisitorManagement",
+  props: {
+    currentPage: {
+      type: String,
+      required: true
+    }
+  },
   components: {
     Myform,
     Mytable
@@ -82,10 +91,16 @@ export default {
       // 调用事件
       this[val.methods](val.row);
     },
+    // eslint-disable-next-line no-unused-vars
     toView(val) {
       // 我是查看
     },
-    search() {}
+    search() {},
+    // 跳转页面
+    changePage(target) {
+      // 更新父组件传入的prop ‘currentPage’
+      this.$emit("update:currentPage", target);
+    }
   }
 };
 </script>

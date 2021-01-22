@@ -14,7 +14,7 @@ const options = {
   itemColumns: [
     {
       span: 8,
-      label: "",
+      label: "查询类型：",
       prop: "category",
       type: "select",
       class: "",
@@ -39,18 +39,20 @@ const options = {
       label: "",
       prop: "area",
       type: "area",
+      style: "text-align:center",
       level: 2
     },
     {
-      span: 7,
+      span: 8,
       label: "小区名称:",
       prop: "CommunityName",
       type: "text",
       clearable: true,
+      style: "text-align:center",
       class: ""
     },
     {
-      span: 7,
+      span: 8,
       label: "户主姓名：",
       prop: "Householder",
       type: "text",
@@ -71,6 +73,7 @@ const options = {
   btnData: {
     span: 5,
     style: "flex:auto;text-align: center;",
+    // class: "mr-60",
     BtndataList: [
       {
         type: "success",

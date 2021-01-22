@@ -12,15 +12,15 @@ const routes = [
       import(/* webpackChunkName: "Home" */ "../views/index/Home.vue"),
     meta: { hidden: true, title: "首页" }
   },
-  // {
-  //   path: "/Comprehensive",
-  //   name: "Comprehensive",
-  //   component: () =>
-  //     import(
-  //       /* webpackChunkName: "Comprehensive" */ "../views/Data_management/Comprehensive/components/MapComponent.vue"
-  //     ),
-  //   meta: { hidden: true, title: "综合管理" }
-  // },
+  {
+    path: "/Comprehensive",
+    name: "Comprehensive",
+    component: () =>
+      import(
+        /* webpackChunkName: "Comprehensive" */ "../views/Data_management/Comprehensive/Comprehensive.vue"
+      ),
+    meta: { hidden: true, title: "综合管理" }
+  },
   {
     path: "/personnel",
     name: "personnel",
@@ -173,39 +173,7 @@ const routes = [
         /* webpackChunkName: "HistoricalMonitoring" */ "../views/VideoMonitoring/HistoricalMonitoring/Historical.vue"
       ),
     meta: { hidden: true, title: "历史监控" }
-    // children: [
-    //   {
-    //     path: "deviceInformation",
-    //     name: "deviceInformation",
-    //     component: () =>
-    //       import(
-    //         /* webpackChunkName: "DeviceInformation" */ "../views/VideoMonitoring/HistoricalMonitoring/DeviceInformation.vue"
-    //       )
-    //   }
-    // ]
-  },
-  {
-    path: "/Comprehensive",
-    name: "Comprehensive",
-    component: () =>
-      import(
-        /* webpackChunkName: "Comprehensive" */ "../views/Data_management/Comprehensive/components/Parkinglot/Parkinglot.vue"
-      ),
-    meta: { hidden: true, title: "综合管理" }
   }
-  // {
-  //   path: "/HistoricalMonitoring/deviceInformation",
-  //   name: "deviceInformation",
-  //   component: () =>
-  //     import(
-  //       /* webpackChunkName: "DeviceInformation" */ "../views/VideoMonitoring/HistoricalMonitoring/DeviceInformation.vue"
-  //     )
-  // }
-  // {
-  //   path: '/about',
-  //   name: 'About',
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  // }
 ];
 
 const router = new VueRouter({

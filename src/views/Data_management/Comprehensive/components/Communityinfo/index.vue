@@ -4,7 +4,9 @@
     <div class="felx1">
       <el-breadcrumb separator=">>">
         <!-- :to="{ path: '/UserManagement' }" -->
-        <el-breadcrumb-item> 小区综合档案 </el-breadcrumb-item>
+        <el-breadcrumb-item>
+          <span @click="changePage('1')" class="pointer"> 小区综合档案 </span>
+        </el-breadcrumb-item>
         <el-breadcrumb-item>辉煌国际</el-breadcrumb-item>
       </el-breadcrumb>
       <el-card class="card_style" body-style="padding-bottom: 0px;">
@@ -42,6 +44,13 @@ import Myform from "@/components/Form/Form.vue";
 import MyformData from "./CommunityinfoForm/Communityinfo";
 import MyTableData from "./CommunityinfoTable/Communityinfo";
 export default {
+  name: "Communityinfo",
+  props: {
+    currentPage: {
+      type: String,
+      required: true
+    }
+  },
   components: {
     Myform,
     Mytable
@@ -79,8 +88,15 @@ export default {
     // eslint-disable-next-line no-unused-vars
     BuildingImg(val) {},
     // eslint-disable-next-line no-unused-vars
-    BuildingInfo(val) {},
-    search() {}
+    BuildingInfo(val) {
+      this.changePage("8");
+    },
+    search() {},
+    // 跳转页面
+    changePage(target) {
+      // 更新父组件传入的prop ‘currentPage’
+      this.$emit("update:currentPage", target);
+    }
   }
 };
 </script>

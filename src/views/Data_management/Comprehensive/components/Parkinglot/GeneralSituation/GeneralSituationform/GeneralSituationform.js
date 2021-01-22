@@ -12,15 +12,16 @@ const options = {
   },
   itemColumns: [
     {
-      span: 5,
+      span: 8,
       label: "停车位编号：",
       prop: "ParkingSpaceNumber",
+      style: "text-align:center",
       type: "text",
       clearable: true,
       class: ""
     },
     {
-      span: 7,
+      span: 8,
       label: "车位类型：",
       prop: "ParkingType",
       type: "select",
@@ -38,7 +39,7 @@ const options = {
       ]
     },
     {
-      span: 7,
+      span: 8,
       label: "车位归属类型：",
       prop: "ParkingSpaceOwnership",
       type: "select",
@@ -56,11 +57,11 @@ const options = {
       ]
     },
     {
-      span: 7,
+      span: 8,
       label: "车位所有人名称：",
       prop: "VehicleOwner",
       type: "select",
-      class: "",
+      class: "mr-30",
       style: "text-align:center",
       options: [
         {
@@ -76,7 +77,7 @@ const options = {
   ],
   btnData: {
     span: 5,
-    style: "flex:auto;     text-align: end;",
+    style: "flex:auto; text-align: end; padding-right:80px",
     BtndataList: [
       {
         type: "success",

@@ -4,8 +4,13 @@
     <div class="felx1">
       <el-breadcrumb separator=">>">
         <!-- :to="{ path: '/UserManagement' }" -->
-        <el-breadcrumb-item> 小区综合档案 </el-breadcrumb-item>
-        <el-breadcrumb-item>辉煌国际门禁</el-breadcrumb-item>
+        <el-breadcrumb-item>
+          <span @click="changePage('1')" class="pointer"> 小区综合档案 </span>
+        </el-breadcrumb-item>
+        <el-breadcrumb-item>
+          <span @click="changePage('3')" class="pointer"> 辉煌国际停车场 </span>
+        </el-breadcrumb-item>
+        <el-breadcrumb-item>停车位概况</el-breadcrumb-item>
       </el-breadcrumb>
       <el-card class="card_style" body-style="padding-bottom: 0px;">
         <Myform
@@ -39,9 +44,16 @@
 <script>
 import Mytable from "@/components/table/table"; // table组件
 import Myform from "@/components/Form/Form.vue";
-import MyformData from "./AccesscontrolForm/AccesscontrolForm";
-import MyTableData from "./AccesscontrolTable/AccesscontrolTable";
+import MyformData from "./GeneralSituationform/GeneralSituationform";
+import MyTableData from "./GeneralSituationtable/GeneralSituationtable";
 export default {
+  name: "GeneralSituation",
+  props: {
+    currentPage: {
+      type: String,
+      required: true
+    }
+  },
   components: {
     Myform,
     Mytable
@@ -69,15 +81,13 @@ export default {
       this[val.methods](val.row);
     },
     // eslint-disable-next-line no-unused-vars
-    Authority(val) {
-      // 我是权限
-    },
-    // eslint-disable-next-line no-unused-vars
-    Disable(val) {
-      // 我是禁用
-    },
+    Details(val) {},
     search() {},
-    Increase() {}
+    // 跳转页面
+    changePage(target) {
+      // 更新父组件传入的prop ‘currentPage’
+      this.$emit("update:currentPage", target);
+    }
   }
 };
 </script>
@@ -87,7 +97,7 @@ export default {
   background-color: #fff;
   .vehicle_bottom {
     width: 100%;
-    height: calc(100% - 70px);
+    height: calc(100% - 168px);
     margin-top: 10px;
     .w-69 {
       width: 69%;

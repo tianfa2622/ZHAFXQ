@@ -3,19 +3,29 @@
     <div class="flex1">
       <el-breadcrumb separator=">>">
         <!-- :to="{ path: '/UserManagement' }" -->
-        <el-breadcrumb-item> 小区综合档案 </el-breadcrumb-item>
+        <el-breadcrumb-item>
+          <span @click="changePage('1')" class="pointer"> 小区综合档案 </span>
+        </el-breadcrumb-item>
         <el-breadcrumb-item>辉煌国际停车场</el-breadcrumb-item>
       </el-breadcrumb>
       <el-divider></el-divider>
     </div>
     <div class="bottom_Content dflex">
       <div class="h-100 w-60">
-        <el-popover placement="top" width="350" trigger="hover">
-          <el-button>详情</el-button>
-          <el-button>出入口信息</el-button>
-          <el-button>停车场信息</el-button>
+        <el-popover
+          v-for="o in 3"
+          :key="o"
+          placement="bottom"
+          width="350"
+          trigger="hover"
+        >
+          <el-button class="btncolor">详情</el-button>
+          <el-button class="btncolor">出入口信息</el-button>
+          <el-button class="btncolor" @click="changePage('4')">
+            停车场信息
+          </el-button>
           <template slot="reference">
-            <div class="Parkinglot_box dflex" v-for="o in 3" :key="o">
+            <div class="Parkinglot_box dflex">
               <div class="w-80 h-100">
                 <el-row
                   class="row_content"
@@ -28,21 +38,33 @@
                   </el-col>
                   <el-col :span="12">
                     <span>停车场编号:</span>
+                    <span style="display: inline-block; width: 20px"> </span>
+                    <span>12356</span>
                   </el-col>
                   <el-col :span="12">
                     <span>管理单位名称:</span>
+                    <span style="display: inline-block; width: 20px"> </span>
+                    <span>12356</span>
                   </el-col>
                   <el-col :span="12">
                     <span>停车场类型:</span>
+                    <span style="display: inline-block; width: 20px"> </span>
+                    <span>12356</span>
                   </el-col>
                   <el-col :span="12">
                     <span>管理单位电话:</span>
+                    <span style="display: inline-block; width: 20px"> </span>
+                    <span>12356</span>
                   </el-col>
                   <el-col :span="12">
                     <span>停车位数量:</span>
+                    <span style="display: inline-block; width: 20px"> </span>
+                    <span>12356</span>
                   </el-col>
                   <el-col :span="12">
                     <span>停车场出入口数:</span>
+                    <span style="display: inline-block; width: 20px"> </span>
+                    <span>12356</span>
                   </el-col>
                 </el-row>
               </div>
@@ -101,6 +123,13 @@ import ParkingSpace from "./ParkinglotEcharts/ParkingSpaceEcharts";
 import UseStatus from "./ParkinglotEcharts/UseStatusEcharts";
 
 export default {
+  name: "Parkinglot",
+  props: {
+    currentPage: {
+      type: String,
+      required: true
+    }
+  },
   components: {
     MyEcharts
   },
@@ -109,6 +138,13 @@ export default {
       UseStatus,
       ParkingSpace
     };
+  },
+  methods: {
+    // 跳转页面
+    changePage(target) {
+      // 更新父组件传入的prop ‘currentPage’
+      this.$emit("update:currentPage", target);
+    }
   }
 };
 </script>
@@ -187,5 +223,9 @@ export default {
 }
 ::v-deep .el-divider--horizontal {
   margin: 15px 0;
+}
+.btncolor {
+  background: #3498db;
+  color: #ffffff;
 }
 </style>

@@ -8,14 +8,15 @@ import echarts from "echarts";
 import VueArealinkage from "vue-area-linkage";
 import "vue-area-linkage/dist/index.css";
 import PCAA from "area-data/pcaa";
+import BaiduMap from "vue-baidu-map";
 
 Vue.config.productionTip = false;
 Vue.prototype.$PCAA = PCAA;
 Vue.prototype.$echarts = echarts;
 Vue.use(VueArealinkage);
-// eslint-disable-next-line no-undef
-Vue.use(VueBaiduMap.default, {
-  ak: "YOUR_APP_KEY"
+
+Vue.use(BaiduMap, {
+  ak: "KYYG6kg5BQuVGWUqDt0SulwpjUts7Ffg"
 });
 
 router.beforeEach((to, from, next) => {

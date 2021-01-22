@@ -26,7 +26,8 @@ export default {
 
   data() {
     return {
-      videoSrc: "rtmp://58.200.131.2:1935/livetv/cctv5",
+      videoSrc:
+        "https://overwatch.nosdn.127.net/1/assets/img/pages/home/anniversary/header.webm",
 
       // 视频播放
 
@@ -53,9 +54,9 @@ export default {
           {
             // 流配置，数组形式，会根据兼容顺序自动切换
 
-            type: "rtmp/hls",
-
-            src: "rtmp://58.200.131.2:1935/livetv/cctv5"
+            src:
+              "https://overwatch.nosdn.127.net/1/assets/img/pages/home/anniversary/header.webm",
+            type: "video/webm"
           }
         ],
 
