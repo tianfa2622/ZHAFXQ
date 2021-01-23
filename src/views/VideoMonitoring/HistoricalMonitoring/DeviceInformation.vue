@@ -23,13 +23,13 @@
           <el-button slot="append" icon="el-icon-search"></el-button>
         </el-input> -->
         <el-date-picker
+          class="ml-20"
           v-model="value1"
           type="daterange"
-          range-separator="至"
+          range-separator="-"
           start-placeholder="开始日期"
           end-placeholder="结束日期"
         >
-          <el-button slot="append" icon="el-icon-search"></el-button>
         </el-date-picker>
       </div>
     </div>
@@ -42,8 +42,8 @@
         >
           <el-row type="flex" :gutter="20" class="row_warp">
             <el-col
-              :span="8"
-              v-for="(o, index) in 1"
+              :span="6"
+              v-for="(o, index) in 6"
               :key="index"
               class="mb-10"
             >
@@ -89,7 +89,8 @@ export default {
     return {
       EquipmentName: "XX设备",
       date: "2020-7-6",
-      currentPage: 1
+      currentPage: 1,
+      value1: ""
     };
   },
   methods: {

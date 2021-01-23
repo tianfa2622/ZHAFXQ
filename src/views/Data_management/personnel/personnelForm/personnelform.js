@@ -66,6 +66,13 @@ const options = {
         size: "small",
         methods: "search",
         label: "搜索"
+      },
+      {
+        type: "primary",
+        style: "",
+        size: "small",
+        methods: "Increase",
+        label: "新增"
       }
     ]
   }

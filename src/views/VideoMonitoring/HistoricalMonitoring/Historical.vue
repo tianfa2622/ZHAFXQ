@@ -42,7 +42,6 @@
             class="pb-40 flex1 posi-rel over-h"
             body-style="height: 100%;overflow:auto; padding-bottom:0px"
           >
-            <router-view></router-view>
             <el-row type="flex" :gutter="20" class="row_warp">
               <el-col
                 :span="6"
@@ -54,7 +53,7 @@
                   <img
                     src="../../../assets/images/Equipment/u249.svg"
                     class="pointer"
-                    @click="$router.push({ name: 'deviceInformation' })"
+                    @click="changePage('2')"
                   />
                   <div style="padding: 14px; border-top: 1px solid #ccc">
                     <p>
@@ -92,6 +91,12 @@
 <script>
 import MyformData from "./HistoricalForm/HistoricalForm";
 export default {
+  props: {
+    Page: {
+      type: String,
+      required: true
+    }
+  },
   data() {
     return {
       MyformData,
@@ -136,7 +141,13 @@ export default {
       // 调用事件
       this[val.methods](val.row);
     },
-    search() {}
+    search() {},
+    // 跳转页面
+    changePage(target) {
+      // 更新父组件传入的prop ‘Page’
+      console.log(target);
+      this.$emit("update:Page", target);
+    }
   }
 };
 </script>

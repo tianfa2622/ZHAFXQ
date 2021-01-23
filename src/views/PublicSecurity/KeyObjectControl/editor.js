@@ -1,4 +1,10 @@
 const fields = [
+  // {
+  //   label: " ",
+  //   field: "avatar",
+  //   type: "avatar",
+  //   dataType: "string"
+  // },
   {
     label: "姓名：",
     field: "CommunityName:",
@@ -40,13 +46,13 @@ const fields = [
   // },
   {
     label: "身份证号：",
-    field: "Licenseplate",
+    field: "Licenseplate1",
     type: "input",
     dataType: "string"
   },
   {
     label: "出生日期：",
-    field: "licensePlate:",
+    field: "licensePlate2:",
     type: "input",
     dataType: "string"
   },
@@ -118,7 +124,7 @@ const fields = [
   },
   {
     label: "管控民警联系电话：",
-    field: "DataStatus",
+    field: "DataStatus2",
     type: "input",
     dataType: "string"
   }

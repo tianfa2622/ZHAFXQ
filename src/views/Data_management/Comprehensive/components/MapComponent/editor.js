@@ -1,181 +1,151 @@
 const fields = [
   {
-    label: "小区名称：",
-    field: "CommunityName1:",
+    label: "物业单位名称：",
+    field: "name",
     type: "input",
     dataType: "string"
   },
   {
-    label: "户主姓名：",
+    label: "物业单位地址：",
     field: "CommunityName:",
     type: "input",
     dataType: "string"
   },
   {
-    label: "户主联系电话：",
+    label: "联系人姓名：",
     field: "ownersName",
     type: "input",
     dataType: "string"
   },
   {
-    label: "户主身份证号码：",
+    label: "联系人电话：",
     field: "Telephone",
     type: "input",
     dataType: "string"
   },
   {
-    label: "居住人数：",
-    field: "idCard",
-    type: "input",
-    dataType: "string"
-  },
-  {
-    label: "房屋类型",
-    field: "motorVehicle",
-    type: "select",
-    options: [
-      {
-        label: "机动车",
-        value: 0
-      },
-      {
-        label: "电动车",
-        value: 1
-      }
-    ]
-  },
-  {
-    label: "建筑面积(㎡)：",
-    field: "Licenseplate",
-    type: "input",
-    dataType: "string"
-  },
-  {
-    label: "房屋间数：",
-    field: "licensePlate:",
-    type: "input",
-    dataType: "string"
-  },
-  {
-    label: "是否为重点房屋：",
-    field: "NumberPlateColor:",
-    type: "input",
-    dataType: "string"
-  },
-  {
-    label: "房屋产权证号：",
-    field: "ChineseBrandName:",
-    type: "input",
-    dataType: "string"
-  },
-  {
-    label: "居住情况类型：",
-    field: "VehicleVolume",
-    type: "input",
-    dataType: "string"
-  },
-  {
-    label: "房屋所属单位：",
-    field: "ColorCar:",
-    type: "input",
-    dataType: "string"
-  },
-  {
-    label: "地址：",
-    field: "VehicleModel",
-    type: "input",
-    dataType: "string"
-  },
-  {
-    label: "法定代表人：",
-    field: "BriefSituation",
-    type: "input",
-    dataType: "string"
-  },
-  {
     label: "统一社会信用代码：",
-    field: "RegistrantName",
+    field: "idCard1",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "注册资本：",
+    field: "idCard2",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "单位联系电话：",
+    field: "idCard3",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "法定代表人姓名：",
+    field: "idCard4",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "法定代表人身份证号码：",
+    field: "idCard5",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "法定代表人联系电话：",
+    field: "idCard5",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "业委会名称：",
+    field: "idCard5",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "业委会人员数量：",
+    field: "idCard5",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "业委会建立时间：",
+    field: "idCard5",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "业委会区划分详细地址：",
+    field: "idCard5",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "业委会负责人姓名：",
+    field: "idCard5",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "业委会负责人身份证号码：",
+    field: "idCard5",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "业委会负责人联系电话：",
+    field: "idCard5",
     type: "input",
     dataType: "string"
   },
   {
     label: "登记人姓名：",
-    field: "RegistrantPhoneNumber:",
-    type: "input",
-    dataType: "string"
-  },
-  {
-    label: "登记人身份证号：",
-    field: "DataUpdate:",
+    field: "idCard5",
     type: "input",
     dataType: "string"
   },
   {
     label: "登记人联系电话：",
-    field: "DataSources",
-    type: "input",
-    dataType: "string"
-  },
-  {
-    label: "委托人姓名：",
-    field: "DataStatus0",
-    type: "input",
-    dataType: "string"
-  },
-  {
-    label: "委托人身份证号：",
-    field: "DataStatus9",
-    type: "input",
-    dataType: "string"
-  },
-  {
-    label: "委托人联系电话：",
-    field: "DataStatus8",
-    type: "input",
-    dataType: "string"
-  },
-  {
-    label: "备注：",
-    field: "DataStatus7",
-    type: "input",
-    dataType: "string"
-  },
-  {
-    label: "治安管理信息所属警务责任区：",
-    field: "DataStatus6",
-    type: "input",
-    dataType: "string"
-  },
-  {
-    label: "地球经度：",
-    field: "DataStatus5",
-    type: "input",
-    dataType: "string"
-  },
-  {
-    label: "地球纬度：",
-    field: "DataStatus4",
+    field: "idCard5",
     type: "input",
     dataType: "string"
   },
   {
     label: "数据更新时间：",
-    field: "DataStatus3",
+    field: "idCard5",
     type: "input",
     dataType: "string"
   },
   {
     label: "数据来源：",
-    field: "DataStatus2",
+    field: "idCard5",
     type: "input",
     dataType: "string"
   },
   {
     label: "数据状态：",
-    field: "DataStatus1",
+    field: "idCard5",
     type: "input",
     dataType: "string"
   }
+  // {
+  //   label: "身份证号",
+  //   field: "motorVehicle",
+  //   type: "select",
+  //   options: [
+  //     {
+  //       label: "机动车",
+  //       value: 0
+  //     },
+  //     {
+  //       label: "电动车",
+  //       value: 1
+  //     }
+  //   ]
+  // },
 ];
 export default fields;
 // [

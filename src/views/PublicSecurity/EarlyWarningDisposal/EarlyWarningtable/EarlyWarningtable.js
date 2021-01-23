@@ -53,15 +53,20 @@ const options = {
         type: "text",
         size: "mini",
         methods: "dealWith",
-        style: "color:#39c5aa"
+        style: "color:#39c5aa",
+        condition: row => {
+          return row.status === 1;
+        }
       },
       {
         label: "处理结果",
         type: "text",
         size: "mini",
-        methods: "dealWith",
+        methods: "processResult",
         style: "color:#39c5aa",
-        isShow: true
+        condition: row => {
+          return row.status === 0;
+        }
       }
     ]
   },
@@ -74,7 +79,8 @@ const options = {
       Details: "24",
       EntryTime: "",
       ElectronicFileURL: "",
-      phoneAndName: ""
+      phoneAndName: "",
+      status: 0
     },
     {
       PlanName: "2016-10-01 12:12:12",
@@ -83,7 +89,8 @@ const options = {
       Details: "24",
       EntryTime: "",
       ElectronicFileURL: "",
-      phoneAndName: ""
+      phoneAndName: "",
+      status: 1
     },
     {
       PlanName: "2016-10-01 12:12:12",
@@ -92,7 +99,8 @@ const options = {
       Details: "24",
       EntryTime: "",
       ElectronicFileURL: "",
-      phoneAndName: ""
+      phoneAndName: "",
+      status: 1
     },
     {
       PlanName: "2016-10-01 12:12:12",
@@ -101,7 +109,8 @@ const options = {
       Details: "24",
       EntryTime: "",
       ElectronicFileURL: "",
-      phoneAndName: ""
+      phoneAndName: "",
+      status: 0
     }
   ],
   pagination: {

@@ -32,6 +32,52 @@
         :pagination="MyTableData.pagination"
       ></Mytable>
     </div>
+
+    <!-- 详情 -->
+    <el-dialog
+      :visible.sync="dialogVisible"
+      title="详情"
+      width="40%"
+      style="height: 100%"
+    >
+      <el-table :data="tableDate1" size="small" fit border style="width: 100%">
+        <el-table-column
+          type="index"
+          label="NO."
+          align="center"
+          width="50px"
+          :resizable="false"
+        ></el-table-column>
+        <el-table-column
+          prop="TableName"
+          :resizable="false"
+          label="表名"
+          align="center"
+        >
+        </el-table-column>
+        <el-table-column
+          prop="FieldName"
+          :resizable="false"
+          label="字段名"
+          align="center"
+        >
+        </el-table-column>
+        <el-table-column
+          prop="ValueBeforeModification"
+          label="修改前的值"
+          align="center"
+          :resizable="false"
+        >
+        </el-table-column>
+        <el-table-column
+          prop="ModifiedValue"
+          label="修改后的值"
+          align="center"
+          :resizable="false"
+        >
+        </el-table-column>
+      </el-table>
+    </el-dialog>
   </div>
 </template>
 
@@ -42,7 +88,16 @@ export default {
   data() {
     return {
       MyformData,
-      MyTableData
+      MyTableData,
+      dialogVisible: false,
+      tableDate1: [
+        {
+          TableName: "MotorVehicleEvent",
+          FieldName: "FW_SY",
+          ValueBeforeModification: "你好",
+          ModifiedValue: "再见"
+        }
+      ]
     };
   },
   methods: {
@@ -63,6 +118,7 @@ export default {
     },
     Details(val) {
       console.log(val);
+      this.dialogVisible = true;
       // 我是详情
     },
     search() {}

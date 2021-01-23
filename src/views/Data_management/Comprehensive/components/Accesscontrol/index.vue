@@ -35,12 +35,20 @@
       ></Mytable>
       <!-- </div> -->
     </div>
+    <Editor
+      :type="editorType"
+      :visible.sync="editorVisible"
+      :fields="fields"
+      @confirm="confirm"
+      :labelWidth="labelWidth"
+    />
   </div>
 </template>
 
 <script>
 import MyformData from "./AccesscontrolForm/AccesscontrolForm";
 import MyTableData from "./AccesscontrolTable/AccesscontrolTable";
+import fields from "./editor";
 export default {
   name: "Accesscontrol",
   props: {
@@ -52,7 +60,11 @@ export default {
   data() {
     return {
       MyformData,
-      MyTableData
+      MyTableData,
+      fields,
+      editorType: "add",
+      editorVisible: false,
+      labelWidth: "150px"
     };
   },
   methods: {
@@ -69,18 +81,26 @@ export default {
     // 点击事件
     clickButton(val) {
       // 调用事件
-      this[val.methods](val.row);
+      // this[val.methods](val.row);
+      if (val.methods === "Increase") {
+        this.openEditor(val.methods, val.row);
+      } else {
+        this[val.methods](val.row);
+      }
     },
-    // eslint-disable-next-line no-unused-vars
-    Authority(val) {
-      // 我是权限
+    openEditor(type, row) {
+      console.log(type, row);
+      this.editorVisible = true;
     },
-    // eslint-disable-next-line no-unused-vars
-    Disable(val) {
-      // 我是禁用
+    confirm(formData) {
+      console.log(formData);
+      // 请求接口提交数据 等等
+      this.editorVisible = false;
     },
     search() {},
-    Increase() {},
+    record() {
+      this.changePage("7");
+    },
     // 跳转页面
     changePage(target) {
       // 更新父组件传入的prop ‘currentPage’

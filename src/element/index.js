@@ -1,5 +1,9 @@
 import Vue from "vue";
 import {
+  Collapse,
+  CollapseItem,
+  MessageBox,
+  Message,
   Button,
   Select,
   Row,
@@ -38,6 +42,8 @@ import {
   Dialog
 } from "element-ui";
 
+Vue.use(Collapse);
+Vue.use(CollapseItem);
 Vue.use(Dialog);
 Vue.use(Image);
 Vue.use(Popover);
@@ -74,3 +80,9 @@ Vue.use(Header);
 Vue.use(Main);
 Vue.use(Table);
 Vue.use(TableColumn);
+
+Vue.prototype.$msgbox = MessageBox;
+Vue.prototype.$message = Message;
+Vue.prototype.$alert = MessageBox.alert;
+Vue.prototype.$confirm = MessageBox.confirm;
+Vue.prototype.$prompt = MessageBox.prompt;

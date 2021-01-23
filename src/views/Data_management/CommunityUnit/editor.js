@@ -1,5 +1,11 @@
 const fields = [
   {
+    label: "小区名称：",
+    field: "CommunityName1:",
+    type: "input",
+    dataType: "string"
+  },
+  {
     label: "单位名称：",
     field: "CommunityName:",
     type: "input",
@@ -40,13 +46,13 @@ const fields = [
   // },
   {
     label: "营业执照号：",
-    field: "Licenseplate",
+    field: "Licenseplate1",
     type: "input",
     dataType: "string"
   },
   {
     label: "统一社会信用代码：",
-    field: "licensePlate:",
+    field: "licensePlate2:",
     type: "input",
     dataType: "string"
   },
@@ -118,49 +124,49 @@ const fields = [
   },
   {
     label: "地址：",
-    field: "DataStatus",
+    field: "DataStatus3",
     type: "input",
     dataType: "string"
   },
   {
     label: "登记人姓名：",
-    field: "DataStatus",
+    field: "DataStatus4",
     type: "input",
     dataType: "string"
   },
   {
     label: "登记人身份证号：",
-    field: "DataStatus",
+    field: "DataStatus5",
     type: "input",
     dataType: "string"
   },
   {
     label: "登记人联系电话：",
-    field: "DataStatus",
+    field: "DataStatus6",
     type: "input",
     dataType: "string"
   },
   {
     label: "治安管理信息所属警务责任区：",
-    field: "DataStatus",
+    field: "DataStatus7",
     type: "input",
     dataType: "string"
   },
   {
     label: "数据更新时间：",
-    field: "DataStatus",
+    field: "DataStatus8",
     type: "input",
     dataType: "string"
   },
   {
     label: "数据来源：",
-    field: "DataStatus",
+    field: "DataStatus9",
     type: "input",
     dataType: "string"
   },
   {
     label: "数据状态：",
-    field: "DataStatus",
+    field: "DataStatus0",
     type: "input",
     dataType: "string"
   }

@@ -74,7 +74,7 @@ export default {
           xianghao: "333",
           adds: "444",
           time: "555",
-          showFlag: false
+          showFlag: true
         },
         {
           name: "xiaoqu1",
@@ -128,5 +128,4 @@ export default {
   display: none;
 }
 </style>
-<style lang="less">
-</style>
+<style lang="less"></style>

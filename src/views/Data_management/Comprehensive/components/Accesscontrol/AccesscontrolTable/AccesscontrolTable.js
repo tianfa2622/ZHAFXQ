@@ -63,10 +63,10 @@ const options = {
     align: "center",
     options: [
       {
-        label: "详情",
+        label: "门禁记录",
         type: "text",
         size: "mini",
-        methods: "Details",
+        methods: "record",
         style: "color:rgba(26, 188, 156, 1)"
       }
     ]

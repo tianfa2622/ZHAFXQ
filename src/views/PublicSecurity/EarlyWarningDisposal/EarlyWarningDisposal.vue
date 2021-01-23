@@ -45,6 +45,14 @@
         </el-card>
       </div>
     </div>
+    <Editor
+      :type="editorType"
+      :visible.sync="editorVisible"
+      :fields="fields"
+      @confirm="confirm"
+      :width="width"
+      :labelWidth="labelWidth"
+    />
   </div>
 </template>
 
@@ -52,17 +60,51 @@
 import MyformData from "./EarlyWarningform/EarlyWarningform";
 import MytableData from "./EarlyWarningtable/EarlyWarningtable";
 import options from "./EarlyWarningEcharts/EarlyWarningEcharts";
+import fields from "./editor";
 export default {
   data() {
     return {
       MyformData,
       MytableData,
-      options
+      options,
+      fields,
+      editorType: "add",
+      editorVisible: false,
+      width: "30%",
+      labelWidth: "160px"
     };
   },
   methods: {
-    // onSubmit() {
-    // },
+    // 点击事件
+    clickButton(val) {
+      // 调用事件
+      // this[val.methods](val.row);
+      if (val.methods !== "search") {
+        this.openEditor(val.methods, val.row);
+      } else {
+        this[val.methods](val.row);
+      }
+    },
+    openEditor(type, row) {
+      console.log(type, row);
+      switch (type) {
+        case "Increase":
+          this.editorType = "add";
+          break;
+        case "dealWith":
+          this.editorType = "edit";
+          break;
+        case "processResult":
+          this.editorType = "view";
+          break;
+      }
+      this.editorVisible = true;
+    },
+    confirm(formData) {
+      console.log(formData);
+      // 请求接口提交数据 等等
+      this.editorVisible = false;
+    },
     // 切换当前一页展示多少条
     sizeChange(val) {
       this.rows = val;
@@ -71,21 +113,16 @@ export default {
     pageChange(val) {
       this.page = val;
     },
-    // 点击事件
-    clickButton(val) {
-      // 调用事件
-      this[val.methods](val.row);
-    },
-    dealWith(val) {
-      console.log(val);
-      // 我是处理
-    },
-    processResult(val) {
-      console.log(val);
-      // 我是处理结果
-    },
-    search() {},
-    Increase() {}
+    // dealWith(val) {
+    //   console.log(val);
+    //   // 我是处理
+    // },
+    // processResult(val) {
+    //   console.log(val);
+    //   // 我是处理结果
+    // },
+    search() {}
+    // Increase() {}
   }
 };
 </script>

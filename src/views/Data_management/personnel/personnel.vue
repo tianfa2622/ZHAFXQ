@@ -40,13 +40,22 @@
         </div>
       </el-tab-pane>
     </el-tabs>
+    <Editor
+      :type="editorType"
+      :width="width"
+      :visible.sync="editorVisible"
+      :fields="fields"
+      @confirm="confirm"
+      :labelWidth="labelWidth"
+    />
   </div>
 </template>
 
 <script>
-import ThePermanent from "./ThePermanent";
-import FloatingPopulation from "./FloatingPopulation";
-import MyformData from "./personnelform";
+import ThePermanent from "./personnelTable/ThePermanent";
+import FloatingPopulation from "./personnelTable/FloatingPopulation";
+import MyformData from "./personnelForm/personnelform";
+import Permanent from "./Editor";
 
 export default {
   data() {
@@ -54,6 +63,11 @@ export default {
       ThePermanent,
       FloatingPopulation,
       MyformData,
+      editorType: "add",
+      editorVisible: false,
+      width: "60%",
+      labelWidth: "230px",
+      fields: Permanent,
       tabsData: {},
       // formInline: {
       //   communityName: "",
@@ -76,16 +90,6 @@ export default {
     this.tabsdata();
   },
   methods: {
-    // onSubmit() {
-    // },
-    // 切换当前一页展示多少条
-    sizeChange(val) {
-      this.rows = val;
-    },
-    // 翻页
-    pageChange(val) {
-      this.page = val;
-    },
     // 点击事件
     clickButton(val) {
       // 调用事件
@@ -115,6 +119,14 @@ export default {
       console.log(formData);
       // 请求接口提交数据 等等
       this.editorVisible = false;
+    },
+    // 切换当前一页展示多少条
+    sizeChange(val) {
+      this.rows = val;
+    },
+    // 翻页
+    pageChange(val) {
+      this.page = val;
     },
     handleClick() {
       this.tabsdata();

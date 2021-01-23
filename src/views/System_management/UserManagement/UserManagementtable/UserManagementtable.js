@@ -47,7 +47,19 @@ const options = {
         label: "禁用",
         type: "text",
         size: "mini",
-        methods: "Disable"
+        methods: "Disable",
+        condition: row => {
+          return row.status === "正常";
+        }
+      },
+      {
+        label: "解禁",
+        type: "text",
+        size: "mini",
+        methods: "Disable",
+        condition: row => {
+          return row.status === "禁用";
+        }
       }
     ]
   },

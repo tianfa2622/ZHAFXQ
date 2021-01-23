@@ -1,64 +1,97 @@
 const fields = [
   {
-    label: "发布类型：",
+    label: "姓名：",
+    field: "name",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "身份证号码：",
     field: "CommunityName:",
     type: "input",
     dataType: "string"
   },
   {
-    label: "发布时间：",
+    label: "凭证号：",
     field: "ownersName",
     type: "input",
     dataType: "string"
   },
   {
-    label: "发布内容：",
-    field: "textarea8",
+    label: "开门时间：",
+    field: "Telephone",
     type: "input",
     dataType: "string"
   },
   {
-    label: "发布状态：",
-    field: "textarea7",
+    label: "门磁状态：",
+    field: "idCard1",
     type: "input",
     dataType: "string"
   },
   {
-    label: "安装地址：",
-    field: "textarea6",
+    label: "是否通过：",
+    field: "idCard2",
     type: "input",
     dataType: "string"
   },
   {
-    label: "地球经度：",
-    field: "textarea5",
+    label: "开门方式：",
+    field: "idCard3",
     type: "input",
     dataType: "string"
   },
   {
-    label: "地球纬度：",
-    field: "textarea4",
+    label: "开门结果：",
+    field: "idCard4",
     type: "input",
     dataType: "string"
   },
   {
-    label: "发布人姓名：",
-    field: "textarea3",
+    label: "开门刷卡次数：",
+    field: "idCard5",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "门禁时间类型：",
+    field: "idCard5",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "关联门禁采集设备：",
+    field: "idCard5",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "关联抓拍采集设备：",
+    field: "idCard5",
     type: "input",
     dataType: "string"
   },
   {
     label: "采集时间：",
-    field: "textarea1",
-    type: "input",
-    dataType: "string"
-  },
-  {
-    label: "采集系统时间：",
-    field: "textarea2",
+    field: "idCard5",
     type: "input",
     dataType: "string"
   }
+  // {
+  //   label: "身份证号",
+  //   field: "motorVehicle",
+  //   type: "select",
+  //   options: [
+  //     {
+  //       label: "机动车",
+  //       value: 0
+  //     },
+  //     {
+  //       label: "电动车",
+  //       value: 1
+  //     }
+  //   ]
+  // },
 ];
 export default fields;
 // [

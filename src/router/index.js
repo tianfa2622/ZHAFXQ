@@ -170,7 +170,7 @@ const routes = [
     name: "HistoricalMonitoring",
     component: () =>
       import(
-        /* webpackChunkName: "HistoricalMonitoring" */ "../views/VideoMonitoring/HistoricalMonitoring/Historical.vue"
+        /* webpackChunkName: "HistoricalMonitoring" */ "../views/VideoMonitoring/HistoricalMonitoring/index.vue"
       ),
     meta: { hidden: true, title: "历史监控" }
   }

@@ -17,6 +17,16 @@
         :label="field.label"
         :prop="field.field"
       >
+        <el-avatar
+          v-if="field.type === 'avatar'"
+          shape="square"
+          :size="100"
+          :src="formData[field.field]"
+        >
+          <img
+            src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png"
+          />
+        </el-avatar>
         <el-input
           v-if="field.type === 'input'"
           v-model="formData[field.field]"

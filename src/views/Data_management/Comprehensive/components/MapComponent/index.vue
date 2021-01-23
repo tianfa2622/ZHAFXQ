@@ -82,11 +82,7 @@
                   >
                     访客记录
                   </el-button>
-                  <el-button
-                    type="primary"
-                    size="mini"
-                    @click="changePage('3')"
-                  >
+                  <el-button type="primary" size="mini" @click="openEditor">
                     物业信息
                   </el-button>
                   <el-button
@@ -117,6 +113,14 @@
         </template>
       </baidu-map>
     </div>
+    <Editor
+      :type="editorType"
+      :visible.sync="editorVisible"
+      :fields="fields"
+      @confirm="confirm"
+      :width="width"
+      :labelWidth="labelWidth"
+    />
   </div>
   <!-- @moving="syncCenterAndZoom"
         @moveend="syncCenterAndZoom"
@@ -125,6 +129,7 @@
 
 <script>
 import MyformData from "./Mapform";
+import fields from "./editor";
 
 export default {
   name: "MapComponent",
@@ -174,7 +179,12 @@ export default {
           time: "上报时间:2018/11/23 11:48",
           showFlag: false
         }
-      ]
+      ],
+      fields,
+      editorType: "view",
+      editorVisible: false,
+      width: "50%",
+      labelWidth: "160px"
     };
   },
   methods: {
@@ -199,6 +209,15 @@ export default {
     clickButton(val) {
       // 调用事件
       this[val.methods](val.row);
+    },
+    openEditor(type, row) {
+      console.log(type, row);
+      this.editorVisible = true;
+    },
+    confirm(formData) {
+      console.log(formData);
+      // 请求接口提交数据 等等
+      this.editorVisible = false;
     },
     search() {},
     // 跳转页面

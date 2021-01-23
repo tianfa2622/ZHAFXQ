@@ -15,7 +15,7 @@
       @change="handlerChange"
       :labelWidth="labelWidth"
     />
-    <template slot="footer">
+    <template slot="footer" v-if="type !== 'view'">
       <el-button @click="closeEditor">取 消</el-button>
       <el-button type="primary" @click="confirm">确 定</el-button>
     </template>

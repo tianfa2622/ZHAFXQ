@@ -49,7 +49,6 @@
       :type="editorType"
       :visible.sync="editorVisible"
       :fields="fields"
-      :width="width"
       @confirm="confirm"
       :labelWidth="labelWidth"
     />
