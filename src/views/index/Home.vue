@@ -121,6 +121,7 @@ import IndexMap from "./map/indexMap"; // 地图
 import tableoptions from "./tableData/Equipment"; // 设备table数据
 import Inspection from "./tableData/Inspection"; // 巡查table数据
 import Perceive from "./tableData/Perceive"; // 感知table数据
+import { getStaffProfile, getselectAll } from "@/api/home/api";
 export default {
   components: {
     IndexMap
@@ -160,6 +161,14 @@ export default {
   },
   created() {
     this.tabsdata();
+  },
+  mounted() {
+    getStaffProfile("1").then(res => {
+      console.log(res);
+    });
+    getselectAll().then(res => {
+      console.log(res);
+    });
   },
   methods: {
     handleClick() {
