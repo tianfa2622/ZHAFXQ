@@ -1,6 +1,7 @@
 // 通行人车流量折线图
 // eslint-disable-next-line no-unused-vars
 import echarts from "echarts";
+import { getqueryCl } from "@/api/home/api";
 let bgColor = "#fff";
 // let fontColor = "#333";
 let titleColor = "#fff";
@@ -23,6 +24,18 @@ let echartData = [
     unit: "辆"
   }
 ];
+getqueryCl().then(res => {
+  let data = res;
+  let array = Object.keys(data);
+  let obj = {};
+  for (let i = 0; i < array.length; i++) {
+    obj.name = array[i];
+    obj.value = data[array[i]];
+    obj.unit = "辆";
+    echartData.push(obj);
+  }
+  return echartData;
+});
 let total = echartData.reduce((a, b) => {
   return a + b.value * 1;
 }, 0);

@@ -1,3 +1,4 @@
+import { getqueryPatrolplan } from "@/api/home/api";
 const options = {
   CardAttributes: {
     // title: "设备信息",
@@ -13,71 +14,44 @@ const options = {
   tableColumns: [
     {
       label: "巡查预案名称",
-      param: "PlanName"
+      param: "ycyaMc"
     },
     {
       label: "关键词",
-      param: "KeyWords"
+      param: "gjc"
     },
     {
       label: "简要情况",
-      param: "BriefSituation"
+      param: "jyqk"
     },
     {
       label: "详细情况",
-      param: "Details"
+      param: "xxqk"
     },
     {
       label: "录入时间",
-      param: "EntryTime"
+      param: "lrsj"
     },
     {
       label: "电子文件URL",
-      param: "fileURL"
+      param: "dzwjurl",
+      render: row => {
+        if (row.dzwjurl === "0") {
+          return "暂无";
+        } else {
+          return row.dzwjurl;
+        }
+      }
     },
     {
       label: "登记人姓名及电话",
-      param: "nameAndPhone"
+      param: "djr"
     }
   ],
   // 表格数据
-  tableData: [
-    {
-      PlanName: "2016-10-01 12:12:12",
-      KeyWords: "张小刚",
-      BriefSituation: "张小刚",
-      Details: "24",
-      EntryTime: "",
-      fileURL: "",
-      nameAndPhone: ""
-    },
-    {
-      PlanName: "2016-10-01 12:12:12",
-      KeyWords: "张小红",
-      BriefSituation: "张小红",
-      Details: "30",
-      EntryTime: "",
-      fileURL: "",
-      nameAndPhone: ""
-    },
-    {
-      PlanName: "2016-10-01 12:12:12",
-      KeyWords: "张小刚",
-      BriefSituation: "张小刚",
-      Details: "24",
-      EntryTime: "",
-      fileURL: "",
-      nameAndPhone: ""
-    },
-    {
-      PlanName: "2016-10-01 12:12:12",
-      KeyWords: "张小刚",
-      BriefSituation: "张小刚",
-      Details: "24",
-      EntryTime: "",
-      fileURL: "",
-      nameAndPhone: ""
-    }
-  ]
+  tableData: []
 };
+getqueryPatrolplan().then(res => {
+  options.tableData = res;
+});
 export default options;

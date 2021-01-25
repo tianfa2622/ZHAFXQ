@@ -1,3 +1,4 @@
+import { getqueryApe } from "@/api/home/api";
 const options = {
   CardAttributes: {
     title: "设备信息",
@@ -12,56 +13,38 @@ const options = {
   tableColumns: [
     {
       label: "设备名称",
-      param: "EquipmentName",
+      param: "sbmc",
       align: "center"
     },
     {
       label: "IP地址",
-      param: "IPaddress",
+      param: "ipdz",
       align: "center"
     },
     {
       label: "状态",
-      param: "condition",
+      param: "zt",
       align: "center",
       render: row => {
-        if (row.condition === 0) {
+        if (row.zt === "1") {
           return "在线";
-        } else if (row.condition === 1) {
+        } else if (row.zt === "0") {
           return "离线";
         }
       },
       class: row => {
-        if (row.condition === 0) {
-          return "status-Online";
-        } else if (row.condition === 1) {
+        if (row.zt === "0") {
           return "status-Offline";
+        } else if (row.zt === "1") {
+          return "status-Online";
         }
       }
     }
   ],
   // 表格数据
-  tableData: [
-    {
-      EquipmentName: "设备1",
-      IPaddress: "192.168.1",
-      condition: 0
-    },
-    {
-      EquipmentName: "设备2",
-      IPaddress: "192.168.1",
-      condition: 0
-    },
-    {
-      EquipmentName: "设备3",
-      IPaddress: "192.168.1",
-      condition: 0
-    },
-    {
-      EquipmentName: "设备4",
-      IPaddress: "192.168.1",
-      condition: 0
-    }
-  ]
+  tableData: []
 };
+getqueryApe().then(res => {
+  options.tableData = res;
+});
 export default options;

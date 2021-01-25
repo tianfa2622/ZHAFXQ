@@ -121,7 +121,7 @@ import IndexMap from "./map/indexMap"; // 地图
 import tableoptions from "./tableData/Equipment"; // 设备table数据
 import Inspection from "./tableData/Inspection"; // 巡查table数据
 import Perceive from "./tableData/Perceive"; // 感知table数据
-import { getStaffProfile, getselectAll } from "@/api/home/api";
+import { getStaffProfile } from "@/api/home/api";
 export default {
   components: {
     IndexMap
@@ -132,20 +132,7 @@ export default {
       options1,
       tableoptions,
       tabsData: {},
-      StaffProfile: [
-        {
-          number: "12000",
-          name: "常住人口"
-        },
-        {
-          number: "8000",
-          name: "流动人口"
-        },
-        {
-          number: "4500",
-          name: "重点人员"
-        }
-      ],
+      StaffProfile: [],
       activeName: "first",
       tabs: [
         {
@@ -163,11 +150,14 @@ export default {
     this.tabsdata();
   },
   mounted() {
-    getStaffProfile("1").then(res => {
-      console.log(res);
-    });
-    getselectAll().then(res => {
-      console.log(res);
+    getStaffProfile().then(res => {
+      let data = res;
+      let array = Object.keys(data);
+      let obj = {};
+      for (let i = 0; i < array.length; i++) {
+        (obj.name = array[i]), (obj.number = data[array[i]]);
+        this.StaffProfile.push(obj);
+      }
     });
   },
   methods: {
