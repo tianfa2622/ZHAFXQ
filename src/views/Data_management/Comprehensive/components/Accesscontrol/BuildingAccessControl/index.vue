@@ -38,12 +38,20 @@
       ></Mytable>
       <!-- </div> -->
     </div>
+    <Editor
+      :type="editorType"
+      :visible.sync="editorVisible"
+      :fields="fields"
+      @confirm="confirm"
+      :labelWidth="labelWidth"
+    />
   </div>
 </template>
 
 <script>
 import MyformData from "./BuildingAccessControlForm/BuildingAccessControl";
 import MyTableData from "./BuildingAccessControlTable/BuildingAccessControl";
+import fields from "./editor";
 export default {
   name: "BuildingAccessControl",
   props: {
@@ -55,12 +63,33 @@ export default {
   data() {
     return {
       MyformData,
-      MyTableData
+      MyTableData,
+      fields,
+      editorType: "view",
+      editorVisible: false,
+      labelWidth: "150px"
     };
   },
   methods: {
-    // onSubmit() {
-    // },
+    // 点击事件
+    clickButton(val) {
+      // 调用事件
+      // this[val.methods](val.row);
+      if (val.methods !== "search") {
+        this.openEditor(val.methods, val.row);
+      } else {
+        this[val.methods](val.row);
+      }
+    },
+    openEditor(type, row) {
+      console.log(type, row);
+      this.editorVisible = true;
+    },
+    confirm(formData) {
+      console.log(formData);
+      // 请求接口提交数据 等等
+      this.editorVisible = false;
+    },
     // 切换当前一页展示多少条
     sizeChange(val) {
       this.rows = val;
@@ -68,19 +97,6 @@ export default {
     // 翻页
     pageChange(val) {
       this.page = val;
-    },
-    // 点击事件
-    clickButton(val) {
-      // 调用事件
-      this[val.methods](val.row);
-    },
-    // eslint-disable-next-line no-unused-vars
-    Authority(val) {
-      // 我是权限
-    },
-    // eslint-disable-next-line no-unused-vars
-    Details(val) {
-      // 我是禁用
     },
     search() {},
     // 跳转页面

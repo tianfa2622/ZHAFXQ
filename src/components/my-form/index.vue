@@ -4,58 +4,95 @@
     size="mini"
     :model="formData"
     :disabled="disabled"
-    :inline="true || inline"
+    :inline="inline || true"
     :label-width="labelWidth || '100px'"
     :rules="formRules"
   >
-    <!-- v-for 与 v-if 不可同时使用，所以使用不会渲染的template标签进行循环，再在el-form-item里面判断 -->
-    <template v-for="field in fields">
-      <!-- 如果field中存在hidden字段，并且hidden中包含type会返回true，会显示这个字段，所以使用感叹号反向，让他不显示 -->
-      <el-form-item
-        v-if="!(field.hidden && field.hidden.includes(type))"
-        :key="field.field"
-        :label="field.label"
-        :prop="field.field"
-      >
-        <el-avatar
-          v-if="field.type === 'avatar'"
-          shape="square"
-          :size="100"
-          :src="formData[field.field]"
-        >
-          <img
-            src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png"
-          />
-        </el-avatar>
-        <el-input
-          v-if="field.type === 'input'"
-          v-model="formData[field.field]"
-          @input="
-            field.dataType === 'number' && valueToNumber(field.field, $event)
-          "
-        />
-        <el-select
-          v-if="field.type === 'select'"
-          v-model="formData[field.field]"
-          style="width: 100%"
-        >
-          <el-option
-            v-for="option in field.options"
-            :key="option.label"
-            :label="option.label"
-            :value="option.value"
-          />
-        </el-select>
-        <el-input
-          v-if="field.type === 'textarea'"
-          type="textarea"
-          :rows="4"
-          v-model="formData[field.field]"
-          resize="none"
-        >
-        </el-input>
-      </el-form-item>
-    </template>
+    <el-row type="flex" justify="center">
+      <!-- v-for 与 v-if 不可同时使用，所以使用不会渲染的template标签进行循环，再在el-form-item里面判断 -->
+      <template v-for="field in fields">
+        <el-col :span="field.span || 12" :key="field.field">
+          <!-- 如果field中存在hidden字段，并且hidden中包含type会返回true，会显示这个字段，所以使用感叹号反向，让他不显示 -->
+          <el-form-item
+            v-if="!(field.hidden && field.hidden.includes(type))"
+            :label="field.label"
+            :prop="field.field"
+          >
+            <el-avatar
+              v-if="field.type === 'avatar'"
+              shape="square"
+              :style="field.style || ''"
+              :size="100"
+              :src="formData[field.field]"
+            >
+              <img
+                src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png"
+              />
+            </el-avatar>
+            <div class="block" v-if="field.type === 'image'">
+              <el-image
+                :lazy="true"
+                :style="field.style || ''"
+                :src="
+                  formData[field.field] ||
+                    'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg'
+                "
+                :fit="fit"
+              ></el-image>
+              <p class="demonstration">{{ field.title }}</p>
+            </div>
+            <el-popover
+              v-if="field.type === 'popover'"
+              placement="right"
+              width="400"
+              trigger="click"
+            >
+              <el-image
+                :lazy="true"
+                :src="
+                  formData[field.field] ||
+                    'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg'
+                "
+                :fit="fit"
+              ></el-image>
+              <el-button type="text" slot="reference">查看图片</el-button>
+            </el-popover>
+            <el-input
+              v-if="field.type === 'input'"
+              v-model="formData[field.field]"
+              :disabled="field.disabled || false"
+              :style="field.style || ''"
+              @input="
+                field.dataType === 'number' &&
+                  valueToNumber(field.field, $event)
+              "
+            />
+            <el-select
+              v-if="field.type === 'select'"
+              v-model="formData[field.field]"
+              :style="field.style || ''"
+              class="w-100"
+            >
+              <el-option
+                v-for="option in field.options"
+                :key="option.label"
+                :label="option.label"
+                :value="option.value"
+              />
+            </el-select>
+            <el-input
+              v-if="field.type === 'textarea'"
+              type="textarea"
+              :style="field.style || ''"
+              :rows="4"
+              v-model="formData[field.field]"
+              resize="none"
+            >
+            </el-input>
+          </el-form-item>
+        </el-col>
+      </template>
+    </el-row>
   </el-form>
 </template>
 
@@ -145,5 +182,16 @@ export default {
 <style lang="less" scoped>
 ::v-deep .el-input__inner {
   width: 178px;
+}
+::v-deep .el-row {
+  flex-wrap: wrap;
+}
+.block {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.demonstration {
+  text-align: center;
 }
 </style>

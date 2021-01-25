@@ -1,18 +1,22 @@
 const fields = [
   {
     label: "处理人：",
+    span: 24,
     field: "CommunityName:",
     type: "input",
     dataType: "string"
   },
   {
     label: "处理时间：",
+    span: 24,
+    disabled: true,
     field: "ownersName",
     type: "input",
     dataType: "string"
   },
   {
     label: "处理结果：",
+    span: 24,
     field: "textarea",
     type: "textarea",
     dataType: "string"

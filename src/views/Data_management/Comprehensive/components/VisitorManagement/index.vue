@@ -39,22 +39,27 @@
           :body-style="{ padding: '0px', height: 'calc(100% - 53px)' }"
         >
           <div slot="header">
-            <span>信息核实</span>
+            <span>访客数</span>
           </div>
-          <!-- <MyEcharts :option="options"></MyEcharts> -->
+          <MyEcharts :option="options"></MyEcharts>
         </el-card>
       </div>
     </div>
+    <Editor
+      :type="editorType"
+      :visible.sync="editorVisible"
+      :fields="fields"
+      @confirm="confirm"
+      :labelWidth="labelWidth"
+    />
   </div>
 </template>
 
 <script>
-import Mytable from "@/components/table/table"; // table组件
-import Myform from "@/components/Form/Form.vue";
-// import MyEcharts from "../../../components/echarts/index";
 import MyformData from "./VisitorManagementForm/VisitorManagementForm";
 import MytableData from "./VisitorManagementTable/VisitorManagementTable";
-// import options from "./HousingEcharts/HousingEcharts";
+import options from "./VisitorManagementEcharts/VisitorManagementEcharts";
+import fields from "./editor";
 export default {
   name: "VisitorManagement",
   props: {
@@ -63,21 +68,37 @@ export default {
       required: true
     }
   },
-  components: {
-    Myform,
-    Mytable
-    // MyEcharts
-  },
   data() {
     return {
       MyformData,
-      MytableData
-      // options,
+      MytableData,
+      options,
+      fields,
+      editorType: "view",
+      editorVisible: false,
+      labelWidth: "150px"
     };
   },
   methods: {
-    // onSubmit() {
-    // },
+    // 点击事件
+    clickButton(val) {
+      // 调用事件
+      // this[val.methods](val.row);
+      if (val.methods !== "search") {
+        this.openEditor(val.methods, val.row);
+      } else {
+        this[val.methods](val.row);
+      }
+    },
+    openEditor(type, row) {
+      console.log(type, row);
+      this.editorVisible = true;
+    },
+    confirm(formData) {
+      console.log(formData);
+      // 请求接口提交数据 等等
+      this.editorVisible = false;
+    },
     // 切换当前一页展示多少条
     sizeChange(val) {
       this.rows = val;
@@ -85,11 +106,6 @@ export default {
     // 翻页
     pageChange(val) {
       this.page = val;
-    },
-    // 点击事件
-    clickButton(val) {
-      // 调用事件
-      this[val.methods](val.row);
     },
     // eslint-disable-next-line no-unused-vars
     toView(val) {
@@ -128,5 +144,17 @@ export default {
 }
 .card_style {
   overflow: visible !important;
+}
+::v-deep .el-dialog__body {
+  .el-row .el-col:nth-child(-n + 2) {
+    .el-form-item--mini {
+      width: 100%;
+      height: 100%;
+      .el-form-item__content {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
 }
 </style>

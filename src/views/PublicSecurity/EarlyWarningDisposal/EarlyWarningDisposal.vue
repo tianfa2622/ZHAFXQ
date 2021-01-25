@@ -70,7 +70,7 @@ export default {
       fields,
       editorType: "add",
       editorVisible: false,
-      width: "30%",
+      width: "25%",
       labelWidth: "160px"
     };
   },

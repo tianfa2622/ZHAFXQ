@@ -1,130 +1,115 @@
 const fields = [
   {
-    label: " ",
-    field: "avatar",
-    span: 24,
-    type: "avatar"
-  },
-  {
-    label: "姓名：",
-    field: "CommunityName:",
+    label: "停车位编号：",
+    field: "name",
     type: "input",
     dataType: "string"
   },
   {
-    label: "别号绰号：",
-    field: "ownersName",
+    label: "车位类型：",
+    field: "name",
     type: "input",
     dataType: "string"
   },
   {
-    label: "性别：",
-    field: "Telephone",
+    label: "车位归属类型：",
+    field: "name",
     type: "input",
     dataType: "string"
   },
   {
-    label: "民族：",
-    field: "idCard",
-    type: "input",
-    dataType: "string"
-  },
-  // {
-  //   label: "身份证号",
-  //   field: "motorVehicle",
-  //   type: "select",
-  //   options: [
-  //     {
-  //       label: "机动车",
-  //       value: 0
-  //     },
-  //     {
-  //       label: "电动车",
-  //       value: 1
-  //     }
-  //   ]
-  // },
-  {
-    label: "身份证号：",
-    field: "Licenseplate1",
+    label: "楼层号：",
+    field: "name",
     type: "input",
     dataType: "string"
   },
   {
-    label: "出生日期：",
-    field: "licensePlate2:",
+    label: "车位所有人姓名：",
+    field: "name",
     type: "input",
     dataType: "string"
   },
   {
-    label: "户籍详细地址：",
-    field: "NumberPlateColor:",
+    label: "所有人身份证号：",
+    field: "name",
     type: "input",
     dataType: "string"
   },
   {
-    label: "治安重点人员管理类别：",
-    field: "ChineseBrandName:",
+    label: "所有人联系电话：",
+    field: "name",
     type: "input",
     dataType: "string"
   },
   {
-    label: "管理地(一)：",
-    field: "VehicleVolume",
+    label: "租户姓名：",
+    field: "name",
     type: "input",
     dataType: "string"
   },
   {
-    label: "省市县(区)：",
-    field: "ColorCar:",
+    label: "租户身份证号：",
+    field: "name",
     type: "input",
     dataType: "string"
   },
   {
-    label: "区域内详细地址：",
-    field: "VehicleModel",
+    label: "租户联系电话：",
+    field: "name",
     type: "input",
     dataType: "string"
   },
   {
-    label: "治安重点人管理类别：",
-    field: "BriefSituation",
+    label: "起租日期：",
+    field: "name",
     type: "input",
     dataType: "string"
   },
   {
-    label: "管控事由：",
-    field: "RegistrantName",
+    label: "委托代理人姓名：",
+    field: "name",
     type: "input",
     dataType: "string"
   },
   {
-    label: "管理状态：",
-    field: "RegistrantPhoneNumber:",
+    label: "代理人身份证号：",
+    field: "name",
     type: "input",
     dataType: "string"
   },
   {
-    label: "联系电话：",
-    field: "DataUpdate:",
+    label: "代理人联系电话：",
+    field: "name",
     type: "input",
     dataType: "string"
   },
   {
-    label: "管控民警姓名：",
-    field: "DataSources",
+    label: "登记人姓名：",
+    field: "name",
     type: "input",
     dataType: "string"
   },
   {
-    label: "管控民警身份证号码：",
-    field: "DataStatus",
+    label: "登记人联系电话：",
+    field: "name",
     type: "input",
     dataType: "string"
   },
   {
-    label: "管控民警联系电话：",
-    field: "DataStatus2",
+    label: "数据更新时间：",
+    field: "name",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "数据来源：",
+    field: "name",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "数据状态：",
+    field: "name",
     type: "input",
     dataType: "string"
   }

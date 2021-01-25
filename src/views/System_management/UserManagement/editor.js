@@ -37,6 +37,7 @@ const fields = [
   {
     label: "更新时间：",
     field: "idCard1",
+    span: 24,
     type: "input",
     dataType: "string",
     hidden: ["edit", "view"]

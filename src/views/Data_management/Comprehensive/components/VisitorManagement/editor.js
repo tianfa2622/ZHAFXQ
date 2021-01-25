@@ -1,68 +1,105 @@
 const fields = [
   {
-    label: "门禁点编号：",
+    label: "",
+    field: "name",
+    type: "image",
+    style: "width: 200px; height: 200px",
+    title: "设备抓拍照"
+  },
+  {
+    label: "",
+    field: "name",
+    type: "image",
+    style: "width: 200px; height: 200px",
+    title: "证件照"
+  },
+  {
+    label: "姓名：",
     field: "name",
     type: "input",
     dataType: "string"
   },
   {
-    label: "门禁点名称：",
+    label: "身份证号码：",
     field: "name",
     type: "input",
     dataType: "string"
   },
   {
-    label: "关联门禁采集设备：",
+    label: "联系电话：",
     field: "name",
     type: "input",
     dataType: "string"
   },
   {
-    label: "关联抓拍采集设备：",
+    label: "机动车号牌号码：",
     field: "name",
     type: "input",
     dataType: "string"
   },
   {
-    label: "行进方向：",
+    label: "访问房屋：",
+    field: "name",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "事由：",
+    field: "name",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "访问日期时间：",
+    field: "name",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "访问人：",
+    field: "name",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "采集设备IP地址：",
+    field: "name",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "认证验证是否通过：",
     field: "CommunityName:",
     type: "select",
     options: [
       {
-        label: "进",
+        label: "通过",
         value: 0
       },
       {
-        label: "出",
+        label: "未通过",
         value: 1
-      },
-      {
-        label: "进/出",
-        value: 2
       }
     ]
   },
   {
-    label: "地球经度：",
+    label: "是否为关注人：",
+    field: "CommunityName:",
+    type: "select",
+    options: [
+      {
+        label: "是",
+        value: 0
+      },
+      {
+        label: "否",
+        value: 1
+      }
+    ]
+  },
+  {
+    label: "采集时间：",
     field: "ownersName",
-    type: "input",
-    dataType: "string"
-  },
-  {
-    label: "地球纬度：",
-    field: "Telephone",
-    type: "input",
-    dataType: "string"
-  },
-  {
-    label: "楼栋单元：",
-    field: "idCard1",
-    type: "input",
-    dataType: "string"
-  },
-  {
-    label: "登记人姓名及电话：",
-    field: "idCard2",
     type: "input",
     dataType: "string"
   }

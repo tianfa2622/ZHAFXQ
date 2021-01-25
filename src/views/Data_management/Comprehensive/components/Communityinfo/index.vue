@@ -35,12 +35,27 @@
       ></Mytable>
       <!-- </div> -->
     </div>
+    <Editor
+      :type="editorType"
+      :visible.sync="editorVisible"
+      :fields="fields"
+      @confirm="confirm"
+      :labelWidth="labelWidth"
+    />
+    <el-dialog :visible.sync="dialogVisible" width="30%">
+      <el-image :src="src">
+        <div slot="placeholder" class="image-slot">
+          加载中<span class="dot">...</span>
+        </div>
+      </el-image>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import MyformData from "./CommunityinfoForm/Communityinfo";
 import MyTableData from "./CommunityinfoTable/Communityinfo";
+import fields from "./editor";
 export default {
   name: "Communityinfo",
   props: {
@@ -52,12 +67,41 @@ export default {
   data() {
     return {
       MyformData,
-      MyTableData
+      MyTableData,
+      dialogVisible: false,
+      fields,
+      editorType: "view",
+      editorVisible: false,
+      labelWidth: "210px",
+      src:
+        "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg"
     };
   },
   methods: {
-    // onSubmit() {
-    // },
+    // 点击事件
+    clickButton(val) {
+      // 调用事件
+      // this[val.methods](val.row);
+      if (val.methods === "Record") {
+        this.openEditor(val.methods, val.row);
+      } else {
+        this[val.methods](val.row);
+      }
+    },
+    openEditor(type, row) {
+      console.log(type, row);
+      switch (type) {
+        case "Increase":
+          this.editorType = "add";
+          break;
+      }
+      this.editorVisible = true;
+    },
+    confirm(formData) {
+      console.log(formData);
+      // 请求接口提交数据 等等
+      this.editorVisible = false;
+    },
     // 切换当前一页展示多少条
     sizeChange(val) {
       this.rows = val;
@@ -66,21 +110,10 @@ export default {
     pageChange(val) {
       this.page = val;
     },
-    // 点击事件
-    clickButton(val) {
-      // 调用事件
-      this[val.methods](val.row);
-    },
     // eslint-disable-next-line no-unused-vars
-    Authority(val) {
-      // 我是权限
+    BuildingImg(val) {
+      this.dialogVisible = true;
     },
-    // eslint-disable-next-line no-unused-vars
-    Details(val) {
-      // 我是禁用
-    },
-    // eslint-disable-next-line no-unused-vars
-    BuildingImg(val) {},
     // eslint-disable-next-line no-unused-vars
     BuildingInfo(val) {
       this.changePage("8");

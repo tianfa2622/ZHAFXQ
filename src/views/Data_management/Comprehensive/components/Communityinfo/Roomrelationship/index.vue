@@ -1,80 +1,143 @@
 <template>
-  <div class="w-100 h-100 dflex direction-column">
-    <div class="dflex1">
-      <el-breadcrumb separator=">>">
-        <!-- :to="{ path: '/UserManagement' }" -->
-        <el-breadcrumb-item>
-          <span @click="changePage('1')" class="pointer"> 小区综合档案 </span>
-        </el-breadcrumb-item>
-        <el-breadcrumb-item>
-          <span @click="changePage('5')" class="pointer"> 辉煌国际 </span>
-        </el-breadcrumb-item>
-        <el-breadcrumb-item>
-          <span @click="changePage('8')" class="pointer"> 3栋 </span>
-        </el-breadcrumb-item>
-        <el-breadcrumb-item>2单元</el-breadcrumb-item>
-      </el-breadcrumb>
+  <div class="wrap fill_height">
+    <div class="left-arrow arrow" @click="scrollLeft -= 400">
+      <i class="el-icon-arrow-left" style="display: block"></i>
     </div>
-    <div class="relationship_content">
-      <el-row type="flex" justify="space-around" class="w-100 h-100">
-        <el-col :span="7" style="background-color: red" class="dflex">
-          <div class="w-50 h-100">
-            <!-- <span>姓名：</span>
-            <span style="display: inline-block; width: 20px"> </span>
-            <span>姓名</span><br />
-            <span>身份证号：</span><span>身份证号</span><br />
-            <span>与房主关系：</span><span>与房主关系</span><br />
-            <span>办理日期：</span><span>办理日期</span><br />
-            <span>居住事由：</span><span>居住事由</span><br />
-            <span>居住方式：</span><span>居住方式</span><br />
-            <span>入住日期：</span><span>入住日期</span><br />
-            <span>撤离日期：</span><span>撤离日期</span><br />
-            <span>地址：</span><span>地址</span>
+    <div class="dflex fill_height no-scrollbar cards" ref="cards">
+      <div
+        v-for="i in 10"
+        :key="i"
+        class="ma-10 card"
+        :class="{ active: active === i }"
+        @click="changeActive(i)"
+      >
+        <el-card
+          class="fill_height"
+          body-style="overflow: hidden;display: flex"
+        >
+          <div
+            style="width: 200px; flex-grow: 0; flex-shrink: 0; line-height:60px"
+          >
+            <div>姓名:</div>
+            <div>身份证号:</div>
+            <div>与房主关系:</div>
+            <div>办理日期:</div>
+            <div>居住事由:</div>
+            <div>居住方式:</div>
+            <div>入住日期:</div>
+            <div>撤离日期:</div>
+            <div>地址:</div>
           </div>
-          <div class="w-50 h-100" style="display: none">
-            <span>登记人姓名：</span><span>姓名</span><br />
-            <span>登记人身份证号：</span><span>身份证号</span><br />
-            <span>登记人联系电话：</span><span>与房主关系</span><br />
-            <span>所属警务责任区：</span><span>办理日期</span><br />
-            <span>数据更新时间：</span><span>居住事由</span><br />
-            <span>数据来源：</span><span>居住方式</span><br />
-            <span>数据状态：</span><span>入住日期</span> -->
+          <div style="width: 200px; flex-grow: 0; flex-shrink: 0">
+            <div>登记人姓名:</div>
+            <div>登记人身份证号:</div>
+            <div>登记人联系电话:</div>
+            <div>所属警务责任区:</div>
+            <div>数据更新时间:</div>
+            <div>数据来源:</div>
+            <div>数据状态:</div>
           </div>
-        </el-col>
-      </el-row>
+        </el-card>
+      </div>
+    </div>
+    <div class="right-arrow arrow" @click="scrollLeft += 400">
+      <i class="el-icon-arrow-right" style="display: block"></i>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Roomrelationship",
-  props: {
-    currentPage: {
-      type: String,
-      required: true
+  data() {
+    return {
+      // 当前展开的卡片
+      active: 0,
+      // 卡片盒子的总宽度
+      cardsWidth: 0,
+      // 左侧滚动距离
+      scrollLeft: 0,
+      // 显示出来的卡片盒子的宽度
+      viewWidth: 0
+    };
+  },
+  watch: {
+    scrollLeft: {
+      handler() {
+        if (this.scrollLeft < 0) {
+          this.scrollLeft = 0;
+        }
+        if (this.scrollLeft + this.viewWidth > this.cardsWidth) {
+          this.scrollLeft = this.cardsWidth - this.viewWidth;
+        }
+        this.$refs.cards.scrollTo({
+          left: this.scrollLeft,
+          behavior: "smooth"
+        });
+      }
     }
   },
   methods: {
-    // 跳转页面
-    changePage(target) {
-      // 更新父组件传入的prop ‘currentPage’
-      this.$emit("update:currentPage", target);
+    changeActive(i) {
+      if (i === this.active) {
+        this.active = 0;
+      } else {
+        this.active = i;
+      }
+      setTimeout(() => {
+        this.initData();
+      }, 200);
+    },
+    initData() {
+      this.cardsWidth = this.$refs.cards.scrollWidth;
+      this.viewWidth = this.$refs.cards.clientWidth;
     }
+  },
+  mounted() {
+    this.initData();
+    window.addEventListener("resize", this.initData);
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.initData);
   }
 };
 </script>
 
 <style lang="less" scoped>
-::v-deep .el-breadcrumb__item {
-  margin: 10px 0px 10px 10px;
-  span {
-    color: #ff6600 !important;
+.wrap {
+  position: relative;
+  .cards {
+    overflow: hidden;
+    margin: 0 32px;
+    box-sizing: border-box;
   }
-}
-.relationship_content {
-  width: 100%;
-  padding: 40px;
-  height: calc(100% - 34px);
+  .card {
+    flex-shrink: 0;
+    flex-grow: 0;
+    width: 200px;
+    transition: width 0.2s;
+    box-sizing: border-box;
+    height: calc(100% - 20px);
+  }
+  .active {
+    width: 400px;
+  }
+  .arrow {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    font-size: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    &:hover {
+      color: #06f;
+    }
+    &.left-arrow {
+      left: 0;
+    }
+    &.right-arrow {
+      right: 0;
+    }
+  }
 }
 </style>

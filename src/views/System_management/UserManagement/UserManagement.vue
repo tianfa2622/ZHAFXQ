@@ -43,45 +43,51 @@
     <!-- :width="width" -->
     <!-- 权限设置 -->
     <el-dialog
-      title="权限设置"
       :visible.sync="AuthorityDialogVisible"
-      width="30%"
-      custom-class="dialog_class"
+      title="添加角色"
+      width="25%"
+      center
     >
-      <!-- :before-close="handleClose" -->
-      <el-collapse v-model="activeNames" @change="handleChange">
-        <template v-for="items in collapse">
-          <el-collapse-item
-            :title="items.title"
-            :name="items.id"
-            :key="items.id"
+      <el-form :model="form" label-width="130px">
+        <el-form-item label="权限设置：">
+          <el-input
+            v-model="form.RoleName"
+            placeholder="请输入角色名称"
+          ></el-input>
+        </el-form-item>
+        <el-form-item label="数据权限：">
+          <template>
+            <el-radio v-model="form.dataPermission" label="1">
+              个人账号
+            </el-radio>
+            <el-radio v-model="form.dataPermission" label="2">
+              全部账号
+            </el-radio>
+          </template>
+        </el-form-item>
+        <el-form-item label="功能权限：" :required="true">
+          <el-tree
+            :data="form.FunctionPermissions"
+            show-checkbox
+            node-key="id"
+            :default-expanded-keys="[4]"
+            :default-checked-keys="[1, 4, 9]"
+            :props="form.defaultProps"
+            check-strictly
           >
-            <template v-for="item in items.Authority">
-              <el-row
-                :key="item.id"
-                type="flex"
-                class="Authority_Row"
-                justify="space-between"
-              >
-                <el-col :span="6">
-                  <span class="Authority_span">{{ item.title }}</span>
-                </el-col>
-                <el-col :span="3">
-                  <el-checkbox v-model="item.checked"></el-checkbox>
-                </el-col>
-              </el-row>
-            </template>
-          </el-collapse-item>
-        </template>
-      </el-collapse>
+          </el-tree>
+        </el-form-item>
+      </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button
+          class="w150"
           type="primary"
-          size="mini"
           @click="AuthorityDialogVisible = false"
-          class="w100"
         >
-          保 存
+          提 交
+        </el-button>
+        <el-button class="w150" @click="AuthorityDialogVisible = false">
+          取 消
         </el-button>
       </span>
     </el-dialog>
@@ -149,6 +155,42 @@ export default {
           ]
         }
       ],
+      form: {
+        RoleName: '',
+        dataPermission: '1',
+        FunctionPermissions: [
+          {
+            id: 1,
+            label: '首页',
+            disabled: true,
+            children: []
+          },
+          {
+            id: 4,
+            label: '车辆核验预警',
+            children: [{
+              id: 9,
+              label: '访问'
+            }, {
+              id: 10,
+              label: '添加'
+            }, {
+              id: 11,
+              label: '删除'
+            }, {
+              id: 12,
+              label: '修改'
+            }, {
+              id: 13,
+              label: '处理'
+            }]
+          }
+        ],
+        defaultProps: {
+          children: 'children',
+          label: 'label'
+        }
+      },
       MyformData,
       MyTableData,
       fields,

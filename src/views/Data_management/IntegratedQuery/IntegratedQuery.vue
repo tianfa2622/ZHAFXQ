@@ -30,21 +30,136 @@
       ></Mytable>
       <!-- </div> -->
     </div>
+    <el-dialog :visible.sync="dialogVisible" :width="width">
+      <el-tabs type="border-card">
+        <el-tab-pane label="人员信息">
+          <my-form
+            ref="form"
+            :disabled="disabled"
+            :type="type"
+            :fields="fields"
+            @change="handlerChange"
+            :labelWidth="labelWidth"
+          />
+        </el-tab-pane>
+        <el-tab-pane label="车辆信息">
+          <el-tabs v-model="activeName1" type="card" @tab-click="handleClick">
+            <el-tab-pane label="机动车1" name="first1">
+              <my-form
+                ref="form"
+                :disabled="disabled"
+                :type="type"
+                :fields="fields1"
+                @change="handlerChange"
+                :labelWidth="labelWidth"
+              />
+            </el-tab-pane>
+            <el-tab-pane label="电动车" name="second2">
+              <my-form
+                ref="form"
+                :disabled="disabled"
+                :type="type"
+                :fields="fields2"
+                @change="handlerChange"
+                :labelWidth="labelWidth"
+              />
+            </el-tab-pane>
+          </el-tabs>
+        </el-tab-pane>
+        <el-tab-pane label="房屋信息">
+          <el-tabs v-model="activeName11" type="card" @tab-click="handleClick">
+            <el-tab-pane label="房屋1" name="first11">
+              <my-form
+                ref="form"
+                :disabled="disabled"
+                :type="type"
+                :fields="fields3"
+                @change="handlerChange"
+                :labelWidth="labelWidth"
+              />
+            </el-tab-pane>
+            <el-tab-pane label="房屋2" name="second22">
+              <my-form
+                ref="form"
+                :disabled="disabled"
+                :type="type"
+                :fields="fields3"
+                @change="handlerChange"
+                :labelWidth="labelWidth"
+              />
+            </el-tab-pane>
+          </el-tabs>
+        </el-tab-pane>
+        <el-tab-pane label="人员轨迹">
+          <Peopletrack></Peopletrack>
+        </el-tab-pane>
+      </el-tabs>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import MyformData from "./IntegratedQueryForm/IntegratedQueryForm";
 import MyTableData from "./IntegratedQueryTable/IntegratedQueryTable";
+import Peopletrack from "./component/index";
+import fields from "./Editor";
+import fields1 from "./Editor1";
+import fields2 from "./Editor2";
+import fields3 from "./Editor3";
 export default {
+  components: {
+    Peopletrack
+  },
   data() {
     return {
       MyformData,
-      MyTableData
+      MyTableData,
+      dialogVisible: false,
+      activeName1: "first1",
+      activeName11: "first11",
+      width: "80%",
+      formData: {},
+      fields,
+      fields1,
+      fields2,
+      fields3,
+      labelWidth: "220px",
+      type: "view"
     };
   },
+  computed: {
+    disabled() {
+      return this.type === "view";
+    }
+  },
   methods: {
-    // onSubmit() {
+    // 点击事件
+    clickButton(val) {
+      // 调用事件
+      // this[val.methods](val.row);
+      if (val.methods !== "search") {
+        this.openEditor(val.methods, val.row);
+      } else {
+        this[val.methods](val.row);
+      }
+    },
+    openEditor(type, row) {
+      console.log(type, row);
+      this.dialogVisible = true;
+    },
+    confirm(formData) {
+      console.log(formData);
+      // 请求接口提交数据 等等
+      this.dialogVisible = false;
+    },
+    handlerChange(formData) {
+      this.formData = { ...formData };
+    },
+    handleClick() {},
+    // confirm() {
+    //   this.$refs.form.validateForm().then(() => {
+    //     this.$emit("confirm", { ...this.formData });
+    //   });
     // },
     // 切换当前一页展示多少条
     sizeChange(val) {
@@ -53,14 +168,6 @@ export default {
     // 翻页
     pageChange(val) {
       this.page = val;
-    },
-    // 点击事件
-    clickButton(val) {
-      // 调用事件
-      this[val.methods](val.row);
-    },
-    Details(val) {
-      // 我是详情
     },
     search() {}
   }

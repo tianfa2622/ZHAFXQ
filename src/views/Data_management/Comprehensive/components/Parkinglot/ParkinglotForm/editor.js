@@ -1,70 +1,95 @@
 const fields = [
   {
-    label: "门禁点编号：",
+    label: "车辆出入口编码：",
     field: "name",
     type: "input",
     dataType: "string"
   },
   {
-    label: "门禁点名称：",
+    label: "使用状态：",
     field: "name",
     type: "input",
     dataType: "string"
   },
   {
-    label: "关联门禁采集设备：",
+    label: "车辆出入口位置类型：",
     field: "name",
     type: "input",
     dataType: "string"
   },
   {
-    label: "关联抓拍采集设备：",
+    label: "车辆出入口名称：",
     field: "name",
     type: "input",
     dataType: "string"
   },
   {
     label: "行进方向：",
-    field: "CommunityName:",
-    type: "select",
-    options: [
-      {
-        label: "进",
-        value: 0
-      },
-      {
-        label: "出",
-        value: 1
-      },
-      {
-        label: "进/出",
-        value: 2
-      }
-    ]
+    field: "name",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "车辆出入口车道数：",
+    field: "name",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "车辆出入口简要情况：",
+    field: "name",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "车辆出入口图片：",
+    field: "popover",
+    type: "popover",
+    dataType: "string",
+    disabled: false
   },
   {
     label: "地球经度：",
-    field: "ownersName",
+    field: "name",
     type: "input",
     dataType: "string"
   },
   {
     label: "地球纬度：",
-    field: "Telephone",
+    field: "name",
     type: "input",
     dataType: "string"
   },
   {
-    label: "楼栋单元：",
-    field: "idCard1",
+    label: "登记人姓名：",
+    field: "name",
     type: "input",
     dataType: "string"
   },
   {
-    label: "登记人姓名及电话：",
-    field: "idCard2",
+    label: "登记人电话：",
+    field: "name",
     type: "input",
     dataType: "string"
+  },
+  {
+    label: "数据更新时间：",
+    field: "name",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "数据来源：",
+    field: "name",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "数据状态：",
+    field: "name",
+    type: "input",
+    dataType: "string",
+    span: 24
   }
 ];
 export default fields;

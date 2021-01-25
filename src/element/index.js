@@ -1,5 +1,6 @@
 import Vue from "vue";
 import {
+  Tree,
   Collapse,
   CollapseItem,
   MessageBox,
@@ -42,6 +43,7 @@ import {
   Dialog
 } from "element-ui";
 
+Vue.use(Tree);
 Vue.use(Collapse);
 Vue.use(CollapseItem);
 Vue.use(Dialog);

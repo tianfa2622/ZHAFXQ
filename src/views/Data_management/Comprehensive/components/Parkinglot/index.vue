@@ -19,8 +19,10 @@
           width="350"
           trigger="hover"
         >
-          <el-button class="btncolor">详情</el-button>
-          <el-button class="btncolor">出入口信息</el-button>
+          <el-button class="btncolor" @click="openEditor(view)">详情</el-button>
+          <el-button class="btncolor" @click="EntryExitInfo"
+            >出入口信息</el-button
+          >
           <el-button class="btncolor" @click="changePage('4')">
             停车场信息
           </el-button>
@@ -114,6 +116,37 @@
         </el-card>
       </div>
     </div>
+    <Editor
+      :type="editorType"
+      :visible.sync="editorVisible"
+      :fields="fields"
+      @confirm="confirm"
+      :labelWidth="labelWidth"
+    />
+    <el-dialog :visible.sync="dialogVisible">
+      <el-tabs type="border-card">
+        <el-tab-pane label="出入口1">
+          <my-form
+            ref="form"
+            :disabled="disabled"
+            :type="type"
+            :fields="fields1"
+            @change="handlerChange"
+            :labelWidth="labelWidth"
+          />
+        </el-tab-pane>
+        <el-tab-pane label="出入口2">
+          <my-form
+            ref="form"
+            :disabled="disabled"
+            :type="type"
+            :fields="fields1"
+            @change="handlerChange"
+            :labelWidth="labelWidth"
+          />
+        </el-tab-pane>
+      </el-tabs>
+    </el-dialog>
   </div>
 </template>
 
@@ -121,6 +154,8 @@
 import MyEcharts from "@/components/echarts/index";
 import ParkingSpace from "./ParkinglotEcharts/ParkingSpaceEcharts";
 import UseStatus from "./ParkinglotEcharts/UseStatusEcharts";
+import fields from "./editor";
+import fields1 from "./ParkinglotForm/editor";
 
 export default {
   name: "Parkinglot",
@@ -136,10 +171,48 @@ export default {
   data() {
     return {
       UseStatus,
-      ParkingSpace
+      ParkingSpace,
+      formData: {},
+      fields,
+      fields1,
+      editorType: "view",
+      editorVisible: false,
+      dialogVisible: false,
+      labelWidth: "160px",
+      type: "view"
     };
   },
+  computed: {
+    disabled() {
+      return this.type === "view";
+    }
+  },
   methods: {
+    openEditor(type, row) {
+      console.log(type, row);
+      switch (type) {
+        case "Increase":
+          this.editorType = "add";
+          break;
+      }
+      this.editorVisible = true;
+    },
+    confirm(formData) {
+      console.log(formData);
+      // 请求接口提交数据 等等
+      this.editorVisible = false;
+    },
+    handlerChange(formData) {
+      this.formData = { ...formData };
+    },
+    // confirm() {
+    //   this.$refs.form.validateForm().then(() => {
+    //     this.$emit("confirm", { ...this.formData });
+    //   });
+    // },
+    EntryExitInfo() {
+      this.dialogVisible = true;
+    },
     // 跳转页面
     changePage(target) {
       // 更新父组件传入的prop ‘currentPage’

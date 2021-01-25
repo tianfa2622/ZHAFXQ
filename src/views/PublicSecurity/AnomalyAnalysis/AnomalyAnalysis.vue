@@ -191,4 +191,10 @@ export default {
 ::v-deep .status-No {
   color: #ff5065 !important;
 }
+::v-deep .el-dialog__body {
+  .el-form-item--mini {
+    width: 100%;
+    text-align: center;
+  }
+}
 </style>

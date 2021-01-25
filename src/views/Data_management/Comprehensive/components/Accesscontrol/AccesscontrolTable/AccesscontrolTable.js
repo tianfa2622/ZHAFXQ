@@ -8,53 +8,48 @@ const options = {
   // 表头数据
   tableColumns: [
     {
-      label: "采集时间",
+      label: "门禁点编号",
       param: "CollectionTime",
       align: "center"
     },
     {
-      label: "姓名",
+      label: "门禁点名称",
       param: "Name",
       align: "center"
     },
     {
-      label: "身份证号码",
+      label: "关联门禁采集设备",
       param: "IDNumber",
       align: "center"
     },
     {
-      label: "凭证号",
+      label: "关联抓拍采集设备",
       param: "VoucherNumber",
       align: "center"
     },
     {
-      label: "开门时间",
+      label: "行进方向",
       param: "OpeningHours",
       align: "center"
     },
     {
-      label: "门磁状态",
+      label: "地球经度",
       param: "DoorSensorStatus",
       align: "center"
     },
     {
-      label: "关联门禁采集设备",
+      label: "地球纬度",
       param: "AcquisitionEquipment",
       align: "center"
     },
     {
-      label: "是否通过",
+      label: "楼栋单元",
       param: "Passed",
       align: "center"
     },
     {
-      label: "开门方式",
+      label: "登记人姓名及电话",
       param: "DoorOpeningMethod",
-      align: "center"
-    },
-    {
-      label: "开门结果",
-      param: "OpenResult",
       align: "center"
     }
   ],

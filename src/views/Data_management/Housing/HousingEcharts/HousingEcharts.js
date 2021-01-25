@@ -1,115 +1,178 @@
-let bgColor = "#fff";
-// let fontColor = "#333";
-// let titleColor = "#666";
-let scale = 1;
-// let title = "总数";
-let echartData = [
+/* eslint-disable no-unused-vars */
+let dashedPic =
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAM8AAAAOBAMAAAB6G1V9AAAAD1BMVEX////Kysrk5OTj4+TJycoJ0iFPAAAAG0lEQVQ4y2MYBaNgGAMTQQVFOiABhlEwCugOAMqzCykGOeENAAAAAElFTkSuQmCC";
+let color = ["#00e473", "#009DFF"];
+let chartData = [
   {
-    name: "机动车",
-    value: "504"
-    // unit: "辆"
+    name: "自住房",
+    value: 13211,
+    unit: "栋"
   },
   {
-    name: "电动车",
-    value: "312"
-    // unit: "辆"
+    name: "出租房",
+    value: 42111,
+    unit: "栋"
   }
 ];
-// let total = echartData.reduce((a, b) => {
-//   return a + b.value * 1;
-// }, 0);
+let arrName = [];
+let arrValue = [];
+let sum = 0;
+let pieSeries = [],
+  lineYAxis = [];
 
-const options = {
-  backgroundColor: bgColor,
-  color: ["#74a0fb", "#91e5c1"],
-  tooltip: {
-    trigger: "item",
-    // formatter: "{b} <br/>{b}: {c} ({d}%)",
-    backgroundColor: "rgba(255,255,255,0.8)",
-    textStyle: {
-      color: "#000",
-      lineHeight: 30
-    }
-  },
-  legend: {
-    orient: "vertical",
-    icon: "rect",
-    x: "60%",
-    y: "30%",
-    itemWidth: 12 * scale,
-    itemHeight: 12 * scale,
-    align: "left",
+// 数据处理
+chartData.forEach((v, i) => {
+  arrName.push(v.name);
+  arrValue.push(v.value);
+  sum = sum + v.value;
+});
+
+// 图表option整理
+chartData.forEach((v, i) => {
+  pieSeries.push({
+    name: "学历",
+    type: "pie",
+    clockWise: false,
+    hoverAnimation: false,
+    radius: [65 - i * 15 + "%", 57 - i * 15 + "%"],
+    center: ["30%", "50%"],
+    label: {
+      show: false
+    },
+    data: [
+      {
+        value: v.value,
+        name: v.name
+      },
+      {
+        value: sum - v.value,
+        name: "",
+        itemStyle: {
+          color: "rgba(0,0,0,0)"
+        }
+      }
+    ]
+  });
+  pieSeries.push({
+    name: "",
+    type: "pie",
+    silent: true,
+    z: 1,
+    clockWise: false, //顺时加载
+    hoverAnimation: false, //鼠标移入变大
+    radius: [65 - i * 15 + "%", 57 - i * 15 + "%"],
+    center: ["30%", "50%"],
+    label: {
+      show: false
+    },
+    data: [
+      {
+        value: 7.5,
+        itemStyle: {
+          color: "#E3F0FF"
+        }
+      },
+      {
+        value: 2.5,
+        name: "",
+        itemStyle: {
+          color: "rgba(0,0,0,0)"
+        }
+      }
+    ]
+  });
+  v.percent = ((v.value / sum) * 100).toFixed(1) + "%";
+  lineYAxis.push({
+    value: i,
     textStyle: {
       rich: {
-        name: {
-          fontSize: 14 * scale
-        },
-        value: {
-          fontSize: 14 * scale,
-          padding: [0, 5, 0, 15]
-        },
-        unit: {
-          fontSize: 14 * scale
+        circle: {
+          color: color[i],
+          padding: [0, 5]
         }
       }
-    },
-    // eslint-disable-next-line prettier/prettier
-    formatter: function (name) {
-      let res = echartData.filter(v => v.name === name);
-      res = res[0] || {};
-      let unit = res.unit || "";
-      return (
-        "{name|" + name + "}  {value|" + res.value + "}{unit|" + unit + "}"
-      );
     }
-    // data: legendName
+  });
+});
+
+const options = {
+  backgroundColor: "#fff",
+  color: color,
+  grid: {
+    top: "15%",
+    bottom: "54%",
+    left: "30%",
+    containLabel: false
   },
-  series: [
+  yAxis: [
     {
-      type: "pie",
-      radius: ["25%", "45%"],
-      center: ["35%", "40%"],
-      data: echartData,
-      tooltip: {
-        trigger: "item",
-        // eslint-disable-next-line prettier/prettier
-        formatter: function (params) {
+      type: "category",
+      inverse: true,
+      axisLine: {
+        show: false
+      },
+      axisTick: {
+        show: false
+      },
+      axisLabel: {
+        formatter: function(params) {
+          let item = chartData[params];
+          console.log(item);
           return (
-            params.name +
-            "<br>" +
-            params.marker +
-            params.name +
-            "：" +
-            params.value
+            "{line|}{circle|●}{name|" +
+            item.name +
+            "}{bd||}{percent|" +
+            item.percent +
+            "}{value|" +
+            item.value +
+            "}{unit|栋}"
           );
-        }
-      },
-      // itemStyle: {
-      //     normal: {
-      //         borderColor: bgColor,
-      //         borderWidth: 1
-      //     }
-      // },
-      labelLine: {
-        normal: {
-          length: 20,
-          length2: 20
-        }
-      },
-      label: {
-        normal: {
-          position: "inner",
-          color: "#fff",
-          fontStyle: "normal",
-          fontWeight: "normal",
-          // fontFamily: 'sans-serif' ,
+        },
+        interval: 0,
+        inside: true,
+        textStyle: {
+          color: "#333",
           fontSize: 14,
-          formatter: params => {
-            return `${params.value}`;
+          rich: {
+            line: {
+              width: 50,
+              height: 10,
+              backgroundColor: { image: dashedPic }
+            },
+            name: {
+              color: "#666",
+              fontSize: 14
+            },
+            bd: {
+              color: "#ccc",
+              padding: [0, 5],
+              fontSize: 14
+            },
+            percent: {
+              color: "#333",
+              fontSize: 14
+            },
+            value: {
+              color: "#333",
+              fontSize: 16,
+              fontWeight: 500,
+              padding: [0, 0, 0, 20]
+            },
+            unit: {
+              fontSize: 14
+            }
           }
-        }
-      }
+        },
+        show: true
+      },
+      data: lineYAxis
     }
-  ]
+  ],
+  xAxis: [
+    {
+      show: false
+    }
+  ],
+  series: pieSeries
 };
 export default options;

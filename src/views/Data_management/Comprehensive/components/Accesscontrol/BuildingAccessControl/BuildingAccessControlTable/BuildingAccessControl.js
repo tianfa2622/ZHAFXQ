@@ -8,47 +8,52 @@ const options = {
   // 表头数据
   tableColumns: [
     {
-      label: "门禁点编号",
+      label: "采集时间",
       param: "AccessControlNumber",
       align: "center"
     },
     {
-      label: "门禁点名称",
+      label: "姓名",
       param: "AccessControlName",
       align: "center"
     },
     {
-      label: "关联门禁采集设备",
+      label: "身份证号码",
       param: "Acquisition",
       align: "center"
     },
     {
-      label: "关联抓拍采集设备",
+      label: "凭证号",
       param: "Capture",
       align: "center"
     },
     {
-      label: "行进方向",
+      label: "开门时间",
       param: "TravelDirection",
       align: "center"
     },
     {
-      label: "地球经度",
+      label: "门磁状态",
       param: "lng",
       align: "center"
     },
     {
-      label: "地球纬度",
+      label: "关联门禁采集设备",
       param: "lat",
       align: "center"
     },
     {
-      label: "楼栋单元",
+      label: "是否通过",
       param: "BuildingUnit",
       align: "center"
     },
     {
-      label: "登记人姓名及电话",
+      label: "开门方式",
+      param: "RegistrantDH",
+      align: "center"
+    },
+    {
+      label: "开门结果",
       param: "RegistrantDH",
       align: "center"
     }

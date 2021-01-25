@@ -8,52 +8,53 @@
         @clickButton="clickButton"
       ></Myform>
     </el-card>
-    <div class="map_Content">
-      <baidu-map
-        class="map"
-        :scroll-wheel-zoom="true"
-        :center="center"
-        :zoom="zoom"
-        mapType="BMAP_SATELLITE_MAP"
-      >
-        <!-- :icon="{
+    <div class="map_Content dflex">
+      <div class="w-70 h-100">
+        <baidu-map
+          class="map"
+          :scroll-wheel-zoom="true"
+          :center="center"
+          :zoom="zoom"
+          mapType="BMAP_SATELLITE_MAP"
+        >
+          <!-- :icon="{
               url: 'http://developer.baidu.com/map/jsdemo/img/fox.gif',
               size: { width: 300, height: 157 }
             }" -->
-        <template>
-          <bm-marker
-            v-for="(item, index) in markers"
-            :key="index"
-            :position="item.markerPoint"
-            :title="item.name"
-            @click="look(item)"
-          >
-            <bm-info-window
+          <template>
+            <bm-marker
+              v-for="(item, index) in markers"
+              :key="index"
               :position="item.markerPoint"
-              :show="item.showFlag"
-              @close="infoWindowClose(item)"
-              @open="infoWindowOpen(item)"
+              :title="item.name"
+              @click="look(item)"
             >
-              <div>
+              <bm-info-window
+                :position="item.markerPoint"
+                :show="item.showFlag"
+                @close="infoWindowClose(item)"
+                @open="infoWindowOpen(item)"
+              >
                 <div>
-                  <el-form label-width="120px" size="mini" :model="from">
-                    <el-form-item label="小区名称：">
-                      {{ from.xianghao }}
-                    </el-form-item>
-                    <el-form-item label="小区楼栋数：">
-                      <span>{{ from.xianghao }}</span>
-                    </el-form-item>
-                    <el-form-item label="小区出入口数：">
-                      <span>{{ from.xianghao }}</span>
-                    </el-form-item>
-                    <el-form-item label="物业公司名称：">
-                      <span>{{ from.time }}</span>
-                    </el-form-item>
-                    <el-form-item label="地址：">
-                      <span>{{ from.adds }}</span>
-                    </el-form-item>
-                  </el-form>
-                  <!-- <span>小区名称：</span>
+                  <div>
+                    <el-form label-width="120px" size="mini" :model="from">
+                      <el-form-item label="小区名称：">
+                        {{ from.xianghao }}
+                      </el-form-item>
+                      <el-form-item label="小区楼栋数：">
+                        <span>{{ from.xianghao }}</span>
+                      </el-form-item>
+                      <el-form-item label="小区出入口数：">
+                        <span>{{ from.xianghao }}</span>
+                      </el-form-item>
+                      <el-form-item label="物业公司名称：">
+                        <span>{{ from.time }}</span>
+                      </el-form-item>
+                      <el-form-item label="地址：">
+                        <span>{{ from.adds }}</span>
+                      </el-form-item>
+                    </el-form>
+                    <!-- <span>小区名称：</span>
                     <span style="display: inline-block; width: 20px"> </span>
                     <span>{{ from.xianghao }}</span
                     ><br />
@@ -73,46 +74,60 @@
                     <span style="display: inline-block; width: 20px"> </span>
                     <span>{{ from.adds }}</span
                     ><br /> -->
+                  </div>
+                  <div class="mt-5">
+                    <el-button
+                      type="primary"
+                      size="mini"
+                      @click="changePage('2')"
+                    >
+                      访客记录
+                    </el-button>
+                    <el-button type="primary" size="mini" @click="openEditor">
+                      物业信息
+                    </el-button>
+                    <el-button
+                      type="primary"
+                      size="mini"
+                      @click="changePage('3')"
+                    >
+                      停车场概况
+                    </el-button>
+                    <el-button
+                      type="primary"
+                      size="mini"
+                      @click="changePage('5')"
+                    >
+                      小区信息
+                    </el-button>
+                    <el-button
+                      type="primary"
+                      size="mini"
+                      @click="changePage('6')"
+                    >
+                      门禁信息
+                    </el-button>
+                  </div>
                 </div>
-                <div class="mt-5">
-                  <el-button
-                    type="primary"
-                    size="mini"
-                    @click="changePage('2')"
-                  >
-                    访客记录
-                  </el-button>
-                  <el-button type="primary" size="mini" @click="openEditor">
-                    物业信息
-                  </el-button>
-                  <el-button
-                    type="primary"
-                    size="mini"
-                    @click="changePage('3')"
-                  >
-                    停车场概况
-                  </el-button>
-                  <el-button
-                    type="primary"
-                    size="mini"
-                    @click="changePage('5')"
-                  >
-                    小区信息
-                  </el-button>
-                  <el-button
-                    type="primary"
-                    size="mini"
-                    @click="changePage('6')"
-                  >
-                    门禁信息
-                  </el-button>
-                </div>
-              </div>
-            </bm-info-window>
-          </bm-marker>
-        </template>
-      </baidu-map>
+              </bm-info-window>
+            </bm-marker>
+          </template>
+        </baidu-map>
+      </div>
+      <div class="w-1 h-100"></div>
+      <div class="w-29 h-100">
+        <el-card
+          class="w-100 h-100"
+          :body-style="{ padding: '0px', height: 'calc(100% - 53px)' }"
+        >
+          <div slot="header">
+            <span>小区人口</span>
+          </div>
+          <MyEcharts :option="options1"></MyEcharts>
+        </el-card>
+      </div>
     </div>
+
     <Editor
       :type="editorType"
       :visible.sync="editorVisible"
@@ -129,7 +144,9 @@
 
 <script>
 import MyformData from "./Mapform";
+import options1 from "./Community.js";
 import fields from "./editor";
+// import options from "../../../../VideoMonitoring/Real-time/RealTimeForm/RealTimeForm";
 
 export default {
   name: "MapComponent",
@@ -142,6 +159,7 @@ export default {
   data() {
     return {
       MyformData,
+      options1,
       center: {
         lng: 116.404,
         lat: 39.915
@@ -184,7 +202,7 @@ export default {
       editorType: "view",
       editorVisible: false,
       width: "50%",
-      labelWidth: "160px"
+      labelWidth: "180px"
     };
   },
   methods: {
@@ -230,9 +248,18 @@ export default {
 </script>
 
 .<style lang="less" scoped>
+.card_style {
+  overflow: visible;
+}
+.w-29 {
+  width: 29%;
+}
+.w-1 {
+  width: 1%;
+}
 .map_Content {
   width: 100%;
-  height: calc(100% - 70px);
+  height: calc(100% - 72px);
 }
 .map {
   width: 100%;
