@@ -1,3 +1,4 @@
+import { getSelectAll } from "@/api/Data_management/personnel/index";
 const options = {
   size: "small",
   CardAttributes: {
@@ -9,27 +10,27 @@ const options = {
   tableColumns: [
     {
       label: "姓名",
-      param: "name",
+      param: "xm",
       align: "center"
     },
     {
       label: "身份证号码",
-      param: "IDCardNumber",
+      param: "Gmsfzhm",
       align: "center"
     },
     {
       label: "民族",
-      param: "national",
+      param: "mzdm",
       align: "center"
     },
     {
       label: "联系方式",
-      param: "contact",
+      param: "lxdh",
       align: "center"
     },
     {
       label: "现住地址",
-      param: "CurrentAddress",
+      param: "sjjzd",
       align: "center"
     }
   ],
@@ -52,36 +53,7 @@ const options = {
     ]
   },
   // 表格数据
-  tableData: [
-    {
-      name: "蜘蛛",
-      IDCardNumber: "430111198107115034",
-      national: "汉",
-      contact: 15571239876,
-      CurrentAddress: ""
-    },
-    {
-      name: "老虎",
-      IDCardNumber: "430111198107115034",
-      national: "汉",
-      contact: 15571239876,
-      CurrentAddress: ""
-    },
-    {
-      name: "豹子",
-      IDCardNumber: "430111198107115034",
-      national: "汉",
-      contact: 15571239876,
-      CurrentAddress: ""
-    },
-    {
-      name: "水牛",
-      IDCardNumber: "430111198107115034",
-      national: "汉",
-      contact: 15571239876,
-      CurrentAddress: ""
-    }
-  ],
+  tableData: [],
   pagination: {
     isBackC: true,
     isShow: true,
@@ -90,4 +62,17 @@ const options = {
     total: 20
   }
 };
+let paramsData = {
+  rkdjlx: "2",
+  xm: "",
+  xqxxbz: "",
+  zjhm: ""
+};
+getSelectAll(paramsData).then(res => {
+  if (res.code === 1) {
+    options.tableData = res.data.records;
+  } else {
+    this.$message.error(res.message);
+  }
+});
 export default options;

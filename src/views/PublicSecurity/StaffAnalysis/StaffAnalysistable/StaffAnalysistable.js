@@ -1,3 +1,5 @@
+import { getSelectAll } from "@/api/PublicSecurity/StaffAnalysis/index";
+// import { render } from "less";
 const options = {
   size: "small",
   CardAttributes: {
@@ -9,42 +11,57 @@ const options = {
   tableColumns: [
     {
       label: "小区名称",
-      param: "CommunityName",
+      param: "jlxxqmc",
       align: "center"
     },
     {
       label: "常住人口",
-      param: "ResidentNum",
+      param: "czrks",
       align: "center"
     },
     {
       label: "常住人口比",
-      param: "ResidentRatio",
-      align: "center"
+      param: "czrkb",
+      align: "center",
+      render: row => {
+        var num = row.czrks;
+        let total = row.czrks + row.ldrks + row.zdrys;
+        return percentage(num, total);
+      }
     },
     {
       label: "流动人口数",
-      param: "flowNum",
+      param: "ldrks",
       align: "center"
     },
     {
       label: "流动人口比",
-      param: "flowRatio",
-      align: "center"
+      param: "ldrkb",
+      align: "center",
+      render: row => {
+        var num = row.ldrks;
+        let total = row.czrks + row.ldrks + row.zdrys;
+        return percentage(num, total);
+      }
     },
     {
       label: "重点人员数",
-      param: "KeyPersonnelNum",
+      param: "zdrys",
       align: "center"
     },
     {
       label: "重点人员比",
-      param: "KeyPersonnelRatio",
-      align: "center"
+      param: "zdryb",
+      align: "center",
+      render: row => {
+        var num = row.zdrys;
+        let total = row.czrks + row.ldrks + row.zdrys;
+        return percentage(num, total);
+      }
     }
   ],
   // 表格数据
-  tableData: [{}, {}, {}],
+  tableData: [],
   pagination: {
     isBackC: true,
     isShow: true,
@@ -53,4 +70,23 @@ const options = {
     total: 20
   }
 };
+let paramsData = {
+  current: options.pagination.currentPage,
+  size: options.pagination.rows
+};
+getSelectAll(paramsData).then(res => {
+  if (res.code === 1) {
+    options.tableData = res.data.records;
+    options.pagination.total = res.data.total;
+  } else {
+    this.$message.error(res.message);
+  }
+});
+
+function percentage(num, total) {
+  if (num == 0 || total == 0) {
+    return 0;
+  }
+  return Math.round((num / total) * 10000) / 100.0 + "%";
+}
 export default options;

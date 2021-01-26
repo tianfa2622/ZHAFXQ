@@ -52,6 +52,7 @@
 </template>
 
 <script>
+import { getselectOne } from "@/api/Data_management/personnel/index";
 import ThePermanent from "./personnelTable/ThePermanent";
 import FloatingPopulation from "./personnelTable/FloatingPopulation";
 import MyformData from "./personnelForm/personnelform";
@@ -68,7 +69,7 @@ export default {
       width: "60%",
       labelWidth: "230px",
       fields: Permanent,
-      tabsData: {},
+      tabsData: ThePermanent,
       // formInline: {
       //   communityName: "",
       //   select: []
@@ -113,6 +114,15 @@ export default {
           this.editorType = "view";
           break;
       }
+      const ryxxbz = row.ryxxbz;
+      getselectOne(ryxxbz).then(res => {
+        if (res.code === 1) {
+          this.fields.datalist = res.data;
+          console.log(res.data);
+        } else {
+          this.$message.error(res.message);
+        }
+      });
       this.editorVisible = true;
     },
     confirm(formData) {
@@ -122,11 +132,14 @@ export default {
     },
     // 切换当前一页展示多少条
     sizeChange(val) {
-      this.rows = val;
+      console.log(val);
+      this.tabsData.pagination.rows = val;
+      // this.rows = val;
     },
     // 翻页
     pageChange(val) {
-      this.page = val;
+      console.log(val);
+      // this.page = val;
     },
     handleClick() {
       this.tabsdata();
@@ -149,7 +162,7 @@ export default {
   align-content: flex-start;
 }
 .card_bottom {
-  height: calc(100% - 91px);
+  height: calc(100% - 137px);
 }
 .bgc {
   background-color: #fff;

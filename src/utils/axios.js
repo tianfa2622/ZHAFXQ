@@ -33,7 +33,7 @@ axios.interceptors.response.use(
   res => {
     // console.log(res);
     // 处理所有响应
-    return res.data.data;
+    return res.data;
   },
   err => {
     console.log(err);

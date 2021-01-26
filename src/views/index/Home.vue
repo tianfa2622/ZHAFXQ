@@ -39,7 +39,7 @@
               <div slot="header">
                 <span>车辆统计</span>
               </div>
-              <MyEcharts :option="options"></MyEcharts>
+              <MyEcharts :option="vehicle"></MyEcharts>
             </el-card>
           </div>
         </div>
@@ -58,12 +58,14 @@
           </el-card>
         </div>
       </div>
-
-      <div class="h-2 w-100"></div>
-
       <div class="h-38 w-100 yjbg p-20">
-        <el-tabs v-model="activeName" @tab-click="handleClick">
+        <el-tabs
+          v-model="activeName"
+          class="fill_height"
+          @tab-click="handleClick"
+        >
           <el-tab-pane
+            class="fill_height"
             v-for="(item, index) in tabs"
             :key="index"
             :label="item.label"
@@ -107,7 +109,7 @@
           <div slot="header">
             <span>房屋使用情况</span>
           </div>
-          <MyEcharts :option="options1"></MyEcharts>
+          <MyEcharts :option="housing"></MyEcharts>
         </el-card>
       </div>
     </div>
@@ -115,21 +117,24 @@
 </template>
 
 <script>
-import options from "./indexEchartsData/VehicleStatistics"; // echarts 车辆统计数据
-import options1 from "./indexEchartsData/HousingUsage"; // echarts 房屋使用情况数据
+import vehicle, { echartData } from "./indexEchartsData/VehicleStatistics"; // echarts 车辆统计数据
+import housing, {
+  trafficWay,
+  housingData
+} from "./indexEchartsData/HousingUsage"; // echarts 房屋使用情况数据
 import IndexMap from "./map/indexMap"; // 地图
 import tableoptions from "./tableData/Equipment"; // 设备table数据
 import Inspection from "./tableData/Inspection"; // 巡查table数据
 import Perceive from "./tableData/Perceive"; // 感知table数据
-import { getStaffProfile } from "@/api/home/api";
+import { getStaffProfile, getqueryCl, getqueryFwsyqk } from "@/api/home";
 export default {
   components: {
     IndexMap
   },
   data() {
     return {
-      options,
-      options1,
+      vehicle,
+      housing,
       tableoptions,
       tabsData: {},
       StaffProfile: [],
@@ -150,13 +155,39 @@ export default {
     this.tabsdata();
   },
   mounted() {
-    getStaffProfile().then(res => {
-      let data = res;
-      let array = Object.keys(data);
-      let obj = {};
-      for (let i = 0; i < array.length; i++) {
-        (obj.name = array[i]), (obj.number = data[array[i]]);
-        this.StaffProfile.push(obj);
+    getStaffProfile("1").then(res => {
+      if (res.code === 1) {
+        const data = res.data;
+        for (const key in data) {
+          this.StaffProfile.push({
+            name: key,
+            number: data[key]
+          });
+        }
+      }
+    }),
+      getqueryCl("1").then(res => {
+        if (res.code === 1) {
+          const data = res.data;
+          for (const key in data) {
+            echartData.push({
+              name: key,
+              value: data[key],
+              unit: "辆"
+            });
+          }
+        }
+      });
+    getqueryFwsyqk("1").then(res => {
+      if (res.code === 1) {
+        const data = res.data;
+        for (const key in data) {
+          trafficWay.push({
+            name: key,
+            value: data[key]
+          });
+        }
+        housingData();
       }
     });
   },
@@ -187,6 +218,9 @@ export default {
 }
 .h-58 {
   height: 58%;
+}
+.h-38 {
+  height: 38%;
 }
 .w-58 {
   width: 58%;
@@ -274,16 +308,24 @@ export default {
 ::v-deep .el-tabs__active-bar {
   display: none;
 }
+.tab_pane_table {
+  ::v-deep .el-card__body {
+    height: 100%;
+    overflow: hidden;
+  }
+}
 .yjbg {
   overflow: hidden;
+  margin-top: 2%;
   background-image: url(../../assets/images/index/yjbj.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  // -moz-border-image: url(../../assets/images/index/yjbj.png) 16 23 20 14 round; /* Old Firefox */
-  // -webkit-border-image: url(../../assets/images/index/yjbj.png) 16 23 20 14
-  //   round; /* Safari and Chrome */
-  // -o-border-image: url(../../assets/images/index/yjbj.png) 16 23 20 14 round; /* Opera */
-  // border-image: url(../../assets/images/index/yjbj.png) 16 23 20 14 round;
+  ::v-deep .el-tabs__content {
+    height: calc(100% - 44px);
+    .el-card__body {
+      height: 100%;
+    }
+  }
 }
 ::v-deep .el-table--enable-row-hover .el-table__body tr:hover > td {
   background-color: #006291;

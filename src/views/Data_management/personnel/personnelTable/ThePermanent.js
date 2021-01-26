@@ -1,3 +1,4 @@
+import { getSelectAll } from "@/api/Data_management/personnel/index";
 const options = {
   size: "small",
   CardAttributes: {
@@ -9,27 +10,27 @@ const options = {
   tableColumns: [
     {
       label: "姓名",
-      param: "name",
+      param: "xm",
       align: "center"
     },
     {
       label: "身份证号码",
-      param: "IDCardNumber",
+      param: "djrGmsfzhm",
       align: "center"
     },
     {
       label: "民族",
-      param: "national",
+      param: "mzdm",
       align: "center"
     },
     {
       label: "联系方式",
-      param: "contact",
+      param: "lxdh",
       align: "center"
     },
     {
       label: "现住地址",
-      param: "CurrentAddress",
+      param: "hjdzQhnxxdz",
       align: "center"
     }
   ],
@@ -52,42 +53,31 @@ const options = {
     ]
   },
   // 表格数据
-  tableData: [
-    {
-      name: "张三",
-      IDCardNumber: "430111198107115034",
-      contact: 15571239876,
-      national: "汉",
-      CurrentAddress: ""
-    },
-    {
-      name: "李四",
-      IDCardNumber: "430111198107115034",
-      national: "汉",
-      contact: 15571239876,
-      CurrentAddress: ""
-    },
-    {
-      name: "张三",
-      IDCardNumber: "430111198107115034",
-      national: "汉",
-      contact: 15571239876,
-      CurrentAddress: ""
-    },
-    {
-      name: "李四",
-      IDCardNumber: "430111198107115034",
-      national: "汉",
-      contact: 15571239876,
-      CurrentAddress: ""
-    }
-  ],
+  tableData: [],
   pagination: {
     isBackC: true,
     isShow: true,
     currentPage: 1,
-    rows: 10,
+    rows: 5,
     total: 20
   }
 };
+let paramsData = {
+  rkdjlx: "1",
+  current: options.pagination.currentPage,
+  size: options.pagination.rows
+  // xm: "",
+  // xqxxbz: "",
+  // zjhm: ""
+};
+getSelectAll(paramsData).then(res => {
+  console.log();
+  if (res.code === 1) {
+    options.tableData = res.data.records;
+    options.pagination.total = res.data.total;
+    console.log(res);
+  } else {
+    this.$message.error(res.message);
+  }
+});
 export default options;

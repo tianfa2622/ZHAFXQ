@@ -1,4 +1,4 @@
-import { getqueryApe } from "@/api/home/api";
+import { getqueryApe } from "@/api/home";
 const options = {
   CardAttributes: {
     title: "设备信息",
@@ -44,7 +44,11 @@ const options = {
   // 表格数据
   tableData: []
 };
-getqueryApe().then(res => {
-  options.tableData = res;
+getqueryApe("1").then(res => {
+  if (res.code === 1) {
+    options.tableData = res.data;
+  } else {
+    this.$message.error(res.message);
+  }
 });
 export default options;

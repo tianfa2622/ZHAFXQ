@@ -1,3 +1,4 @@
+import { getSelectAll } from "@/api/Data_management/Residential_units/index";
 const options = {
   size: "small",
   CardAttributes: {
@@ -9,27 +10,27 @@ const options = {
   tableColumns: [
     {
       label: "单位名称",
-      param: "companyName",
+      param: "dwmc",
       align: "center"
     },
     {
       label: "统一社会信用代码",
-      param: "SocialCreditCode",
+      param: "tyshxydm",
       align: "center"
     },
     {
       label: "法人姓名",
-      param: "CorporateName",
+      param: "djr",
       align: "center"
     },
     {
       label: "单位地址",
-      param: "UnitAddress",
+      param: "dwQhnxxdz",
       align: "center"
     },
     {
       label: "小区名称",
-      param: "CommunityName",
+      param: "xqxxbz",
       align: "center"
     }
   ],
@@ -52,36 +53,7 @@ const options = {
     ]
   },
   // 表格数据
-  tableData: [
-    {
-      companyName: "湖南华润科技有限公司",
-      SocialCreditCode: "914301020749881625",
-      CorporateName: "张三",
-      UnitAddress: "长沙市芙蓉区宽寓大厦",
-      CommunityName: ""
-    },
-    {
-      companyName: "湖南华润科技有限公司",
-      SocialCreditCode: "914301020749881625",
-      CorporateName: "张三",
-      UnitAddress: "长沙市芙蓉区宽寓大厦",
-      CommunityName: ""
-    },
-    {
-      companyName: "湖南华润科技有限公司",
-      SocialCreditCode: "914301020749881625",
-      CorporateName: "张三",
-      UnitAddress: "长沙市芙蓉区宽寓大厦",
-      CommunityName: ""
-    },
-    {
-      companyName: "湖南华润科技有限公司",
-      SocialCreditCode: "914301020749881625",
-      CorporateName: "张三",
-      UnitAddress: "长沙市芙蓉区宽寓大厦",
-      CommunityName: ""
-    }
-  ],
+  tableData: [],
   pagination: {
     isBackC: true,
     isShow: true,
@@ -90,4 +62,16 @@ const options = {
     total: 20
   }
 };
+let paramsData = {
+  dwmc: "",
+  tyshxydm: "",
+  wtdlrXM: ""
+};
+getSelectAll(paramsData).then(res => {
+  if (res.code === 1) {
+    options.tableData = res.data.records;
+  } else {
+    this.$message.error(res.message);
+  }
+});
 export default options;

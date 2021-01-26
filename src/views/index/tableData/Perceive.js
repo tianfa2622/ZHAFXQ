@@ -1,4 +1,4 @@
-import { getqueryPerceptionwarning } from "@/api/home/api";
+import { getqueryPerceptionwarning } from "@/api/home";
 const options = {
   CardAttributes: {
     // title: "设备信息",
@@ -69,7 +69,11 @@ const options = {
   // 表格数据
   tableData: []
 };
-getqueryPerceptionwarning().then(res => {
-  options.tableData = res;
+getqueryPerceptionwarning("1").then(res => {
+  if (res.code === 1) {
+    options.tableData = res.data;
+  } else {
+    this.$message.error(res.message);
+  }
 });
 export default options;

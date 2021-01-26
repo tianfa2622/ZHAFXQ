@@ -30,7 +30,7 @@ module.exports = {
   devServer: {
     proxy: {
       "/api": {
-        target: "http://192.168.1.15:8081/",
+        target: "http://pm2.winvers.com/zhnfxq",
         changeOrigin: true,
         pathRewrite: {
           "^/api": ""

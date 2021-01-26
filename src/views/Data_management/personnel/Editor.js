@@ -1,25 +1,26 @@
+// import { getselectOne } from "@/api/Data_management/personnel/index";
 const fields = [
   {
     label: "照片：",
     span: 24,
-    field: "CommunityName1:",
+    field: "xp",
     type: "avatar"
   },
   {
     label: "姓名：",
-    field: "CommunityName1:",
+    field: "xm:",
     type: "input",
     dataType: "string"
   },
   {
     label: "曾用名：",
-    field: "CommunityName:",
+    field: "cym:",
     type: "input",
     dataType: "string"
   },
   {
     label: "性别",
-    field: "sex",
+    field: "xbdm",
     type: "select",
     options: [
       {
@@ -34,7 +35,7 @@ const fields = [
   },
   {
     label: "国籍",
-    field: "sex",
+    field: "gjdm",
     type: "select",
     options: [
       {
@@ -49,13 +50,13 @@ const fields = [
   },
   {
     label: "身份证号：",
-    field: "CommunityName:",
+    field: "djrGmsfzhm:",
     type: "input",
     dataType: "string"
   },
   {
     label: "民族：",
-    field: "sex",
+    field: "mzdm",
     type: "select",
     options: [
       {
@@ -70,13 +71,13 @@ const fields = [
   },
   {
     label: "联系电话：",
-    field: "ownersName",
+    field: "lxdh",
     type: "input",
     dataType: "string"
   },
   {
     label: "学历：",
-    field: "sex",
+    field: "xldm",
     type: "select",
     options: [
       {
@@ -91,7 +92,7 @@ const fields = [
   },
   {
     label: "户口性质：",
-    field: "sex",
+    field: "hkxzflydm",
     type: "select",
     options: [
       {
@@ -106,19 +107,19 @@ const fields = [
   },
   {
     label: "籍贯：",
-    field: "Telephone",
+    field: "jgssxdm",
     type: "input",
     dataType: "string"
   },
   {
     label: "户籍地址：",
-    field: "idCard",
+    field: "hjdz",
     type: "input",
     dataType: "string"
   },
   {
     label: "户口类型",
-    field: "motorVehicle",
+    field: "hlxdm",
     type: "select",
     options: [
       {
@@ -133,13 +134,13 @@ const fields = [
   },
   {
     label: "实际居住地：",
-    field: "Licenseplate",
+    field: "sjjzd",
     type: "input",
     dataType: "string"
   },
   {
     label: "宗教信仰：",
-    field: "licensePlate:",
+    field: "zjxydm:",
     type: "select",
     options: [
       {
@@ -154,7 +155,7 @@ const fields = [
   },
   {
     label: "政治面貌：",
-    field: "NumberPlateColor:",
+    field: "zzmmdm",
     type: "select",
     options: [
       {
@@ -169,6 +170,7 @@ const fields = [
   },
   {
     label: "婚姻状况：",
+    field: "hyzkdm",
     type: "select",
     options: [
       {
@@ -183,43 +185,43 @@ const fields = [
   },
   {
     label: "配偶姓名：",
-    field: "VehicleVolume",
+    field: "poXm",
     type: "input",
     dataType: "string"
   },
   {
     label: "配偶联系电话：",
-    field: "ColorCar:",
+    field: "poLxdh",
     type: "input",
     dataType: "string"
   },
   {
     label: "配偶身份证号：",
-    field: "VehicleModel",
+    field: "poGmsfzhm",
     type: "input",
     dataType: "string"
   },
   {
     label: "英文名：",
-    field: "BriefSituation",
+    field: "wwm",
     type: "input",
     dataType: "string"
   },
   {
     label: "联系电话：",
-    field: "RegistrantName",
+    field: "Lxdh",
     type: "input",
     dataType: "string"
   },
   {
     label: "名下机动车号牌号码：",
-    field: "RegistrantPhoneNumber:",
+    field: "jdchphm:",
     type: "input",
     dataType: "string"
   },
   {
     label: "人员登记类型：",
-    field: "DataSources",
+    field: "rydjlx",
     type: "select",
     options: [
       {
@@ -235,12 +237,12 @@ const fields = [
   },
   {
     label: "人口登记类型：",
-    field: "DataStatus0",
+    field: "rkdjlx",
     type: "select",
     options: [
       {
         label: "流动",
-        value: 0
+        value: 2
       },
       {
         label: "常住",
@@ -252,7 +254,7 @@ const fields = [
   {
     label: "治安管理信息所属警务责任区：",
     span: 24,
-    field: "DataStatus1",
+    field: "zaglxxssjwzrqdm",
     type: "input",
     dataType: "string"
   }

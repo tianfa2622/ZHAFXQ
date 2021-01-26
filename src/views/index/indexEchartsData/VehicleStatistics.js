@@ -1,41 +1,12 @@
 // 通行人车流量折线图
 // eslint-disable-next-line no-unused-vars
 import echarts from "echarts";
-import { getqueryCl } from "@/api/home/api";
 let bgColor = "#fff";
 // let fontColor = "#333";
 let titleColor = "#fff";
 let scale = 1;
 let title = "车辆总数";
-let echartData = [
-  {
-    name: "常驻车辆",
-    value: "7000",
-    unit: "辆"
-  },
-  {
-    name: "重点车辆",
-    value: "7000",
-    unit: "辆"
-  },
-  {
-    name: "临时车辆",
-    value: "7000",
-    unit: "辆"
-  }
-];
-getqueryCl().then(res => {
-  let data = res;
-  let array = Object.keys(data);
-  let obj = {};
-  for (let i = 0; i < array.length; i++) {
-    obj.name = array[i];
-    obj.value = data[array[i]];
-    obj.unit = "辆";
-    echartData.push(obj);
-  }
-  return echartData;
-});
+export let echartData = [];
 let total = echartData.reduce((a, b) => {
   return a + b.value * 1;
 }, 0);
@@ -47,18 +18,18 @@ const options = {
   title: {
     text: "{name|" + title + "}\n{val|" + total + "}",
     top: "center",
-    left: "13%",
+    left: "12%",
     textStyle: {
       rich: {
         name: {
           fontSize: 12 * scale,
           color: titleColor,
-          padding: [5, 0]
+          padding: [5, 5]
         },
         val: {
           fontSize: 12 * scale,
           color: titleColor,
-          padding: [0, 6]
+          padding: [0, 20]
         }
       }
     }

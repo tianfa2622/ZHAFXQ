@@ -1,3 +1,4 @@
+import { getSelectAll } from "@/api/Data_management/vehicle/index";
 const options = {
   size: "small",
   CardAttributes: {
@@ -9,27 +10,27 @@ const options = {
   tableColumns: [
     {
       label: "车主姓名",
-      param: "ownerName",
+      param: "cz",
       align: "center"
     },
     {
       label: "车牌号码",
-      param: "LicensePlateNumber",
+      param: " jdchphm",
       align: "center"
     },
     {
       label: "联系电话",
-      param: "contactNumber",
+      param: "czLxdh",
       align: "center"
     },
     {
       label: "车辆类别",
-      param: "VehicleCategory",
+      param: " jdccllxdm",
       align: "center"
     },
     {
       label: "小区名称",
-      param: "CommunityName",
+      param: "xqxxbz",
       align: "center"
     }
   ],
@@ -52,29 +53,7 @@ const options = {
     ]
   },
   // 表格数据
-  tableData: [
-    {
-      ownerName: "张三",
-      LicensePlateNumber: "湘A59SU2",
-      contactNumber: 15571239876,
-      VehicleCategory: "电动车",
-      CommunityName: "辉煌国际"
-    },
-    {
-      ownerName: "李四",
-      LicensePlateNumber: "430111198107115034",
-      contactNumber: 15571239876,
-      VehicleCategory: "自行车",
-      CommunityName: "辉煌国际"
-    },
-    {
-      ownerName: "张三",
-      LicensePlateNumber: "430111198107115034",
-      contactNumber: 15571239876,
-      VehicleCategory: "自行车",
-      CommunityName: "辉煌国际"
-    }
-  ],
+  tableData: [],
   pagination: {
     isBackC: true,
     isShow: true,
@@ -83,4 +62,15 @@ const options = {
     total: 20
   }
 };
+let paramsData = {
+  czXm: "",
+  jdchphm: ""
+};
+getSelectAll(paramsData).then(res => {
+  if (res.code === 1) {
+    options.tableData = res.data.records;
+  } else {
+    this.$message.error(res.message);
+  }
+});
 export default options;

@@ -1,3 +1,4 @@
+import { getSelectAll } from "@/api/Data_management/housing/index";
 const options = {
   size: "small",
   CardAttributes: {
@@ -9,32 +10,32 @@ const options = {
   tableColumns: [
     {
       label: "房屋编号",
-      param: "HouseNumber",
+      param: "fwbh",
       align: "center"
     },
     {
       label: "户主姓名",
-      param: "Householder",
+      param: "fzXm",
       align: "center"
     },
     {
       label: "户主身份证号码",
-      param: "IDNumber",
+      param: "fzGmsfzhm",
       align: "center"
     },
     {
       label: "房屋类别",
-      param: "HousingCategory",
+      param: "fwlbdm",
       align: "center"
     },
     {
       label: "联系方式",
-      param: "contactDetails",
+      param: "fzLxdh",
       align: "center"
     },
     {
       label: "房屋地址",
-      param: "HouseAddress",
+      param: "dzmc",
       align: "center"
     }
   ],
@@ -59,40 +60,7 @@ const options = {
     ]
   },
   // 表格数据
-  tableData: [
-    {
-      HouseNumber: "33",
-      Householder: "张小刚",
-      IDNumber: "430423122526254862",
-      HousingCategory: "商用",
-      contactDetails: "",
-      HouseAddress: ""
-    },
-    {
-      HouseNumber: "33",
-      Householder: "张小刚",
-      IDNumber: "430423122526254862",
-      HousingCategory: "商用",
-      contactDetails: "",
-      HouseAddress: ""
-    },
-    {
-      HouseNumber: "33",
-      Householder: "张小刚",
-      IDNumber: "430423122526254862",
-      HousingCategory: "商用",
-      contactDetails: "",
-      HouseAddress: ""
-    },
-    {
-      HouseNumber: "33",
-      Householder: "张小刚",
-      IDNumber: "430423122526254862",
-      HousingCategory: "商用",
-      contactDetails: "",
-      HouseAddress: ""
-    }
-  ],
+  tableData: [],
   pagination: {
     isBackC: true,
     isShow: true,
@@ -101,4 +69,16 @@ const options = {
     total: 20
   }
 };
+let paramsData = {
+  fwlbdm: "",
+  fzGMsfzhm: ""
+};
+getSelectAll(paramsData).then(res => {
+  if (res.code === 1) {
+    options.tableData = res.data.records;
+  } else {
+    this.$message.error(res.message);
+  }
+  console.log(res);
+});
 export default options;
