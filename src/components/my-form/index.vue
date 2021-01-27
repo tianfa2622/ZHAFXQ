@@ -114,6 +114,9 @@ export default {
     },
     inline: {
       type: Boolean
+    },
+    editData: {
+      type: Object
     }
   },
   data() {
@@ -138,9 +141,17 @@ export default {
           message: `请${this.getMethod(field.type)}${field.label}`
         });
       }
-      this.$set(this.formData, field.field, "");
+      if (this.type === "add") {
+        this.$set(this.formData, field.field, "");
+      }
       this.$set(this.formRules, field.field, rules);
     });
+    if (this.type !== "add") {
+      for (const key in this.editData) {
+        this.$set(this.formData, key, this.editData[key]);
+      }
+    }
+    // 怎么会有这么多object？
   },
   methods: {
     valueToNumber(field, v) {

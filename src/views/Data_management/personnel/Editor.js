@@ -8,13 +8,13 @@ const fields = [
   },
   {
     label: "姓名：",
-    field: "xm:",
+    field: "xm",
     type: "input",
     dataType: "string"
   },
   {
     label: "曾用名：",
-    field: "cym:",
+    field: "cym",
     type: "input",
     dataType: "string"
   },
@@ -25,11 +25,15 @@ const fields = [
     options: [
       {
         label: "男",
-        value: 0
+        value: "0"
       },
       {
         label: "女",
-        value: 1
+        value: "1"
+      },
+      {
+        label: "未知",
+        value: "2"
       }
     ]
   },
@@ -40,17 +44,17 @@ const fields = [
     options: [
       {
         label: "中国",
-        value: 0
+        value: "0"
       },
       {
         label: "美国",
-        value: 1
+        value: "1"
       }
     ]
   },
   {
     label: "身份证号：",
-    field: "djrGmsfzhm:",
+    field: "djrGmsfzhm",
     type: "input",
     dataType: "string"
   },
@@ -61,11 +65,11 @@ const fields = [
     options: [
       {
         label: "汉族",
-        value: 0
+        value: "0"
       },
       {
         label: "苗族",
-        value: 1
+        value: "1"
       }
     ]
   },
@@ -82,11 +86,11 @@ const fields = [
     options: [
       {
         label: "本科",
-        value: 0
+        value: "0"
       },
       {
         label: "大专",
-        value: 1
+        value: "1"
       }
     ]
   },
@@ -97,11 +101,11 @@ const fields = [
     options: [
       {
         label: "城市户口",
-        value: 0
+        value: "0"
       },
       {
         label: "农村户口",
-        value: 1
+        value: "1"
       }
     ]
   },
@@ -124,11 +128,11 @@ const fields = [
     options: [
       {
         label: "城镇居民户口",
-        value: 0
+        value: "0"
       },
       {
         label: "农村居民户口",
-        value: 1
+        value: "1"
       }
     ]
   },
@@ -145,11 +149,11 @@ const fields = [
     options: [
       {
         label: "佛教",
-        value: 0
+        value: "0"
       },
       {
         label: "伊斯兰教",
-        value: 1
+        value: "1"
       }
     ]
   },
@@ -160,11 +164,11 @@ const fields = [
     options: [
       {
         label: "群众",
-        value: 0
+        value: "0"
       },
       {
         label: "中共党员",
-        value: 1
+        value: "1"
       }
     ]
   },
@@ -175,11 +179,11 @@ const fields = [
     options: [
       {
         label: "已婚",
-        value: 0
+        value: "0"
       },
       {
         label: "未婚",
-        value: 1
+        value: "1"
       }
     ]
   },
@@ -215,7 +219,7 @@ const fields = [
   },
   {
     label: "名下机动车号牌号码：",
-    field: "jdchphm:",
+    field: "jdchphm",
     type: "input",
     dataType: "string"
   },
@@ -226,11 +230,11 @@ const fields = [
     options: [
       {
         label: "流动",
-        value: 0
+        value: "0"
       },
       {
         label: "常住",
-        value: 1
+        value: "1"
       }
     ],
     hidden: ["add", "edit"]
@@ -242,11 +246,11 @@ const fields = [
     options: [
       {
         label: "流动",
-        value: 2
+        value: "2"
       },
       {
         label: "常住",
-        value: 1
+        value: "1"
       }
     ],
     hidden: ["add", "edit"]

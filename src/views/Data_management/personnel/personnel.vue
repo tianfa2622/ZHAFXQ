@@ -22,20 +22,20 @@
             :form="MyformData.form"
             :itemColumns="MyformData.itemColumns"
             :btnData="MyformData.btnData"
-            @clickButton="clickButton"
+            @clickButton="FormclickButton"
           ></Myform>
         </el-card>
         <div class="card_bottom">
           <Mytable
             :size="tabsData.size"
-            :tableData="tabsData.tableData"
+            :tableData="tableData"
             :tableColumns="tabsData.tableColumns"
             :tableOption="tabsData.tableOption"
             @sizeChange="sizeChange"
             @pageChange="pageChange"
             @clickButton="clickButton"
             :CardAttributes="tabsData.CardAttributes"
-            :pagination="tabsData.pagination"
+            :pagination="pagination"
           ></Mytable>
         </div>
       </el-tab-pane>
@@ -43,6 +43,7 @@
     <Editor
       :type="editorType"
       :width="width"
+      :editData="editData"
       :visible.sync="editorVisible"
       :fields="fields"
       @confirm="confirm"
@@ -52,7 +53,11 @@
 </template>
 
 <script>
-import { getselectOne } from "@/api/Data_management/personnel/index";
+import {
+  getSelectOne,
+  getSelectAll,
+  getUpdate
+} from "@/api/Data_management/personnel/index";
 import ThePermanent from "./personnelTable/ThePermanent";
 import FloatingPopulation from "./personnelTable/FloatingPopulation";
 import MyformData from "./personnelForm/personnelform";
@@ -70,40 +75,59 @@ export default {
       labelWidth: "230px",
       fields: Permanent,
       tabsData: ThePermanent,
-      // formInline: {
-      //   communityName: "",
-      //   select: []
-      // },
-      activeName: "first",
+      activeName: "1",
       tabs: [
         {
           label: "常住人口",
-          name: "first"
+          name: "1"
         },
         {
           label: "流动人口",
-          name: "second"
+          name: "2"
         }
-      ]
+      ],
+      // 表格数据
+      tableData: [],
+      pagination: {
+        isBackC: true,
+        isShow: true,
+        currentPage: 1,
+        size: 10,
+        total: 20
+      },
+      paramsData: {
+        rkdjlx: "1",
+        xm: "",
+        xqxxbz: "",
+        zjhm: ""
+      },
+      editData: {}
     };
   },
   created() {
-    this.tabsdata();
+    this.getPersonnelInfo();
   },
+  mounted() {},
   methods: {
-    // 点击事件
-    clickButton(val) {
-      // 调用事件
-      // this[val.methods](val.row);
-      if (val.methods !== "search") {
-        this.openEditor(val.methods, val.row);
-      } else {
-        this[val.methods](val.row);
-      }
+    getPersonnelInfo() {
+      this.paramsData.rkdjlx = this.activeName;
+      getSelectAll({
+        ...this.paramsData
+        // current: this.pagination.currentPage,
+        // size: this.pagination.rows
+      }).then(res => {
+        if (res.code === 1) {
+          this.tableData = res.data.records;
+          this.pagination.total = res.data.total;
+        } else {
+          this.$message.error(res.message);
+        }
+      });
     },
-    openEditor(type, row) {
-      console.log(type, row);
-      switch (type) {
+    // table点击事件
+    clickButton(val) {
+      // this.openEditor(val.methods, val.row);
+      switch (val.methods) {
         case "Increase":
           this.editorType = "add";
           break;
@@ -114,19 +138,29 @@ export default {
           this.editorType = "view";
           break;
       }
-      const ryxxbz = row.ryxxbz;
-      getselectOne(ryxxbz).then(res => {
+      this[val.methods](val.row);
+    },
+    // 弹出框数据
+    openEditor(row) {
+      getSelectOne(row.ryxxbz).then(res => {
         if (res.code === 1) {
-          this.fields.datalist = res.data;
-          console.log(res.data);
+          this.editData = res.data;
+          this.editorVisible = true;
         } else {
           this.$message.error(res.message);
         }
       });
-      this.editorVisible = true;
     },
     confirm(formData) {
-      console.log(formData);
+      getUpdate(formData).then(res => {
+        if (res.code === 1) {
+          this.$message.success(res.message);
+          this.editorVisible = false;
+          this.getPersonnelInfo();
+        } else {
+          this.$message.error(res.message);
+        }
+      });
       // 请求接口提交数据 等等
       this.editorVisible = false;
     },
@@ -134,24 +168,52 @@ export default {
     sizeChange(val) {
       console.log(val);
       this.tabsData.pagination.rows = val;
-      // this.rows = val;
+      this.rows = val;
     },
     // 翻页
     pageChange(val) {
       console.log(val);
-      // this.page = val;
+      this.paramsData.current = val;
+      this.getPersonnelInfo();
+      this.page = val;
     },
     handleClick() {
-      this.tabsdata();
-    },
-    tabsdata() {
-      if (this.activeName === "first") {
+      if (this.activeName === "1") {
         this.tabsData = ThePermanent;
+        this.getPersonnelInfo();
       } else {
         this.tabsData = FloatingPopulation;
+        this.getPersonnelInfo();
       }
     },
-    search() {}
+    FormclickButton(val) {
+      switch (val.methods) {
+        case "Increase":
+          this.editorType = "add";
+          break;
+        case "editor":
+          this.editorType = "edit";
+          break;
+        case "toView":
+          this.editorType = "view";
+          break;
+      }
+      this[val.methods](val.formData);
+    },
+    search(v) {
+      this.paramsData = { ...v };
+      // this.paramsData.push({ rkdjlx: this.activeName });
+      this.getPersonnelInfo();
+    },
+    Increase(v) {
+      this.openEditor(v.methods, v.formData);
+    },
+    editor(row) {
+      this.openEditor(row);
+    },
+    toView(row) {
+      this.openEditor(row);
+    }
   }
 };
 </script>

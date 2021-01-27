@@ -85,7 +85,7 @@
         @current-change="handleCurrentChange"
         :current-page="pagination.currentPage"
         :page-sizes="[5, 10, 15, 20]"
-        :page-size="pagination.rows"
+        :page-size="pagination.size"
         layout="total, sizes, prev, pager, next, jumper"
         :total="pagination.total"
         class="posi-abs b-10 ta-c offset"

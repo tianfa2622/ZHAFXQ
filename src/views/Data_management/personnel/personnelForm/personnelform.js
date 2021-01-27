@@ -2,11 +2,11 @@ const options = {
   rules: {},
   formData: {
     area: [],
-    CommunityName: "",
+    xqxxbz: "",
     // VillageName: "",
-    Name: "",
-    IDCardNum: "",
-    CurrentAddress: ""
+    xm: "",
+    zjhm: "",
+    hjdzQhnxxdz: ""
   },
   form: {
     inline: true,
@@ -23,7 +23,7 @@ const options = {
     {
       span: 6,
       label: "小区名称:",
-      prop: "CommunityName",
+      prop: "xqxxbz",
       type: "text",
       clearable: true,
       class: ""
@@ -31,7 +31,7 @@ const options = {
     {
       span: 6,
       label: "姓名:",
-      prop: "Name",
+      prop: "xm",
       type: "text",
       clearable: true,
       class: ""
@@ -39,7 +39,7 @@ const options = {
     {
       span: 8,
       label: "身份证号码:",
-      prop: "IDCardNum",
+      prop: "zjhm",
       type: "text",
       clearable: true,
       class: "",
@@ -48,7 +48,7 @@ const options = {
     {
       span: 6,
       label: "现住地址:",
-      prop: "CurrentAddress",
+      prop: "hjdzQhnxxdz",
       type: "text",
       clearable: true,
       class: ""

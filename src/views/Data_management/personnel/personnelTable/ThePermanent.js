@@ -1,4 +1,3 @@
-import { getSelectAll } from "@/api/Data_management/personnel/index";
 const options = {
   size: "small",
   CardAttributes: {
@@ -15,7 +14,7 @@ const options = {
     },
     {
       label: "身份证号码",
-      param: "djrGmsfzhm",
+      param: "zjhm",
       align: "center"
     },
     {
@@ -51,33 +50,6 @@ const options = {
         methods: "editor"
       }
     ]
-  },
-  // 表格数据
-  tableData: [],
-  pagination: {
-    isBackC: true,
-    isShow: true,
-    currentPage: 1,
-    rows: 5,
-    total: 20
   }
 };
-let paramsData = {
-  rkdjlx: "1",
-  current: options.pagination.currentPage,
-  size: options.pagination.rows
-  // xm: "",
-  // xqxxbz: "",
-  // zjhm: ""
-};
-getSelectAll(paramsData).then(res => {
-  console.log();
-  if (res.code === 1) {
-    options.tableData = res.data.records;
-    options.pagination.total = res.data.total;
-    console.log(res);
-  } else {
-    this.$message.error(res.message);
-  }
-});
 export default options;

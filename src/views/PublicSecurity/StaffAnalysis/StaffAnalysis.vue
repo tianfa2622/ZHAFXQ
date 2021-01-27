@@ -42,13 +42,13 @@
       <div class="w-59 h-100">
         <Mytable
           :size="MytableData.size"
-          :tableData="MytableData.tableData"
+          :tableData="tableData"
           :tableColumns="MytableData.tableColumns"
           :HeaderCellStyle="MytableData.HeaderCellStyle"
           @sizeChange="sizeChange"
           @pageChange="pageChange"
           :CardAttributes="MytableData.CardAttributes"
-          :pagination="MytableData.pagination"
+          :pagination="pagination"
         ></Mytable>
       </div>
     </div>
@@ -60,25 +60,54 @@ import MyformData from "./StaffAnalysisform/StaffAnalysisform";
 import MytableData from "./StaffAnalysistable/StaffAnalysistable";
 import options1 from "./StaffAnalysisEcharts/administrative";
 import options from "./StaffAnalysisEcharts/Community";
+import { getSelectAll } from "@/api/PublicSecurity/StaffAnalysis/index";
 export default {
   data() {
     return {
       MyformData,
       MytableData,
       options,
-      options1
+      options1,
+      // 表格数据
+      tableData: [],
+      pagination: {
+        isBackC: true,
+        isShow: true,
+        currentPage: 1,
+        size: 10,
+        total: 20
+      }
     };
   },
+  mounted() {
+    this.getTableData();
+  },
   methods: {
+    getTableData() {
+      getSelectAll({
+        current: this.pagination.currentPage,
+        size: this.pagination.size
+      }).then(res => {
+        if (res.code === 1) {
+          this.tableData = res.data.records;
+          this.pagination.total = res.data.total;
+        } else {
+          this.$message.error(res.message);
+        }
+      });
+    },
+
     // onSubmit() {
     // },
     // 切换当前一页展示多少条
     sizeChange(val) {
-      this.rows = val;
+      this.pagination.size = val;
+      this.getTableData();
     },
     // 翻页
     pageChange(val) {
-      this.page = val;
+      this.pagination.currentPage = val;
+      this.getTableData();
     },
     // 点击事件
     clickButton(val) {

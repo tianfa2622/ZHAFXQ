@@ -11,6 +11,7 @@
       :disabled="disabled"
       :type="type"
       :fields="fields"
+      :editData="editData"
       :inline="inline"
       @change="handlerChange"
       :labelWidth="labelWidth"
@@ -36,7 +37,7 @@ export default {
       type: Boolean,
       required: true
     },
-    propData: {
+    editData: {
       type: Object
     },
     fields: {

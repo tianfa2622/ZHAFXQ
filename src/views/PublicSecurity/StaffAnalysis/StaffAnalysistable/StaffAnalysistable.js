@@ -1,4 +1,3 @@
-import { getSelectAll } from "@/api/PublicSecurity/StaffAnalysis/index";
 // import { render } from "less";
 const options = {
   size: "small",
@@ -59,30 +58,8 @@ const options = {
         return percentage(num, total);
       }
     }
-  ],
-  // 表格数据
-  tableData: [],
-  pagination: {
-    isBackC: true,
-    isShow: true,
-    currentPage: 1,
-    rows: 10,
-    total: 20
-  }
+  ]
 };
-let paramsData = {
-  current: options.pagination.currentPage,
-  size: options.pagination.rows
-};
-getSelectAll(paramsData).then(res => {
-  if (res.code === 1) {
-    options.tableData = res.data.records;
-    options.pagination.total = res.data.total;
-  } else {
-    this.$message.error(res.message);
-  }
-});
-
 function percentage(num, total) {
   if (num == 0 || total == 0) {
     return 0;

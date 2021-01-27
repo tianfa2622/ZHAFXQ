@@ -2,7 +2,7 @@
   <div>
     <el-form
       ref="form"
-      :model="formData"
+      :model="editData"
       :inline="form.inline"
       :rules="rules"
       :size="form.size || 'small'"
@@ -30,7 +30,7 @@
             <el-input
               v-if="columns.type === 'textarea'"
               :type="columns.type"
-              v-model="formData[columns.prop]"
+              v-model="editData[columns.prop]"
               v-bind="columns.bind"
               :class="columns.class"
               :rows="columns.row || 3"
@@ -41,7 +41,7 @@
             <!-- radio -->
             <el-radio-group
               v-else-if="columns.type === 'radio'"
-              v-model="formData[columns.prop]"
+              v-model="editData[columns.prop]"
             >
               <el-radio
                 v-for="(opt, j) in columns.options"
@@ -62,7 +62,7 @@
                 >全选</el-checkbox
               >
               <el-checkbox-group
-                v-model="formData[columns.prop]"
+                v-model="editData[columns.prop]"
                 @change="handleCheckedUserGroupChange(columns)"
               >
                 <el-checkbox
@@ -78,7 +78,7 @@
               v-else-if="columns.type === 'select'"
               :multiple="columns.multiple || false"
               :disabled="columns.disabled || false"
-              v-model="formData[columns.prop]"
+              v-model="editData[columns.prop]"
               v-bind="columns.bind"
               :class="columns.class"
               :placeholder="columns.placeholder || '请选择'"
@@ -93,7 +93,7 @@
             <!-- 日期选择 -->
             <el-date-picker
               v-else-if="columns.type === 'date'"
-              v-model="formData[columns.prop]"
+              v-model="editData[columns.prop]"
               align="right"
               :type="columns.type"
               placeholder="请选择日期"
@@ -103,7 +103,7 @@
             </el-date-picker>
             <el-date-picker
               v-else-if="columns.type === 'daterange'"
-              v-model="formData[columns.prop]"
+              v-model="editData[columns.prop]"
               :type="columns.type"
               align="right"
               unlink-panels
@@ -119,7 +119,7 @@
             <!-- 日期时间选择器 -->
             <el-date-picker
               v-else-if="columns.type === 'datetimerange'"
-              v-model="formData[columns.prop]"
+              v-model="editData[columns.prop]"
               format="yyyy:MM:dd HH:mm:ss"
               :type="columns.type"
               :range-separator="columns.range"
@@ -133,7 +133,7 @@
             <area-select
               v-else-if="columns.type === 'area'"
               size="small"
-              v-model="formData[columns.prop]"
+              v-model="editData[columns.prop]"
               :level="columns.level"
               :placeholders="['请选择省份', '请选择城市', '请选择分区']"
               :data="$PCAA"
@@ -141,7 +141,7 @@
             <!-- 输入框 -->
             <el-input
               v-else
-              v-model="formData[columns.prop]"
+              v-model="editData[columns.prop]"
               v-bind="columns.bind"
               :type="columns.type || 'text'"
               :placeholder="columns.placeholder || '请输入'"
@@ -225,46 +225,18 @@ export default {
       default: () => {
         return {};
       }
-    },
-    data: {
-      pickerOptions: {
-        shortcuts: [
-          {
-            text: "最近一周",
-            onClick(picker) {
-              const end = new Date();
-              const start = new Date();
-              start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
-              picker.$emit("pick", [start, end]);
-            }
-          },
-          {
-            text: "最近一个月",
-            onClick(picker) {
-              const end = new Date();
-              const start = new Date();
-              start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
-              picker.$emit("pick", [start, end]);
-            }
-          },
-          {
-            text: "最近三个月",
-            onClick(picker) {
-              const end = new Date();
-              const start = new Date();
-              start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
-              picker.$emit("pick", [start, end]);
-            }
-          }
-        ]
-      }
     }
+  },
+  data() {
+    return {
+      editData: {}
+    };
   },
   methods: {
     // 按钮点击事件
     // methods方法名 row当前点击列数据 index当前点击的index
     handleButton(methods) {
-      this.$emit("clickButton", { methods: methods });
+      this.$emit("clickButton", { methods: methods, formData: this.editData });
     },
     // 复选框勾选
     handleCheckedUserGroupChange(columns) {
@@ -280,6 +252,11 @@ export default {
         : [];
       columns.isIndeterminate = false;
     }
+  },
+  created() {
+    this.itemColumns.map(column => {
+      this.$set(this.editData, column.prop, this.formData[column.prop]);
+    });
   }
 };
 </script>
