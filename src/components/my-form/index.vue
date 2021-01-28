@@ -142,16 +142,19 @@ export default {
         });
       }
       if (this.type === "add") {
-        this.$set(this.formData, field.field, "");
+        for (const key in this.editData) {
+          this.$set(this.formData, key, "");
+          this.$set(this.formRules, key, rules);
+        }
+        // this.$set(this.formData, field.field, "");
+        // this.$set(this.formRules, field.field, rules);
       }
-      this.$set(this.formRules, field.field, rules);
     });
     if (this.type !== "add") {
       for (const key in this.editData) {
         this.$set(this.formData, key, this.editData[key]);
       }
     }
-    // 怎么会有这么多object？
   },
   methods: {
     valueToNumber(field, v) {

@@ -1,6 +1,6 @@
 <template>
   <el-dialog
-    :title="title"
+    :title="title || ''"
     :visible="visible"
     @close="closeEditor"
     destroy-on-close
@@ -52,21 +52,12 @@ export default {
     },
     inline: {
       type: Boolean
+    },
+    title: {
+      type: String
     }
   },
   computed: {
-    title() {
-      switch (this.type) {
-        case "add":
-          return "新增xxxx";
-        case "edit":
-          return "修改xxxx";
-        case "view":
-          return "查看xxxx";
-        default:
-          return "新增xxxx";
-      }
-    },
     disabled() {
       return this.type === "view";
     }

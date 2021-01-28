@@ -10,7 +10,7 @@
           :form="MyformData.form"
           :itemColumns="MyformData.itemColumns"
           :btnData="MyformData.btnData"
-          @clickButton="clickButton"
+          @clickButton="FormclickButton"
         ></Myform>
       </el-card>
     </div>
@@ -18,7 +18,7 @@
       <div class="h-100 w-69">
         <Mytable
           :size="vehicleData.size"
-          :tableData="vehicleData.tableData"
+          :tableData="tableData"
           :tableColumns="vehicleData.tableColumns"
           :tableOption="vehicleData.tableOption"
           :HeaderCellStyle="vehicleData.HeaderCellStyle"
@@ -26,7 +26,7 @@
           @pageChange="pageChange"
           @clickButton="clickButton"
           :CardAttributes="vehicleData.CardAttributes"
-          :pagination="vehicleData.pagination"
+          :pagination="pagination"
         ></Mytable>
       </div>
       <div class="w-1"></div>
@@ -62,6 +62,7 @@
     </div>
     <Editor
       :type="editorType"
+      :editData="editData"
       :visible.sync="editorVisible"
       :fields="fields"
       @confirm="confirm"
@@ -71,6 +72,7 @@
 </template>
 
 <script>
+import { getSelectAll } from "@/api/Data_management/vehicle/index";
 import MyformData from "./vehicleform/vehicle";
 import vehicleData from "./vehicletable/vehicletable";
 import options from "./vehicleEcharts/vehicleEcharts";
@@ -88,49 +90,28 @@ export default {
           ElectricVehicle: 312
         }
       ],
+      pagination: {
+        isBackC: true,
+        isShow: true,
+        currentPage: 1,
+        size: 10,
+        total: 10
+      },
+      paramsData: {},
+      editData: {},
       editorType: "add",
       editorVisible: false,
       labelWidth: "160px",
       fields
-      // fields: [
-      //   {
-      //     label: "姓名",
-      //     field: "username",
-      //     type: "input",
-      //     dataType: "string",
-      //     required: true,
-      //     validateTrigger: "blur",
-      //     // rules: [
-      //     //   {required: true, message: '请输入姓名', trigger: 'blur'}
-      //     // ],
-      //     hidden: ["view"]
-      //   },
-      //   {
-      //     label: "性别",
-      //     field: "sex",
-      //     type: "select",
-      //     required: true,
-      //     options: [
-      //       {
-      //         label: "男",
-      //         value: 0
-      //       },
-      //       {
-      //         label: "女",
-      //         value: 1
-      //       }
-      //     ]
-      //   },
-      //   {
-      //     label: "年龄",
-      //     field: "age",
-      //     type: "input",
-      //     dataType: "number"
-      //   }
-      // ]
     };
   },
+  mounted() {},
   methods: {
+    getVehicleData() {
+      getSelectAll().then(res => {
+        console.log(res);
+      });
+    },
     openEditor(type, row) {
       console.log(type, row);
       switch (type) {
@@ -169,7 +150,9 @@ export default {
         this[val.methods](val.row);
       }
     },
+
     search() {
+      // getSelectAll().then(res => {});
       console.log("搜索");
     }
     // Increase() {}

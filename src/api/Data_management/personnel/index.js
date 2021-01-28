@@ -32,10 +32,27 @@ export function getUpdate(personinfo) {
   // console.log(data);
   const data = {};
   for (const key in personinfo) {
-    if (key === "csrq" || key === "rjRq") {
-      continue;
-    }
+    // if (key === "csrq" || key === "rjRq") {
+    //   continue;
+    // }
     data[key] = personinfo[key];
   }
   return axios.put("/personinfo/update", data);
+}
+/**
+ * 更新小区人员信息
+ * @param {JSON} personinfo personinfo 小区人员信息
+ *
+ */
+export function getInsert(personinfo) {
+  // let data = JSON.stringify(personinfo);
+  // console.log(data);
+  const data = {};
+  for (const key in personinfo) {
+    // if (key === "csrq" || key === "gxsj") {
+    //   continue;
+    // }
+    data[key] = personinfo[key];
+  }
+  return axios.post("/personinfo/insert", data);
 }

@@ -10,7 +10,7 @@
           :form="MyformData.form"
           :itemColumns="MyformData.itemColumns"
           :btnData="MyformData.btnData"
-          @clickButton="clickButton"
+          @clickButton="FormclickButton"
         ></Myform>
       </el-card>
     </div>
@@ -18,7 +18,7 @@
       <div class="h-100 w-69">
         <Mytable
           :size="HousingData.size"
-          :tableData="HousingData.tableData"
+          :tableData="tableData"
           :tableColumns="HousingData.tableColumns"
           :tableOption="HousingData.tableOption"
           :HeaderCellStyle="HousingData.HeaderCellStyle"
@@ -26,7 +26,7 @@
           @pageChange="pageChange"
           @clickButton="clickButton"
           :CardAttributes="HousingData.CardAttributes"
-          :pagination="HousingData.pagination"
+          :pagination="pagination"
         ></Mytable>
       </div>
       <div class="w-1"></div>
@@ -67,11 +67,17 @@
       :fields="fields"
       @confirm="confirm"
       :labelWidth="labelWidth"
+      :editData="editData"
     />
   </div>
 </template>
 
 <script>
+import {
+  getSelectAll,
+  getSelectOne,
+  PutUpdate
+} from "@/api/Data_management/housing/index";
 import MyformData from "./Housingform/Housing";
 import HousingData from "./Housingtable/Housingtable";
 import options from "./HousingEcharts/HousingEcharts";
@@ -94,23 +100,62 @@ export default {
           MotorVehicles: 504,
           ElectricVehicle: 312
         }
-      ]
+      ],
+      pagination: {
+        isBackC: true,
+        isShow: true,
+        currentPage: 1,
+        size: 10,
+        total: 10
+      },
+      editData: {},
+      paramsData: {
+        xqxxmc: "",
+        fwlbdm: "",
+        fzXm: "",
+        fzGmsfzhm: ""
+      }
     };
   },
+  created() {
+    this.getHousingInfo();
+  },
   methods: {
+    getHousingInfo() {
+      getSelectAll({
+        ...this.paramsData,
+        current: this.pagination.currentPage,
+        size: this.pagination.size
+      }).then(res => {
+        if (res.code === 1) {
+          this.tableData = res.data.records;
+          // this.$message.success(res.message);
+          this.pagination.total = res.data.total;
+        } else {
+          this.$message.error(res.message);
+        }
+      });
+    },
+    getColumnData(row) {
+      getSelectOne({ fwxxbz: row.fwxxbz }).then(res => {
+        if (res.code === 1) {
+          console.log(res);
+          this.editData = res.data;
+          this.editorVisible = true;
+        } else {
+          this.$message.error(res.message);
+        }
+      });
+    },
+    editColumnData(data) {
+      PutUpdate({ fwxxbz: this.editData.fwxxbz, ...data }).then(res => {
+        console.log(res);
+      });
+    },
     // 点击事件
     clickButton(val) {
       // 调用事件
-      // this[val.methods](val.row);
-      if (val.methods !== "search") {
-        this.openEditor(val.methods, val.row);
-      } else {
-        this[val.methods](val.row);
-      }
-    },
-    openEditor(type, row) {
-      console.log(type, row);
-      switch (type) {
+      switch (val.methods) {
         case "Increase":
           this.editorType = "add";
           break;
@@ -121,22 +166,49 @@ export default {
           this.editorType = "view";
           break;
       }
-      this.editorVisible = true;
+      this[val.methods](val.row);
     },
+    FormclickButton(val) {
+      switch (val.methods) {
+        case "Increase":
+          this.editorType = "add";
+          break;
+      }
+      this[val.methods](val.formData);
+    },
+    // openEditor(row) {
+    //   this.getColumnData(row);
+    //   this.editorVisible = true;
+    // },
     confirm(formData) {
-      console.log(formData);
+      this.editColumnData(formData);
       // 请求接口提交数据 等等
+      this.getHousingInfo();
       this.editorVisible = false;
     },
     // 切换当前一页展示多少条
     sizeChange(val) {
-      this.rows = val;
+      this.pagination.size = val;
+      this.getHousingInfo();
     },
     // 翻页
     pageChange(val) {
-      this.page = val;
+      this.paramsData.currentPage = val;
+      this.getHousingInfo();
     },
-    search() {}
+    search(v) {
+      console.log(v);
+      this.paramsData = { ...v };
+      this.getHousingInfo();
+    },
+    toView(row) {
+      this.getColumnData(row);
+      this.editorVisible = true;
+    },
+    editor(row) {
+      this.getColumnData(row);
+      this.editorVisible = true;
+    }
   }
 };
 </script>

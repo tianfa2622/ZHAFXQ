@@ -1,11 +1,30 @@
+// import { getHousingCategory } from "@/api/Data_management/housing/index";
+// let data = {
+//   current: 1,
+//   size: 20
+// };
+// getHousingCategory(data).then(res => {
+//   console.log(res.data.records.length);
+//   if (res.code === 1) {
+//     for (let i = 0; i < res.data.records.length; i++) {
+//       if (options.itemColumns[i].options) {
+//         options.itemColumns[i].options.push({
+//           label: res.data.records[i].categoryMc,
+//           value: res.data.records[i].id
+//         });
+//         return;
+//       }
+//     }
+//   }
+// });
 const options = {
   rules: {},
   formData: {
     area: [],
-    CommunityName: "",
-    HousingCategory: "",
-    IDNumber: "",
-    Householder: ""
+    xqxxmc: "",
+    fwlbdm: "",
+    fzXm: "",
+    fzGmsfzhm: ""
   },
   form: {
     inline: true,
@@ -22,7 +41,7 @@ const options = {
     {
       span: 5,
       label: "小区名称:",
-      prop: "CommunityName",
+      prop: "xqxxmc",
       type: "text",
       clearable: true,
       class: ""
@@ -30,24 +49,44 @@ const options = {
     {
       span: 5,
       label: "房屋类别：",
-      prop: "HousingCategory",
+      prop: "fwlbdm",
       type: "select",
       class: "",
       options: [
         {
-          label: "机动车",
-          value: 1
+          label: "单元楼或公寓楼",
+          value: 10
         },
         {
-          label: "电动车",
-          value: 2
+          label: "筒子楼",
+          value: 20
+        },
+        {
+          label: "别墅",
+          value: 30
+        },
+        {
+          label: "自建楼",
+          value: 40
+        },
+        {
+          label: "平房",
+          value: 50
+        },
+        {
+          label: "四合院",
+          value: 60
+        },
+        {
+          label: "其他",
+          value: 90
         }
       ]
     },
     {
       span: 5,
       label: "户主姓名：",
-      prop: "Householder",
+      prop: "fzXm",
       type: "text",
       class: "",
       clearable: true
@@ -55,7 +94,7 @@ const options = {
     {
       span: 7,
       label: "身份证号码：",
-      prop: "IDNumber",
+      prop: " fzGmsfzhm",
       type: "text",
       clearable: true,
       class: "",
@@ -83,4 +122,5 @@ const options = {
     ]
   }
 };
+
 export default options;

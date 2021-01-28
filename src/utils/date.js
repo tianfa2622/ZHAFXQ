@@ -1,7 +1,7 @@
 /**
  * 日期格式 ----> 2021-1-8 星期五 09:09:09
  */
-export function getCurrentDate() {
+export function getCurrentDate(Timestamp) {
   let myDate = new Date();
   let Year = myDate.getFullYear(); // 年
   let Month = myDate.getMonth() + 1; // 月
@@ -34,21 +34,31 @@ export function getCurrentDate() {
       days = "星期日";
       break;
   }
-  let str =
-    Year +
-    "年" +
-    zeroFill(Month) +
-    "月" +
-    zeroFill(Day) +
-    "日" +
-    " " +
-    days +
-    " " +
-    zeroFill(Hour) +
-    ":" +
-    zeroFill(Min) +
-    ":" +
-    zeroFill(seconds);
+  let str;
+  if (Timestamp) {
+    str =
+      Year +
+      "-" +
+      zeroFill(Month) +
+      "-" +
+      zeroFill(Day) +
+      " " +
+      zeroFill(Hour) +
+      ":" +
+      zeroFill(Min) +
+      ":" +
+      zeroFill(seconds);
+  } else {
+    str =
+      Year + "年" + zeroFill(Month) + "月" + zeroFill(Day) + "日" + " " + days;
+    // +
+    // " " +
+    // zeroFill(Hour) +
+    // ":" +
+    // zeroFill(Min) +
+    // ":" +
+    // zeroFill(seconds);
+  }
 
   return str;
 }

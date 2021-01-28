@@ -41,6 +41,7 @@
       </el-tab-pane>
     </el-tabs>
     <Editor
+      :title="title"
       :type="editorType"
       :width="width"
       :editData="editData"
@@ -56,8 +57,10 @@
 import {
   getSelectOne,
   getSelectAll,
-  getUpdate
+  getUpdate,
+  getInsert
 } from "@/api/Data_management/personnel/index";
+import { getCurrentDate } from "@/utils/date.js";
 import ThePermanent from "./personnelTable/ThePermanent";
 import FloatingPopulation from "./personnelTable/FloatingPopulation";
 import MyformData from "./personnelForm/personnelform";
@@ -93,7 +96,7 @@ export default {
         isShow: true,
         currentPage: 1,
         size: 10,
-        total: 20
+        total: 10
       },
       paramsData: {
         rkdjlx: "1",
@@ -108,13 +111,27 @@ export default {
     this.getPersonnelInfo();
   },
   mounted() {},
+  computed: {
+    title() {
+      switch (this.editorType) {
+        case "add":
+          return "添加人员信息";
+        case "edit":
+          return "修改人员信息";
+        case "view":
+          return "查看人员信息";
+        default:
+          return "新增人员信息";
+      }
+    }
+  },
   methods: {
     getPersonnelInfo() {
       this.paramsData.rkdjlx = this.activeName;
       getSelectAll({
-        ...this.paramsData
-        // current: this.pagination.currentPage,
-        // size: this.pagination.rows
+        ...this.paramsData,
+        current: this.pagination.currentPage,
+        size: this.pagination.size
       }).then(res => {
         if (res.code === 1) {
           this.tableData = res.data.records;
@@ -152,30 +169,53 @@ export default {
       });
     },
     confirm(formData) {
-      getUpdate(formData).then(res => {
-        if (res.code === 1) {
-          this.$message.success(res.message);
-          this.editorVisible = false;
-          this.getPersonnelInfo();
-        } else {
-          this.$message.error(res.message);
-        }
-      });
+      if (this.editorType !== "add") {
+        getUpdate(formData).then(res => {
+          if (res.code === 1) {
+            this.$message.success(res.message);
+            this.editorVisible = false;
+            this.getPersonnelInfo();
+          } else {
+            this.$message.error(res.message);
+          }
+        });
+        // this.editorVisible = false;
+      } else {
+        let gxsj = getCurrentDate(true);
+        let rkdjlx = this.activeName;
+        let ryxxbz = this.pagination.total + 1;
+        // let csrq = "2020-12-12";
+        formData.gxsj = gxsj;
+        // formData.csrq = csrq;
+        formData.rkdjlx = rkdjlx;
+        formData.ryxxbz = ryxxbz;
+        formData.xqxxbz = "1";
+        formData.cyzjdm = "1";
+        formData.zjhm = "4565132158498";
+        formData.hjdzXzqhdm = "1";
+        console.log(formData);
+        getInsert(formData).then(res => {
+          if (res.code === 1) {
+            this.$message.success(res.message);
+            this.editorVisible = false;
+            this.getPersonnelInfo();
+          } else {
+            this.$message.error(res.message);
+          }
+        });
+      }
+
       // 请求接口提交数据 等等
-      this.editorVisible = false;
     },
     // 切换当前一页展示多少条
     sizeChange(val) {
-      console.log(val);
-      this.tabsData.pagination.rows = val;
-      this.rows = val;
+      this.pagination.size = val;
+      this.getPersonnelInfo();
     },
     // 翻页
     pageChange(val) {
-      console.log(val);
       this.paramsData.current = val;
       this.getPersonnelInfo();
-      this.page = val;
     },
     handleClick() {
       if (this.activeName === "1") {
@@ -205,8 +245,9 @@ export default {
       // this.paramsData.push({ rkdjlx: this.activeName });
       this.getPersonnelInfo();
     },
+    // eslint-disable-next-line no-unused-vars
     Increase(v) {
-      this.openEditor(v.methods, v.formData);
+      this.editorVisible = true;
     },
     editor(row) {
       this.openEditor(row);

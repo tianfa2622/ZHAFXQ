@@ -1,4 +1,3 @@
-import { getSelectAll } from "@/api/Data_management/housing/index";
 const options = {
   size: "small",
   CardAttributes: {
@@ -58,27 +57,6 @@ const options = {
         style: "color:#39c5aa"
       }
     ]
-  },
-  // 表格数据
-  tableData: [],
-  pagination: {
-    isBackC: true,
-    isShow: true,
-    currentPage: 1,
-    rows: 10,
-    total: 20
   }
 };
-let paramsData = {
-  fwlbdm: "",
-  fzGMsfzhm: ""
-};
-getSelectAll(paramsData).then(res => {
-  if (res.code === 1) {
-    options.tableData = res.data.records;
-  } else {
-    this.$message.error(res.message);
-  }
-  console.log(res);
-});
 export default options;
