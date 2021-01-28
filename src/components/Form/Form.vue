@@ -227,6 +227,17 @@ export default {
       }
     }
   },
+  watch: {
+    formData: {
+      handler: function() {
+        this.itemColumns.map(column => {
+          this.$set(this.editData, column.prop, this.formData[column.prop]);
+        });
+      },
+      deep: true,
+      immediate: true
+    }
+  },
   data() {
     return {
       editData: {}
@@ -252,11 +263,6 @@ export default {
         : [];
       columns.isIndeterminate = false;
     }
-  },
-  created() {
-    this.itemColumns.map(column => {
-      this.$set(this.editData, column.prop, this.formData[column.prop]);
-    });
   }
 };
 </script>

@@ -19,7 +19,7 @@ const fields = [
     dataType: "string"
   },
   {
-    label: "性别",
+    label: "性别：",
     field: "xbdm",
     type: "select",
     options: [
@@ -38,7 +38,7 @@ const fields = [
     ]
   },
   {
-    label: "国籍",
+    label: "国籍：",
     field: "gjdm",
     type: "select",
     options: [
@@ -144,7 +144,7 @@ const fields = [
   },
   {
     label: "宗教信仰：",
-    field: "zjxydm:",
+    field: "zjxydm",
     type: "select",
     options: [
       {

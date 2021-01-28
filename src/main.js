@@ -15,6 +15,7 @@ import "@/utils/axios";
 Vue.config.productionTip = false;
 Vue.prototype.$PCAA = PCAA;
 Vue.prototype.$echarts = echarts;
+Vue.prototype.cl = console.log;
 Vue.use(VueArealinkage);
 
 Vue.use(BaiduMap, {

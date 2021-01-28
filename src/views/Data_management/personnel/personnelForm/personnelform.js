@@ -1,13 +1,5 @@
 const options = {
   rules: {},
-  formData: {
-    area: [],
-    xqxxbz: "",
-    // VillageName: "",
-    xm: "",
-    zjhm: "",
-    hjdzQhnxxdz: ""
-  },
   form: {
     inline: true,
     size: "small"

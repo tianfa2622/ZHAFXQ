@@ -203,11 +203,9 @@ export default {
     },
     toView(row) {
       this.getColumnData(row);
-      this.editorVisible = true;
     },
     editor(row) {
       this.getColumnData(row);
-      this.editorVisible = true;
     }
   }
 };

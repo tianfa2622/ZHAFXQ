@@ -18,7 +18,7 @@
       >
         <el-card class="card_style">
           <Myform
-            :formData="MyformData.formData"
+            :formData="paramsData"
             :form="MyformData.form"
             :itemColumns="MyformData.itemColumns"
             :btnData="MyformData.btnData"
@@ -45,6 +45,7 @@
       :type="editorType"
       :width="width"
       :editData="editData"
+      v-if="editorVisible"
       :visible.sync="editorVisible"
       :fields="fields"
       @confirm="confirm"
@@ -99,6 +100,7 @@ export default {
         total: 10
       },
       paramsData: {
+        area: [],
         rkdjlx: "1",
         xm: "",
         xqxxbz: "",
@@ -136,6 +138,18 @@ export default {
         if (res.code === 1) {
           this.tableData = res.data.records;
           this.pagination.total = res.data.total;
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
+        } else {
+          this.$message.error(res.message);
+        }
+      });
+    },
+    putUpDate(formData) {
+      getUpdate(formData).then(res => {
+        if (res.code === 1) {
+          this.$message.success(res.message);
+          this.editorVisible = false;
+          this.getPersonnelInfo();
         } else {
           this.$message.error(res.message);
         }
@@ -143,18 +157,6 @@ export default {
     },
     // table点击事件
     clickButton(val) {
-      // this.openEditor(val.methods, val.row);
-      switch (val.methods) {
-        case "Increase":
-          this.editorType = "add";
-          break;
-        case "editor":
-          this.editorType = "edit";
-          break;
-        case "toView":
-          this.editorType = "view";
-          break;
-      }
       this[val.methods](val.row);
     },
     // 弹出框数据
@@ -170,25 +172,16 @@ export default {
     },
     confirm(formData) {
       if (this.editorType !== "add") {
-        getUpdate(formData).then(res => {
-          if (res.code === 1) {
-            this.$message.success(res.message);
-            this.editorVisible = false;
-            this.getPersonnelInfo();
-          } else {
-            this.$message.error(res.message);
-          }
-        });
-        // this.editorVisible = false;
+        this.putUpDate(formData);
       } else {
         let gxsj = getCurrentDate(true);
         let rkdjlx = this.activeName;
-        let ryxxbz = this.pagination.total + 1;
+        // let ryxxbz = this.pagination.total + 1;
         // let csrq = "2020-12-12";
         formData.gxsj = gxsj;
         // formData.csrq = csrq;
         formData.rkdjlx = rkdjlx;
-        formData.ryxxbz = ryxxbz;
+        // formData.ryxxbz = ryxxbz;
         formData.xqxxbz = "1";
         formData.cyzjdm = "1";
         formData.zjhm = "4565132158498";
@@ -214,30 +207,19 @@ export default {
     },
     // 翻页
     pageChange(val) {
-      this.paramsData.current = val;
+      this.pagination.currentPage = val;
       this.getPersonnelInfo();
     },
     handleClick() {
+      this.tableData = [];
       if (this.activeName === "1") {
         this.tabsData = ThePermanent;
-        this.getPersonnelInfo();
       } else {
         this.tabsData = FloatingPopulation;
-        this.getPersonnelInfo();
       }
+      this.getPersonnelInfo();
     },
     FormclickButton(val) {
-      switch (val.methods) {
-        case "Increase":
-          this.editorType = "add";
-          break;
-        case "editor":
-          this.editorType = "edit";
-          break;
-        case "toView":
-          this.editorType = "view";
-          break;
-      }
       this[val.methods](val.formData);
     },
     search(v) {
@@ -247,12 +229,15 @@ export default {
     },
     // eslint-disable-next-line no-unused-vars
     Increase(v) {
+      this.editorType = "add";
       this.editorVisible = true;
     },
     editor(row) {
+      this.editorType = "edit";
       this.openEditor(row);
     },
     toView(row) {
+      this.editorType = "view";
       this.openEditor(row);
     }
   }

@@ -35,7 +35,7 @@
                 :style="field.style || ''"
                 :src="
                   formData[field.field] ||
-                  'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg'
+                    'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg'
                 "
                 :fit="fit"
               ></el-image>
@@ -51,7 +51,7 @@
                 :lazy="true"
                 :src="
                   formData[field.field] ||
-                  'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg'
+                    'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg'
                 "
                 :fit="fit"
               ></el-image>
@@ -142,12 +142,12 @@ export default {
         });
       }
       if (this.type === "add") {
-        for (const key in this.editData) {
-          this.$set(this.formData, key, "");
-          this.$set(this.formRules, key, rules);
-        }
-        // this.$set(this.formData, field.field, "");
-        // this.$set(this.formRules, field.field, rules);
+        // for (const key in this.editData) {
+        // this.$set(this.formData, key, "");
+        // this.$set(this.formRules, key, rules);
+        // }
+        this.$set(this.formData, field.field, "");
+        this.$set(this.formRules, field.field, rules);
       }
     });
     if (this.type !== "add") {
