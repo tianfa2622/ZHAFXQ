@@ -33,7 +33,7 @@ export function getSelectOne(data) {
 }
 /**
  * 编辑表格每列数据
- * @param {object} data
+ * @param {object} housingodata
  * @returns {import("axios").AxiosPromise.data}
  */
 export function PutUpdate(housingodata) {
@@ -46,6 +46,22 @@ export function PutUpdate(housingodata) {
   }
 
   return axios.put("/houseinfo/update", data);
+}
+/**
+ * 添加房屋数据
+ * @param {object} housingodata
+ * @returns {import("axios").AxiosPromise.data}
+ */
+export function PostInsert(housingodata) {
+  // const data = {};
+  // for (const key in housingodata) {
+  //   if (key === "dqjd" || key === "dqwd" || key === "jzMjpfm") {
+  //     continue;
+  //   }
+  //   data[key] = housingodata[key];
+  // }
+
+  return axios.post("/houseinfo/insert", housingodata);
 }
 // /**
 //  * 获取小区车辆档案表格信息

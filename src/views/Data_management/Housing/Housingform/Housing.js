@@ -19,13 +19,6 @@
 // });
 const options = {
   rules: {},
-  formData: {
-    area: [],
-    xqxxmc: "",
-    fwlbdm: "",
-    fzXm: "",
-    fzGmsfzhm: ""
-  },
   form: {
     inline: true,
     size: "small"
@@ -55,31 +48,31 @@ const options = {
       options: [
         {
           label: "单元楼或公寓楼",
-          value: 10
+          value: "10"
         },
         {
           label: "筒子楼",
-          value: 20
+          value: "20"
         },
         {
           label: "别墅",
-          value: 30
+          value: "30"
         },
         {
           label: "自建楼",
-          value: 40
+          value: "40"
         },
         {
           label: "平房",
-          value: 50
+          value: "50"
         },
         {
           label: "四合院",
-          value: 60
+          value: "60"
         },
         {
           label: "其他",
-          value: 90
+          value: "90"
         }
       ]
     },
@@ -116,7 +109,7 @@ const options = {
         type: "primary",
         style: "",
         size: "small",
-        methods: "Increase",
+        methods: "add",
         label: "新增"
       }
     ]

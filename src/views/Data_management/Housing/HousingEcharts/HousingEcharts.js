@@ -2,7 +2,7 @@
 let dashedPic =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAM8AAAAOBAMAAAB6G1V9AAAAD1BMVEX////Kysrk5OTj4+TJycoJ0iFPAAAAG0lEQVQ4y2MYBaNgGAMTQQVFOiABhlEwCugOAMqzCykGOeENAAAAAElFTkSuQmCC";
 let color = ["#00e473", "#009DFF"];
-let chartData = [
+export let chartData = [
   {
     name: "自住房",
     value: 13211,
@@ -19,7 +19,6 @@ let arrValue = [];
 let sum = 0;
 let pieSeries = [],
   lineYAxis = [];
-
 // 数据处理
 chartData.forEach((v, i) => {
   arrName.push(v.name);
@@ -115,7 +114,7 @@ const options = {
         show: false
       },
       axisLabel: {
-        formatter: function(params) {
+        formatter: function (params) {
           let item = chartData[params];
           console.log(item);
           return (

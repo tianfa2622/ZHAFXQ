@@ -29,20 +29,20 @@
                 src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png"
               />
             </el-avatar>
-            <div class="block" v-if="field.type === 'image'">
+            <div class="block" v-else-if="field.type === 'image'">
               <el-image
                 :lazy="true"
                 :style="field.style || ''"
                 :src="
                   formData[field.field] ||
-                    'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg'
+                  'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg'
                 "
                 :fit="fit"
               ></el-image>
               <p class="demonstration">{{ field.title }}</p>
             </div>
             <el-popover
-              v-if="field.type === 'popover'"
+              v-else-if="field.type === 'popover'"
               placement="right"
               width="400"
               trigger="click"
@@ -51,14 +51,14 @@
                 :lazy="true"
                 :src="
                   formData[field.field] ||
-                    'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg'
+                  'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg'
                 "
                 :fit="fit"
               ></el-image>
               <el-button type="text" slot="reference">查看图片</el-button>
             </el-popover>
             <el-input
-              v-if="field.type === 'input'"
+              v-else-if="field.type === 'input'"
               v-model="formData[field.field]"
               :disabled="field.disabled || false"
               :style="field.style || ''"
@@ -68,7 +68,7 @@
               "
             />
             <el-select
-              v-if="field.type === 'select'"
+              v-else-if="field.type === 'select'"
               v-model="formData[field.field]"
               :style="field.style || ''"
               class="w-100"
@@ -81,7 +81,7 @@
               />
             </el-select>
             <el-input
-              v-if="field.type === 'textarea'"
+              v-else-if="field.type === 'textarea'"
               type="textarea"
               :style="field.style || ''"
               :rows="4"

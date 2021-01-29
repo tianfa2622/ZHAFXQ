@@ -6,7 +6,7 @@
       </el-breadcrumb>
       <el-card class="card_style" body-style="padding-bottom: 0px;">
         <Myform
-          :formData="MyformData.formData"
+          :formData="paramsData"
           :form="MyformData.form"
           :itemColumns="MyformData.itemColumns"
           :btnData="MyformData.btnData"
@@ -36,33 +36,27 @@
           :body-style="{ padding: '0px', height: 'calc(100% - 53px)' }"
         >
           <div slot="header">
-            <span>小区车辆类别</span>
+            <span>小区房屋类别</span>
           </div>
           <div class="w-100 h-70">
             <MyEcharts :option="options"></MyEcharts>
           </div>
-          <el-table border :data="tableData" style="width: 100%">
-            <el-table-column prop="number" :resizable="false">
+          <el-table border class="right_table" :data="classification">
+            <el-table-column type="index" width="50" align="center">
             </el-table-column>
-            <el-table-column
-              prop="MotorVehicles"
-              :resizable="false"
-              label="机动车"
-            >
+            <el-table-column prop="categoryMc" :resizable="false" label="类别">
             </el-table-column>
-            <el-table-column
-              prop="ElectricVehicle"
-              :resizable="false"
-              label="电动车"
-            >
+            <el-table-column prop="id" :resizable="false" label="数量">
             </el-table-column>
           </el-table>
         </el-card>
       </div>
     </div>
     <Editor
+      :title="title"
       :type="editorType"
       :width="width"
+      v-if="editorVisible"
       :visible.sync="editorVisible"
       :fields="fields"
       @confirm="confirm"
@@ -76,7 +70,9 @@
 import {
   getSelectAll,
   getSelectOne,
-  PutUpdate
+  PutUpdate,
+  PostInsert,
+  getHousingCategory
 } from "@/api/Data_management/housing/index";
 import MyformData from "./Housingform/Housing";
 import HousingData from "./Housingtable/Housingtable";
@@ -95,12 +91,13 @@ export default {
       width: "60%",
       labelWidth: "230px",
       tableData: [
-        {
-          number: "数量",
-          MotorVehicles: 504,
-          ElectricVehicle: 312
-        }
+        // {
+        //   number: "数量",
+        //   MotorVehicles: 504,
+        //   ElectricVehicle: 312
+        // }
       ],
+      classification: [],
       pagination: {
         isBackC: true,
         isShow: true,
@@ -110,6 +107,7 @@ export default {
       },
       editData: {},
       paramsData: {
+        area: [],
         xqxxmc: "",
         fwlbdm: "",
         fzXm: "",
@@ -119,6 +117,21 @@ export default {
   },
   created() {
     this.getHousingInfo();
+    this.getCategoryData();
+  },
+  computed: {
+    title() {
+      switch (this.editorType) {
+        case "add":
+          return "添加房屋信息";
+        case "edit":
+          return "编辑房屋信息";
+        case "view":
+          return "查看房屋信息";
+        default:
+          return "新增房屋信息";
+      }
+    }
   },
   methods: {
     getHousingInfo() {
@@ -129,7 +142,6 @@ export default {
       }).then(res => {
         if (res.code === 1) {
           this.tableData = res.data.records;
-          // this.$message.success(res.message);
           this.pagination.total = res.data.total;
         } else {
           this.$message.error(res.message);
@@ -147,41 +159,57 @@ export default {
         }
       });
     },
-    editColumnData(data) {
-      PutUpdate({ fwxxbz: this.editData.fwxxbz, ...data }).then(res => {
-        console.log(res);
+    editHousingData(data) {
+      PutUpdate(data).then(res => {
+        if (res.code === 1) {
+          this.$message.success(res.message);
+          this.editorVisible = false;
+          this.getHousingInfo();
+        } else {
+          this.$message.error(res.message);
+        }
+      });
+    },
+    addHousingData(data) {
+      PostInsert(data).then(res => {
+        if (res.code === 1) {
+          console.log(res);
+          this.$message.success(res.message);
+        } else {
+          this.$message.error(res.message);
+        }
+      });
+    },
+    getCategoryData() {
+      getHousingCategory({
+        currentPage: this.pagination.currentPage,
+        size: this.pagination.size
+      }).then(res => {
+        if (res.code === 1) {
+          this.classification = res.data.records;
+          // for (const key in data) {
+          //   chartData.push({
+          //     name: key,
+          //     value: data[key],
+          //     unit: "栋"
+          //   });
+        }
       });
     },
     // 点击事件
     clickButton(val) {
-      // 调用事件
-      switch (val.methods) {
-        case "Increase":
-          this.editorType = "add";
-          break;
-        case "editor":
-          this.editorType = "edit";
-          break;
-        case "toView":
-          this.editorType = "view";
-          break;
-      }
       this[val.methods](val.row);
     },
     FormclickButton(val) {
-      switch (val.methods) {
-        case "Increase":
-          this.editorType = "add";
-          break;
-      }
       this[val.methods](val.formData);
     },
-    // openEditor(row) {
-    //   this.getColumnData(row);
-    //   this.editorVisible = true;
-    // },
     confirm(formData) {
-      this.editColumnData(formData);
+      console.log(formData);
+      if (this.editorType === "add") {
+        this.addHousingData(formData);
+      } else {
+        this.editHousingData(formData);
+      }
       // 请求接口提交数据 等等
       this.getHousingInfo();
       this.editorVisible = false;
@@ -197,14 +225,19 @@ export default {
       this.getHousingInfo();
     },
     search(v) {
-      console.log(v);
       this.paramsData = { ...v };
       this.getHousingInfo();
     },
+    add() {
+      this.editorType = "add";
+      this.editorVisible = true;
+    },
     toView(row) {
+      this.editorType = "view";
       this.getColumnData(row);
     },
     editor(row) {
+      this.editorType = "edit";
       this.getColumnData(row);
     }
   }
@@ -225,6 +258,14 @@ export default {
       width: 1%;
     }
   }
+}
+.right_table {
+  height: 30%;
+  width: 100%;
+  margin: 0 5px;
+  overflow: overlay !important;
+  // height: 30%;
+  // overflow: overlay;
 }
 ::v-deep .el-breadcrumb__item {
   margin: 10px 0px 10px 10px;

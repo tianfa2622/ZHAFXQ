@@ -1,31 +1,37 @@
 const fields = [
   {
     label: "小区名称：",
-    field: "CommunityName1:",
+    field: "xqxxbz",
     type: "input",
     dataType: "string"
   },
   {
     label: "单位名称：",
-    field: "CommunityName:",
+    field: "dwmc",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "单位信息标识",
+    field: "dwxxbs",
     type: "input",
     dataType: "string"
   },
   {
     label: "单位英文名称：",
-    field: "ownersName",
+    field: "dwywmc",
     type: "input",
     dataType: "string"
   },
   {
     label: "法人姓名：",
-    field: "Telephone",
+    field: "djr",
     type: "input",
     dataType: "string"
   },
   {
     label: "单位英文缩写：",
-    field: "idCard",
+    field: "dwywsx",
     type: "input",
     dataType: "string"
   },
@@ -46,127 +52,134 @@ const fields = [
   // },
   {
     label: "营业执照号：",
-    field: "Licenseplate1",
+    field: "yyzzh",
     type: "input",
     dataType: "string"
   },
   {
     label: "统一社会信用代码：",
-    field: "licensePlate2:",
+    field: "tyshxydm",
     type: "input",
     dataType: "string"
   },
   {
     label: "营业执照有效日期：",
-    field: "NumberPlateColor:",
+    field: "yyzzyxq",
     type: "input",
     dataType: "string"
   },
   {
-    label: "经济类别：",
-    field: "ChineseBrandName:",
+    label: "经济类型：",
+    field: "jjlxdm",
     type: "input",
     dataType: "string"
   },
   {
     label: "经营范围(主营)：",
-    field: "VehicleVolume",
+    field: "jyfwzy",
     type: "input",
     dataType: "string"
   },
   {
     label: "经营范围(兼营)：",
-    field: "ColorCar:",
+    field: "jyfwjy",
     type: "input",
     dataType: "string"
   },
   {
     label: "经营方式：",
-    field: "VehicleModel",
+    field: "jyfs",
     type: "input",
     dataType: "string"
   },
   {
     label: "行业类别：",
-    field: "BriefSituation",
+    field: "hylbdm",
     type: "input",
     dataType: "string"
   },
   {
     label: "单位联系电话：",
-    field: "RegistrantName",
+    field: "dwLxdh",
     type: "input",
     dataType: "string"
   },
   {
     label: "区域内详细地址：",
-    field: "RegistrantPhoneNumber:",
+    field: "dwQhnxxdz",
     type: "input",
     dataType: "string"
   },
   {
     label: "委托代理人姓名：",
-    field: "DataUpdate:",
+    field: "wtdlrXm",
     type: "input",
     dataType: "string"
   },
   {
     label: "委托代理人联系电话：",
-    field: "DataSources",
+    field: "wtdlrLxdh",
     type: "input",
     dataType: "string"
   },
   {
     label: "委托代理人身份证号码：",
-    field: "DataStatus",
+    field: "wtdlrGmsfzhm",
     type: "input",
     dataType: "string"
   },
   {
     label: "地址：",
-    field: "DataStatus3",
+    field: "dzmc",
     type: "input",
     dataType: "string"
   },
   {
     label: "登记人姓名：",
-    field: "DataStatus4",
+    field: "djrXm",
     type: "input",
     dataType: "string"
   },
   {
     label: "登记人身份证号：",
-    field: "DataStatus5",
+    field: "djrGmsfzhm",
     type: "input",
     dataType: "string"
   },
   {
     label: "登记人联系电话：",
-    field: "DataStatus6",
+    field: "djrLxdh",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "治安管理单位：",
+    fields: "zagldwbm",
     type: "input",
     dataType: "string"
   },
   {
     label: "治安管理信息所属警务责任区：",
-    field: "DataStatus7",
+    field: "zaglxxssjwzrqdm",
     type: "input",
     dataType: "string"
   },
   {
     label: "数据更新时间：",
-    field: "DataStatus8",
+    field: "gxsj",
     type: "input",
     dataType: "string"
   },
   {
     label: "数据来源：",
-    field: "DataStatus9",
+    field: "sjly",
     type: "input",
     dataType: "string"
   },
   {
     label: "数据状态：",
-    field: "DataStatus0",
+    // span: 24,
+    field: "sjzt",
     type: "input",
     dataType: "string"
   }

@@ -35,6 +35,33 @@ const fields = [
     type: "select",
     options: [
       {
+        label: "自住房",
+        value: "10"
+      },
+      {
+        label: "出租房",
+        value: "20"
+      }
+    ]
+  },
+  {
+    label: "建筑面积(㎡)：",
+    field: "jzMjpfm",
+    type: "input",
+    dataType: "object"
+  },
+  {
+    label: "房屋间数：",
+    field: "fwjs",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "房屋类别",
+    field: "fwlbdm",
+    type: "select",
+    options: [
+      {
         label: "单元楼或公寓楼",
         value: "10"
       },
@@ -63,18 +90,6 @@ const fields = [
         value: "90"
       }
     ]
-  },
-  {
-    label: "建筑面积(㎡)：",
-    field: "jzMjpfm",
-    type: "input",
-    dataType: "object"
-  },
-  {
-    label: "房屋间数：",
-    field: "fwjs",
-    type: "input",
-    dataType: "string"
   },
   {
     label: "是否为重点房屋：",
@@ -229,7 +244,8 @@ const fields = [
   {
     label: "数据状态：",
     field: "sjzt",
-    type: "input",
+    type: "select",
+    span: 24,
     options: [
       {
         label: "已更新",

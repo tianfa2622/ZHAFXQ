@@ -1,12 +1,5 @@
 const options = {
   rules: {},
-  formData: {
-    area: [],
-    CommunityName: "",
-    companyName: "",
-    CorporateName: "",
-    SocialCreditCode: ""
-  },
   form: {
     inline: true,
     size: "small"
@@ -22,7 +15,7 @@ const options = {
     {
       span: 5,
       label: "小区名称:",
-      prop: "CommunityName",
+      prop: "xqxxbz",
       type: "text",
       clearable: true,
       class: ""
@@ -30,7 +23,7 @@ const options = {
     {
       span: 5,
       label: "法人姓名：",
-      prop: "CorporateName",
+      prop: "djr",
       type: "text",
       clearable: true,
       class: ""
@@ -38,7 +31,7 @@ const options = {
     {
       span: 5,
       label: "单位名称：",
-      prop: "companyName",
+      prop: "dwmc",
       type: "text",
       class: "",
       clearable: true
@@ -46,7 +39,7 @@ const options = {
     {
       span: 7,
       label: "统一社会信用代码：",
-      prop: "SocialCreditCode",
+      prop: "tyshxydm",
       type: "text",
       class: "",
       clearable: true,
@@ -68,7 +61,7 @@ const options = {
         type: "primary",
         style: "",
         size: "small",
-        methods: "Increase",
+        methods: "add",
         label: "新增"
       }
     ]

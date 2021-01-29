@@ -1,4 +1,3 @@
-import { getSelectAll } from "@/api/Data_management/Residential_units/index";
 const options = {
   size: "small",
   CardAttributes: {
@@ -25,7 +24,7 @@ const options = {
     },
     {
       label: "单位地址",
-      param: "dwQhnxxdz",
+      param: "dzmc",
       align: "center"
     },
     {
@@ -51,27 +50,6 @@ const options = {
         methods: "editor"
       }
     ]
-  },
-  // 表格数据
-  tableData: [],
-  pagination: {
-    isBackC: true,
-    isShow: true,
-    currentPage: 1,
-    rows: 10,
-    total: 20
   }
 };
-let paramsData = {
-  dwmc: "",
-  tyshxydm: "",
-  wtdlrXM: ""
-};
-getSelectAll(paramsData).then(res => {
-  if (res.code === 1) {
-    options.tableData = res.data.records;
-  } else {
-    this.$message.error(res.message);
-  }
-});
 export default options;
