@@ -13,8 +13,8 @@
     <div class="bottom_Content dflex">
       <div class="h-100 w-60">
         <el-popover
-          v-for="o in 3"
-          :key="o"
+          v-for="(item, index) in parkingData"
+          :key="index"
           placement="bottom"
           width="350"
           trigger="hover"
@@ -41,52 +41,55 @@
                   <el-col :span="12">
                     <span>停车场编号:</span>
                     <span style="display: inline-block; width: 20px"> </span>
-                    <span>12356</span>
+                    <span>{{ item.tccbh }}</span>
                   </el-col>
                   <el-col :span="12">
                     <span>管理单位名称:</span>
                     <span style="display: inline-block; width: 20px"> </span>
-                    <span>12356</span>
+                    <span>{{ item.gldwDwmc }}</span>
                   </el-col>
                   <el-col :span="12">
                     <span>停车场类型:</span>
                     <span style="display: inline-block; width: 20px"> </span>
-                    <span>12356</span>
+                    <span>{{ item.tcclx }}</span>
                   </el-col>
                   <el-col :span="12">
                     <span>管理单位电话:</span>
                     <span style="display: inline-block; width: 20px"> </span>
-                    <span>12356</span>
+                    <span>{{ item.gldwLxdh }}</span>
                   </el-col>
                   <el-col :span="12">
                     <span>停车位数量:</span>
                     <span style="display: inline-block; width: 20px"> </span>
-                    <span>12356</span>
+                    <span>{{ item.tcwSl }}</span>
                   </el-col>
                   <el-col :span="12">
                     <span>停车场出入口数:</span>
                     <span style="display: inline-block; width: 20px"> </span>
-                    <span>12356</span>
+                    <span>{{ item.sl }}</span>
                   </el-col>
                 </el-row>
               </div>
               <div class="Right_state">
                 <div class="img_box">
                   <img
-                    v-if="o === 1"
+                    v-if="item.syztdm === '10'"
                     src="../../../../../assets/images/parkinglot/u1462.png"
                   />
                   <img
-                    v-if="o === 2"
+                    v-if="item.syztdm === '20'"
                     src="../../../../../assets/images/parkinglot/u1472.png"
                   />
                   <img
-                    v-if="o === 3"
+                    v-if="item.syztdm === '30'"
                     src="../../../../../assets/images/parkinglot/u1480.png"
                   />
-                  <span v-if="o === 1">使用中</span>
-                  <span v-if="o === 2">停用</span>
-                  <span v-if="o === 3">废弃</span>
+                  <span v-if="item.syztdm === '10'">使用中</span>
+                  <span v-else-if="item.syztdm === '20'">停用</span>
+                  <span v-else-if="item.syztdm === '30'">废弃</span>
+                  <span v-else-if="item.syztdm === '40'">维修</span>
+                  <span v-else-if="item.syztdm === '50'">报废</span>
+                  <span v-else-if="item.syztdm === '60'">其他</span>
                 </div>
               </div>
             </div>
@@ -151,6 +154,7 @@
 </template>
 
 <script>
+import { getSelectAll } from "@/api/Data_management/index/Parkinglot/index";
 import MyEcharts from "@/components/echarts/index";
 import ParkingSpace from "./ParkinglotEcharts/ParkingSpaceEcharts";
 import UseStatus from "./ParkinglotEcharts/UseStatusEcharts";
@@ -173,6 +177,7 @@ export default {
       UseStatus,
       ParkingSpace,
       formData: {},
+      parkingData: [],
       fields,
       fields1,
       editorType: "view",
@@ -182,12 +187,24 @@ export default {
       type: "view"
     };
   },
+  created() {
+    this.getSelectAllInfo();
+  },
   computed: {
     disabled() {
       return this.type === "view";
     }
   },
   methods: {
+    getSelectAllInfo() {
+      getSelectAll().then(res => {
+        if (res.code === 1) {
+          this.parkingData = res.data.records;
+        } else {
+          this.$message.error(res.message);
+        }
+      });
+    },
     openEditor(type, row) {
       console.log(type, row);
       switch (type) {

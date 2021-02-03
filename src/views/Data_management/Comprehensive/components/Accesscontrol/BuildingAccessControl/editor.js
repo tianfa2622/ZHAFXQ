@@ -1,79 +1,89 @@
 const fields = [
   {
     label: "姓名：",
-    field: "name",
+    field: "xm",
     type: "input",
     dataType: "string"
   },
   {
     label: "身份证号码：",
-    field: "CommunityName:",
+    field: "gmsfzhm",
     type: "input",
     dataType: "string"
   },
   {
     label: "凭证号：",
-    field: "ownersName",
+    field: "pzh",
     type: "input",
     dataType: "string"
   },
   {
     label: "开门时间：",
-    field: "Telephone",
+    field: "skRqsj",
     type: "input",
     dataType: "string"
   },
   {
     label: "门磁状态：",
-    field: "idCard1",
+    field: "mczt",
     type: "input",
     dataType: "string"
   },
   {
     label: "是否通过：",
-    field: "idCard2",
-    type: "input",
-    dataType: "string"
+    field: "sftgPdbz",
+    type: "select",
+    options: [
+      {
+        label: "是",
+        value: "0"
+      },
+      {
+        label: "否",
+        value: "1"
+      }
+    ]
   },
   {
     label: "开门方式：",
-    field: "idCard3",
+    field: "kmfsdm",
     type: "input",
     dataType: "string"
   },
   {
     label: "开门结果：",
-    field: "idCard4",
+    field: "kmjg",
     type: "input",
     dataType: "string"
   },
   {
     label: "开门刷卡次数：",
-    field: "idCard5",
+    field: "kmskcs",
     type: "input",
     dataType: "string"
   },
   {
     label: "门禁时间类型：",
-    field: "idCard5",
+    field: "mjsjlx",
     type: "input",
     dataType: "string"
   },
   {
     label: "关联门禁采集设备：",
-    field: "idCard5",
+    field: "gldmjCjsbxxbz",
     type: "input",
     dataType: "string"
   },
   {
     label: "关联抓拍采集设备：",
-    field: "idCard5",
+    field: "gldzpjCjsbxxbz",
     type: "input",
     dataType: "string"
   },
   {
     label: "采集时间：",
-    field: "idCard5",
+    span: 24,
+    field: "cjsj",
     type: "input",
     dataType: "string"
   }

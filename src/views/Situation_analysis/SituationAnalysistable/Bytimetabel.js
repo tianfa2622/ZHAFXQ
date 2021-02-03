@@ -9,56 +9,34 @@ const options = {
   tableColumns: [
     {
       label: "日期",
-      param: "date",
+      param: "rq",
       align: "center"
     },
     {
       label: "聚集异常",
-      param: "AggregationAnomaly",
+      param: "jjyc",
       align: "center"
     },
     {
       label: "人员异常",
-      param: "PersonnelException",
+      param: "ryyc",
       align: "center"
     },
     {
       label: "车辆异常",
-      param: "AbnormalVehicle",
+      param: "clyc",
       align: "center"
     },
     {
       label: "重点人员",
-      param: "KeyPersonnel",
+      param: "zdry",
       align: "center"
     },
     {
       label: "重点车辆",
-      param: "KeyVehicle",
+      param: "zdcl",
       align: "center"
     }
-  ],
-  // 表格数据
-  tableData: [
-    // {
-    //   date: "",
-    //   AggregationAnomaly: "",
-    //   PersonnelException: "",
-    //   AbnormalVehicle: "",
-    //   KeyPersonnel: "",
-    //   KeyVehicle: ""
-    // }
-    {},
-    {},
-    {},
-    {}
-  ],
-  pagination: {
-    isBackC: true,
-    isShow: true,
-    currentPage: 1,
-    rows: 10,
-    total: 20
-  }
+  ]
 };
 export default options;

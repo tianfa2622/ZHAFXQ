@@ -1,112 +1,276 @@
-let bgColor = "#fff";
-// let fontColor = "#333";
-// let titleColor = "#666";
-let scale = 1;
-// let title = "总数";
-let echartData = [
-  {
-    name: "机动车",
-    value: "504"
-    // unit: "辆"
-  },
-  {
-    name: "电动车",
-    value: "312"
-    // unit: "辆"
-  }
+import echarts from "echarts";
+let data = [
+  { stock: "aaa", fundPost: "21.987691" },
+  { stock: "bbb", fundPost: "20.377176" },
+  { stock: "ccc", fundPost: "19.127404" },
+  { stock: "ddd", fundPost: "18.40882" },
+  { stock: "eee", fundPost: "17.980597" },
+  { stock: "fff", fundPost: "16.957898" },
+  { stock: "ggg", fundPost: "15.099577" },
+  { stock: "eee", fundPost: "14.76103" },
+  { stock: "ttt", fundPost: "13.002175" },
+  { stock: "fff", fundPost: "12.133536" }
 ];
-// let total = echartData.reduce((a, b) => {
-//   return a + b.value * 1;
-// }, 0);
+function contains(arr, dst) {
+  var i = arr.length;
+  while ((i -= 1)) {
+    if (arr[i] == dst) {
+      return i;
+    }
+  }
+  return false;
+}
+
+var attackSourcesColor = [
+  new echarts.graphic.LinearGradient(0, 1, 1, 1, [
+    { offset: 0, color: "#EB3B5A" },
+    { offset: 1, color: "#FE9C5A" }
+  ]),
+  new echarts.graphic.LinearGradient(0, 1, 1, 1, [
+    { offset: 0, color: "#FA8231" },
+    { offset: 1, color: "#FFD14C" }
+  ]),
+  new echarts.graphic.LinearGradient(0, 1, 1, 1, [
+    { offset: 0, color: "#F7B731" },
+    { offset: 1, color: "#FFEE96" }
+  ]),
+  new echarts.graphic.LinearGradient(0, 1, 1, 1, [
+    { offset: 0, color: "#395CFE" },
+    { offset: 1, color: "#2EC7CF" }
+  ])
+];
+var attackSourcesColor1 = [
+  "#EB3B5A",
+  "#FA8231",
+  "#F7B731",
+  "#3860FC",
+  "#1089E7",
+  "#F57474",
+  "#56D0E3",
+  "#1089E7",
+  "#F57474",
+  "#1089E7",
+  "#F57474",
+  "#F57474"
+];
+var attaData = [];
+var attaName = [];
+var topName = [];
+data.forEach((it, index) => {
+  attaData[index] = parseFloat(it.fundPost).toFixed(2);
+  attaName[index] = it.stock;
+  topName[index] = ` ${it.stock}`;
+});
+var salvProMax = []; //背景按最大值
+for (let i = 0; i < attaData.length; i++) {
+  salvProMax.push(attaData[0]);
+}
+function attackSourcesDataFmt(sData) {
+  var sss = [];
+  // eslint-disable-next-line prettier/prettier
+  sData.forEach(function (item, i) {
+    let itemStyle = {
+      color: i > 3 ? attackSourcesColor[3] : attackSourcesColor[i]
+    };
+    sss.push({
+      value: item,
+      itemStyle: itemStyle
+    });
+  });
+  return sss;
+}
 
 const options = {
-  backgroundColor: bgColor,
-  color: ["#74a0fb", "#91e5c1"],
+  // backgroundColor: "#000",
   tooltip: {
-    trigger: "item",
-    // formatter: "{b} <br/>{b}: {c} ({d}%)",
-    backgroundColor: "rgba(255,255,255,0.8)",
+    show: false,
+    backgroundColor: "rgba(3,169,244, 0.5)", //背景颜色（此时为默认色）
     textStyle: {
-      color: "#000",
-      lineHeight: 30
+      fontSize: 14
     }
   },
+  color: ["#F7B731"],
   legend: {
-    orient: "vertical",
-    icon: "rect",
-    x: "60%",
-    y: "30%",
-    itemWidth: 12 * scale,
-    itemHeight: 12 * scale,
-    align: "left",
+    pageIconSize: [12, 12],
+    itemWidth: 20,
+    itemHeight: 10,
     textStyle: {
-      rich: {
-        name: {
-          fontSize: 14 * scale
+      //图例文字的样式
+      fontSize: 10,
+      color: "#000"
+    },
+    selectedMode: false,
+    data: ["个人所得(亿元)"]
+  },
+  grid: {
+    left: "5%",
+    right: "2%",
+    width: "80%",
+    bottom: "2%",
+    top: "8%",
+    containLabel: true
+  },
+  xAxis: {
+    type: "value",
+
+    splitLine: {
+      show: false
+    },
+    axisLabel: {
+      show: false
+    },
+    axisTick: {
+      show: false
+    },
+    axisLine: {
+      show: false
+    }
+  },
+  yAxis: [
+    {
+      type: "category",
+      inverse: true,
+      axisLine: {
+        show: false
+      },
+      axisTick: {
+        show: false
+      },
+      axisPointer: {
+        label: {
+          show: true
+          //margin: 30
+        }
+      },
+      pdaaing: [5, 0, 0, 0],
+      postion: "right",
+      data: attaName,
+      axisLabel: {
+        margin: 30,
+        fontSize: 10,
+        align: "left",
+        padding: [2, 0, 0, 0],
+        color: "#000",
+        rich: {
+          nt1: {
+            color: "#000",
+            backgroundColor: attackSourcesColor1[0],
+            width: 13,
+            height: 13,
+            fontSize: 10,
+            align: "center",
+            borderRadius: 100,
+            lineHeight: "5",
+            padding: [0, 1, 2, 1]
+            // padding:[0,0,2,0],
+          },
+          nt2: {
+            color: "#000",
+            backgroundColor: attackSourcesColor1[1],
+            width: 13,
+            height: 13,
+            fontSize: 10,
+            align: "center",
+            borderRadius: 100,
+            padding: [0, 1, 2, 1]
+          },
+          nt3: {
+            color: "#000",
+            backgroundColor: attackSourcesColor1[2],
+            width: 13,
+            height: 13,
+            fontSize: 10,
+            align: "center",
+            borderRadius: 100,
+            padding: [0, 1, 2, 1]
+          },
+          nt: {
+            color: "#000",
+            backgroundColor: attackSourcesColor1[3],
+            width: 13,
+            height: 13,
+            fontSize: 10,
+            align: "center",
+            lineHeight: 3,
+            borderRadius: 100,
+            padding: [0, 1, 2, 1]
+            // lineHeight: 5
+          }
         },
-        value: {
-          fontSize: 14 * scale,
-          padding: [0, 5, 0, 15]
-        },
-        unit: {
-          fontSize: 14 * scale
+        // eslint-disable-next-line prettier/prettier
+        formatter: function (value, index) {
+          index = contains(attaName, value) + 1;
+          if (index - 1 < 3) {
+            return ["{nt" + index + "|" + index + "}"].join("\n");
+          } else {
+            return ["{nt|" + index + "}"].join("\n");
+          }
         }
       }
     },
-    // eslint-disable-next-line prettier/prettier
-    formatter: function (name) {
-      let res = echartData.filter(v => v.name === name);
-      res = res[0] || {};
-      let unit = res.unit || "";
-      return (
-        "{name|" + name + "}  {value|" + res.value + "}{unit|" + unit + "}"
-      );
+    {
+      //名称
+      type: "category",
+      offset: -10,
+      position: "left",
+      axisLine: {
+        show: false
+      },
+      inverse: false,
+      axisTick: {
+        show: false
+      },
+      axisLabel: {
+        interval: 0,
+        color: ["#000"],
+        align: "left",
+        verticalAlign: "bottom",
+        lineHeight: 32,
+        fontSize: 10
+      },
+      data: topName
     }
-    // data: legendName
-  },
+  ],
   series: [
     {
-      type: "pie",
-      radius: ["25%", "45%"],
-      center: ["35%", "40%"],
-      data: echartData,
-      tooltip: {
-        trigger: "item",
-        // eslint-disable-next-line prettier/prettier
-        formatter: function (params) {
-          return (
-            params.name +
-            "<br>" +
-            params.marker +
-            params.name +
-            "：" +
-            params.value
-          );
-        }
-      },
-      // itemStyle: {
-      //     normal: {
-      //         borderColor: bgColor,
-      //         borderWidth: 1
-      //     }
-      // },
-      labelLine: {
+      zlevel: 1,
+      name: "个人所得(亿元)",
+      type: "bar",
+      barWidth: "15px",
+      animationDuration: 1500,
+      data: attackSourcesDataFmt(attaData),
+      align: "center",
+      itemStyle: {
         normal: {
-          length: 20,
-          length2: 20
+          barBorderRadius: 10
         }
       },
       label: {
+        show: true,
+        fontSize: 10,
+        color: "#000",
+        textBorderWidth: 2,
+        padding: [2, 0, 0, 0]
+      }
+    },
+    {
+      name: "个人所得(亿元)",
+      type: "bar",
+      barWidth: 15,
+      barGap: "-100%",
+      margin: "20",
+      data: salvProMax,
+      textStyle: {
+        //图例文字的样式
+        fontSize: 10,
+        color: "#000"
+      },
+      itemStyle: {
         normal: {
-          position: "inner",
-          color: "#fff",
-          fontStyle: "normal",
-          fontWeight: "normal",
-          // fontFamily: 'sans-serif' ,
-          fontSize: 14,
-          formatter: params => {
-            return `${params.value}`;
-          }
+          color: "#05325F",
+          //width:"100%",
+          fontSize: 10,
+          barBorderRadius: 30
         }
       }
     }

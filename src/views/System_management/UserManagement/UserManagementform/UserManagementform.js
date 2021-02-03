@@ -1,11 +1,5 @@
 const options = {
   rules: {},
-  formData: {
-    area: [],
-    userName: "",
-    Name: "",
-    status: ""
-  },
   form: {
     inline: true,
     size: "small"
@@ -29,7 +23,7 @@ const options = {
     {
       span: 5,
       label: "姓名：",
-      prop: "Name",
+      prop: "realName",
       type: "text",
       clearable: true,
       class: ""
@@ -37,7 +31,7 @@ const options = {
     {
       span: 6,
       label: "状态：",
-      prop: "status",
+      prop: "state",
       type: "select",
       class: "",
       clearable: true,
@@ -68,7 +62,7 @@ const options = {
         type: "primary",
         style: "",
         size: "small",
-        methods: "Increase",
+        methods: "add",
         label: "新增"
       }
     ]

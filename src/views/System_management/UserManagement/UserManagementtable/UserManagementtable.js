@@ -14,22 +14,22 @@ const options = {
     },
     {
       label: "姓名",
-      param: "Name",
+      param: "realName",
       align: "center"
     },
     {
       label: "所属单位",
-      param: "Affiliation",
+      param: "dwmc",
       align: "center"
     },
     {
       label: "更新时间",
-      param: "UpdateTime",
+      param: "updateTime",
       align: "center"
     },
     {
       label: "状态",
-      param: "status",
+      param: "state",
       align: "center"
     }
   ],
@@ -62,30 +62,6 @@ const options = {
         }
       }
     ]
-  },
-  // 表格数据
-  tableData: [
-    {
-      userName: "RNG丶UZI",
-      Name: "简自豪",
-      Affiliation: "RNG电子竞技俱乐部",
-      UpdateTime: "2020-6-3 14:00",
-      status: "正常"
-    },
-    {
-      userName: "RNG丶Ming",
-      Name: "史森明",
-      Affiliation: "RNG电子竞技俱乐部",
-      UpdateTime: "2020-6-3 14:00",
-      status: "禁用"
-    }
-  ],
-  pagination: {
-    isBackC: true,
-    isShow: true,
-    currentPage: 1,
-    rows: 10,
-    total: 20
   }
 };
 export default options;

@@ -9,51 +9,51 @@ const options = {
   tableColumns: [
     {
       label: "异常时间",
-      param: "abnormalTime",
+      param: "ycsj",
       align: "center"
     },
     {
       label: "车牌号",
-      param: "numberPlate",
+      param: "jdchphm",
       align: "center"
     },
     {
       label: "车辆品牌",
-      param: "VehicleBrands",
+      param: "zwppmc",
       align: "center"
     },
     {
       label: "车辆颜色",
-      param: "VehicleColor",
+      param: "jdccsysdm",
       align: "center"
     },
     {
       label: "是否为重点车辆",
-      param: "KeyVehicle",
+      param: "cldjlx",
       align: "center",
       render: row => {
-        if (row.KeyVehicle === 0) {
+        if (row.cldjlx === "0") {
           return "否";
-        } else if (row.KeyVehicle === 1) {
+        } else if (row.cldjlx === "1") {
           return "是";
         }
       },
       class: row => {
-        if (row.KeyVehicle === 1) {
+        if (row.cldjlx === "1") {
           return "status-No";
-        } else if (row.KeyVehicle === 0) {
+        } else if (row.cldjlx === "0") {
           return "status-Yes";
         }
       }
     },
     {
       label: "异常情况",
-      param: "abnormalSituation",
+      param: "ycqk",
       align: "center"
     },
     {
       label: "处理结果",
-      param: "processResult",
+      param: "cljg",
       align: "center"
     }
   ],
@@ -69,52 +69,6 @@ const options = {
         style: "background-color:#363636; border-color:#363636;"
       }
     ]
-  },
-  // 表格数据
-  tableData: [
-    {
-      abnormalTime: "",
-      numberPlate: "湘A：LZ888",
-      VehicleBrands: "JEEP牧马人",
-      VehicleColor: "白",
-      KeyVehicle: 0,
-      abnormalSituation: "02:00-03:30游荡5栋一单元门口",
-      processResult: ""
-    },
-    {
-      abnormalTime: "",
-      numberPlate: "湘A：LZ888",
-      VehicleBrands: "JEEP牧马人",
-      VehicleColor: "白",
-      KeyVehicle: 1,
-      abnormalSituation: "02:00-03:30游荡5栋一单元门口",
-      processResult: ""
-    },
-    {
-      abnormalTime: "",
-      numberPlate: "湘A：LZ888",
-      VehicleBrands: "JEEP牧马人",
-      VehicleColor: "白",
-      KeyVehicle: 0,
-      abnormalSituation: "02:00-03:30游荡5栋一单元门口",
-      processResult: ""
-    },
-    {
-      abnormalTime: "",
-      numberPlate: "湘A：LZ888",
-      VehicleBrands: "JEEP牧马人",
-      VehicleColor: "白",
-      KeyVehicle: 1,
-      abnormalSituation: "02:00-03:30游荡5栋一单元门口",
-      processResult: ""
-    }
-  ],
-  pagination: {
-    isBackC: true,
-    isShow: true,
-    currentPage: 1,
-    rows: 10,
-    total: 20
   }
 };
 export default options;

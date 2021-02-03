@@ -1,10 +1,5 @@
 const options = {
   rules: {},
-  formData: {
-    ReleaseType: "",
-    PublishContent: "",
-    ReleaseDate: ""
-  },
   form: {
     inline: true,
     size: "small"
@@ -13,7 +8,7 @@ const options = {
     {
       span: 7,
       label: " 发布类型：",
-      prop: "ReleaseType",
+      prop: "fblx",
       type: "select",
       class: "",
       options: [
@@ -30,7 +25,7 @@ const options = {
     {
       span: 7,
       label: "发布内容：",
-      prop: "PublishContent",
+      prop: "fbnr",
       type: "text",
       clearable: true,
       class: ""
@@ -38,7 +33,7 @@ const options = {
     {
       span: 7,
       label: "发布时间：",
-      prop: "ReleaseDate",
+      prop: "fbRqsj",
       type: "daterange",
       class: "",
       clearable: true,
@@ -86,7 +81,7 @@ const options = {
         type: "primary",
         style: "",
         size: "small",
-        methods: "Increase",
+        methods: "add",
         label: "新增"
       }
     ]

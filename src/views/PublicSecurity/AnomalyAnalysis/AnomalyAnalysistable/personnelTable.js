@@ -9,46 +9,46 @@ const options = {
   tableColumns: [
     {
       label: "异常时间",
-      param: "abnormalTime",
+      param: "crmjsj",
       align: "center"
     },
     {
       label: "姓名",
-      param: "personnelName",
+      param: "xm",
       align: "center"
     },
     {
       label: "身份证号码",
-      param: "IDCardNumber",
+      param: "gmsfzhm",
       align: "center"
     },
     {
       label: "是否为重点人员",
-      param: "KeyPersonnel",
+      param: "rydjlx",
       align: "center",
       render: row => {
-        if (row.KeyPersonnel === 0) {
+        if (row.rydjlx === "0") {
           return "否";
-        } else if (row.KeyPersonnel === 1) {
+        } else if (row.rydjlx === "1") {
           return "是";
         }
       },
       class: row => {
-        if (row.KeyPersonnel === 1) {
+        if (row.rydjlx === "1") {
           return "status-No";
-        } else if (row.KeyPersonnel === 0) {
+        } else if (row.rydjlx === "0") {
           return "status-Yes";
         }
       }
     },
     {
       label: "异常情况",
-      param: "abnormalSituation",
+      param: "ycqk",
       align: "center"
     },
     {
       label: "处理结果",
-      param: "processResult",
+      param: "cljg",
       align: "center"
     }
   ],
@@ -77,48 +77,6 @@ const options = {
       //   }
       // }
     ]
-  },
-  // 表格数据
-  tableData: [
-    {
-      abnormalTime: "",
-      personnelName: "张三",
-      IDCardNumber: "466456862459861576",
-      KeyPersonnel: 0,
-      abnormalSituation: "02:00-03:30游荡5栋一单元门口",
-      processResult: ""
-    },
-    {
-      abnormalTime: "",
-      personnelName: "张三",
-      IDCardNumber: "466456862459861576",
-      KeyPersonnel: 1,
-      abnormalSituation: "02:00-03:30游荡5栋一单元门口",
-      processResult: ""
-    },
-    {
-      abnormalTime: "",
-      personnelName: "张三",
-      IDCardNumber: "466456862459861576",
-      KeyPersonnel: 0,
-      abnormalSituation: "02:00-03:30游荡5栋一单元门口",
-      processResult: ""
-    },
-    {
-      abnormalTime: "",
-      personnelName: "张三",
-      IDCardNumber: "466456862459861576",
-      KeyPersonnel: 1,
-      abnormalSituation: "02:00-03:30游荡5栋一单元门口",
-      processResult: ""
-    }
-  ],
-  pagination: {
-    isBackC: true,
-    isShow: true,
-    currentPage: 1,
-    rows: 10,
-    total: 20
   }
 };
 export default options;

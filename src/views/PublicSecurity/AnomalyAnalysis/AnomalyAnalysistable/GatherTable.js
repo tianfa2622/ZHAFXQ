@@ -9,27 +9,27 @@ const options = {
   tableColumns: [
     {
       label: "小区名",
-      param: "CommunityName",
+      param: "jlxxqmc",
       align: "center"
     },
     {
       label: "异常报警设备信息",
-      param: "AbnormalEquipment",
+      param: "ycbjsbxx",
       align: "center"
     },
     {
       label: "聚集人数",
-      param: "GatherTheNumber",
+      param: "jjrs",
       align: "center"
     },
     {
       label: "异常情况",
-      param: "abnormalSituation",
+      param: "ycqk",
       align: "center"
     },
     {
       label: "处理结果",
-      param: "processResult",
+      param: "cljg",
       align: "center"
     }
   ],
@@ -45,30 +45,6 @@ const options = {
         style: "background-color:#363636; border-color:#363636;"
       }
     ]
-  },
-  // 表格数据
-  tableData: [
-    {
-      CommunityName: "扬帆小区",
-      AbnormalEquipment: "扬帆小区",
-      GatherTheNumber: "5",
-      abnormalSituation: "02:00-03:30有多名人员聚集",
-      processResult: ""
-    },
-    {
-      CommunityName: "扬帆小区",
-      AbnormalEquipment: "扬帆小区",
-      GatherTheNumber: "5",
-      abnormalSituation: "02:00-03:30有多名人员聚集",
-      processResult: ""
-    }
-  ],
-  pagination: {
-    isBackC: true,
-    isShow: true,
-    currentPage: 1,
-    rows: 10,
-    total: 20
   }
 };
 export default options;

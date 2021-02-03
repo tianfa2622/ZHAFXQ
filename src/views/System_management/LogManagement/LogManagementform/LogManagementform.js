@@ -1,8 +1,5 @@
 const options = {
   rules: {},
-  formData: {
-    Date: ""
-  },
   form: {
     inline: true,
     size: "small"

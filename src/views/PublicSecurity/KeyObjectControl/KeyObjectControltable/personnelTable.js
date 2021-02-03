@@ -9,17 +9,17 @@ const options = {
   tableColumns: [
     {
       label: "姓名",
-      param: "name",
+      param: "djrXm",
       align: "center"
     },
     {
       label: "性别",
-      param: "gender",
+      param: "xbdm",
       align: "center",
       render: row => {
-        if (row.gender === 0) {
+        if (row.xbdm === "0") {
           return "男";
-        } else if (row.gender === 1) {
+        } else if (row.xbdm === "1") {
           return "女";
         }
       },
@@ -29,17 +29,17 @@ const options = {
     },
     {
       label: "民族",
-      param: "national",
+      param: "mzdm",
       align: "center"
     },
     {
       label: "联系电话",
-      param: "contactNumber",
+      param: "djrLxdh",
       align: "center"
     },
     {
       label: "管控事由",
-      param: "ControlReasons",
+      param: "gldyGksy",
       align: "center"
     }
   ],
@@ -54,44 +54,6 @@ const options = {
         methods: "toView"
       }
     ]
-  },
-  // 表格数据
-  tableData: [
-    {
-      name: "小花生",
-      gender: 0,
-      national: "汉",
-      contactNumber: "18627555231",
-      ControlReasons: "斗殴，贩毒"
-    },
-    {
-      name: "小花生",
-      gender: 1,
-      national: "汉",
-      contactNumber: "18627555231",
-      ControlReasons: "自制枪械"
-    },
-    {
-      name: "小花生",
-      gender: 0,
-      national: "汉",
-      contactNumber: "18627555231",
-      ControlReasons: "斗殴，贩毒"
-    },
-    {
-      name: "小花生",
-      gender: 1,
-      national: "汉",
-      contactNumber: "18627555231",
-      ControlReasons: "自制枪械"
-    }
-  ],
-  pagination: {
-    isBackC: true,
-    isShow: true,
-    currentPage: 1,
-    rows: 10,
-    total: 20
   }
 };
 export default options;

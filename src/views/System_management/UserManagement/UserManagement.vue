@@ -9,11 +9,11 @@
       </el-breadcrumb>
       <el-card class="card_style" body-style="padding-bottom: 0px;">
         <Myform
-          :formData="MyformData.formData"
+          :formData="paramsData"
           :form="MyformData.form"
           :itemColumns="MyformData.itemColumns"
           :btnData="MyformData.btnData"
-          @clickButton="clickButton"
+          @clickButton="FormclickButton"
         ></Myform>
       </el-card>
     </div>
@@ -21,7 +21,7 @@
       <!-- <div class="h-100 w-69"> -->
       <Mytable
         :size="MyTableData.size"
-        :tableData="MyTableData.tableData"
+        :tableData="tableData"
         :tableColumns="MyTableData.tableColumns"
         :tableOption="MyTableData.tableOption"
         :HeaderCellStyle="MyTableData.HeaderCellStyle"
@@ -29,17 +29,17 @@
         @pageChange="pageChange"
         @clickButton="clickButton"
         :CardAttributes="MyTableData.CardAttributes"
-        :pagination="MyTableData.pagination"
+        :pagination="pagination"
       ></Mytable>
       <!-- </div> -->
     </div>
-    <Editor
+    <!-- <Editor
       :type="editorType"
       :visible.sync="editorVisible"
       :fields="fields"
       @confirm="confirm"
       :labelWidth="labelWidth"
-    />
+    /> -->
     <!-- :width="width" -->
     <!-- 权限设置 -->
     <el-dialog
@@ -95,9 +95,10 @@
 </template>
 
 <script>
+import { getSelectAll } from "@/api/System_management/UserManagement/index";
 import MyformData from "./UserManagementform/UserManagementform";
 import MyTableData from "./UserManagementtable/UserManagementtable";
-import fields from "./editor";
+// import fields from "./editor";
 export default {
   data() {
     return {
@@ -156,84 +157,122 @@ export default {
         }
       ],
       form: {
-        RoleName: '',
-        dataPermission: '1',
+        RoleName: "",
+        dataPermission: "1",
         FunctionPermissions: [
           {
             id: 1,
-            label: '首页',
+            label: "首页",
             disabled: true,
             children: []
           },
           {
             id: 4,
-            label: '车辆核验预警',
-            children: [{
-              id: 9,
-              label: '访问'
-            }, {
-              id: 10,
-              label: '添加'
-            }, {
-              id: 11,
-              label: '删除'
-            }, {
-              id: 12,
-              label: '修改'
-            }, {
-              id: 13,
-              label: '处理'
-            }]
+            label: "车辆核验预警",
+            children: [
+              {
+                id: 9,
+                label: "访问"
+              },
+              {
+                id: 10,
+                label: "添加"
+              },
+              {
+                id: 11,
+                label: "删除"
+              },
+              {
+                id: 12,
+                label: "修改"
+              },
+              {
+                id: 13,
+                label: "处理"
+              }
+            ]
           }
         ],
         defaultProps: {
-          children: 'children',
-          label: 'label'
+          children: "children",
+          label: "label"
         }
       },
       MyformData,
       MyTableData,
-      fields,
+      // fields,
       editorType: "add",
       editorVisible: false,
       // width: "30%",
       labelWidth: "160px",
       AuthorityDialogVisible: false,
-      activeNames: [1, 2]
+      activeNames: [1, 2],
+      tableData: [],
+      pagination: {
+        isBackC: true,
+        isShow: true,
+        currentPage: 1,
+        size: 10,
+        total: 10
+      },
+      paramsData: {
+        area: [],
+        userName: "",
+        realName: "",
+        state: ""
+      },
+      editData: {},
+      title: ""
     };
   },
+  created() {
+    this.getTableInfo();
+  },
   methods: {
+    getTableInfo() {
+      this.tableData = [];
+      getSelectAll({
+        ...this.paramsData,
+        current: this.pagination.currentPage,
+        size: this.pagination.size
+      }).then(res => {
+        console.log(res);
+        if (res.code === 1) {
+          this.tableData = res.data.records;
+          this.pagination.total = res.data.total;
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
+        } else {
+          this.$message.error(res.message);
+        }
+      });
+    },
     // 点击事件
     clickButton(val) {
       // 调用事件
-      // this[val.methods](val.row);
-      if (val.methods === "Increase") {
-        this.openEditor(val.methods, val.row);
-      } else {
-        this[val.methods](val.row);
-      }
+      this[val.methods](val.row);
     },
-    openEditor(type, row) {
-      console.log(type, row);
-      switch (type) {
-        case "Increase":
-          this.editorType = "add";
-          break;
-      }
-      this.editorVisible = true;
+    FormclickButton(val) {
+      this[val.methods](val.formData);
     },
-    confirm(formData) {
-      console.log(formData);
-      // 请求接口提交数据 等等
-      this.editorVisible = false;
-    },
+    // openEditor(type, row) {
+    //   console.log(type, row);
+    //   this.editorVisible = true;
+    // },
+    // confirm(formData) {
+    //   console.log(formData);
+    //   // 请求接口提交数据 等等
+    //   this.editorVisible = false;
+    // },
+
     // 切换当前一页展示多少条
     sizeChange(val) {
-      this.rows = val;
+      this.pagination.size = val;
+      this.getTableInfo();
     },
     // 翻页
     pageChange(val) {
-      this.page = val;
+      this.paramsData.currentPage = val;
+      this.getTableInfo();
     },
     // eslint-disable-next-line no-unused-vars
     Authority(val) {
@@ -271,7 +310,11 @@ export default {
           });
         });
     },
-    search() {}
+    search(v) {
+      this.paramsData = { ...v };
+      this.getTableInfo();
+    },
+    add() {}
   }
 };
 </script>

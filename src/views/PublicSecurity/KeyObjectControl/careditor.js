@@ -1,49 +1,59 @@
 const fields = [
   {
     label: "车牌号码：",
-    field: "CommunityName:",
+    field: "cphm",
     type: "input",
     dataType: "string"
   },
   {
     label: "品牌：",
-    field: "ownersName",
+    field: "zwppmc",
     type: "input",
     dataType: "string"
   },
   {
     label: "颜色：",
-    field: "Telephone",
+    field: "clys",
     type: "input",
     dataType: "string"
+    // options: [
+    //   {
+    //     label: "黑色",
+    //     value: "0"
+    //   },
+    //   {
+    //     label: "白色",
+    //     value: "1"
+    //   }
+    // ]
   },
   {
     label: "车主姓名：",
-    field: "idCard",
+    field: "xm",
     type: "input",
     dataType: "string"
   },
   {
     label: "身份证号：",
-    field: "Licenseplate",
+    field: "gmsfzhm",
     type: "input",
     dataType: "string"
   },
   {
     label: "联系电话：",
-    field: "licensePlate:",
+    field: "lxdh",
     type: "input",
     dataType: "string"
   },
   {
     label: "管控事由：",
-    field: "NumberPlateColor:",
+    field: "gksy",
     type: "input",
     dataType: "string"
   },
   {
     label: "当前所在地：",
-    field: "ChineseBrandName:",
+    field: "jlxxqmc",
     type: "input",
     dataType: "string"
   }

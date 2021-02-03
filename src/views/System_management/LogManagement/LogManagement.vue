@@ -10,18 +10,18 @@
       </el-breadcrumb>
       <el-card class="card_style" body-style="padding-bottom: 0px;">
         <Myform
-          :formData="MyformData.formData"
+          :formData="paramsData"
           :form="MyformData.form"
           :itemColumns="MyformData.itemColumns"
           :btnData="MyformData.btnData"
-          @clickButton="clickButton"
+          @clickButton="FormclickButton"
         ></Myform>
       </el-card>
     </div>
     <div class="vehicle_bottom dflex">
       <Mytable
         :size="MyTableData.size"
-        :tableData="MyTableData.tableData"
+        :tableData="tableData"
         :tableColumns="MyTableData.tableColumns"
         :tableOption="MyTableData.tableOption"
         :HeaderCellStyle="MyTableData.HeaderCellStyle"
@@ -29,7 +29,7 @@
         @pageChange="pageChange"
         @clickButton="clickButton"
         :CardAttributes="MyTableData.CardAttributes"
-        :pagination="MyTableData.pagination"
+        :pagination="pagination"
       ></Mytable>
     </div>
 
@@ -40,7 +40,13 @@
       width="40%"
       style="height: 100%"
     >
-      <el-table :data="tableDate1" size="small" fit border style="width: 100%">
+      <el-table
+        :data="viewtableDate"
+        size="small"
+        fit
+        border
+        style="width: 100%"
+      >
         <el-table-column
           type="index"
           label="NO."
@@ -82,6 +88,10 @@
 </template>
 
 <script>
+import {
+  getSelectAll
+  // getSelectOne
+} from "@/api/System_management/LogManagement/index";
 import MyformData from "./LogManagementform/LogManagementform";
 import MyTableData from "./LogManagementtable/LogManagementtable";
 export default {
@@ -90,38 +100,78 @@ export default {
       MyformData,
       MyTableData,
       dialogVisible: false,
-      tableDate1: [
-        {
-          TableName: "MotorVehicleEvent",
-          FieldName: "FW_SY",
-          ValueBeforeModification: "你好",
-          ModifiedValue: "再见"
-        }
-      ]
+      viewtableDate: [],
+      tableData: [],
+      pagination: {
+        isBackC: true,
+        isShow: true,
+        currentPage: 1,
+        size: 10,
+        total: 10
+      },
+      paramsData: { operationTime: "" }
     };
   },
+  created() {
+    this.getSelectAllInfo();
+  },
   methods: {
+    getSelectAllInfo() {
+      getSelectAll({
+        ...this.paramsData,
+        current: this.pagination.currentPage,
+        size: this.pagination.size
+      }).then(res => {
+        if (res.code === 1) {
+          console.log(res.data);
+          this.tableData = res.data.records;
+          this.pagination.total = res.data.total;
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
+        } else {
+          this.$message.error(res.message);
+        }
+      });
+    },
+    // getSelectOneInfo(row) {
+    //   getSelectOne(row.id).then(res => {
+    //     console.log(res);
+    //     if (res.code === 1) {
+    //       this.$message.success(res.message);
+    //       this.viewtableDate = res.data.records;
+    //       this.dialogVisible = true;
+    //     } else {
+    //       this.$message.error(res.message);
+    //     }
+    //   });
+    // },
     // onSubmit() {
     // },
     // 切换当前一页展示多少条
     sizeChange(val) {
-      this.rows = val;
+      this.pagination.size = val;
+      this.getSelectAllInfo();
     },
     // 翻页
     pageChange(val) {
-      this.page = val;
+      this.pagination.currentPage = val;
+      this.getSelectAllInfo();
     },
     // 点击事件
     clickButton(val) {
       // 调用事件
       this[val.methods](val.row);
     },
-    Details(val) {
-      console.log(val);
-      this.dialogVisible = true;
-      // 我是详情
+    FormclickButton(val) {
+      this[val.methods](val.formData);
     },
-    search() {}
+    view(row) {
+      this.getSelectOneInfo(row);
+    },
+    search(v) {
+      console.log(v);
+      this.paramsData = { ...v };
+      this.getSelectAllInfo();
+    }
   }
 };
 </script>

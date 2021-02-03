@@ -7,122 +7,45 @@
         </el-breadcrumb-item>
         <el-breadcrumb-item>预警处置</el-breadcrumb-item>
       </el-breadcrumb>
-      <el-card class="card_style" body-style="padding-bottom: 0px;">
-        <Myform
-          :formData="MyformData.formData"
-          :form="MyformData.form"
-          :itemColumns="MyformData.itemColumns"
-          :btnData="MyformData.btnData"
-          @clickButton="clickButton"
-        ></Myform>
-      </el-card>
     </div>
-    <div class="vehicle_bottom dflex">
-      <div class="h-100 w-69">
-        <Mytable
-          :size="MytableData.size"
-          :tableData="MytableData.tableData"
-          :tableColumns="MytableData.tableColumns"
-          :tableOption="MytableData.tableOption"
-          :HeaderCellStyle="MytableData.HeaderCellStyle"
-          @sizeChange="sizeChange"
-          @pageChange="pageChange"
-          @clickButton="clickButton"
-          :CardAttributes="MytableData.CardAttributes"
-          :pagination="MytableData.pagination"
-        ></Mytable>
-      </div>
-      <div class="w-1"></div>
-      <div class="w-30 h-100">
-        <el-card
-          class="w-100 h-100"
-          :body-style="{ padding: '0px', height: 'calc(100% - 53px)' }"
-        >
-          <div slot="header">
-            <span>信息核实</span>
-          </div>
-          <MyEcharts :option="options"></MyEcharts>
-        </el-card>
-      </div>
+    <div class="vehicle_bottom">
+      <el-tabs
+        v-model="activeName"
+        class="h-100 tabs_header"
+        @tab-click="handleClick"
+        type="border-card"
+        :stretch="true"
+        :lazy="true"
+      >
+        <el-tab-pane label="巡查预警" name="xcyj" class="tabs_content">
+          <Inspection></Inspection>
+        </el-tab-pane>
+        <el-tab-pane label="感知预警" name="gzyj">
+          <perceived></perceived>
+        </el-tab-pane>
+      </el-tabs>
     </div>
-    <Editor
-      :type="editorType"
-      :visible.sync="editorVisible"
-      :fields="fields"
-      @confirm="confirm"
-      :width="width"
-      :labelWidth="labelWidth"
-    />
   </div>
 </template>
 
 <script>
-import MyformData from "./EarlyWarningform/EarlyWarningform";
-import MytableData from "./EarlyWarningtable/EarlyWarningtable";
-import options from "./EarlyWarningEcharts/EarlyWarningEcharts";
-import fields from "./editor";
+import Inspection from "./InspectionWarning/index";
+import perceived from "./PerceivedWarning/index";
+
 export default {
+  components: {
+    Inspection,
+    perceived
+  },
   data() {
     return {
-      MyformData,
-      MytableData,
-      options,
-      fields,
-      editorType: "add",
-      editorVisible: false,
-      width: "25%",
-      labelWidth: "160px"
+      activeName: "xcyj"
     };
   },
   methods: {
-    // 点击事件
-    clickButton(val) {
-      // 调用事件
-      // this[val.methods](val.row);
-      if (val.methods !== "search") {
-        this.openEditor(val.methods, val.row);
-      } else {
-        this[val.methods](val.row);
-      }
-    },
-    openEditor(type, row) {
-      console.log(type, row);
-      switch (type) {
-        case "Increase":
-          this.editorType = "add";
-          break;
-        case "dealWith":
-          this.editorType = "edit";
-          break;
-        case "processResult":
-          this.editorType = "view";
-          break;
-      }
-      this.editorVisible = true;
-    },
-    confirm(formData) {
-      console.log(formData);
-      // 请求接口提交数据 等等
-      this.editorVisible = false;
-    },
-    // 切换当前一页展示多少条
-    sizeChange(val) {
-      this.rows = val;
-    },
-    // 翻页
-    pageChange(val) {
-      this.page = val;
-    },
-    // dealWith(val) {
-    //   console.log(val);
-    //   // 我是处理
-    // },
-    // processResult(val) {
-    //   console.log(val);
-    //   // 我是处理结果
-    // },
-    search() {}
-    // Increase() {}
+    handleClick(tab, event) {
+      console.log(tab, event);
+    }
   }
 };
 </script>
@@ -132,14 +55,8 @@ export default {
   background-color: #fff;
   .vehicle_bottom {
     width: 100%;
-    height: calc(100% - 168px);
+    height: calc(100% - 45px);
     margin-top: 10px;
-    .w-69 {
-      width: 69%;
-    }
-    .w-1 {
-      width: 1%;
-    }
   }
 }
 ::v-deep .el-breadcrumb__item {
@@ -148,7 +65,15 @@ export default {
     color: #ff6600 !important;
   }
 }
-.card_style {
-  overflow: visible !important;
+::v-deep .tabs_header {
+  .el-tabs__header {
+    margin: 0;
+  }
+  .el-tabs__content {
+    height: calc(100% - 40px);
+    .tabs_content {
+      height: 100%;
+    }
+  }
 }
 </style>

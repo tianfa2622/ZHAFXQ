@@ -1,12 +1,5 @@
 const options = {
   rules: {},
-  formData: {
-    area: [],
-    CommunityName: "",
-    HousingCategory: "",
-    IDNumber: "",
-    Householder: ""
-  },
   form: {
     inline: true,
     size: "small"
@@ -15,7 +8,7 @@ const options = {
     {
       span: 6,
       label: "姓名:",
-      prop: "Name",
+      prop: "xm",
       type: "text",
       clearable: true,
       class: ""
@@ -23,7 +16,7 @@ const options = {
     {
       span: 6,
       label: "身份证号码:",
-      prop: "IDNumber",
+      prop: "gmsfzhm",
       type: "text",
       clearable: true,
       class: ""
@@ -31,22 +24,46 @@ const options = {
     {
       span: 6,
       label: "开门方式:",
-      prop: "DoorOpeningMethod",
+      prop: "kmfsdm",
       type: "select",
       class: "",
       style: "text-align:center;",
       options: [
         {
-          label: "进",
-          value: 1
+          label: "刷卡开门",
+          value: "1"
         },
         {
-          label: "出",
-          value: 2
+          label: "密码开门",
+          value: "2"
         },
         {
-          label: "进/出",
-          value: 3
+          label: "身份证开门",
+          value: "3"
+        },
+        {
+          label: "二维码开门",
+          value: "4"
+        },
+        {
+          label: "人脸识别开门",
+          value: "5"
+        },
+        {
+          label: "指纹开门",
+          value: "6"
+        },
+        {
+          label: "蓝牙开门",
+          value: "7"
+        },
+        {
+          label: "远程开门",
+          value: "8"
+        },
+        {
+          label: "访客授权",
+          value: "9"
         }
       ]
     }

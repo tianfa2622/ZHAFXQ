@@ -14,11 +14,11 @@
       </el-breadcrumb>
       <el-card class="card_style" body-style="padding-bottom: 0px;">
         <Myform
-          :formData="MyformData.formData"
+          :formData="paramsData"
           :form="MyformData.form"
           :itemColumns="MyformData.itemColumns"
           :btnData="MyformData.btnData"
-          @clickButton="clickButton"
+          @clickButton="FormclickButton"
         ></Myform>
       </el-card>
     </div>
@@ -26,7 +26,7 @@
       <!-- <div class="h-100 w-69"> -->
       <Mytable
         :size="MyTableData.size"
-        :tableData="MyTableData.tableData"
+        :tableData="tableData"
         :tableColumns="MyTableData.tableColumns"
         :tableOption="MyTableData.tableOption"
         :HeaderCellStyle="MyTableData.HeaderCellStyle"
@@ -34,7 +34,7 @@
         @pageChange="pageChange"
         @clickButton="clickButton"
         :CardAttributes="MyTableData.CardAttributes"
-        :pagination="MyTableData.pagination"
+        :pagination="pagination"
       ></Mytable>
       <!-- </div> -->
     </div>
@@ -49,6 +49,7 @@
 </template>
 
 <script>
+import { getSelectAll } from "@/api/Data_management/index/GeneralSituation/index";
 import MyformData from "./GeneralSituationform/GeneralSituationform";
 import MyTableData from "./GeneralSituationtable/GeneralSituationtable";
 import fields from "./editor";
@@ -67,10 +68,44 @@ export default {
       fields,
       editorType: "view",
       editorVisible: false,
-      labelWidth: "210px"
+      labelWidth: "210px",
+      // 表格数据
+      tableData: [],
+      pagination: {
+        isBackC: true,
+        isShow: true,
+        currentPage: 1,
+        size: 10,
+        total: 10
+      },
+      paramsData: {
+        cwgslx: "",
+        cwlx: "",
+        cwsyrXm: "",
+        tcwbh: ""
+      }
     };
   },
+  created() {
+    this.getGeneralInfo();
+  },
   methods: {
+    getGeneralInfo() {
+      getSelectAll({
+        ...this.paramsData,
+        current: this.pagination.currentPage,
+        size: this.pagination.size
+      }).then(res => {
+        if (res.code === 1) {
+          console.log(res);
+          this.tableData = res.data.records;
+          this.pagination.total = res.data.total;
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
+        } else {
+          this.$message.error(res.message);
+        }
+      });
+    },
     // 点击事件
     clickButton(val) {
       // 调用事件
@@ -97,11 +132,13 @@ export default {
     },
     // 切换当前一页展示多少条
     sizeChange(val) {
-      this.rows = val;
+      this.pagination.size = val;
+      this.getGeneralInfo();
     },
     // 翻页
     pageChange(val) {
-      this.page = val;
+      this.pagination.currentPage = val;
+      this.getGeneralInfo();
     },
     // eslint-disable-next-line no-unused-vars
     Details(val) {},

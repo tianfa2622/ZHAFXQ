@@ -9,32 +9,32 @@ const options = {
   tableColumns: [
     {
       label: "停车位编号",
-      param: "ParkingSpaceNumber",
+      param: "tcwbh",
       align: "center"
     },
     {
       label: "车位类型",
-      param: "ParkingType",
+      param: "cwlx",
       align: "center"
     },
     {
       label: "车位归属类型",
-      param: "ParkingSpaceOwnership",
+      param: "cwgslx",
       align: "center"
     },
     {
       label: "车位所有人名称",
-      param: "VehicleOwner",
+      param: "cwsyrXm",
       align: "center"
     },
     {
       label: "楼层号",
-      param: "FloorNumber",
+      param: "lch",
       align: "center"
     },
     {
       label: "数据更新时间",
-      param: "DataUpdateTime",
+      param: "gxsj",
       align: "center"
     }
   ],
@@ -49,26 +49,6 @@ const options = {
         methods: "Details"
       }
     ]
-  },
-  // 表格数据
-  tableData: [
-    {
-      ParkingSpaceNumber: "张三",
-      ParkingType: "湘A59SU2",
-      ParkingSpaceOwnership: 15571239876,
-      VehicleOwner: "电动车",
-      FloorNumber: "辉煌国际",
-      DataUpdateTime: ""
-    },
-    {},
-    {}
-  ],
-  pagination: {
-    isBackC: true,
-    isShow: true,
-    currentPage: 1,
-    rows: 10,
-    total: 20
   }
 };
 export default options;

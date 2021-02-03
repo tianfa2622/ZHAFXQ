@@ -1,136 +1,198 @@
 const fields = [
   {
     label: " ",
-    field: "avatar",
+    field: "xp",
     span: 24,
     type: "avatar"
   },
   {
     label: "姓名：",
-    field: "CommunityName:",
+    field: "djrXm",
     type: "input",
     dataType: "string"
   },
   {
     label: "别号绰号：",
-    field: "ownersName",
+    field: "bmch",
     type: "input",
     dataType: "string"
   },
   {
     label: "性别：",
-    field: "Telephone",
-    type: "input",
-    dataType: "string"
+    field: "xbdm",
+    type: "select",
+    options: [
+      {
+        label: "男",
+        value: "0"
+      },
+      {
+        label: "女",
+        value: "1"
+      }
+    ]
   },
   {
     label: "民族：",
-    field: "idCard",
+    field: "mzdm",
     type: "input",
-    dataType: "string"
+    options: [
+      {
+        label: "汉族",
+        value: "0"
+      },
+      {
+        label: "苗族",
+        value: "1"
+      }
+    ]
   },
-  // {
-  //   label: "身份证号",
-  //   field: "motorVehicle",
-  //   type: "select",
-  //   options: [
-  //     {
-  //       label: "机动车",
-  //       value: 0
-  //     },
-  //     {
-  //       label: "电动车",
-  //       value: 1
-  //     }
-  //   ]
-  // },
   {
     label: "身份证号：",
-    field: "Licenseplate1",
+    field: "djrGmsfzhm",
     type: "input",
     dataType: "string"
   },
   {
     label: "出生日期：",
-    field: "licensePlate2:",
+    field: "csrq",
     type: "input",
     dataType: "string"
   },
   {
     label: "户籍详细地址：",
-    field: "NumberPlateColor:",
+    field: "hjdz",
     type: "input",
     dataType: "string"
   },
   {
     label: "治安重点人员管理类别：",
-    field: "ChineseBrandName:",
+    field: "zazdrgllbdm",
     type: "input",
     dataType: "string"
   },
   {
     label: "管理地(一)：",
-    field: "VehicleVolume",
+    field: "gldy",
     type: "input",
     dataType: "string"
   },
   {
     label: "省市县(区)：",
-    field: "ColorCar:",
+    field: "gldySsxqdm",
     type: "input",
     dataType: "string"
   },
   {
     label: "区域内详细地址：",
-    field: "VehicleModel",
+    field: "gldyQhnxxdz",
     type: "input",
     dataType: "string"
   },
   {
     label: "治安重点人管理类别：",
-    field: "BriefSituation",
+    field: "gldyZazdrgllbdm",
     type: "input",
     dataType: "string"
   },
   {
     label: "管控事由：",
-    field: "RegistrantName",
+    field: "gldyGksy",
     type: "input",
     dataType: "string"
   },
   {
     label: "管理状态：",
-    field: "RegistrantPhoneNumber:",
+    field: "gldyGlztdm",
     type: "input",
     dataType: "string"
   },
   {
     label: "联系电话：",
-    field: "DataUpdate:",
+    field: "gldyLxdh",
     type: "input",
     dataType: "string"
   },
   {
     label: "管控民警姓名：",
-    field: "DataSources",
+    field: "gldyGkmjXm",
     type: "input",
     dataType: "string"
   },
   {
     label: "管控民警身份证号码：",
-    field: "DataStatus",
+    field: "gldyGkmjGmsfhm",
     type: "input",
     dataType: "string"
   },
   {
     label: "管控民警联系电话：",
-    field: "DataStatus2",
+    field: "gldyGkmjLxdh",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "管理地(二)：",
+    field: "glde",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "省市县(区)：",
+    field: "gldeSsxqdm",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "区域内详细地址：",
+    field: "gldeQhnxxdz",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "治安重点人管理类别：",
+    field: "gldeZazdrgllbdm",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "管控事由：",
+    field: "gldeGksy",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "管理状态：",
+    field: "gldeGlztdm",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "联系电话：",
+    field: "gldeLxdh",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "管控民警姓名：",
+    field: "gldeGkmjXm",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "管控民警身份证号码：",
+    field: "gldeGkmjGmsfhm",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "管控民警联系电话：",
+    field: "gldeGkmjLxdh",
     type: "input",
     dataType: "string"
   }
 ];
 export default fields;
-// [
 //   {
 //     label: "姓名",
 //     field: "username",
@@ -142,27 +204,10 @@ export default fields;
 //     //   {required: true, message: '请输入姓名', trigger: 'blur'}
 //     // ],
 //     hidden: ["view"]
-//   },
-//   {
-//     label: "性别",
-//     field: "sex",
-//     type: "select",
-//     required: true,
-//     options: [
-//       {
-//         label: "男",
-//         value: 0
-//       },
-//       {
-//         label: "女",
-//         value: 1
-//       }
-//     ]
-//   },
+//   }
 //   {
 //     label: "年龄",
 //     field: "age",
 //     type: "input",
 //     dataType: "number"
 //   }
-// ];

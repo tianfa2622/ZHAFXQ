@@ -22,11 +22,11 @@
         >
           <div class="w-100 h-15">
             <Myform
-              :formData="MyformData.formData"
+              :formData="paramsData"
               :form="MyformData.form"
               :itemColumns="MyformData.itemColumns"
               :btnData="MyformData.btnData"
-              @clickButton="clickButton"
+              @clickButton="FormclickButton"
             ></Myform>
             <el-row type="flex" class="pl-10 pr-10" justify="space-between">
               <el-col :span="6">
@@ -54,13 +54,13 @@
             <div class="h-100 w-59">
               <Mytable
                 :size="tabsData.size"
-                :tableData="tabsData.tableData"
+                :tableData="tableData"
                 :tableColumns="tabsData.tableColumns"
                 :HeaderCellStyle="tabsData.HeaderCellStyle"
                 @sizeChange="sizeChange"
                 @pageChange="pageChange"
                 :CardAttributes="tabsData.CardAttributes"
-                :pagination="tabsData.pagination"
+                :pagination="pagination"
               ></Mytable>
             </div>
             <div class="w-1"></div>
@@ -69,9 +69,6 @@
                 class="w-100 h-100"
                 :body-style="{ padding: '20px', height: '100%' }"
               >
-                <!-- <div slot="header">
-                  <span>信息核实</span>
-                </div> -->
                 <MyEcharts
                   v-show="activeName === 'first'"
                   :option="BytimeEcharts"
@@ -80,10 +77,6 @@
                   v-show="activeName === 'second'"
                   :option="ByAreaEcharts"
                 ></MyEcharts>
-                <!-- <MyEcharts
-                  v-if="'second' === activeName"
-                  :option="ByAreaEcharts"
-                ></MyEcharts> -->
               </el-card>
             </div>
           </div>
@@ -94,6 +87,10 @@
 </template>
 
 <script>
+import {
+  getTimeSelectAll,
+  getAreaSelectAll
+} from "@/api/Situation_analysis/index";
 import MyformData from "./SituationAnalysisform/SituationAnalysisform";
 import Bytimetabel from "./SituationAnalysistable/Bytimetabel";
 import ByAreatabel from "./SituationAnalysistable/ByAreatabel";
@@ -141,22 +138,72 @@ export default {
           value: "选项5",
           label: "北京烤鸭"
         }
-      ]
+      ],
+      tableData: [],
+      pagination: {
+        isBackC: true,
+        isShow: true,
+        currentPage: 1,
+        size: 10,
+        total: 10
+      },
+      paramsData: {
+        area: [],
+        rq: "",
+        xqxxdm: ""
+      },
+      area: "北京,北京市,东城区"
     };
   },
   created() {
-    this.tabsdata();
+    this.getTimeInfo();
   },
   methods: {
-    handleClick() {
-      this.tabsdata();
+    getTimeInfo() {
+      getTimeSelectAll({
+        ...this.paramsData,
+        current: this.pagination.currentPage,
+        size: this.pagination.size
+      }).then(res => {
+        console.log(res);
+        if (res.code === 1) {
+          this.tableData = res.data.records;
+          this.pagination.total = res.data.total;
+        } else {
+          this.$message.error(res.message);
+        }
+      });
     },
-    tabsdata() {
+    getAreaInfo() {
+      getAreaSelectAll({
+        // ...this.paramsData,
+        area: this.area,
+        current: this.pagination.currentPage,
+        size: this.pagination.size
+      }).then(res => {
+        console.log(res);
+        if (res.code === 1) {
+          this.tableData = res.data;
+          console.log(this.tableData);
+          this.pagination.total = res.data.total;
+        } else {
+          this.$message.error(res.message);
+        }
+      });
+    },
+    handleClick() {
       if (this.activeName === "first") {
+        this.tableData = [];
         this.tabsData = Bytimetabel;
+        this.getTimeInfo();
       } else {
+        this.tableData = [];
         this.tabsData = ByAreatabel;
+        this.getAreaInfo();
       }
+    },
+    FormclickButton(val) {
+      this[val.methods](val.formData);
     },
     // onSubmit() {
     // },
@@ -168,11 +215,11 @@ export default {
     pageChange(val) {
       this.page = val;
     },
-    // 点击事件
-    clickButton(val) {
-      // 调用事件
-      this[val.methods](val.row);
-    },
+    // // 点击事件
+    // clickButton(val) {
+    //   // 调用事件
+    //   this[val.methods](val.row);
+    // },
     search() {},
     Increase() {}
   }

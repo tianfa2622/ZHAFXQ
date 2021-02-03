@@ -1,12 +1,5 @@
 const options = {
   rules: {},
-  formData: {
-    area: [],
-    CommunityName: "",
-    HousingCategory: "",
-    IDNumber: "",
-    Householder: ""
-  },
   form: {
     inline: true,
     size: "small"
@@ -15,7 +8,7 @@ const options = {
     {
       span: 7,
       label: "门禁点名称:",
-      prop: "AccessPoint",
+      prop: "mc",
       type: "text",
       clearable: true,
       class: ""
@@ -23,22 +16,22 @@ const options = {
     {
       span: 8,
       label: "行进方向:",
-      prop: "TravelDirection",
+      prop: "xjfx",
       type: "select",
       class: "",
       style: "text-align:center;",
       options: [
         {
           label: "进",
-          value: 1
+          value: "0"
         },
         {
           label: "出",
-          value: 2
+          value: "1"
         },
         {
           label: "进/出",
-          value: 3
+          value: "123"
         }
       ]
     }

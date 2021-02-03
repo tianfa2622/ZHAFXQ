@@ -9,17 +9,17 @@ const options = {
   tableColumns: [
     {
       label: "日期",
-      param: "Date",
+      param: "operationTime",
       align: "center"
     },
     {
       label: "操作内容",
-      param: "OperationContent",
+      param: "content",
       align: "center"
     },
     {
       label: "操作人",
-      param: "Affiliation",
+      param: "userId",
       align: "center"
     }
   ],
@@ -31,24 +31,9 @@ const options = {
         label: "详情",
         type: "text",
         size: "mini",
-        methods: "Details"
+        methods: "view"
       }
     ]
-  },
-  // 表格数据
-  tableData: [
-    {
-      Date: "2020年5月2日",
-      OperationContent: "修改",
-      Affiliation: "admin"
-    }
-  ],
-  pagination: {
-    isBackC: true,
-    isShow: true,
-    currentPage: 1,
-    rows: 10,
-    total: 20
   }
 };
 export default options;

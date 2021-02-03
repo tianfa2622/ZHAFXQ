@@ -2,7 +2,7 @@ const fields = [
   {
     label: "处理人：",
     span: 24,
-    field: "CommunityName:",
+    field: "clr",
     type: "input",
     dataType: "string"
   },
@@ -10,14 +10,14 @@ const fields = [
     label: "处理时间：",
     span: 24,
     disabled: true,
-    field: "ownersName",
+    field: "clsj",
     type: "input",
     dataType: "string"
   },
   {
     label: "处理结果：",
     span: 24,
-    field: "textarea",
+    field: "cljg",
     type: "textarea",
     dataType: "string"
   }

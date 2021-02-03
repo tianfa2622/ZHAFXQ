@@ -2,10 +2,10 @@
   <div class="h-100 w-100">
     <el-card class="card_style" body-style="padding-bottom: 0px;">
       <Myform
-        :formData="MyformData.formData"
+        :formData="paramsData"
         :form="MyformData.form"
         :itemColumns="MyformData.itemColumns"
-        @clickButton="clickButton"
+        @clickButton="FormclickButton"
       ></Myform>
     </el-card>
     <div class="map_Content dflex">
@@ -54,26 +54,6 @@
                         <span>{{ from.adds }}</span>
                       </el-form-item>
                     </el-form>
-                    <!-- <span>小区名称：</span>
-                    <span style="display: inline-block; width: 20px"> </span>
-                    <span>{{ from.xianghao }}</span
-                    ><br />
-                    <span>小区楼栋数：</span>
-                    <span style="display: inline-block; width: 20px"> </span>
-                    <span>{{ from.xianghao }}</span
-                    ><br />
-                    <span>小区出入口数：</span>
-                    <span style="display: inline-block; width: 20px"> </span>
-                    <span>{{ from.xianghao }}</span
-                    ><br />
-                    <span>物业公司名称：</span>
-                    <span style="display: inline-block; width: 20px"> </span>
-                    <span>{{ from.time }}</span
-                    ><br />
-                    <span>地址：</span>
-                    <span style="display: inline-block; width: 20px"> </span>
-                    <span>{{ from.adds }}</span
-                    ><br /> -->
                   </div>
                   <div class="mt-5">
                     <el-button
@@ -143,6 +123,7 @@
 </template>
 
 <script>
+import {} from "@/api/Data_management/index/map/index";
 import MyformData from "./Mapform";
 import options1 from "./Community.js";
 import fields from "./editor";

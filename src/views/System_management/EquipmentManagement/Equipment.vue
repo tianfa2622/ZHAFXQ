@@ -23,7 +23,12 @@
         body-style="height: 100%;overflow:auto; padding-bottom:0px"
       >
         <el-row type="flex" :gutter="20" class="row_warp">
-          <el-col :span="6" v-for="(o, index) in 6" :key="index" class="mb-10">
+          <el-col
+            :span="6"
+            v-for="(item, index) in equipmentData"
+            :key="index"
+            class="mb-10"
+          >
             <el-card body-style=" padding:0px; text-align:center">
               <img
                 src="../../../assets/images/Equipment/u4236.svg"
@@ -31,10 +36,10 @@
               />
               <div style="padding: 14px">
                 <p>
-                  <span class="equipment">设备名：{{ EquipmentName }}</span>
+                  <span class="equipment">设备名：{{ item.sbmc }}</span>
                 </p>
                 <p>
-                  <span class="address">IP地址：{{ IPAddress }}</span>
+                  <span class="address">IP地址：{{ item.ipdz }}</span>
                 </p>
                 <!-- <div class="bottom clearfix">
                 </div> -->
@@ -49,9 +54,9 @@
           @current-change="handleCurrentChange"
           :current-page="currentPage"
           :page-sizes="[10, 15, 20, 25]"
-          :page-size="10"
+          :page-size="size"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="20"
+          :total="total"
           class="posi-abs b-10 ta-c offset"
         >
         </el-pagination>
@@ -61,6 +66,7 @@
 </template>
 
 <script>
+import { getSelectAll } from "@/api/System_management/Equipment/index";
 import MyformData from "./Equipmentform/Equipmentform";
 export default {
   data() {
@@ -68,18 +74,43 @@ export default {
       MyformData,
       EquipmentName: "XX设备",
       IPAddress: "192.168.1.1",
-      currentPage: 5
+      currentPage: 1,
+      size: 10,
+      total: 20,
+      equipmentData: []
     };
   },
+  created() {
+    this.getselectAllInfo();
+  },
   methods: {
+    getselectAllInfo() {
+      getSelectAll()
+        .then({
+          current: this.currentPage,
+          size: this.size
+        })
+        .then(res => {
+          if (res.code === 1) {
+            console.log(res);
+            this.equipmentData = res.data.records;
+            this.total = res.data.total;
+            // this.size=res.size
+          } else {
+            this.$message.error(res.message);
+          }
+        });
+    },
     // onSubmit() {
     // },
     // 切换当前一页展示多少条
     handleSizeChange(val) {
-      console.log(val);
+      this.size = val;
+      this.getselectAllInfo();
     },
     handleCurrentChange(val) {
-      console.log(val);
+      this.currentPage = val;
+      this.getselectAllInfo();
     },
     // 点击事件
     clickButton(val) {

@@ -9,42 +9,42 @@ const options = {
   tableColumns: [
     {
       label: "楼栋编号",
-      param: "BuildingNumber",
+      param: "ldbh",
       align: "center"
     },
     {
       label: "楼栋名称",
-      param: "BuildingName",
+      param: "mc",
       align: "center"
     },
     {
       label: "建筑物层数 地面 | 地下",
-      param: "NumberOfLayers",
+      param: "jzwcs",
       align: "center"
     },
     {
       label: "所含房屋数量",
-      param: "NumberOfHouses",
+      param: "shfwSl",
       align: "center"
     },
     {
       label: "所含单元数",
-      param: "NumberOfUnits",
+      param: "shdySl",
       align: "center"
     },
     {
       label: "地下居住层数",
-      param: "UndergroundFloor",
+      param: "dxcjzJzwcs",
       align: "center"
     },
     {
       label: "建筑面积(㎡)",
-      param: "builtupArea",
+      param: "jzMjpfm",
       align: "center"
     },
     {
       label: "地址",
-      param: "Address",
+      param: "dzmc",
       align: "center"
     }
   ],
@@ -57,7 +57,7 @@ const options = {
         label: "详情",
         type: "text",
         size: "mini",
-        methods: "Record",
+        methods: "view",
         style: "color:rgba(26, 188, 156, 1)"
       },
       {
@@ -75,30 +75,6 @@ const options = {
         style: "color:rgba(26, 188, 156, 1)"
       }
     ]
-  },
-  // 表格数据
-  tableData: [
-    {
-      BuildingNumber: "2020-10-1",
-      BuildingName: "张小刚",
-      NumberOfLayers: "24",
-      NumberOfHouses: "长沙市芙蓉区宽寓大厦",
-      NumberOfUnits: "",
-      UndergroundFloor: "",
-      builtupArea: "",
-      Address: ""
-    },
-    {},
-    {},
-    {},
-    {}
-  ],
-  pagination: {
-    isBackC: true,
-    isShow: true,
-    currentPage: 1,
-    rows: 10,
-    total: 20
   }
 };
 export default options;

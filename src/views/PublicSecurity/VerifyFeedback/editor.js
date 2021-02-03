@@ -1,61 +1,61 @@
 const fields = [
   {
     label: "发布类型：",
-    field: "CommunityName:",
+    field: "records[0].fblx",
     type: "input",
     dataType: "string"
   },
   {
     label: "发布时间：",
-    field: "ownersName",
+    field: "fbRqsj",
     type: "input",
     dataType: "string"
   },
   {
     label: "发布内容：",
-    field: "textarea8",
+    field: "fbRqsj",
     type: "input",
     dataType: "string"
   },
   {
     label: "发布状态：",
-    field: "textarea7",
+    field: "fbzt",
     type: "input",
     dataType: "string"
   },
   {
     label: "安装地址：",
-    field: "textarea6",
+    field: "azdzQhnxxdz",
     type: "input",
     dataType: "string"
   },
   {
     label: "地球经度：",
-    field: "textarea5",
+    field: "dqjd",
     type: "input",
     dataType: "string"
   },
   {
     label: "地球纬度：",
-    field: "textarea4",
+    field: "dqwd",
     type: "input",
     dataType: "string"
   },
   {
     label: "发布人姓名：",
-    field: "textarea3",
+    field: "dqwd",
     type: "input",
     dataType: "string"
   },
   {
     label: "采集时间：",
-    field: "textarea1",
+    field: "cjsj",
     type: "input",
     dataType: "string"
   },
   {
     label: "采集系统时间：",
-    field: "textarea2",
+    field: "cjxtsj",
     type: "input",
     dataType: "string"
   }

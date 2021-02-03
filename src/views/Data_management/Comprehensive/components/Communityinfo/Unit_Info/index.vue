@@ -14,11 +14,11 @@
       </el-breadcrumb>
       <el-card class="card_style" body-style="padding-bottom: 0px;">
         <Myform
-          :formData="MyformData.formData"
+          :formData="paramsData"
           :form="MyformData.form"
           :itemColumns="MyformData.itemColumns"
           :btnData="MyformData.btnData"
-          @clickButton="clickButton"
+          @clickButton="FormclickButton"
         ></Myform>
       </el-card>
     </div>
@@ -26,7 +26,7 @@
       <!-- <div class="h-100 w-69"> -->
       <Mytable
         :size="MyTableData.size"
-        :tableData="MyTableData.tableData"
+        :tableData="tableData"
         :tableColumns="MyTableData.tableColumns"
         :tableOption="MyTableData.tableOption"
         :HeaderCellStyle="MyTableData.HeaderCellStyle"
@@ -34,15 +34,19 @@
         @pageChange="pageChange"
         @clickButton="clickButton"
         :CardAttributes="MyTableData.CardAttributes"
-        :pagination="MyTableData.pagination"
+        :pagination="pagination"
       ></Mytable>
       <!-- </div> -->
     </div>
     <Editor
+      :title="title"
+      v-if="editorVisible"
+      :width="width"
       :type="editorType"
       :visible.sync="editorVisible"
       :fields="fields"
       @confirm="confirm"
+      :editData="editData"
       :labelWidth="labelWidth"
     />
     <el-dialog :visible.sync="dialogVisible" width="30%">
@@ -56,6 +60,7 @@
 </template>
 
 <script>
+import { getSelectAll } from "@/api/Data_management/index/Unit_Info/index";
 import MyformData from "./Unit_InfoForm/Unit_Info";
 import MyTableData from "./Unit_InfoTable/Unit_Info";
 import fields from "./editor";
@@ -77,19 +82,49 @@ export default {
       editorVisible: false,
       labelWidth: "210px",
       src:
-        "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg"
+        "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",
+      pagination: {
+        isBackC: true,
+        isShow: true,
+        currentPage: 1,
+        size: 10,
+        total: 10
+      },
+      editData: {},
+      paramsData: {
+        mc: ""
+      },
+      tableData: []
     };
   },
+  created() {
+    this.getSelectInfo();
+  },
   methods: {
+    getSelectInfo() {
+      getSelectAll({
+        // shdyBh: "123",
+        ...this.paramsData,
+        current: this.pagination.currentPage,
+        size: this.pagination.size
+      }).then(res => {
+        console.log(res.data);
+        if (res.code === 1) {
+          this.tableData = res.data.records;
+          this.pagination.total = res.data.total;
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
+        } else {
+          this.$message.error(res.message);
+        }
+      });
+    },
     // 点击事件
     clickButton(val) {
       // 调用事件
-      // this[val.methods](val.row);
-      if (val.methods === "details") {
-        this.openEditor(val.methods, val.row);
-      } else {
-        this[val.methods](val.row);
-      }
+      this[val.methods](val.row);
+    },
+    FormclickButton(val) {
+      this[val.methods](val.formData);
     },
     openEditor(type, row) {
       console.log(type, row);
@@ -107,11 +142,13 @@ export default {
     },
     // 切换当前一页展示多少条
     sizeChange(val) {
-      this.rows = val;
+      this.pagination.size = val;
+      this.getSelectInfo();
     },
     // 翻页
     pageChange(val) {
-      this.page = val;
+      this.paramsData.currentPage = val;
+      this.getSelectInfo();
     },
     // eslint-disable-next-line no-unused-vars
     unitImg(val) {
@@ -121,7 +158,10 @@ export default {
     HousingInfo(val) {
       this.changePage("9");
     },
-    search() {},
+    search(v) {
+      this.paramsData = { ...v };
+      this.getSelectInfo();
+    },
     // 跳转页面
     changePage(target) {
       // 更新父组件传入的prop ‘currentPage’

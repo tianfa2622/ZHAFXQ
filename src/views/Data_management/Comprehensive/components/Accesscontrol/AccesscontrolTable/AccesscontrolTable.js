@@ -9,47 +9,56 @@ const options = {
   tableColumns: [
     {
       label: "门禁点编号",
-      param: "CollectionTime",
+      param: "mjdbh",
       align: "center"
     },
     {
       label: "门禁点名称",
-      param: "Name",
+      param: "mc",
       align: "center"
     },
     {
       label: "关联门禁采集设备",
-      param: "IDNumber",
+      param: "gldmjCjsbxxbz",
       align: "center"
     },
     {
       label: "关联抓拍采集设备",
-      param: "VoucherNumber",
+      param: "gldzpjCjsbxxbz",
       align: "center"
     },
     {
       label: "行进方向",
-      param: "OpeningHours",
-      align: "center"
+      param: "xjfx",
+      align: "center",
+      render: row => {
+        if (row.xjfx === "0") {
+          return "进";
+        } else if (row.xjfx === "1") {
+          return "出";
+        } else {
+          return "进/出";
+        }
+      }
     },
     {
       label: "地球经度",
-      param: "DoorSensorStatus",
+      param: "dqjd",
       align: "center"
     },
     {
       label: "地球纬度",
-      param: "AcquisitionEquipment",
+      param: "dqwd",
       align: "center"
     },
     {
       label: "楼栋单元",
-      param: "Passed",
+      param: "lddyxxbzMc",
       align: "center"
     },
     {
       label: "登记人姓名及电话",
-      param: "DoorOpeningMethod",
+      param: "djrXmDh",
       align: "center"
     }
   ],
@@ -65,32 +74,6 @@ const options = {
         style: "color:rgba(26, 188, 156, 1)"
       }
     ]
-  },
-  // 表格数据
-  tableData: [
-    {
-      CollectionTime: "2020-10-1",
-      Name: "张小刚",
-      IDNumber: "24",
-      VoucherNumber: "长沙市芙蓉区宽寓大厦",
-      OpeningHours: "",
-      DoorSensorStatus: "",
-      AcquisitionEquipment: "",
-      Passed: "",
-      DoorOpeningMethod: "",
-      OpenResult: ""
-    },
-    {},
-    {},
-    {},
-    {}
-  ],
-  pagination: {
-    isBackC: true,
-    isShow: true,
-    currentPage: 1,
-    rows: 10,
-    total: 20
   }
 };
 export default options;

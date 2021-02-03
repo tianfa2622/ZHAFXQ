@@ -1,11 +1,5 @@
 const options = {
   rules: {},
-  formData: {
-    ParkingSpaceNumber: "",
-    ParkingType: "",
-    ParkingSpaceOwnership: "",
-    VehicleOwner: ""
-  },
   form: {
     inline: true,
     size: "small"
@@ -14,7 +8,7 @@ const options = {
     {
       span: 8,
       label: "停车位编号：",
-      prop: "ParkingSpaceNumber",
+      prop: "tcwbh",
       style: "text-align:center",
       type: "text",
       clearable: true,
@@ -23,7 +17,7 @@ const options = {
     {
       span: 8,
       label: "车位类型：",
-      prop: "ParkingType",
+      prop: "cwlx",
       type: "select",
       class: "",
       style: "text-align:center",
@@ -41,7 +35,7 @@ const options = {
     {
       span: 8,
       label: "车位归属类型：",
-      prop: "ParkingSpaceOwnership",
+      prop: "cwgslx",
       type: "select",
       class: "",
       style: "text-align:center",
@@ -59,7 +53,7 @@ const options = {
     {
       span: 8,
       label: "车位所有人名称：",
-      prop: "VehicleOwner",
+      prop: "cwsyrXm",
       type: "select",
       class: "mr-30",
       style: "text-align:center",

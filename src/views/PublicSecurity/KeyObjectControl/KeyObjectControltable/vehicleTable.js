@@ -9,27 +9,27 @@ const options = {
   tableColumns: [
     {
       label: "车牌号",
-      param: "numberPlate",
+      param: "cphm",
       align: "center"
     },
     {
       label: "品牌",
-      param: "Brand",
+      param: "zwppmc",
       align: "center"
     },
     {
       label: "车辆颜色",
-      param: "VehicleColor",
+      param: "clys",
       align: "center"
     },
     {
       label: "车主姓名",
-      param: "OwnersName",
+      param: "xm",
       align: "center"
     },
     {
       label: "管控事由",
-      param: "ControlReasons",
+      param: "gksy",
       align: "center"
     }
   ],
@@ -44,44 +44,6 @@ const options = {
         methods: "cartoView"
       }
     ]
-  },
-  // 表格数据
-  tableData: [
-    {
-      numberPlate: "湘A：LZ888",
-      Brand: "JEEP牧马人",
-      VehicleColor: "白",
-      OwnersName: "小花生",
-      ControlReasons: "02:00-03:30游荡5栋一单元门口"
-    },
-    {
-      numberPlate: "湘A：LZ888",
-      Brand: "JEEP牧马人",
-      VehicleColor: "白",
-      OwnersName: "小花生",
-      ControlReasons: "02:00-03:30游荡5栋一单元门口"
-    },
-    {
-      numberPlate: "湘A：LZ888",
-      Brand: "JEEP牧马人",
-      VehicleColor: "白",
-      OwnersName: "小花生",
-      ControlReasons: "02:00-03:30游荡5栋一单元门口"
-    },
-    {
-      numberPlate: "湘A：LZ888",
-      Brand: "JEEP牧马人",
-      VehicleColor: "白",
-      OwnersName: "小花生",
-      ControlReasons: "02:00-03:30游荡5栋一单元门口"
-    }
-  ],
-  pagination: {
-    isBackC: true,
-    isShow: true,
-    currentPage: 1,
-    rows: 10,
-    total: 20
   }
 };
 export default options;

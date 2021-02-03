@@ -17,7 +17,7 @@ export function getPersonnelAll(data) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getVehicleAll(data) {
-  return axios.get("/jjyc/selectAll", {
+  return axios.get("/clyc/selectAll", {
     params: data
   });
 }
@@ -27,47 +27,53 @@ export function getVehicleAll(data) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getGatherAll(data) {
-  return axios.get("/clyc/selectAll", {
+  return axios.get("/jjyc/selectAll", {
     params: data
   });
 }
 
 /**
  * 获取人员异常表格单列信息
- * @param {object} data  查询传的值
+ * @param {string} id 查询传的值
  * @returns {import("axios").AxiosPromise.data}
  */
-export function getPersonnelOne(data) {
+export function getPersonnelOne(id) {
   return axios.get("/ryyc/selectOne", {
-    params: data
+    params: {
+      id: id
+    }
   });
 }
 
 /**
  * 获取车辆异常表格单列信息
- * @param {object} data  查询传的值
+ * @param {string} id  查询传的值
  * @returns {import("axios").AxiosPromise.data}
  */
-export function getVehicleOne(data) {
+export function getVehicleOne(id) {
   return axios.get("/clyc/selectOne", {
-    params: data
+    params: {
+      id: id
+    }
   });
 }
 
 /**
  * 获取聚集异常表格单列信息
- * @param {object} data  查询传的值
+ * @param {string} id  查询传的值
  * @returns {import("axios").AxiosPromise.data}
  */
-export function getGatherOne(data) {
+export function getGatherOne(id) {
   return axios.get("/jjyc/selectOne", {
-    params: data
+    params: {
+      id: id
+    }
   });
 }
 
 /**
  * 修改人员异常表格单列信息
- * @param {object} data  查询传的值
+ * @param {object} data  修改传的值
  * @returns {import("axios").AxiosPromise.data}
  */
 export function putPersonnelupdate(data) {
@@ -76,7 +82,7 @@ export function putPersonnelupdate(data) {
 
 /**
  * 修改车辆异常表格单列信息
- * @param {object} data  查询传的值
+ * @param {object} data  修改传的值
  * @returns {import("axios").AxiosPromise.data}
  */
 export function putVehicleupdate(data) {
@@ -85,7 +91,7 @@ export function putVehicleupdate(data) {
 
 /**
  * 修改聚集异常表格单列信息
- * @param {object} data  查询传的值
+ * @param {object} data  修改传的值
  * @returns {import("axios").AxiosPromise.data}
  */
 export function putGatherupdate(data) {
@@ -94,60 +100,60 @@ export function putGatherupdate(data) {
 
 /**
  * 增加人员异常表格数据
- * @param {object} data  查询传的值
+ * @param {object} data  添加传的值
  * @returns {import("axios").AxiosPromise.data}
  */
-export function putPersonnelinsert(data) {
+export function postPersonnelinsert(data) {
   return axios.post("/ryyc/insert", data);
 }
 
 /**
  * 增加车辆异常表格数据
- * @param {object} data  查询传的值
+ * @param {object} data  添加传的值
  * @returns {import("axios").AxiosPromise.data}
  */
-export function putVehicleinsert(data) {
+export function postVehicleinsert(data) {
   return axios.post("/clyc/insert", data);
 }
 
 /**
  * 增加车辆异常表格数据
- * @param {object} data  查询传的值
+ * @param {object} data  添加传的值
  * @returns {import("axios").AxiosPromise.data}
  */
-export function putGatherinsert(data) {
+export function postGatherinsert(data) {
   return axios.post("/jjyc/insert", data);
 }
 
 /**
  * 删除人员异常单列表格数据
- * @param {object} data  查询传的值
+ * @param {object} data  删除传的值
  * @returns {import("axios").AxiosPromise.data}
  */
 export function delectPersonnel(data) {
-  return axios.post("/ryyc/delete", {
+  return axios.delete("/ryyc/delete", {
     params: data
   });
 }
 
 /**
  * 删除车辆异常单列表格数据
- * @param {object} data  查询传的值
+ * @param {object} data  删除传的值
  * @returns {import("axios").AxiosPromise.data}
  */
 export function delectVehicle(data) {
-  return axios.post("/clyc/delete", {
+  return axios.delete("/clyc/delete", {
     params: data
   });
 }
 
 /**
  * 删除聚集异常单列表格数据
- * @param {object} data  查询传的值
+ * @param {object} data  删除传的值
  * @returns {import("axios").AxiosPromise.data}
  */
 export function delectGather(data) {
-  return axios.post("/jjyc/delete", {
+  return axios.delete("/jjyc/delete", {
     params: data
   });
 }

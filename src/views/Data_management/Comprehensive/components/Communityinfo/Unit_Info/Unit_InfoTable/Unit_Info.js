@@ -9,27 +9,27 @@ const options = {
   tableColumns: [
     {
       label: "单元编号",
-      param: "UnitNumber",
+      param: "dybh",
       align: "center"
     },
     {
       label: "单元名称",
-      param: "UnitName",
+      param: "mc",
       align: "center"
     },
     {
       label: "门户数量",
-      param: "NumberOfPortals",
+      param: "mhSl",
       align: "center"
     },
     {
       label: "建筑面积(㎡)",
-      param: "constructionArea",
+      param: "jzMjpfm",
       align: "center"
     },
     {
       label: "地址",
-      param: "Address",
+      param: "dzmc",
       align: "center"
     }
   ],
@@ -42,7 +42,7 @@ const options = {
         label: "详情",
         type: "text",
         size: "mini",
-        methods: "details",
+        methods: "view",
         style: "color:rgba(26, 188, 156, 1)"
       },
       {

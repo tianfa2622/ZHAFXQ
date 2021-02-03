@@ -34,14 +34,14 @@
           <div class="table-content">
             <Mytable
               :size="tabsData.size"
-              :tableData="tabsData.tableData"
+              :tableData="tableData"
               :tableColumns="tabsData.tableColumns"
               :tableOption="tabsData.tableOption"
               @sizeChange="sizeChange"
               @pageChange="pageChange"
               @clickButton="clickButton"
               :CardAttributes="tabsData.CardAttributes"
-              :pagination="tabsData.pagination"
+              :pagination="pagination"
             >
             </Mytable>
           </div>
@@ -49,16 +49,25 @@
       </el-tabs>
     </div>
     <Editor
+      :title="title"
+      v-if="editorVisible"
       :type="editorType"
       :visible.sync="editorVisible"
       :fields="fieldsData"
       :labelWidth="labelWidth"
-      @confirm="confirm"
+      :editData="editData"
     />
+    <!-- @confirm="confirm" -->
   </div>
 </template>
 
 <script>
+import {
+  getPersonnelAll,
+  getVehicleAll,
+  getPersonnelOne,
+  getVehicleOne
+} from "@/api/PublicSecurity/KeyObjectControl/index";
 import personnelTable from "./KeyObjectControltable/personnelTable";
 import vehicleTable from "./KeyObjectControltable/vehicleTable";
 import fields from "./editor";
@@ -68,7 +77,7 @@ export default {
     return {
       personnelTable,
       vehicleTable,
-      tabsData: {},
+      tabsData: personnelTable,
       input3: "",
       fields,
       carfields,
@@ -77,71 +86,148 @@ export default {
       labelWidth: "170px",
       // inline: false,
       editorVisible: false,
-      activeName: "first",
+      activeName: "zdry",
       tabs: [
         {
           label: "重点人员",
-          name: "first",
-          number: 2182
+          name: "zdry"
         },
         {
           label: "重点车辆",
-          name: "second",
-          number: 2182
+          name: "zdcl"
         }
-      ]
+      ],
+      tableData: [],
+      pagination: {
+        isBackC: true,
+        isShow: true,
+        currentPage: 1,
+        size: 10,
+        total: 10
+      },
+      // paramsData: {
+      //   djrXm: "",
+      //   xbdm: "",
+      //   mzdm: "",
+      //   djrLxdh: "",
+      //   gldyGksy: ""
+      // },
+      editData: {},
+      title: ""
     };
   },
   created() {
-    this.tabsdata();
+    this.getPersonnelInfo();
   },
   methods: {
-    handleClick() {
-      this.tabsdata();
+    getPersonnelInfo() {
+      this.tableData = [];
+      getPersonnelAll({
+        // ...this.paramsData,
+        current: this.pagination.currentPage,
+        size: this.pagination.size
+      }).then(res => {
+        if (res.code === 1) {
+          this.tableData = res.data.records;
+          this.pagination.total = res.data.total;
+          // Object.assign(this.$data.paramsData, this.$options.data().paramsData);
+        } else {
+          this.$message.error(res.message);
+        }
+      });
     },
-    tabsdata() {
-      if (this.activeName === "first") {
+    getVehicleInfo() {
+      this.tableData = [];
+      getVehicleAll({
+        // ...this.paramsData,
+        current: this.pagination.currentPage,
+        size: this.pagination.size
+      }).then(res => {
+        if (res.code === 1) {
+          this.tableData = res.data.records;
+          this.pagination.total = res.data.total;
+          // Object.assign(this.$data.paramsData, this.$options.data().paramsData);
+        } else {
+          this.$message.error(res.message);
+        }
+      });
+    },
+    getPersonnelInfoOne(row) {
+      getPersonnelOne(row.zdryxxbz).then(res => {
+        console.log(res);
+        if (res.code === 1) {
+          this.editData = res.data;
+          this.editorVisible = true;
+        } else {
+          this.$message.error(res.message);
+        }
+      });
+    },
+    getVehicleInfoOne(row) {
+      getVehicleOne(row.zdclxxbs).then(res => {
+        console.log(res);
+        if (res.code === 1) {
+          this.editData = res.data;
+          this.editorVisible = true;
+        } else {
+          this.$message.error(res.message);
+        }
+      });
+    },
+    handleClick() {
+      if (this.activeName === "zdry") {
+        this.tabsData = [];
+        this.title = "查看重点人员";
         this.tabsData = personnelTable;
+        this.fieldsData = fields;
+        this.getPersonnelInfo();
       } else {
+        this.tabsData = [];
+        this.title = "查看重点车辆";
         this.tabsData = vehicleTable;
+        this.fieldsData = carfields;
+        this.getVehicleInfo();
       }
     },
     // 点击事件
     clickButton(val) {
       // 调用事件
-      // this[val.methods](val.row);
-      if (val.methods !== "search") {
-        this.openEditor(val.methods, val.row);
-      } else {
-        this[val.methods](val.row);
-      }
+      this[val.methods](val.row);
     },
-    openEditor(type, row) {
-      console.log(type, row);
-      switch (type) {
-        case "toView":
-          this.fieldsData = this.fields;
-          break;
-        case "cartoView":
-          this.fieldsData = this.carfields;
-          break;
-      }
-      this.editorVisible = true;
-    },
-    confirm(formData) {
-      console.log(formData);
-      // 请求接口提交数据 等等
-      this.editorVisible = false;
-    },
+    // confirm(formData) {
+    //   console.log(formData);
+    //   // 请求接口提交数据 等等
+    //   this.editorVisible = false;
+    // },
     // 切换当前一页展示多少条
     sizeChange(val) {
-      this.rows = val;
+      this.pagination.size = val;
+      switch (this.activeName) {
+        case "zdry":
+          return this.getPersonnelInfo();
+        case "zdcl":
+          return this.getVehicleInfo();
+      }
     },
     // 翻页
     pageChange(val) {
-      this.page = val;
+      this.pagination.currentPage = val;
+      switch (this.activeName) {
+        case "zdry":
+          return this.getPersonnelInfo();
+        case "zdcl":
+          return this.getVehicleInfo();
+      }
     },
-    search() {}
+    search() {},
+    toView(val) {
+      this.editorType = "view";
+      this.getPersonnelInfoOne(val);
+    },
+    cartoView(val) {
+      this.editorType = "view";
+      this.getVehicleInfoOne(val);
+    }
   }
 };
 </script>

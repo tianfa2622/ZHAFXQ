@@ -1,9 +1,5 @@
 const options = {
   rules: {},
-  formData: {
-    area: [],
-    CommunityName: ""
-  },
   form: {
     inline: true,
     size: "small"
@@ -19,7 +15,7 @@ const options = {
     {
       span: 5,
       label: "小区名称：",
-      prop: "CommunityName",
+      prop: "xqxxbz",
       clearable: true,
       type: "text"
     }

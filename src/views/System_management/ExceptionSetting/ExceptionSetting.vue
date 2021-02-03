@@ -6,7 +6,7 @@
         <el-breadcrumb-item :to="{ path: '/UserManagement' }">
           系统管理
         </el-breadcrumb-item>
-        <el-breadcrumb-item>日常设置</el-breadcrumb-item>
+        <el-breadcrumb-item>异常设置</el-breadcrumb-item>
       </el-breadcrumb>
       <el-divider></el-divider>
     </div>
@@ -64,7 +64,7 @@
             <div class="header_content" v-if="item.title !== '聚集预警'">
               <span>2、近 </span>
               <el-input-number
-                v-model="[item.range].day"
+                v-model="item.range.day"
                 :controls="false"
                 :min="1"
                 :max="100"
@@ -73,7 +73,7 @@
               ></el-input-number>
               <span> 天出入次数频率高达 </span>
               <el-input-number
-                v-model="[item.range].frequency"
+                v-model="item.range.frequency"
                 :controls="false"
                 :min="1"
                 :max="100"
@@ -96,21 +96,18 @@
             </div>
             <div class="header_content" v-if="item.title !== '聚集预警'">
               <span>3、在 </span>
-              <el-time-picker
-                is-range
-                size="mini"
+              <el-date-picker
                 v-model="item.range1.time"
+                type="datetimerange"
                 range-separator="-"
-                start-placeholder="开始时间"
-                end-placeholder="结束时间"
-                placeholder="选择时间范围"
-                value-format="HH:mm:ss"
-                class="w200"
+                style="width: 360px"
+                start-placeholder="开始日期"
+                end-placeholder="结束日期"
               >
-              </el-time-picker>
+              </el-date-picker>
               <span> 出入次数高达</span>
               <el-input-number
-                v-model="[item.range1].frequency"
+                v-model="item.range1.frequency"
                 :controls="false"
                 :min="1"
                 :max="100"
@@ -145,6 +142,7 @@
 </template>
 
 <script>
+import { getSelectYcsz } from "@/api/System_management/ExceptionSetting/index";
 export default {
   data() {
     return {
@@ -154,7 +152,7 @@ export default {
           similar: null,
           range: { day: null, frequency: null },
           range1: {
-            time: [new Date(2016, 9, 10, 8, 40), new Date(2016, 9, 10, 9, 40)],
+            time: [],
             frequency: null
           }
         },
@@ -163,7 +161,7 @@ export default {
           INandOut: null,
           range: { day: null, frequency: null },
           range1: {
-            time: [new Date(2016, 9, 10, 8, 40), new Date(2016, 9, 10, 9, 40)],
+            time: [],
             frequency: null
           },
           hours: null
@@ -173,10 +171,38 @@ export default {
           PeopleNum: null,
           GatheringTime: null
         }
-      ]
+      ],
+      ExceptionData: {}
     };
   },
+  created() {
+    this.getSelectYcszInfo();
+  },
   methods: {
+    getSelectYcszInfo() {
+      getSelectYcsz().then(res => {
+        if (res.code === 1) {
+          // console.log(res.data);
+          this.ExceptionData = [res.data.ryyj, res.data.clyj, res.data.jjyj];
+          for (let i = 0; i < this.ExceptionData.length; i++) {
+            this.Exception[i].similar = this.ExceptionData[i].rlbdxsl;
+            this.Exception[i].range.day = this.ExceptionData[i].jcts;
+            this.Exception[i].range.frequency = this.ExceptionData[i].jccs;
+            this.Exception[i].range1.time = [
+              this.ExceptionData[i].ksrq,
+              this.ExceptionData[i].jsrq
+            ];
+            this.Exception[i].range1.frequency = this.ExceptionData[i].jscrcs;
+            this.Exception[i].hours = this.ExceptionData[i].jrsj;
+            this.Exception[i].PeopleNum = this.ExceptionData[i].jjrs;
+            this.Exception[i].GatheringTime = this.ExceptionData[i].jjsj;
+          }
+          console.log(this.ExceptionData);
+        } else {
+          this.$message.error(res.message);
+        }
+      });
+    },
     Clear() {},
     Save() {}
   }

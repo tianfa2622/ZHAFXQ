@@ -1,10 +1,5 @@
 const options = {
   rules: {},
-  formData: {
-    PlanName: "",
-    KeyWords: "",
-    EntryTime: ""
-  },
   form: {
     inline: true,
     size: "small"
@@ -29,24 +24,44 @@ const options = {
     // },
     {
       span: 7,
-      label: "巡查预案名称：",
-      prop: "PlanName",
-      type: "text",
+      label: "感知预警事件类型：",
+      prop: "gzyjsjlx",
+      type: "select",
       clearable: true,
-      class: ""
+      class: "",
+      options: [
+        {
+          label: "1",
+          value: 1
+        },
+        {
+          label: "2",
+          value: 2
+        }
+      ]
     },
     {
       span: 7,
-      label: "关键词：",
-      prop: "KeyWords",
-      type: "text",
+      label: "预警状态：",
+      prop: "yjzt",
+      type: "select",
       clearable: true,
-      class: ""
+      class: "",
+      options: [
+        {
+          label: "1",
+          value: 1
+        },
+        {
+          label: "2",
+          value: 2
+        }
+      ]
     },
     {
-      span: 7,
-      label: "录入时间：",
-      prop: "EntryTime",
+      span: 8,
+      label: "预警时间：",
+      prop: "yjRqsj",
       type: "daterange",
       class: "",
       clearable: true,
@@ -94,7 +109,7 @@ const options = {
         type: "primary",
         style: "",
         size: "small",
-        methods: "Increase",
+        methods: "add",
         label: "新增"
       }
     ]

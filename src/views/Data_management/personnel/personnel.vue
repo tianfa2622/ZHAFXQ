@@ -144,7 +144,7 @@ export default {
         }
       });
     },
-    putUpDate(formData) {
+    putUpData(formData) {
       getUpdate(formData).then(res => {
         if (res.code === 1) {
           this.$message.success(res.message);
@@ -172,7 +172,7 @@ export default {
     },
     confirm(formData) {
       if (this.editorType !== "add") {
-        this.putUpDate(formData);
+        this.putUpData(formData);
       } else {
         let gxsj = getCurrentDate(true);
         let rkdjlx = this.activeName;
