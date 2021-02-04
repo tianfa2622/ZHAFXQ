@@ -1,37 +1,37 @@
 const fields = [
   {
     label: "小区名称：",
-    field: "CommunityName:",
+    field: "xqxxbz",
     type: "input",
     dataType: "string"
   },
   {
     label: "车主姓名：",
-    field: "ownersName",
+    field: "czXm",
     type: "input",
     dataType: "string"
   },
   {
     label: "车主联系电话：",
-    field: "Telephone",
+    field: "czLxdh",
     type: "input",
     dataType: "string"
   },
   {
     label: "车主身份证号码：",
-    field: "idCard",
+    field: "czGmsfzhm",
     type: "input",
     dataType: "string"
   },
   {
     label: "机动车车牌号码：",
-    field: "Licenseplate",
+    field: "jdchphm",
     type: "input",
     dataType: "string"
   },
   {
     label: "机动车车辆类型：",
-    field: "motorVehicle",
+    field: "jdccllxdm",
     type: "select",
     options: [
       {
@@ -46,73 +46,93 @@ const fields = [
   },
   {
     label: "机动车号牌种类：",
-    field: "licensePlate:",
+    field: "jdchpzldm",
     type: "input",
     dataType: "string"
   },
   {
     label: "机动车号牌颜色：",
-    field: "NumberPlateColor:",
+    field: "jdchpysdm",
     type: "input",
     dataType: "string"
   },
   {
     label: "中文品牌名称：",
-    field: "ChineseBrandName:",
+    field: "zwppmc",
     type: "input",
     dataType: "string"
+  },
+  {
+    label: "车辆长度：",
+    field: "clcd",
+    type: "input",
+    dataType: "number"
+  },
+  {
+    label: "车辆高度：",
+    field: "clgd",
+    type: "input",
+    dataType: "number"
+  },
+  {
+    label: "车辆宽度：",
+    field: "clkd",
+    type: "input",
+    dataType: "number"
   },
   {
     label: "车辆体积(长*宽*高)：",
-    field: "VehicleVolume",
+    field: "cltj",
     type: "input",
     dataType: "string"
+    // hidden: ["edit", "add"]
   },
   {
     label: "机动车车身颜色：",
-    field: "ColorCar:",
+    field: "jdccsysdm",
     type: "input",
     dataType: "string"
   },
   {
     label: "车辆型号：",
-    field: "VehicleModel",
+    field: "clxh",
     type: "input",
     dataType: "string"
   },
   {
     label: "机动车简要情况：",
-    field: "BriefSituation",
+    field: "jyqk",
     type: "input",
     dataType: "string"
   },
   {
     label: "登记人姓名：",
-    field: "RegistrantName",
+    field: "djrXm",
     type: "input",
     dataType: "string"
   },
   {
     label: "登记人电话号码：",
-    field: "RegistrantPhoneNumber:",
+    field: "djrLxdh",
     type: "input",
     dataType: "string"
   },
   {
     label: "数据更新时间：",
-    field: "DataUpdate:",
+    field: "gxsj",
     type: "input",
     dataType: "string"
   },
   {
     label: "数据来源：",
-    field: "DataSources",
+    field: "sjly",
     type: "input",
     dataType: "string"
   },
   {
     label: "数据状态：",
-    field: "DataStatus",
+    span: 24,
+    field: "sjzt",
     type: "input",
     dataType: "string"
   }

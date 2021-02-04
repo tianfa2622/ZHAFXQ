@@ -9,7 +9,7 @@ const options = {
   tableColumns: [
     {
       label: "姓名",
-      param: "djrXm",
+      param: "xm",
       align: "center"
     },
     {

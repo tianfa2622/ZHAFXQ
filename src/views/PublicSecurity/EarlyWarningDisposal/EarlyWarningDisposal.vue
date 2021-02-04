@@ -20,7 +20,7 @@
         <el-tab-pane label="巡查预警" name="xcyj" class="tabs_content">
           <Inspection></Inspection>
         </el-tab-pane>
-        <el-tab-pane label="感知预警" name="gzyj">
+        <el-tab-pane label="感知预警" name="gzyj" class="tabs_content">
           <perceived></perceived>
         </el-tab-pane>
       </el-tabs>

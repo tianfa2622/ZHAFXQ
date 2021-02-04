@@ -6,11 +6,11 @@
       </el-breadcrumb>
       <el-card class="card_style" body-style="padding-bottom: 0px;">
         <Myform
-          :formData="MyformData.formData"
+          :formData="paramsData"
           :form="MyformData.form"
           :itemColumns="MyformData.itemColumns"
           :btnData="MyformData.btnData"
-          @clickButton="clickButton"
+          @clickButton="FormclickButton"
         ></Myform>
       </el-card>
     </div>
@@ -18,7 +18,7 @@
       <!-- <div class="h-100 w-69"> -->
       <Mytable
         :size="MyTableData.size"
-        :tableData="MyTableData.tableData"
+        :tableData="tableData"
         :tableColumns="MyTableData.tableColumns"
         :tableOption="MyTableData.tableOption"
         :HeaderCellStyle="MyTableData.HeaderCellStyle"
@@ -26,7 +26,7 @@
         @pageChange="pageChange"
         @clickButton="clickButton"
         :CardAttributes="MyTableData.CardAttributes"
-        :pagination="MyTableData.pagination"
+        :pagination="pagination"
       ></Mytable>
       <!-- </div> -->
     </div>
@@ -99,6 +99,7 @@
 </template>
 
 <script>
+import { getSelectAll } from "@/api/Data_management/comprehensive/index";
 import MyformData from "./IntegratedQueryForm/IntegratedQueryForm";
 import MyTableData from "./IntegratedQueryTable/IntegratedQueryTable";
 import Peopletrack from "./component/index";
@@ -124,7 +125,21 @@ export default {
       fields2,
       fields3,
       labelWidth: "220px",
-      type: "view"
+      type: "view",
+      pagination: {
+        isBackC: true,
+        isShow: true,
+        currentPage: 1,
+        size: 10,
+        total: 10
+      },
+      paramsData: {
+        area: [],
+        xqxxbz: "",
+        xm: "",
+        zjhm: ""
+      },
+      tableData: []
     };
   },
   computed: {
@@ -132,16 +147,32 @@ export default {
       return this.type === "view";
     }
   },
+  created() {
+    this.getselectInfo();
+  },
   methods: {
+    getselectInfo() {
+      getSelectAll({
+        ...this.paramsData,
+        current: this.pagination.currentPage,
+        size: this.pagination.size
+      }).then(res => {
+        if (res.code === 1) {
+          this.tableData = res.data.records;
+          this.pagination.total = res.data.total;
+          this.$message.success(res.message);
+        } else {
+          this.$message.error(res.message);
+        }
+      });
+    },
     // 点击事件
     clickButton(val) {
       // 调用事件
-      // this[val.methods](val.row);
-      if (val.methods !== "search") {
-        this.openEditor(val.methods, val.row);
-      } else {
-        this[val.methods](val.row);
-      }
+      this[val.methods](val.row);
+    },
+    FormclickButton(val) {
+      this[val.methods](val.formData);
     },
     openEditor(type, row) {
       console.log(type, row);
@@ -163,13 +194,21 @@ export default {
     // },
     // 切换当前一页展示多少条
     sizeChange(val) {
-      this.rows = val;
+      this.pagination.size = val;
+      this.getselectInfo();
     },
     // 翻页
     pageChange(val) {
-      this.page = val;
+      this.pagination.currentPage = val;
+      this.getselectInfo();
     },
-    search() {}
+    search(v) {
+      this.paramsData = { ...v };
+      this.getselectInfo();
+    },
+    view() {
+      this.dialogVisible = true;
+    }
   }
 };
 </script>

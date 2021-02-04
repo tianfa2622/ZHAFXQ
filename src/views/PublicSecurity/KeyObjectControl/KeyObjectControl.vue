@@ -23,7 +23,12 @@
           class="dflex direction-column"
         >
           <div class="searchbar">
-            <el-input placeholder="请输入内容" v-model="input3" class="w300">
+            <el-input
+              :placeholder="placeholder"
+              v-model="input"
+              class="w300"
+              @click="search"
+            >
               <el-button
                 slot="append"
                 @click="search"
@@ -75,10 +80,11 @@ import carfields from "./careditor";
 export default {
   data() {
     return {
+      placeholder: "",
       personnelTable,
       vehicleTable,
       tabsData: personnelTable,
-      input3: "",
+      input: "",
       fields,
       carfields,
       fieldsData: fields,
@@ -105,32 +111,36 @@ export default {
         size: 10,
         total: 10
       },
-      // paramsData: {
-      //   djrXm: "",
-      //   xbdm: "",
-      //   mzdm: "",
-      //   djrLxdh: "",
-      //   gldyGksy: ""
-      // },
+      paramsData: {
+        srk: ""
+        // djrXm: "",
+        // xm: "",
+        // cphm: ""
+      },
       editData: {},
       title: ""
     };
   },
   created() {
-    this.getPersonnelInfo();
+    // this.getPersonnelInfo();
+    // this.handleClick();
+  },
+  mounted() {
+    this.handleClick();
   },
   methods: {
     getPersonnelInfo() {
       this.tableData = [];
       getPersonnelAll({
-        // ...this.paramsData,
+        ...this.paramsData,
         current: this.pagination.currentPage,
         size: this.pagination.size
       }).then(res => {
         if (res.code === 1) {
           this.tableData = res.data.records;
           this.pagination.total = res.data.total;
-          // Object.assign(this.$data.paramsData, this.$options.data().paramsData);
+          this.input = "";
+          this.$message.success(res.message);
         } else {
           this.$message.error(res.message);
         }
@@ -139,14 +149,15 @@ export default {
     getVehicleInfo() {
       this.tableData = [];
       getVehicleAll({
-        // ...this.paramsData,
+        ...this.paramsData,
         current: this.pagination.currentPage,
         size: this.pagination.size
       }).then(res => {
         if (res.code === 1) {
           this.tableData = res.data.records;
           this.pagination.total = res.data.total;
-          // Object.assign(this.$data.paramsData, this.$options.data().paramsData);
+          this.input = "";
+          this.$message.success(res.message);
         } else {
           this.$message.error(res.message);
         }
@@ -158,6 +169,7 @@ export default {
         if (res.code === 1) {
           this.editData = res.data;
           this.editorVisible = true;
+          this.$message.success(res.message);
         } else {
           this.$message.error(res.message);
         }
@@ -169,6 +181,7 @@ export default {
         if (res.code === 1) {
           this.editData = res.data;
           this.editorVisible = true;
+          this.$message.success(res.message);
         } else {
           this.$message.error(res.message);
         }
@@ -178,12 +191,14 @@ export default {
       if (this.activeName === "zdry") {
         this.tabsData = [];
         this.title = "查看重点人员";
+        this.placeholder = "请输入姓名、联系电话、身份证号";
         this.tabsData = personnelTable;
         this.fieldsData = fields;
         this.getPersonnelInfo();
       } else {
         this.tabsData = [];
         this.title = "查看重点车辆";
+        this.placeholder = "请输入姓名、车牌号码";
         this.tabsData = vehicleTable;
         this.fieldsData = carfields;
         this.getVehicleInfo();
@@ -219,7 +234,17 @@ export default {
           return this.getVehicleInfo();
       }
     },
-    search() {},
+    search() {
+      if (this.activeName === "zdry") {
+        this.paramsData.srk = this.input;
+        this.getPersonnelInfo();
+        this.paramsData.srk = "";
+      } else {
+        this.paramsData.srk = this.input;
+        this.getVehicleInfo();
+        this.paramsData.srk = "";
+      }
+    },
     toView(val) {
       this.editorType = "view";
       this.getPersonnelInfoOne(val);

@@ -54,7 +54,12 @@
 </template>
 
 <script>
-import { getSelectAll } from "@/api/PublicSecurity/EarlyWarningDisposal/index";
+import {
+  getSelectAll,
+  getSelectOne,
+  putUpdate,
+  addInsert
+} from "@/api/PublicSecurity/EarlyWarningDisposal/index";
 import MyformData from "./formData/form";
 import MytableData from "./tableData/table";
 import options from "./EchartsData/Echarts";
@@ -79,9 +84,9 @@ export default {
         total: 10
       },
       paramsData: {
-        fblx: "",
-        fbRqsj: "",
-        fbnr: ""
+        ycyaMc: "",
+        gjc: "",
+        lrsj: ""
       },
       editData: {},
       title: ""
@@ -91,16 +96,49 @@ export default {
     this.getTableInfo();
   },
   methods: {
-    getTableInfo(selectData) {
+    getTableInfo() {
       getSelectAll({
         currentPage: this.pagination.currentPage,
         size: this.pagination.size,
-        ...selectData
+        ...this.paramsData
       }).then(res => {
-        console.log(res);
         if (res.code === 1) {
           this.tableData = res.data.records;
           this.pagination.total = res.data.total;
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
+          this.$message.success(res.message);
+        } else {
+          this.$message.error(res.message);
+        }
+      });
+    },
+    getColumnData(row) {
+      getSelectOne({ xcyaxxbz: row.xcyaxxbz }).then(res => {
+        if (res.code === 1) {
+          this.editData = res.data;
+          this.editorVisible = true;
+          this.$message.success(res.message);
+        } else {
+          this.$message.error(res.message);
+        }
+      });
+    },
+    editColumnData(data) {
+      putUpdate(data).then(res => {
+        if (res.code === 1) {
+          this.editorVisible = false;
+          this.getTableInfo();
+          this.$message.success(res.message);
+        } else {
+          this.$message.error(res.message);
+        }
+      });
+    },
+    addColumnData(data) {
+      addInsert(data).then(res => {
+        if (res.code === 1) {
+          console.log(res);
+          this.$message.success(res.message);
         } else {
           this.$message.error(res.message);
         }
@@ -115,8 +153,14 @@ export default {
       this[val.methods](val.formData);
     },
     confirm(formData) {
-      console.log(formData);
       // 请求接口提交数据 等等
+      if (this.editorType === "add") {
+        this.addColumnData(formData);
+      } else {
+        this.editColumnData(formData);
+      }
+      // 请求接口提交数据 等等
+      this.getTableInfo();
       this.editorVisible = false;
     },
     // 切换当前一页展示多少条
@@ -131,20 +175,17 @@ export default {
     },
     edit(val) {
       this.editorType = "edit";
-      this.editorVisible = true;
-      console.log(val);
+      this.getColumnData(val);
       // 我是处理
     },
     view(val) {
-      console.log(val);
       this.editorType = "view";
-      this.editorVisible = true;
+      this.getColumnData(val);
       // 我是处理结果
     },
     search(v) {
       this.paramsData = { ...v };
-      let selectData = this.paramsData;
-      this.getTableInfo(selectData);
+      this.getTableInfo();
     },
     add() {
       this.editorType = "add";

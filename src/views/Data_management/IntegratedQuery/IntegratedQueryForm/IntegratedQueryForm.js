@@ -1,12 +1,5 @@
 const options = {
   rules: {},
-  formData: {
-    area: [],
-    CommunityName: "",
-    HousingCategory: "",
-    IDNumber: "",
-    Householder: ""
-  },
   form: {
     inline: true,
     size: "small"
@@ -15,7 +8,7 @@ const options = {
     {
       span: 8,
       label: "查询类型：",
-      prop: "category",
+      prop: "cxlx",
       type: "select",
       class: "",
       style: "text-align:center;",
@@ -45,7 +38,7 @@ const options = {
     {
       span: 8,
       label: "小区名称:",
-      prop: "CommunityName",
+      prop: "xqxxbz",
       type: "text",
       clearable: true,
       style: "text-align:center",
@@ -54,7 +47,7 @@ const options = {
     {
       span: 8,
       label: "户主姓名：",
-      prop: "Householder",
+      prop: "xm",
       type: "text",
       class: "",
       style: "text-align:center",
@@ -62,8 +55,8 @@ const options = {
     },
     {
       span: 8,
-      label: "房屋地址:",
-      prop: "HouseAddress",
+      label: "身份证号码:",
+      prop: "zjhm",
       type: "text",
       clearable: true,
       class: "",

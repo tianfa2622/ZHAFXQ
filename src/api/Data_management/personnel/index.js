@@ -40,7 +40,7 @@ export function getUpdate(personinfo) {
   return axios.put("/personinfo/update", data);
 }
 /**
- * 更新小区人员信息
+ * 添加小区人员信息
  * @param {JSON} personinfo personinfo 小区人员信息
  *
  */

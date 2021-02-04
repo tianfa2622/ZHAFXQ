@@ -214,8 +214,10 @@ export default {
       this.tableData = [];
       if (this.activeName === "1") {
         this.tabsData = ThePermanent;
+        this.pagination.currentPage = 1;
       } else {
         this.tabsData = FloatingPopulation;
+        this.pagination.currentPage = 1;
       }
       this.getPersonnelInfo();
     },

@@ -13,12 +13,16 @@ const options = {
       class: "",
       options: [
         {
+          label: "其他",
+          value: "0"
+        },
+        {
           label: "机动车",
-          value: 1
+          value: "1"
         },
         {
           label: "电动车",
-          value: 2
+          value: "2"
         }
       ]
     },
@@ -34,32 +38,31 @@ const options = {
       span: 7,
       label: "发布时间：",
       prop: "fbRqsj",
-      type: "daterange",
+      type: "datetime",
       class: "",
       clearable: true,
       pickerOptions: {
         shortcuts: [
           {
-            text: "本月",
+            text: "今天",
             onClick(picker) {
-              picker.$emit("pick", [new Date(), new Date()]);
+              picker.$emit("pick", new Date());
             }
           },
           {
-            text: "今年至今",
+            text: "昨天",
             onClick(picker) {
-              const end = new Date();
-              const start = new Date(new Date().getFullYear(), 0);
-              picker.$emit("pick", [start, end]);
+              const date = new Date();
+              date.setTime(date.getTime() - 3600 * 1000 * 24);
+              picker.$emit("pick", date);
             }
           },
           {
-            text: "最近六个月",
+            text: "一周前",
             onClick(picker) {
-              const end = new Date();
-              const start = new Date();
-              start.setMonth(start.getMonth() - 6);
-              picker.$emit("pick", [start, end]);
+              const date = new Date();
+              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
+              picker.$emit("pick", date);
             }
           }
         ]

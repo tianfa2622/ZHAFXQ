@@ -97,10 +97,12 @@
               align="right"
               :type="columns.type"
               placeholder="请选择日期"
+              value-format="yyyy-MM-dd"
               :clearable="columns.clearable"
               :picker-options="columns.pickerOptions"
             >
             </el-date-picker>
+
             <el-date-picker
               v-else-if="columns.type === 'daterange'"
               v-model="editData[columns.prop]"
@@ -126,6 +128,16 @@
               :class="columns.class"
               start-placeholder="开始日期"
               end-placeholder="结束日期"
+              placeholder="请选择"
+            >
+            </el-date-picker>
+            <el-date-picker
+              v-else-if="columns.type === 'datetime'"
+              v-model="editData[columns.prop]"
+              format="yyyy-MM-dd HH:mm:ss"
+              value-format="yyyy-MM-dd HH:mm:ss"
+              :type="columns.type"
+              :class="columns.class"
               placeholder="请选择"
             >
             </el-date-picker>

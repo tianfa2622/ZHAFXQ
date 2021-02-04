@@ -9,32 +9,32 @@ const options = {
   tableColumns: [
     {
       label: "访问时间",
-      param: "AccessTime",
+      param: "fwRqsj",
       align: "center"
     },
     {
       label: "姓名",
-      param: "Name",
+      param: "fkxxXm",
       align: "center"
     },
     {
       label: "身份证号码",
-      param: "IDNumber",
+      param: "fkxxGmsfzhm",
       align: "center"
     },
     {
       label: "联系电话",
-      param: "ContactNumber",
+      param: "fkxxLxdh",
       align: "center"
     },
     {
       label: "机动车号牌号码",
-      param: "MotorVehicleNumber",
+      param: "fkxxJdchphm",
       align: "center"
     },
     {
       label: "事由",
-      param: "SubjectMatter",
+      param: "fwSy",
       align: "center"
     }
   ],
@@ -50,27 +50,6 @@ const options = {
         style: "color:#1abc9c"
       }
     ]
-  },
-  // 表格数据
-  tableData: [
-    {
-      AccessTime: "",
-      Name: "张小刚",
-      IDNumber: "2020-01-13",
-      ContactNumber: "24",
-      MotorVehicleNumber: "",
-      SubjectMatter: ""
-    },
-    {},
-    {},
-    {}
-  ],
-  pagination: {
-    isBackC: true,
-    isShow: true,
-    currentPage: 1,
-    rows: 10,
-    total: 20
   }
 };
 export default options;

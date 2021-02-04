@@ -1,15 +1,15 @@
 import echarts from "echarts";
 let data = [
-  { stock: "aaa", fundPost: "21.987691" },
-  { stock: "bbb", fundPost: "20.377176" },
-  { stock: "ccc", fundPost: "19.127404" },
-  { stock: "ddd", fundPost: "18.40882" },
-  { stock: "eee", fundPost: "17.980597" },
-  { stock: "fff", fundPost: "16.957898" },
-  { stock: "ggg", fundPost: "15.099577" },
-  { stock: "eee", fundPost: "14.76103" },
-  { stock: "ttt", fundPost: "13.002175" },
-  { stock: "fff", fundPost: "12.133536" }
+  { stock: "类型1", fundPost: "21.987691" },
+  { stock: "类型2", fundPost: "20.377176" },
+  { stock: "类型3", fundPost: "19.127404" }
+  // { stock: "ddd", fundPost: "18.40882" },
+  // { stock: "eee", fundPost: "17.980597" },
+  // { stock: "fff", fundPost: "16.957898" },
+  // { stock: "ggg", fundPost: "15.099577" },
+  // { stock: "eee", fundPost: "14.76103" },
+  // { stock: "ttt", fundPost: "13.002175" },
+  // { stock: "fff", fundPost: "12.133536" }
 ];
 function contains(arr, dst) {
   var i = arr.length;
@@ -96,18 +96,18 @@ const options = {
     itemHeight: 10,
     textStyle: {
       //图例文字的样式
-      fontSize: 10,
+      fontSize: 14,
       color: "#000"
     },
     selectedMode: false,
-    data: ["个人所得(亿元)"]
+    data: ["发布类型"]
   },
   grid: {
     left: "5%",
     right: "2%",
     width: "80%",
-    bottom: "2%",
-    top: "8%",
+    bottom: "15%",
+    top: "15%",
     containLabel: true
   },
   xAxis: {
@@ -142,12 +142,12 @@ const options = {
           //margin: 30
         }
       },
-      pdaaing: [5, 0, 0, 0],
+      pdaaing: [10, 0, 0, 0],
       postion: "right",
       data: attaName,
       axisLabel: {
         margin: 30,
-        fontSize: 10,
+        fontSize: 14,
         align: "left",
         padding: [2, 0, 0, 0],
         color: "#000",
@@ -155,43 +155,45 @@ const options = {
           nt1: {
             color: "#000",
             backgroundColor: attackSourcesColor1[0],
-            width: 13,
-            height: 13,
-            fontSize: 10,
+            width: 15,
+            height: 15,
+            fontSize: 14,
             align: "center",
             borderRadius: 100,
-            lineHeight: "5",
+            lineHeight: "7",
             padding: [0, 1, 2, 1]
             // padding:[0,0,2,0],
           },
           nt2: {
             color: "#000",
             backgroundColor: attackSourcesColor1[1],
-            width: 13,
-            height: 13,
-            fontSize: 10,
+            width: 15,
+            height: 15,
+            fontSize: 14,
             align: "center",
             borderRadius: 100,
+            lineHeight: "7",
             padding: [0, 1, 2, 1]
           },
           nt3: {
             color: "#000",
             backgroundColor: attackSourcesColor1[2],
-            width: 13,
-            height: 13,
-            fontSize: 10,
+            width: 15,
+            height: 15,
+            fontSize: 14,
             align: "center",
             borderRadius: 100,
+            lineHeight: "7",
             padding: [0, 1, 2, 1]
           },
           nt: {
             color: "#000",
             backgroundColor: attackSourcesColor1[3],
-            width: 13,
-            height: 13,
-            fontSize: 10,
+            width: 15,
+            height: 15,
+            fontSize: 14,
             align: "center",
-            lineHeight: 3,
+            lineHeight: 5,
             borderRadius: 100,
             padding: [0, 1, 2, 1]
             // lineHeight: 5
@@ -234,7 +236,7 @@ const options = {
   series: [
     {
       zlevel: 1,
-      name: "个人所得(亿元)",
+      name: "",
       type: "bar",
       barWidth: "15px",
       animationDuration: 1500,
@@ -254,7 +256,7 @@ const options = {
       }
     },
     {
-      name: "个人所得(亿元)",
+      name: "发布类型",
       type: "bar",
       barWidth: 15,
       barGap: "-100%",
@@ -262,14 +264,14 @@ const options = {
       data: salvProMax,
       textStyle: {
         //图例文字的样式
-        fontSize: 10,
+        fontSize: 14,
         color: "#000"
       },
       itemStyle: {
         normal: {
           color: "#05325F",
           //width:"100%",
-          fontSize: 10,
+          fontSize: 14,
           barBorderRadius: 30
         }
       }

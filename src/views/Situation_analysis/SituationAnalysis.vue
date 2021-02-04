@@ -149,14 +149,15 @@ export default {
       },
       paramsData: {
         area: [],
-        rq: "",
-        xqxxdm: ""
+        rq: ""
       },
+      xqxxdm: "",
       area: "北京,北京市,东城区"
     };
   },
   created() {
-    this.getTimeInfo();
+    // this.getTimeInfo();
+    this.handleClick();
   },
   methods: {
     getTimeInfo() {
@@ -165,10 +166,11 @@ export default {
         current: this.pagination.currentPage,
         size: this.pagination.size
       }).then(res => {
-        console.log(res);
         if (res.code === 1) {
           this.tableData = res.data.records;
           this.pagination.total = res.data.total;
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
+          this.$message.success(res.message);
         } else {
           this.$message.error(res.message);
         }
@@ -181,11 +183,11 @@ export default {
         current: this.pagination.currentPage,
         size: this.pagination.size
       }).then(res => {
-        console.log(res);
         if (res.code === 1) {
           this.tableData = res.data;
-          console.log(this.tableData);
           this.pagination.total = res.data.total;
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
+          this.$message.success(res.message);
         } else {
           this.$message.error(res.message);
         }
@@ -205,22 +207,39 @@ export default {
     FormclickButton(val) {
       this[val.methods](val.formData);
     },
-    // onSubmit() {
-    // },
-    // 切换当前一页展示多少条
     sizeChange(val) {
-      this.rows = val;
+      this.pagination.size = val;
+      switch (this.activeName) {
+        case "first":
+          return this.getTimeInfo();
+        case "second":
+          return this.getAreaInfo();
+      }
     },
     // 翻页
     pageChange(val) {
-      this.page = val;
+      this.pagination.currentPage = val;
+      switch (this.activeName) {
+        case "first":
+          return this.getTimeInfo();
+        case "second":
+          return this.getAreaInfo();
+      }
     },
     // // 点击事件
     // clickButton(val) {
     //   // 调用事件
     //   this[val.methods](val.row);
     // },
-    search() {},
+    search(v) {
+      this.paramsData = { ...v };
+      switch (this.activeName) {
+        case "first":
+          return this.getTimeInfo();
+        case "second":
+          return this.getAreaInfo();
+      }
+    },
     Increase() {}
   }
 };

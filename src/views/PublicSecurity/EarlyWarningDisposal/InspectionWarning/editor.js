@@ -2,7 +2,7 @@ const fields = [
   {
     label: "巡查预案名称：",
     span: 24,
-    field: "name",
+    field: "ycyaMc",
     type: "input",
     dataType: "string",
     hidden: ["edit", "view"]
@@ -10,7 +10,7 @@ const fields = [
   {
     label: "关键词：",
     span: 24,
-    field: "CommunityName:",
+    field: "gjc",
     type: "input",
     dataType: "string",
     hidden: ["edit", "view"]
@@ -18,15 +18,16 @@ const fields = [
   {
     label: "录入时间：",
     span: 24,
-    field: "ownersName",
+    field: "lrsj",
     type: "input",
     dataType: "string",
+    // type: "datetime",
     hidden: ["edit", "view"]
   },
   {
     label: "简要情况：",
     span: 24,
-    field: "Telephone",
+    field: "jyqk",
     type: "input",
     dataType: "string",
     hidden: ["edit", "view"]
@@ -34,7 +35,7 @@ const fields = [
   {
     label: "详细情况：",
     span: 24,
-    field: "idCard1",
+    field: "xxqk",
     type: "input",
     dataType: "string",
     hidden: ["edit", "view"]
@@ -42,15 +43,23 @@ const fields = [
   {
     label: "电子文件URL：",
     span: 24,
-    field: "idCard2",
+    field: "dzwjurl",
     type: "input",
     dataType: "string",
     hidden: ["edit", "view"]
   },
   {
-    label: "登记人姓名及电话：",
+    label: "登记人姓名：",
     span: 24,
-    field: "idCard3",
+    field: "djrXm",
+    type: "input",
+    dataType: "string",
+    hidden: ["edit", "view"]
+  },
+  {
+    label: "登记人联系电话：",
+    span: 24,
+    field: "djrLxdh",
     type: "input",
     dataType: "string",
     hidden: ["edit", "view"]
@@ -58,7 +67,7 @@ const fields = [
   {
     label: "处理人：",
     span: 24,
-    field: "idCard4",
+    field: "clr",
     type: "input",
     dataType: "string",
     hidden: ["add"]
@@ -66,7 +75,7 @@ const fields = [
   {
     label: "处理结果：",
     span: 24,
-    field: "idCard5",
+    field: "cljg",
     type: "textarea",
     dataType: "string",
     hidden: ["add"]

@@ -143,6 +143,7 @@ export default {
         if (res.code === 1) {
           this.tableData = res.data.records;
           this.pagination.total = res.data.total;
+          this.$message.success(res.message);
         } else {
           this.$message.error(res.message);
         }
@@ -154,6 +155,7 @@ export default {
           console.log(res);
           this.editData = res.data;
           this.editorVisible = true;
+          this.$message.success(res.message);
         } else {
           this.$message.error(res.message);
         }
@@ -162,9 +164,9 @@ export default {
     editHousingData(data) {
       PutUpdate(data).then(res => {
         if (res.code === 1) {
-          this.$message.success(res.message);
           this.editorVisible = false;
           this.getHousingInfo();
+          this.$message.success(res.message);
         } else {
           this.$message.error(res.message);
         }

@@ -38,11 +38,11 @@ const options = {
       options: [
         {
           label: "机动车",
-          value: 1
+          value: "1"
         },
         {
           label: "电动车",
-          value: 2
+          value: "2"
         }
       ]
     }

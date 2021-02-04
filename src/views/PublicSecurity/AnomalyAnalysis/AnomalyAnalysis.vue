@@ -140,7 +140,6 @@ export default {
         size: this.pagination.size
       }).then(res => {
         if (res.code === 1) {
-          console.log(res.data);
           this.tabs[0].number = res.data.total;
           this.tableData = res.data.records;
           this.pagination.total = res.data.total;

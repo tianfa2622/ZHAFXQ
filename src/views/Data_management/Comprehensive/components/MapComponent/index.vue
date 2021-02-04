@@ -23,10 +23,10 @@
             }" -->
           <template>
             <bm-marker
-              v-for="(item, index) in markers"
+              v-for="(item, index) in mapData"
               :key="index"
               :position="item.markerPoint"
-              :title="item.name"
+              :title="item.jlxxqmc"
               @click="look(item)"
             >
               <bm-info-window
@@ -39,19 +39,19 @@
                   <div>
                     <el-form label-width="120px" size="mini" :model="from">
                       <el-form-item label="小区名称：">
-                        {{ from.xianghao }}
+                        {{ from.jlxxqmc }}
                       </el-form-item>
                       <el-form-item label="小区楼栋数：">
-                        <span>{{ from.xianghao }}</span>
+                        <span>{{ from.xqldSl }}</span>
                       </el-form-item>
                       <el-form-item label="小区出入口数：">
-                        <span>{{ from.xianghao }}</span>
+                        <span>{{ from.xqcrkSl }}</span>
                       </el-form-item>
                       <el-form-item label="物业公司名称：">
-                        <span>{{ from.time }}</span>
+                        <span>{{ from.wygs }}</span>
                       </el-form-item>
                       <el-form-item label="地址：">
-                        <span>{{ from.adds }}</span>
+                        <span>{{ from.dzmc }}</span>
                       </el-form-item>
                     </el-form>
                   </div>
@@ -123,7 +123,7 @@
 </template>
 
 <script>
-import {} from "@/api/Data_management/index/map/index";
+import { getSelectAll } from "@/api/Data_management/index/map/index";
 import MyformData from "./Mapform";
 import options1 from "./Community.js";
 import fields from "./editor";
@@ -141,58 +141,61 @@ export default {
     return {
       MyformData,
       options1,
+      // center: {
+      //   lng: 116.404,
+      //   lat: 39.915
+      // },
+      // zoom: 15,
       center: {
-        lng: 116.404,
-        lat: 39.915
+        lng: 1,
+        lat: 2
       },
-      zoom: 15,
+      zoom: 5,
       // markerPoint:{
       //   lng:116.404,
       //   lat:39.915
       // },
-      show: false,
       from: {},
       position: {},
-      markers: [
-        {
-          markerPoint: { lng: 116.404, lat: 39.915 },
-          name: "xiaoqu",
-          xianghao: "BADWQI32221",
-          adds: "差分状态:N",
-          time: "上报时间:2020/11/01 13:48",
-          showFlag: false
-        },
-        {
-          name: "xiaoqu1",
-          markerPoint: { lng: 116.39, lat: 39.915 },
-          xianghao: "ABCD873873",
-          adds: "差分状态:Y",
-          time: "上报时间:2020/11/23 13:48",
-          showFlag: false
-        },
-        {
-          name: "xiaoqu2",
-          markerPoint: { lng: 116.38, lat: 39.915 },
-          xianghao: "EERQSIA21",
-          adds: "差分状态:S",
-          time: "上报时间:2018/11/23 11:48",
-          showFlag: false
-        }
-      ],
       fields,
       editorType: "view",
       editorVisible: false,
+      editData: {},
       width: "50%",
-      labelWidth: "180px"
+      labelWidth: "180px",
+      paramsData: {
+        area: [],
+        jlxxqmc: ""
+      },
+      mapData: []
     };
   },
+  created() {
+    this.getSelectInfo();
+  },
   methods: {
-    // syncCenterAndZoom (e) {
-    //   const {lng, lat} = e.target.getCenter()
-    //   this.center.lng = lng
-    //   this.center.lat = lat
-    //   this.zoom = e.target.getZoom()
-    // },
+    getSelectInfo() {
+      getSelectAll({
+        ...this.paramsData
+      }).then(res => {
+        console.log(res);
+        if (res.code === 1) {
+          this.mapData = res.data.records;
+          for (const key in this.mapData) {
+            this.mapData[key].showFlag = false;
+            this.mapData[key].markerPoint = {
+              lng: this.mapData[key].dqjd,
+              lat: this.mapData[key].dqwd
+            };
+          }
+          // console.log(this.mapData);
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
+          this.$message.success(res.message);
+        } else {
+          this.$message.error(res.message);
+        }
+      });
+    },
     // 点击事件
     infoWindowClose(item) {
       item.showFlag = false;
@@ -205,7 +208,7 @@ export default {
       this.position = items.markerPoint;
       items.showFlag = true;
     },
-    clickButton(val) {
+    FormclickButton(val) {
       // 调用事件
       this[val.methods](val.row);
     },
@@ -218,7 +221,10 @@ export default {
       // 请求接口提交数据 等等
       this.editorVisible = false;
     },
-    search() {},
+    search(v) {
+      this.paramsData = { ...v };
+      this.getSelectInfo();
+    },
     // 跳转页面
     changePage(target) {
       // 更新父组件传入的prop ‘currentPage’

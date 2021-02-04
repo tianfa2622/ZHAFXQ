@@ -1,4 +1,3 @@
-import { getSelectAll } from "@/api/Data_management/vehicle/index";
 const options = {
   size: "small",
   CardAttributes: {
@@ -10,12 +9,12 @@ const options = {
   tableColumns: [
     {
       label: "车主姓名",
-      param: "cz",
+      param: "czXm",
       align: "center"
     },
     {
       label: "车牌号码",
-      param: " jdchphm",
+      param: "cphm",
       align: "center"
     },
     {
@@ -25,7 +24,7 @@ const options = {
     },
     {
       label: "车辆类别",
-      param: " jdccllxdm",
+      param: "cllb",
       align: "center"
     },
     {
@@ -51,26 +50,6 @@ const options = {
         methods: "editor"
       }
     ]
-  },
-  // 表格数据
-  tableData: [],
-  pagination: {
-    isBackC: true,
-    isShow: true,
-    currentPage: 1,
-    rows: 10,
-    total: 20
   }
 };
-let paramsData = {
-  czXm: "",
-  jdchphm: ""
-};
-getSelectAll(paramsData).then(res => {
-  if (res.code === 1) {
-    options.tableData = res.data.records;
-  } else {
-    this.$message.error(res.message);
-  }
-});
 export default options;

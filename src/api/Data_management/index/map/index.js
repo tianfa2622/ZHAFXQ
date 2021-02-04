@@ -2,7 +2,7 @@ import axios from "@/utils/axios";
 
 /**
  * 获取小区综合信息
- * @param {object} paramsData  rkdjlx人口登记类型(1常住, 2流动)
+ * @param {object} paramsData  传值的参数 所属地区 小区姓名
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getSelectAll(paramsData) {

@@ -11,7 +11,7 @@
         ></Myform>
       </el-card>
     </div>
-    <div class="vehicle_bottom dflex">
+    <div class="warning_bottom dflex">
       <div class="h-100 w-69">
         <Mytable
           :size="MytableData.size"
@@ -54,7 +54,12 @@
 </template>
 
 <script>
-import { getGZSelectAll } from "@/api/PublicSecurity/EarlyWarningDisposal/index";
+import {
+  getGZSelectAll,
+  getGZSelectOne,
+  putGZUpdate,
+  addGZInsert
+} from "@/api/PublicSecurity/EarlyWarningDisposal/index";
 import MyformData from "./formData/form";
 import MytableData from "./tableData/table";
 import options from "./EchartsData/Echarts";
@@ -91,21 +96,55 @@ export default {
     this.getTableInfo();
   },
   methods: {
-    getTableInfo(selectData) {
+    getTableInfo() {
       getGZSelectAll({
         currentPage: this.pagination.currentPage,
         size: this.pagination.size,
-        ...selectData
+        ...this.paramsData
       }).then(res => {
-        console.log(res);
         if (res.code === 1) {
           this.tableData = res.data.records;
           for (const key in this.tableData) {
             let value = "clrXmDh";
             let xmdh = `${this.tableData[key].clrXm} | ${this.tableData[key].clrLxdh}`;
-            this.MyformData[key][value] = xmdh;
+            console.log(xmdh);
+            this.tableData[key][value] = xmdh;
           }
           this.pagination.total = res.data.total;
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
+          this.$message.success(res.message);
+        } else {
+          this.$message.error(res.message);
+        }
+      });
+    },
+    getColumnData(row) {
+      getGZSelectOne({ ...row }).then(res => {
+        if (res.code === 1) {
+          this.editData = res.data;
+          this.editorVisible = true;
+          this.$message.success(res.message);
+        } else {
+          this.$message.error(res.message);
+        }
+      });
+    },
+    editColumnData(data) {
+      putGZUpdate(data).then(res => {
+        if (res.code === 1) {
+          this.editorVisible = false;
+          this.getTableInfo();
+          this.$message.success(res.message);
+        } else {
+          this.$message.error(res.message);
+        }
+      });
+    },
+    addColumnData(data) {
+      addGZInsert(data).then(res => {
+        if (res.code === 1) {
+          console.log(res);
+          this.$message.success(res.message);
         } else {
           this.$message.error(res.message);
         }
@@ -120,8 +159,14 @@ export default {
       this[val.methods](val.formData);
     },
     confirm(formData) {
-      console.log(formData);
       // 请求接口提交数据 等等
+      if (this.editorType === "add") {
+        this.addColumnData(formData);
+      } else {
+        this.editColumnData(formData);
+      }
+      // 请求接口提交数据 等等
+      this.getTableInfo();
       this.editorVisible = false;
     },
     // 切换当前一页展示多少条
@@ -137,21 +182,18 @@ export default {
     edit(val) {
       this.title = "处理";
       this.editorType = "edit";
-      this.editorVisible = true;
-      console.log(val);
+      this.getColumnData(val);
       // 我是处理
     },
     view(val) {
       this.title = "处理结果";
-      console.log(val);
       this.editorType = "view";
-      this.editorVisible = true;
+      this.getColumnData(val);
       // 我是处理结果
     },
     search(v) {
       this.paramsData = { ...v };
-      let selectData = this.paramsData;
-      this.getTableInfo(selectData);
+      this.getTableInfo();
     },
     add() {
       this.title = "添加";
@@ -165,7 +207,7 @@ export default {
 <style lang="less" scoped>
 .bgc {
   background-color: #fff;
-  .vehicle_bottom {
+  .warning_bottom {
     width: 100%;
     height: calc(100% - 124px);
     margin-top: 10px;

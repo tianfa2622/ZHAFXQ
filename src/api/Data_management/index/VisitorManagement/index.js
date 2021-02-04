@@ -1,12 +1,12 @@
 import axios from "@/utils/axios";
 
 /**
- * 获取门禁信息
- * @param {object} paramsData  rkdjlx人口登记类型(1常住, 2流动)
+ * 获取访客登记信息
+ * @param {object} paramsData
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getSelectAll(paramsData) {
-  return axios.get("/doorinfo/selectAll", {
+  return axios.get("/visitorevent/selectAll", {
     params: paramsData
   });
 }

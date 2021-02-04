@@ -84,7 +84,7 @@ export default {
         total: 10
       },
       paramsData: {
-        fblx: "",
+        fblx: null,
         fbRqsj: "",
         fbnr: ""
       },
@@ -96,18 +96,17 @@ export default {
     this.getFeedbackInfo();
   },
   methods: {
-    getFeedbackInfo(selectData) {
-      this.tableData = [];
+    getFeedbackInfo() {
       getSelectAll({
-        ...selectData,
+        ...this.paramsData,
         current: this.pagination.currentPage,
         size: this.pagination.size
       }).then(res => {
-        console.log(res);
         if (res.code === 1) {
           this.tableData = res.data.records;
           this.pagination.total = res.data.total;
           Object.assign(this.$data.paramsData, this.$options.data().paramsData);
+          this.$message.success(res.message);
         } else {
           this.$message.error(res.message);
         }
@@ -121,18 +120,6 @@ export default {
     FormclickButton(val) {
       this[val.methods](val.formData);
     },
-    // openEditor(type, row) {
-    //   console.log(type, row);
-    //   switch (type) {
-    //     case "Increase":
-    //       this.editorType = "add";
-    //       break;
-    //     case "toView":
-    //       this.editorType = "view";
-    //       break;
-    //   }
-    //   this.editorVisible = true;
-    // },
     confirm(formData) {
       console.log(formData);
       // 请求接口提交数据 等等
@@ -150,8 +137,7 @@ export default {
     },
     search(v) {
       this.paramsData = { ...v };
-      let selectData = this.paramsData;
-      this.getFeedbackInfo(selectData);
+      this.getFeedbackInfo();
     },
     toView(row) {
       console.log(row);

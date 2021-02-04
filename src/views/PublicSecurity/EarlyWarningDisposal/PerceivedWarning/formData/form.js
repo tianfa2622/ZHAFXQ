@@ -31,12 +31,16 @@ const options = {
       class: "",
       options: [
         {
+          label: "0",
+          value: "0"
+        },
+        {
           label: "1",
-          value: 1
+          value: "1"
         },
         {
           label: "2",
-          value: 2
+          value: "2"
         }
       ]
     },
@@ -62,36 +66,9 @@ const options = {
       span: 8,
       label: "预警时间：",
       prop: "yjRqsj",
-      type: "daterange",
+      type: "datetime",
       class: "",
-      clearable: true,
-      pickerOptions: {
-        shortcuts: [
-          {
-            text: "本月",
-            onClick(picker) {
-              picker.$emit("pick", [new Date(), new Date()]);
-            }
-          },
-          {
-            text: "今年至今",
-            onClick(picker) {
-              const end = new Date();
-              const start = new Date(new Date().getFullYear(), 0);
-              picker.$emit("pick", [start, end]);
-            }
-          },
-          {
-            text: "最近六个月",
-            onClick(picker) {
-              const end = new Date();
-              const start = new Date();
-              start.setMonth(start.getMonth() - 6);
-              picker.$emit("pick", [start, end]);
-            }
-          }
-        ]
-      }
+      clearable: true
     }
   ],
   btnData: {

@@ -9,10 +9,10 @@
       </el-breadcrumb>
       <el-card class="card_style" body-style="padding-bottom: 0px;">
         <Myform
-          :formData="MyformData.formData"
+          :formData="paramsData"
           :form="MyformData.form"
           :itemColumns="MyformData.itemColumns"
-          @clickButton="clickButton"
+          @clickButton="FormclickButton"
         ></Myform>
       </el-card>
     </div>
@@ -76,21 +76,27 @@ export default {
         currentPage: 1,
         size: 10,
         total: 20
+      },
+      paramsData: {
+        area: [],
+        jlxxqmc: ""
       }
     };
   },
-  mounted() {
+  created() {
     this.getTableData();
   },
   methods: {
     getTableData() {
       getSelectAll({
+        ...this.paramsData,
         current: this.pagination.currentPage,
         size: this.pagination.size
       }).then(res => {
         if (res.code === 1) {
           this.tableData = res.data.records;
           this.pagination.total = res.data.total;
+          this.$message.success(res.message);
         } else {
           this.$message.error(res.message);
         }
@@ -110,11 +116,13 @@ export default {
       this.getTableData();
     },
     // 点击事件
-    clickButton(val) {
-      // 调用事件
-      this[val.methods](val.row);
+    FormclickButton(val) {
+      this[val.methods](val.formData);
     },
-    search() {}
+    search(v) {
+      this.paramsData = { ...v };
+      this.getTableData();
+    }
   }
 };
 </script>

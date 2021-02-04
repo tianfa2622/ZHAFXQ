@@ -1,12 +1,5 @@
 const options = {
   rules: {},
-  formData: {
-    area: [],
-    CommunityName: "",
-    ownerName: "",
-    LicensePlateNumber: "",
-    VehicleCategory: ""
-  },
   form: {
     inline: true,
     size: "small"
@@ -22,7 +15,7 @@ const options = {
     {
       span: 5,
       label: "小区名称：",
-      prop: "CommunityName",
+      prop: "xqMc",
       type: "text",
       clearable: true,
       class: ""
@@ -30,7 +23,7 @@ const options = {
     {
       span: 5,
       label: "车主姓名：",
-      prop: "ownerName",
+      prop: " czXm",
       type: "text",
       clearable: true,
       class: ""
@@ -38,7 +31,7 @@ const options = {
     {
       span: 5,
       label: "车牌号码：",
-      prop: "LicensePlateNumber",
+      prop: "cphm",
       type: "text",
       clearable: true,
       class: ""
@@ -46,18 +39,18 @@ const options = {
     {
       span: 7,
       label: "车辆类别：",
-      prop: "VehicleCategory",
+      prop: "cllb",
       type: "select",
       class: "",
       style: "text-align:center",
       options: [
         {
           label: "机动车",
-          value: 1
+          value: "1"
         },
         {
           label: "电动车",
-          value: 2
+          value: "2"
         }
       ]
     }
@@ -77,7 +70,7 @@ const options = {
         type: "primary",
         style: "",
         size: "small",
-        methods: "Increase",
+        methods: "add",
         label: "新增"
       }
     ]

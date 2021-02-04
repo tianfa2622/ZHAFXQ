@@ -19,7 +19,7 @@ const options = {
     {
       span: 9,
       label: "",
-      prop: "searchFor",
+      prop: "sbmc",
       type: "text",
       // class: "w-100",
       style: "width:320px",

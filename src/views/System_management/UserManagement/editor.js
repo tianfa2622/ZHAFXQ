@@ -1,42 +1,42 @@
 const fields = [
   {
     label: "用户名：",
-    field: "name",
+    field: "userName",
     type: "input",
     dataType: "string"
   },
   {
     label: "姓名：",
-    field: "CommunityName:",
+    field: "realName",
     type: "input",
     dataType: "string",
     hidden: ["edit", "view"]
   },
   {
     label: "状态：",
-    field: "ownersName",
+    field: "state",
     type: "select",
     options: [
       {
         label: "正常",
-        value: 0
+        value: "0"
       },
       {
         label: "禁用",
-        value: 1
+        value: "1"
       }
     ]
   },
   {
     label: "所属单位：",
-    field: "Telephone",
+    field: "dwmc",
     type: "input",
     dataType: "string",
     hidden: ["edit", "view"]
   },
   {
     label: "更新时间：",
-    field: "idCard1",
+    field: "updateTime",
     span: 24,
     type: "input",
     dataType: "string",

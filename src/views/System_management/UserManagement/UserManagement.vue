@@ -220,9 +220,9 @@ export default {
         userName: "",
         realName: "",
         state: ""
-      },
-      editData: {},
-      title: ""
+      }
+      // editData: {},
+      // title: ""
     };
   },
   created() {
@@ -230,17 +230,17 @@ export default {
   },
   methods: {
     getTableInfo() {
-      this.tableData = [];
+      // this.tableData = [];
       getSelectAll({
         ...this.paramsData,
         current: this.pagination.currentPage,
         size: this.pagination.size
       }).then(res => {
-        console.log(res);
         if (res.code === 1) {
           this.tableData = res.data.records;
           this.pagination.total = res.data.total;
           Object.assign(this.$data.paramsData, this.$options.data().paramsData);
+          this.$message.success(res.message);
         } else {
           this.$message.error(res.message);
         }
@@ -314,7 +314,9 @@ export default {
       this.paramsData = { ...v };
       this.getTableInfo();
     },
-    add() {}
+    add() {
+      this.AuthorityDialogVisible = true;
+    }
   }
 };
 </script>

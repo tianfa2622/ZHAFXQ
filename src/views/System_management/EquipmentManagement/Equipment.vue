@@ -9,7 +9,7 @@
       </el-breadcrumb>
       <el-card class="card_style">
         <Myform
-          :formData="MyformData.formData"
+          :formData="paramsData"
           :form="MyformData.form"
           :itemColumns="MyformData.itemColumns"
           :btnData="MyformData.btnData"
@@ -72,12 +72,18 @@ export default {
   data() {
     return {
       MyformData,
-      EquipmentName: "XX设备",
-      IPAddress: "192.168.1.1",
+      // EquipmentName: "XX设备",
+      // IPAddress: "192.168.1.1",
       currentPage: 1,
       size: 10,
       total: 20,
-      equipmentData: []
+      equipmentData: [],
+      paramsData: {
+        area: [],
+        // xqxxbz: "",
+        sbmc: null
+        // ipdz: ""
+      }
     };
   },
   created() {
@@ -85,21 +91,20 @@ export default {
   },
   methods: {
     getselectAllInfo() {
-      getSelectAll()
-        .then({
-          current: this.currentPage,
-          size: this.size
-        })
-        .then(res => {
-          if (res.code === 1) {
-            console.log(res);
-            this.equipmentData = res.data.records;
-            this.total = res.data.total;
-            // this.size=res.size
-          } else {
-            this.$message.error(res.message);
-          }
-        });
+      getSelectAll({
+        current: this.currentPage,
+        size: this.size,
+        ...this.paramsData
+      }).then(res => {
+        if (res.code === 1) {
+          this.equipmentData = res.data.records;
+          this.total = res.data.total;
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
+          this.$message.success(res.message);
+        } else {
+          this.$message.error(res.message);
+        }
+      });
     },
     // onSubmit() {
     // },
@@ -115,9 +120,12 @@ export default {
     // 点击事件
     clickButton(val) {
       // 调用事件
-      this[val.methods](val.row);
+      this[val.methods](val.formData);
     },
-    search() {}
+    search(v) {
+      this.paramsData = { ...v };
+      this.getselectAllInfo();
+    }
   }
 };
 </script>

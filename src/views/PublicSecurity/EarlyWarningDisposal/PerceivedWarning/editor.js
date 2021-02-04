@@ -16,11 +16,11 @@ const fields = [
     options: [
       {
         label: "1",
-        value: 1
+        value: "1"
       },
       {
         label: "2",
-        value: 2
+        value: "2"
       }
     ]
   },
@@ -58,9 +58,17 @@ const fields = [
     hidden: ["edit", "view"]
   },
   {
-    label: "处理人姓名及电话：",
+    label: "处理人姓名：",
     span: 24,
-    field: "clrXmDh",
+    field: "clrXm",
+    type: "input",
+    dataType: "string",
+    hidden: ["edit", "view"]
+  },
+  {
+    label: "处理人联系电话：",
+    span: 24,
+    field: "clrLxdh",
     type: "input",
     dataType: "string",
     hidden: ["edit", "view"]

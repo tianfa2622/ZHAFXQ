@@ -9,32 +9,32 @@ const options = {
   tableColumns: [
     {
       label: "姓名",
-      param: "Name",
+      param: "xm",
       align: "center"
     },
     {
       label: "身份证号码",
-      param: "IDCradNum",
+      param: "zjhm",
       align: "center"
     },
     {
       label: "联系电话",
-      param: "contactNumber",
+      param: "lxdh",
       align: "center"
     },
     {
       label: "现住地址",
-      param: "CurrentAddress",
+      param: "sjjzdQhnxxdz",
       align: "center"
     },
     {
       label: "所有车牌号码",
-      param: "AllLicensePlateNumbers",
+      param: "jdchphm",
       align: "center"
     },
     {
       label: "所有房产小区名称",
-      param: "AllRealEstateCommunityNames",
+      param: "syxqmc",
       align: "center"
     }
   ],
@@ -46,51 +46,9 @@ const options = {
         label: "详情",
         type: "text",
         // size: "mini",
-        methods: "Details"
+        methods: "view"
       }
     ]
-  },
-  // 表格数据
-  tableData: [
-    {
-      Name: "湖南华润科技有限公司",
-      IDCradNum: "914301020749881625",
-      contactNumber: "张三",
-      CurrentAddress: "长沙市芙蓉区宽寓大厦",
-      AllLicensePlateNumbers: "",
-      AllRealEstateCommunityNames: ""
-    },
-    {
-      Name: "湖南华润科技有限公司",
-      IDCradNum: "914301020749881625",
-      contactNumber: "张三",
-      CurrentAddress: "长沙市芙蓉区宽寓大厦",
-      AllLicensePlateNumbers: "",
-      AllRealEstateCommunityNames: ""
-    },
-    {
-      Name: "湖南华润科技有限公司",
-      IDCradNum: "914301020749881625",
-      contactNumber: "张三",
-      CurrentAddress: "长沙市芙蓉区宽寓大厦",
-      AllLicensePlateNumbers: "",
-      AllRealEstateCommunityNames: ""
-    },
-    {
-      Name: "湖南华润科技有限公司",
-      IDCradNum: "914301020749881625",
-      contactNumber: "张三",
-      CurrentAddress: "长沙市芙蓉区宽寓大厦",
-      AllLicensePlateNumbers: "",
-      AllRealEstateCommunityNames: ""
-    }
-  ],
-  pagination: {
-    isBackC: true,
-    isShow: true,
-    currentPage: 1,
-    rows: 10,
-    total: 20
   }
 };
 export default options;
