@@ -4,6 +4,7 @@ const options = {
     inline: true,
     size: "small"
   },
+  rowJustify: "start",
   itemColumns: [
     {
       span: 7,

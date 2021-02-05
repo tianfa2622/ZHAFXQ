@@ -5,6 +5,7 @@
         :formData="paramsData"
         :form="MyformData.form"
         :itemColumns="MyformData.itemColumns"
+        :RowData="{ justify: 'start' }"
         @clickButton="FormclickButton"
       ></Myform>
     </el-card>

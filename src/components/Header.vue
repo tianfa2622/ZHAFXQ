@@ -9,10 +9,10 @@
       </el-col>
       <el-col :span="5">
         <div class="fll clearfix">
-          <p class="right-title title-color">{{ nowDate }}</p>
-          <h1 class="title1-color">{{ period }}，欢迎XXX登入系统</h1>
+          <!-- <p class="right-title title-color"></p> -->
+          <h1 class="title1-color">{{ period }}，XXX。今天是{{ nowDate }}</h1>
         </div>
-        <div class="flr clearfix mr-20">
+        <div class="logout clearfix mr-20">
           <el-link type="danger">退 出</el-link>
         </div>
       </el-col>
@@ -34,19 +34,18 @@ export default {
     };
   },
   mounted() {
-    let that = this;
     this.timer = setInterval(() => {
-      that.nowDate = getCurrentDate();
-      that.period = this.PeriodofTime();
+      this.nowDate = getCurrentDate();
+      this.period = this.PeriodofTime();
     }, 1000);
   },
   methods: {
     PeriodofTime() {
       let time = new Date();
       let Hour = time.getHours(); // 时
-      if (6 <= Hour < 9) {
+      if (Hour >= 6 && Hour < 9) {
         return "早上好";
-      } else if (6 <= Hour && Hour < 11) {
+      } else if (9 <= Hour && Hour < 11) {
         return "上午好";
       } else if (11 <= Hour && Hour < 14) {
         return "中午好";
@@ -69,11 +68,13 @@ export default {
 
 <style lang="less">
 .mwidth {
+  position: relative;
   .header-lh {
-    line-height: 80px;
+    height: 80px;
     text-align: center;
     .header_title {
-      font-size: 32px;
+      font-size: 38px;
+      line-height: 80px;
       font-weight: 700;
       color: rgb(255, 255, 255);
     }
@@ -85,12 +86,16 @@ export default {
     color: #33ffff;
   }
   .title1-color {
-    margin-top: 10px;
     font-size: 16px;
     color: #fff;
   }
   .header-right {
     text-align: center;
+  }
+  .logout {
+    position: absolute;
+    right: 0;
+    top: 5px;
   }
   // .h88 {
   //   height: 50px;

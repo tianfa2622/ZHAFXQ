@@ -42,7 +42,7 @@ const options = {
       prop: "cllb",
       type: "select",
       class: "",
-      style: "text-align:center",
+      // style: "text-align:center",
       options: [
         {
           label: "机动车",
@@ -56,8 +56,8 @@ const options = {
     }
   ],
   btnData: {
-    span: 5,
-    style: "flex:auto;     text-align: end;",
+    span: 15,
+    style: "text-align: end;",
     BtndataList: [
       {
         type: "success",

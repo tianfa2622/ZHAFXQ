@@ -4,7 +4,7 @@
       <div class="dflex h-60 w-100">
         <div class="dflex direction-column h-100 w-50">
           <div class="h-40 w-100 yjbg p-10">
-            <el-card class="box-card" shadow="never">
+            <el-card class="box-card" shadow="never" body-style="padding:0">
               <div slot="header">
                 <span>人员概况</span>
               </div>
@@ -18,6 +18,7 @@
                   :span="6"
                   v-for="(item, index) in StaffProfile"
                   :key="index"
+                  style="height: 100%"
                 >
                   <div class="personnel_box">
                     <span>{{ item.number }}</span>
@@ -260,10 +261,14 @@ export default {
   }
 }
 .personnel_box {
-  width: 97px;
-  height: 52px;
+  width: 100px;
+  height: 80%;
   border: 1px solid rgba(121, 121, 121, 1);
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   span {
     color: #66ff99;
     font-weight: 700;
@@ -321,7 +326,7 @@ export default {
   background-repeat: no-repeat;
   background-size: 100% 100%;
   ::v-deep .el-tabs__content {
-    height: calc(100% - 44px);
+    height: calc(100% - 60px);
     .el-card__body {
       height: 100%;
     }

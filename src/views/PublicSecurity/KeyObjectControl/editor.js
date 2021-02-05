@@ -1,9 +1,11 @@
 const fields = [
   {
-    label: " ",
+    label: "",
     field: "xp",
     span: 24,
-    type: "avatar"
+    type: "avatar",
+    formItemStyle:
+      "width: 100%;display: flex;justify-content: center;align-items: center;"
   },
   {
     label: "姓名：",

@@ -73,8 +73,8 @@ const options = {
   series: [
     {
       type: "pie",
-      radius: ["30%", "60%"],
-      center: ["20%", "50%"],
+      radius: ["40%", "80%"],
+      center: ["20%", "45%"],
       data: echartData,
 
       itemStyle: {
