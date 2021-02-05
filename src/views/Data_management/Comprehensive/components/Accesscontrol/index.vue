@@ -96,7 +96,6 @@ export default {
         current: this.pagination.currentPage,
         size: this.pagination.size
       }).then(res => {
-        console.log(res);
         if (res.code === 1) {
           this.tableData = res.data.records;
           for (const key in this.tableData) {
@@ -142,6 +141,10 @@ export default {
     search(v) {
       this.paramsData = { ...v };
       this.getSelectInfo();
+    },
+    Increase() {
+      this.editorType = "add";
+      this.editorVisible = true;
     },
     record() {
       this.changePage("7");

@@ -86,6 +86,7 @@ export default {
       editData: {},
       paramsData: {
         mc: "",
+        gmsfzhm: "",
         xjfx: ""
       },
       tableData: [],

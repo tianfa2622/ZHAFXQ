@@ -1,109 +1,109 @@
 const fields = [
   {
     label: "单元编号：",
-    field: "name",
+    field: "dybh",
     type: "input",
     dataType: "string"
   },
   {
     label: "单元名称：",
-    field: "name",
+    field: "mc",
     type: "input",
     dataType: "string"
   },
   {
     label: "地址：",
-    field: "name",
+    field: "dzmc",
     type: "input",
     dataType: "string"
   },
   {
     label: "门户数量：",
-    field: "name",
+    field: "mhSl",
     type: "input",
     dataType: "string"
   },
   {
     label: "使用状态：",
-    field: "name",
+    field: "syztdm",
     type: "input",
     dataType: "string"
   },
   {
     label: "建筑面积(㎡)：",
-    field: "name",
+    field: "jzMjpfm",
     type: "input",
     dataType: "string"
   },
   {
     label: "地面建筑物层数：",
-    field: "name",
+    field: "dmJzwcs",
     type: "input",
     dataType: "string"
   },
   {
     label: "地下建筑物层数：",
-    field: "name",
+    field: "dxJzwcs",
     type: "input",
     dataType: "string"
   },
   {
     label: "地下层居住层数：",
-    field: "name",
+    field: "dxcjzJzwcs",
     type: "input",
     dataType: "string"
   },
   {
     label: "地球经度：",
-    field: "name",
+    field: "dqjd",
     type: "input",
     dataType: "string"
   },
   {
     label: "地球纬度：",
-    field: "name",
+    field: "dqwd",
     type: "input",
     dataType: "string"
   },
   {
     label: "登记人姓名：",
-    field: "name",
+    field: "djrXm",
     type: "input",
     dataType: "string"
   },
   {
     label: "登记人身份证号：",
-    field: "name",
+    field: "djrGmsfzhm",
     type: "input",
     dataType: "string"
   },
   {
     label: "登记人联系电话：",
-    field: "name",
+    field: "djrLxdh",
     type: "input",
     dataType: "string"
   },
   {
     label: "数据更新日期：",
-    field: "name",
+    field: "gxsj",
     type: "input",
     dataType: "string"
   },
   {
     label: "数据来源：",
-    field: "name",
+    field: "sjly",
     type: "input",
     dataType: "string"
   },
   {
     label: "数据状态：",
-    field: "name",
+    field: "sjzt",
     type: "input",
     dataType: "string"
   },
   {
     label: "治安管理信息所属警务负责区：",
-    field: "name",
+    field: "zaglxxssjwzrqdm",
     type: "input",
     dataType: "string"
   }

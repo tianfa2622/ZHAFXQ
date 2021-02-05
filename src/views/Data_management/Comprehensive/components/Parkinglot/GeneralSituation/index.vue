@@ -42,14 +42,20 @@
       :type="editorType"
       :visible.sync="editorVisible"
       :fields="fields"
-      @confirm="confirm"
       :labelWidth="labelWidth"
+      :width="width"
+      :editData="editData"
+      v-if="editorVisible"
     />
+    <!-- @confirm="confirm" -->
   </div>
 </template>
 
 <script>
-import { getSelectAll } from "@/api/Data_management/index/GeneralSituation/index";
+import {
+  getSelectAll,
+  getSelectOne
+} from "@/api/Data_management/index/GeneralSituation/index";
 import MyformData from "./GeneralSituationform/GeneralSituationform";
 import MyTableData from "./GeneralSituationtable/GeneralSituationtable";
 import fields from "./editor";
@@ -66,6 +72,7 @@ export default {
       MyformData,
       MyTableData,
       fields,
+      width: "60%",
       editorType: "view",
       editorVisible: false,
       labelWidth: "210px",
@@ -79,15 +86,17 @@ export default {
         total: 10
       },
       paramsData: {
-        cwgslx: "",
-        cwlx: "",
-        cwsyrXm: "",
-        tcwbh: ""
-      }
+        cwgslx: null,
+        cwlx: null,
+        cwsyrXm: null,
+        tcwbh: null
+      },
+      editData: {}
     };
   },
   created() {
-    this.getGeneralInfo();
+    // this.getGeneralInfo();
+    this.search();
   },
   methods: {
     getGeneralInfo() {
@@ -97,10 +106,23 @@ export default {
         size: this.pagination.size
       }).then(res => {
         if (res.code === 1) {
-          console.log(res);
           this.tableData = res.data.records;
           this.pagination.total = res.data.total;
           Object.assign(this.$data.paramsData, this.$options.data().paramsData);
+          this.$message.success(res.message);
+        } else {
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
+          this.$message.error(res.message);
+        }
+      });
+    },
+    getGeneralInfoOne(row) {
+      getSelectOne(row.tcwxxbz).then(res => {
+        if (res.code === 1) {
+          console.log(res);
+          this.editData = res.data;
+          this.editorVisible = true;
+          this.$message.success(res.message);
         } else {
           this.$message.error(res.message);
         }
@@ -109,12 +131,10 @@ export default {
     // 点击事件
     clickButton(val) {
       // 调用事件
-      // this[val.methods](val.row);
-      if (val.methods !== "search") {
-        this.openEditor(val.methods, val.row);
-      } else {
-        this[val.methods](val.row);
-      }
+      this[val.methods](val.row);
+    },
+    FormclickButton(val) {
+      this[val.methods](val.formData);
     },
     openEditor(type, row) {
       console.log(type, row);
@@ -124,11 +144,6 @@ export default {
           break;
       }
       this.editorVisible = true;
-    },
-    confirm(formData) {
-      console.log(formData);
-      // 请求接口提交数据 等等
-      this.editorVisible = false;
     },
     // 切换当前一页展示多少条
     sizeChange(val) {
@@ -141,8 +156,14 @@ export default {
       this.getGeneralInfo();
     },
     // eslint-disable-next-line no-unused-vars
-    Details(val) {},
-    search() {},
+    Details(val) {
+      this.editorType = "view";
+      this.getGeneralInfoOne(val);
+    },
+    search(v) {
+      this.paramsData = { ...v };
+      this.getGeneralInfo();
+    },
     // 跳转页面
     changePage(target) {
       // 更新父组件传入的prop ‘currentPage’

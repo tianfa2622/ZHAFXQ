@@ -1,91 +1,92 @@
 const fields = [
   {
-    label: "停车场编码：",
-    field: "name",
+    label: "停车场编号：",
+    field: "tccbh",
     type: "input",
     dataType: "string"
   },
   {
     label: "使用状态：",
-    field: "name",
-    type: "input",
+    field: "syztdm",
+    type: "select",
     dataType: "string"
   },
   {
     label: "停车场类型：",
-    field: "name",
+    field: "tcclx",
     type: "input",
     dataType: "string"
   },
   {
     label: "停车场名称：",
-    field: "name",
+    field: "mc",
     type: "input",
     dataType: "string"
   },
   {
     label: "管理单位名称：",
-    field: "name",
+    field: "gldwDwmc",
     type: "input",
     dataType: "string"
   },
   {
     label: "管理单位联系电话：",
-    field: "name",
+    field: "gldwLxdh",
     type: "input",
     dataType: "string"
   },
   {
     label: "停车场出入口数：",
-    field: "name",
+    field: "sl",
     type: "input",
     dataType: "string"
   },
   {
     label: "停车位数：",
-    field: "name",
+    field: "tcwSl",
     type: "input",
     dataType: "string"
   },
   {
     label: "地球经度：",
-    field: "name",
+    field: "dqjd",
     type: "input",
     dataType: "string"
   },
   {
     label: "地球纬度：",
-    field: "name",
+    field: "dqwd",
     type: "input",
     dataType: "string"
   },
   {
     label: "登记人姓名：",
-    field: "name",
+    field: "djrXm",
     type: "input",
     dataType: "string"
   },
   {
     label: "登记人电话：",
-    field: "name",
+    field: "djrLxdh",
     type: "input",
     dataType: "string"
   },
   {
     label: "数据更新时间：",
-    field: "name",
+    field: "gxsj",
     type: "input",
     dataType: "string"
   },
   {
     label: "数据来源：",
-    field: "name",
+    field: "sjly",
     type: "input",
     dataType: "string"
   },
   {
     label: "数据状态：",
-    field: "name",
+    span: 24,
+    field: "sjzt",
     type: "input",
     dataType: "string"
   }

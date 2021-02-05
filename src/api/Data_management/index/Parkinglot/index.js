@@ -10,3 +10,15 @@ export function getSelectAll(paramsData) {
     params: paramsData
   });
 }
+/**
+ * 获取小区综合停车场详情信息
+ * @param {object} crkxxbz 停车场信息标识
+ * @returns {import("axios").AxiosPromise.data}
+ */
+export function getSelectOne(tccxxbz) {
+  return axios.get("/parkinginfo/selectOne", {
+    params: {
+      tccxxbz: tccxxbz
+    }
+  });
+}

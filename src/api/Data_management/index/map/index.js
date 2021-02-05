@@ -10,3 +10,15 @@ export function getSelectAll(paramsData) {
     params: paramsData
   });
 }
+/**
+ * 获取小区物业信息
+ * @param {string} xqxxbz  小区信息标识
+ * @returns {import("axios").AxiosPromise.data}
+ */
+export function getSelectOne(xqxxbz) {
+  return axios.get("/propertybaseinfo/selectWYOne", {
+    params: {
+      xqxxbz: xqxxbz
+    }
+  });
+}

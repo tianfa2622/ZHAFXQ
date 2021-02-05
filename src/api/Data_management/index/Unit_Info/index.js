@@ -10,3 +10,15 @@ export function getSelectAll(paramsData) {
     params: paramsData
   });
 }
+/**
+ * 获取楼栋单元信息
+ * @param {object} dyxxbz  单元信息标识
+ * @returns {import("axios").AxiosPromise.data}
+ */
+export function getSelectOne(dyxxbz) {
+  return axios.get("/unitinfo/selectOne", {
+    params: {
+      dyxxbz: dyxxbz
+    }
+  });
+}

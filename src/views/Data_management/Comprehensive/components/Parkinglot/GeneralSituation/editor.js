@@ -1,115 +1,116 @@
 const fields = [
   {
     label: "停车位编号：",
-    field: "name",
+    field: "tcwbh",
     type: "input",
     dataType: "string"
   },
   {
     label: "车位类型：",
-    field: "name",
+    field: "cwlx",
     type: "input",
     dataType: "string"
   },
   {
     label: "车位归属类型：",
-    field: "name",
+    field: "cwgslx",
     type: "input",
     dataType: "string"
   },
   {
     label: "楼层号：",
-    field: "name",
+    field: "lch",
     type: "input",
     dataType: "string"
   },
   {
     label: "车位所有人姓名：",
-    field: "name",
+    field: "cwsyrXm",
     type: "input",
     dataType: "string"
   },
   {
     label: "所有人身份证号：",
-    field: "name",
+    field: "cwsyrGmsfzhm",
     type: "input",
     dataType: "string"
   },
   {
     label: "所有人联系电话：",
-    field: "name",
+    field: "cwsyrLxdh",
     type: "input",
     dataType: "string"
   },
   {
     label: "租户姓名：",
-    field: "name",
+    field: "zhXm",
     type: "input",
     dataType: "string"
   },
   {
     label: "租户身份证号：",
-    field: "name",
+    field: "zhGmsfzhm",
     type: "input",
     dataType: "string"
   },
   {
     label: "租户联系电话：",
-    field: "name",
+    field: "zhLxdh",
     type: "input",
     dataType: "string"
   },
   {
     label: "起租日期：",
-    field: "name",
+    field: "qzRq",
     type: "input",
     dataType: "string"
   },
   {
     label: "委托代理人姓名：",
-    field: "name",
+    field: "wtdlrXm",
     type: "input",
     dataType: "string"
   },
   {
     label: "代理人身份证号：",
-    field: "name",
+    field: "wtdlrGmsfzhm",
     type: "input",
     dataType: "string"
   },
   {
     label: "代理人联系电话：",
-    field: "name",
+    field: "wtdlrLxdh",
     type: "input",
     dataType: "string"
   },
   {
     label: "登记人姓名：",
-    field: "name",
+    field: "djrXm",
     type: "input",
     dataType: "string"
   },
   {
     label: "登记人联系电话：",
-    field: "name",
+    field: "djrLxdh",
     type: "input",
     dataType: "string"
   },
   {
     label: "数据更新时间：",
-    field: "name",
+    field: "gxsj",
     type: "input",
     dataType: "string"
   },
   {
     label: "数据来源：",
-    field: "name",
+    field: "sjly",
     type: "input",
     dataType: "string"
   },
   {
     label: "数据状态：",
-    field: "name",
+    span: 24,
+    field: "sjzt",
     type: "input",
     dataType: "string"
   }

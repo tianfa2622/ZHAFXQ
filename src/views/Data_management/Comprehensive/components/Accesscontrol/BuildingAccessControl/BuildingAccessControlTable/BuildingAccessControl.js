@@ -14,12 +14,12 @@ const options = {
     },
     {
       label: "姓名",
-      param: "cjsj",
+      param: "xm",
       align: "center"
     },
     {
       label: "身份证号码",
-      param: "cjsj",
+      param: "gmsfzhm",
       align: "center"
     },
     {

@@ -60,7 +60,10 @@
 </template>
 
 <script>
-import { getSelectAll } from "@/api/Data_management/index/Unit_Info/index";
+import {
+  getSelectAll,
+  getSelectOne
+} from "@/api/Data_management/index/Unit_Info/index";
 import MyformData from "./Unit_InfoForm/Unit_Info";
 import MyTableData from "./Unit_InfoTable/Unit_Info";
 import fields from "./editor";
@@ -80,6 +83,7 @@ export default {
       fields,
       editorType: "view",
       editorVisible: false,
+      width: "60%",
       labelWidth: "210px",
       src:
         "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",
@@ -108,11 +112,22 @@ export default {
         current: this.pagination.currentPage,
         size: this.pagination.size
       }).then(res => {
-        console.log(res.data);
         if (res.code === 1) {
           this.tableData = res.data.records;
           this.pagination.total = res.data.total;
           Object.assign(this.$data.paramsData, this.$options.data().paramsData);
+          this.$message.success(res.message);
+        } else {
+          this.$message.error(res.message);
+        }
+      });
+    },
+    getSelectInfoOne(row) {
+      getSelectOne(row.dyxxbz).then(res => {
+        if (res.code === 1) {
+          this.editData = res.data;
+          this.editorVisible = true;
+          this.$message.success(res.message);
         } else {
           this.$message.error(res.message);
         }
@@ -134,6 +149,9 @@ export default {
           break;
       }
       this.editorVisible = true;
+    },
+    view(val) {
+      this.getSelectInfoOne(val);
     },
     confirm(formData) {
       console.log(formData);

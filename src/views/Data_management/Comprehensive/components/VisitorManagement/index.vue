@@ -60,7 +60,10 @@
 </template>
 
 <script>
-import { getSelectAll } from "@/api/Data_management/index/VisitorManagement/index";
+import {
+  getSelectAll,
+  getSelectOne
+} from "@/api/Data_management/index/VisitorManagement/index";
 import MyformData from "./VisitorManagementForm/VisitorManagementForm";
 import MytableData from "./VisitorManagementTable/VisitorManagementTable";
 import options from "./VisitorManagementEcharts/VisitorManagementEcharts";
@@ -91,8 +94,9 @@ export default {
       },
       editData: {},
       paramsData: {
-        mc: "",
-        xjfx: ""
+        fkxxXm: "",
+        fkxxGmsfzhm: "",
+        fwRqsj: null
       },
       tableData: []
     };
@@ -107,11 +111,22 @@ export default {
         current: this.pagination.currentPage,
         size: this.pagination.size
       }).then(res => {
-        console.log(res);
         if (res.code === 1) {
           this.tableData = res.data.records;
           this.pagination.total = res.data.total;
           Object.assign(this.$data.paramsData, this.$options.data().paramsData);
+          this.$message.success(res.message);
+        } else {
+          this.$message.error(res.message);
+        }
+      });
+    },
+    getselectInfoOne(row) {
+      getSelectOne(row.fkdjxxbz).then(res => {
+        if (res.code === 1) {
+          console.log(res);
+          this.editData = res.data;
+          this.editorVisible = true;
           this.$message.success(res.message);
         } else {
           this.$message.error(res.message);
@@ -147,6 +162,7 @@ export default {
     },
     // eslint-disable-next-line no-unused-vars
     toView(val) {
+      this.getselectInfoOne(val);
       // 我是查看
     },
     search(v) {

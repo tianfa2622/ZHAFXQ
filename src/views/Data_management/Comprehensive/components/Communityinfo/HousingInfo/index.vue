@@ -43,6 +43,7 @@
     </div>
     <Editor
       :type="editorType"
+      :width="width"
       :visible.sync="editorVisible"
       :fields="fields"
       @confirm="confirm"
@@ -70,7 +71,8 @@ export default {
       fields,
       editorType: "view",
       editorVisible: false,
-      labelWidth: "210px"
+      labelWidth: "210px",
+      width: "60%"
     };
   },
   methods: {

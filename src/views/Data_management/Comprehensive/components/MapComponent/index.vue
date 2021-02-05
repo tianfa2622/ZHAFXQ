@@ -109,13 +109,16 @@
     </div>
 
     <Editor
+      :title="title"
       :type="editorType"
       :visible.sync="editorVisible"
+      v-if="editorVisible"
       :fields="fields"
-      @confirm="confirm"
       :width="width"
+      :editData="editData"
       :labelWidth="labelWidth"
     />
+    <!-- @confirm="confirm" -->
   </div>
   <!-- @moving="syncCenterAndZoom"
         @moveend="syncCenterAndZoom"
@@ -123,7 +126,10 @@
 </template>
 
 <script>
-import { getSelectAll } from "@/api/Data_management/index/map/index";
+import {
+  getSelectAll,
+  getSelectOne
+} from "@/api/Data_management/index/map/index";
 import MyformData from "./Mapform";
 import options1 from "./Community.js";
 import fields from "./editor";
@@ -167,7 +173,8 @@ export default {
         area: [],
         jlxxqmc: ""
       },
-      mapData: []
+      mapData: [],
+      title: "物业信息"
     };
   },
   created() {
@@ -188,8 +195,19 @@ export default {
               lat: this.mapData[key].dqwd
             };
           }
-          // console.log(this.mapData);
           Object.assign(this.$data.paramsData, this.$options.data().paramsData);
+          this.$message.success(res.message);
+        } else {
+          this.$message.error(res.message);
+        }
+      });
+    },
+    getSelectInfoOne(row) {
+      getSelectOne(row.xqxxbz).then(res => {
+        if (res.code === 1) {
+          console.log(res);
+          this.editData = res.data;
+          this.editorVisible = true;
           this.$message.success(res.message);
         } else {
           this.$message.error(res.message);
@@ -212,15 +230,14 @@ export default {
       // 调用事件
       this[val.methods](val.row);
     },
-    openEditor(type, row) {
-      console.log(type, row);
-      this.editorVisible = true;
+    openEditor(row) {
+      this.getSelectInfoOne(row);
     },
-    confirm(formData) {
-      console.log(formData);
-      // 请求接口提交数据 等等
-      this.editorVisible = false;
-    },
+    // confirm(formData) {
+    //   console.log(formData);
+    //   // 请求接口提交数据 等等
+    //   this.editorVisible = false;
+    // },
     search(v) {
       this.paramsData = { ...v };
       this.getSelectInfo();

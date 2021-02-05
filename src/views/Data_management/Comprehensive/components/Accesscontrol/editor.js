@@ -1,68 +1,74 @@
 const fields = [
   {
     label: "门禁点编号：",
-    field: "name",
+    field: "mjdbh",
     type: "input",
     dataType: "string"
   },
   {
     label: "门禁点名称：",
-    field: "name",
+    field: "mc",
     type: "input",
     dataType: "string"
   },
   {
     label: "关联门禁采集设备：",
-    field: "name",
+    field: "gldmjCjsbxxbz",
     type: "input",
     dataType: "string"
   },
   {
     label: "关联抓拍采集设备：",
-    field: "name",
+    field: "gldzpjCjsbxxbz",
     type: "input",
     dataType: "string"
   },
   {
     label: "行进方向：",
-    field: "CommunityName:",
+    field: "xjfx",
     type: "select",
     options: [
       {
         label: "进",
-        value: 0
+        value: "0"
       },
       {
         label: "出",
-        value: 1
+        value: "1"
       },
       {
         label: "进/出",
-        value: 2
+        value: "2"
       }
     ]
   },
   {
     label: "地球经度：",
-    field: "ownersName",
+    field: "dqjd",
     type: "input",
     dataType: "string"
   },
   {
     label: "地球纬度：",
-    field: "Telephone",
+    field: "dqwd",
     type: "input",
     dataType: "string"
   },
   {
     label: "楼栋单元：",
-    field: "idCard1",
+    field: "lddyxxbzMc",
     type: "input",
     dataType: "string"
   },
   {
-    label: "登记人姓名及电话：",
-    field: "idCard2",
+    label: "登记人姓名：",
+    field: "djrXm",
+    type: "input",
+    dataType: "string"
+  },
+  {
+    label: "登记人电话：",
+    field: "djrLxdh",
     type: "input",
     dataType: "string"
   }

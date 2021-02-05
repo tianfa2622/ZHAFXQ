@@ -1,105 +1,105 @@
 const fields = [
   {
     label: "",
-    field: "name",
+    field: "djrlbz",
     type: "image",
     style: "width: 200px; height: 200px",
     title: "设备抓拍照"
   },
   {
     label: "",
-    field: "name",
+    field: "djzjzbz",
     type: "image",
     style: "width: 200px; height: 200px",
     title: "证件照"
   },
   {
     label: "姓名：",
-    field: "name",
+    field: "fkxxXm",
     type: "input",
     dataType: "string"
   },
   {
     label: "身份证号码：",
-    field: "name",
+    field: "fkxxGmsfzhm",
     type: "input",
     dataType: "string"
   },
   {
     label: "联系电话：",
-    field: "name",
+    field: "fkxxLxdh",
     type: "input",
     dataType: "string"
   },
   {
     label: "机动车号牌号码：",
-    field: "name",
+    field: "fkxxJdchphm",
     type: "input",
     dataType: "string"
   },
   {
     label: "访问房屋：",
-    field: "name",
+    field: "fwFjbh",
     type: "input",
     dataType: "string"
   },
   {
     label: "事由：",
-    field: "name",
+    field: "fwSy",
     type: "input",
     dataType: "string"
   },
   {
     label: "访问日期时间：",
-    field: "name",
+    field: "fwRqsj",
     type: "input",
     dataType: "string"
   },
   {
     label: "访问人：",
-    field: "name",
+    field: "fwXm",
     type: "input",
     dataType: "string"
   },
   {
     label: "采集设备IP地址：",
-    field: "name",
+    field: "cjsbxxbz",
     type: "input",
     dataType: "string"
   },
   {
     label: "认证验证是否通过：",
-    field: "CommunityName:",
+    field: "rzhysftgPdbz",
     type: "select",
     options: [
       {
         label: "通过",
-        value: 0
+        value: "0"
       },
       {
         label: "未通过",
-        value: 1
+        value: "1"
       }
     ]
   },
   {
     label: "是否为关注人：",
-    field: "CommunityName:",
+    field: "sfgzryPdbz",
     type: "select",
     options: [
       {
         label: "是",
-        value: 0
+        value: "0"
       },
       {
         label: "否",
-        value: 1
+        value: "1"
       }
     ]
   },
   {
     label: "采集时间：",
-    field: "ownersName",
+    field: "cjsj",
     type: "input",
     dataType: "string"
   }

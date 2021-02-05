@@ -89,8 +89,8 @@
 
 <script>
 import {
-  getSelectAll
-  // getSelectOne
+  getSelectAll,
+  getSelectOne
 } from "@/api/System_management/LogManagement/index";
 import MyformData from "./LogManagementform/LogManagementform";
 import MyTableData from "./LogManagementtable/LogManagementtable";
@@ -109,7 +109,7 @@ export default {
         size: 10,
         total: 10
       },
-      paramsData: { operationTime: "" }
+      paramsData: { operationTime: null }
     };
   },
   created() {
@@ -123,27 +123,27 @@ export default {
         size: this.pagination.size
       }).then(res => {
         if (res.code === 1) {
-          console.log(res.data);
           this.tableData = res.data.records;
           this.pagination.total = res.data.total;
           Object.assign(this.$data.paramsData, this.$options.data().paramsData);
+          this.$message.success(res.message);
         } else {
           this.$message.error(res.message);
         }
       });
     },
-    // getSelectOneInfo(row) {
-    //   getSelectOne(row.id).then(res => {
-    //     console.log(res);
-    //     if (res.code === 1) {
-    //       this.$message.success(res.message);
-    //       this.viewtableDate = res.data.records;
-    //       this.dialogVisible = true;
-    //     } else {
-    //       this.$message.error(res.message);
-    //     }
-    //   });
-    // },
+    getSelectOneInfo(row) {
+      getSelectOne(row.id).then(res => {
+        console.log(res);
+        if (res.code === 1) {
+          this.viewtableDate = res.data.records;
+          this.dialogVisible = true;
+          this.$message.success(res.message);
+        } else {
+          this.$message.error(res.message);
+        }
+      });
+    },
     // onSubmit() {
     // },
     // 切换当前一页展示多少条
@@ -168,7 +168,6 @@ export default {
       this.getSelectOneInfo(row);
     },
     search(v) {
-      console.log(v);
       this.paramsData = { ...v };
       this.getSelectAllInfo();
     }

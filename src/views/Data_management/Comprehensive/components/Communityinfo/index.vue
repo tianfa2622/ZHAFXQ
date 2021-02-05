@@ -57,7 +57,10 @@
 </template>
 
 <script>
-import { getSelectAll } from "@/api/Data_management/index/buildinginfo/index";
+import {
+  getSelectAll,
+  getSelectOne
+} from "@/api/Data_management/index/buildinginfo/index";
 import MyformData from "./CommunityinfoForm/Communityinfo";
 import MyTableData from "./CommunityinfoTable/Communityinfo";
 import fields from "./editor";
@@ -92,7 +95,8 @@ export default {
       paramsData: {
         mc: ""
       },
-      tableData: []
+      tableData: [],
+      title: "详情"
     };
   },
   created() {
@@ -117,6 +121,19 @@ export default {
           }
           this.pagination.total = res.data.total;
           Object.assign(this.$data.paramsData, this.$options.data().paramsData);
+          this.$message.success(res.message);
+        } else {
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
+          this.$message.error(res.message);
+        }
+      });
+    },
+    getSelectInfoOne(row) {
+      getSelectOne(row.ldxxbz).then(res => {
+        if (res.code === 1) {
+          this.editData = res.data;
+          this.editorVisible = true;
+          this.$message.success(res.message);
         } else {
           this.$message.error(res.message);
         }
@@ -156,10 +173,13 @@ export default {
     // eslint-disable-next-line no-unused-vars
     BuildingImg(val) {
       console.log(val);
+      // this.src = this.editData.tp;
       this.dialogVisible = true;
     },
     // eslint-disable-next-line no-unused-vars
-    view(val) {},
+    view(val) {
+      this.getSelectInfoOne(val);
+    },
     // eslint-disable-next-line no-unused-vars
     BuildingInfo(val) {
       console.log(val);

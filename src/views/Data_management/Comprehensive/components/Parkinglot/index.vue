@@ -19,12 +19,14 @@
           width="350"
           trigger="hover"
         >
-          <el-button class="btncolor" @click="openEditor(view)">详情</el-button>
-          <el-button class="btncolor" @click="EntryExitInfo"
+          <el-button class="btncolor" @click="openEditor(item.tccxxbz)"
+            >详情</el-button
+          >
+          <el-button class="btncolor" @click="EntryExitInfo(itme.tccxxbz)"
             >出入口信息</el-button
           >
           <el-button class="btncolor" @click="changePage('4')">
-            停车场信息
+            停车位信息
           </el-button>
           <template slot="reference">
             <div class="Parkinglot_box dflex">
@@ -123,9 +125,12 @@
       :type="editorType"
       :visible.sync="editorVisible"
       :fields="fields"
-      @confirm="confirm"
+      v-if="editorVisible"
+      :title="title"
+      :editData="editData"
       :labelWidth="labelWidth"
     />
+    <!-- @confirm="confirm" -->
     <el-dialog :visible.sync="dialogVisible">
       <el-tabs type="border-card">
         <el-tab-pane label="出入口1">
@@ -154,7 +159,10 @@
 </template>
 
 <script>
-import { getSelectAll } from "@/api/Data_management/index/Parkinglot/index";
+import {
+  getSelectAll,
+  getSelectOne
+} from "@/api/Data_management/index/Parkinglot/index";
 import MyEcharts from "@/components/echarts/index";
 import ParkingSpace from "./ParkinglotEcharts/ParkingSpaceEcharts";
 import UseStatus from "./ParkinglotEcharts/UseStatusEcharts";
@@ -184,7 +192,8 @@ export default {
       editorVisible: false,
       dialogVisible: false,
       labelWidth: "160px",
-      type: "view"
+      type: "view",
+      editData: {}
     };
   },
   created() {
@@ -205,14 +214,28 @@ export default {
         }
       });
     },
-    openEditor(type, row) {
-      console.log(type, row);
-      switch (type) {
-        case "Increase":
-          this.editorType = "add";
-          break;
-      }
-      this.editorVisible = true;
+    getselectOneInfo(tccxxbz) {
+      getSelectOne(tccxxbz).then(res => {
+        if (res.code === 1) {
+          this.editData = res.data;
+          this.editorVisible = true;
+          this.$message.success(res.message);
+        } else {
+          this.$message.error(res.message);
+        }
+      });
+    },
+    getEntryExitInfo() {},
+    openEditor(row) {
+      // console.log(row);
+      // switch (type) {
+      //   case "Increase":
+      //     this.editorType = "add";
+      //     break;
+      // }
+      // this.editorVisible = true;
+      this.editorType = "view";
+      this.getselectOneInfo(row);
     },
     confirm(formData) {
       console.log(formData);

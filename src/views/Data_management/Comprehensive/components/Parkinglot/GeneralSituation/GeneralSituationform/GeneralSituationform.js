@@ -9,8 +9,8 @@ const options = {
       span: 8,
       label: "停车位编号：",
       prop: "tcwbh",
-      style: "text-align:center",
-      type: "text",
+      style: "text-align:center;padding-left:15px",
+      type: "input",
       clearable: true,
       class: ""
     },
@@ -42,11 +42,11 @@ const options = {
       options: [
         {
           label: "机动车",
-          value: 1
+          value: "123"
         },
         {
           label: "电动车",
-          value: 2
+          value: "2"
         }
       ]
     },
@@ -54,19 +54,9 @@ const options = {
       span: 8,
       label: "车位所有人名称：",
       prop: "cwsyrXm",
-      type: "select",
-      class: "mr-30",
+      type: "input",
       style: "text-align:center",
-      options: [
-        {
-          label: "机动车",
-          value: 1
-        },
-        {
-          label: "电动车",
-          value: 2
-        }
-      ]
+      clearable: true
     }
   ],
   btnData: {

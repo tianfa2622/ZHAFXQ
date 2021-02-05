@@ -118,7 +118,7 @@ export default {
       dialogVisible: false,
       activeName1: "first1",
       activeName11: "first11",
-      width: "80%",
+      width: "85%",
       formData: {},
       fields,
       fields1,
