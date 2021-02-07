@@ -31,7 +31,7 @@ module.exports = {
     proxy: {
       "/api": {
         // target: "http://pm2.winvers.com/zhnfxq",
-        target: "http://192.168.1.17:8081",
+        target: "http://192.168.1.6:8081",
         changeOrigin: true,
         pathRewrite: {
           "^/api": ""
