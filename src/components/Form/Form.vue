@@ -19,7 +19,7 @@
           v-for="(columns, i) in itemColumns"
           :key="i"
           :span="columns.span"
-          :style="columns.style"
+          :style="columns.itemStyle"
         >
           <el-form-item
             :label="columns.label"

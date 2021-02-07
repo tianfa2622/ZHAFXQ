@@ -35,7 +35,8 @@ const options = {
       type: "text",
       clearable: true,
       class: "",
-      style: "text-align:center"
+      itemStyle: "margin-left: 10px;",
+      style: "width: 322px"
     },
     {
       span: 6,
@@ -53,7 +54,7 @@ const options = {
     BtndataList: [
       {
         type: "success",
-        class: "",
+        class: "w120",
         style: "",
         size: "small",
         methods: "search",
@@ -61,6 +62,7 @@ const options = {
       },
       {
         type: "primary",
+        class: "w120",
         style: "",
         size: "small",
         methods: "Increase",

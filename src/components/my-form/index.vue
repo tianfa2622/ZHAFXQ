@@ -17,6 +17,8 @@
             v-if="!(field.hidden && field.hidden.includes(type))"
             :label="field.label"
             :prop="field.field"
+            :style="field.formItemStyle"
+            :label-width="field.label ? labelWidth : '0px'"
           >
             <el-avatar
               v-if="field.type === 'avatar'"
@@ -35,7 +37,7 @@
                 :style="field.style || ''"
                 :src="
                   formData[field.field] ||
-                  'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg'
+                    'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg'
                 "
                 :fit="fit"
               ></el-image>
@@ -51,7 +53,7 @@
                 :lazy="true"
                 :src="
                   formData[field.field] ||
-                  'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg'
+                    'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg'
                 "
                 :fit="fit"
               ></el-image>

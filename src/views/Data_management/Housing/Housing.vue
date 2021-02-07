@@ -38,7 +38,7 @@
           <div slot="header">
             <span>小区房屋类别</span>
           </div>
-          <div class="w-100 h-70">
+          <div class="w-100 h-60">
             <MyEcharts :option="options"></MyEcharts>
           </div>
           <el-table border class="right_table" :data="classification">
@@ -262,7 +262,7 @@ export default {
   }
 }
 .right_table {
-  height: 30%;
+  height: 40%;
   width: 100%;
   margin: 0 5px;
   overflow: overlay !important;

@@ -3,9 +3,8 @@
     <div class="felx1">
       <el-breadcrumb separator=">>">
         <!-- :to="{ path: '/StaffAnalysis' }" -->
-        <el-breadcrumb-item :to="{ path: '/HistoricalMonitoring' }">
-          历史监控
-        </el-breadcrumb-item>
+        <!-- :to="{ path: '/HistoricalMonitoring' }" -->
+        <el-breadcrumb-item>历史监控</el-breadcrumb-item>
         <el-breadcrumb-item>{{ EquipmentName }}</el-breadcrumb-item>
       </el-breadcrumb>
       <el-divider class="mt-5"></el-divider>

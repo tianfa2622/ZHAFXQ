@@ -50,4 +50,15 @@
 export default {};
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.el-menu {
+  .el-menu-item,
+  ::v-deep.el-submenu__title {
+    font-size: 16px;
+  }
+  .el-menu-item span {
+    display: block;
+    height: 100%;
+  }
+}
+</style>
