@@ -1,0 +1,44 @@
+{
+  "id": "2329965",
+  "name": "ZHAFXQ",
+  "font_family": "AF",
+  "css_prefix_text": "icon",
+  "description": "智慧安防小区",
+  "glyphs": [
+    {
+      "icon_id": "19449113",
+      "name": "u446",
+      "font_class": "u446",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "19449114",
+      "name": "u148",
+      "font_class": "u148",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "19449115",
+      "name": "u4113",
+      "font_class": "u4113",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "19449132",
+      "name": "u3070",
+      "font_class": "u3070",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "19449133",
+      "name": "u3947",
+      "font_class": "u3947",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    }
+  ]
+}
