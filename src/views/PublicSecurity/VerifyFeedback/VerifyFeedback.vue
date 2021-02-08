@@ -59,7 +59,11 @@
 </template>
 
 <script>
-import { getSelectAll } from "@/api/PublicSecurity/VerifyFeedback/index";
+import {
+  getSelectAll,
+  postInsert,
+  getSelectOne
+} from "@/api/PublicSecurity/VerifyFeedback/index";
 import MyformData from "./VerifyFeedbackform/VerifyFeedbackform";
 import MytableData from "./VerifyFeedbacktable/VerifyFeedbacktable";
 import fields from "./editor";
@@ -112,6 +116,29 @@ export default {
         }
       });
     },
+    getSelectOneInfo(row) {
+      getSelectOne(row.xxfbsjxxbz).then(res => {
+        if (res.code === 1) {
+          console.log(res);
+          this.editData = res.data;
+          this.editorVisible = true;
+          this.$message.success(res.message);
+        } else {
+          this.$message.error(res.message);
+        }
+      });
+    },
+    postInsertInfo(formData) {
+      postInsert(formData).then(res => {
+        if (res.code === 1) {
+          this.editorVisible = false;
+          this.getFeedbackInfo();
+          this.$message.success(res.message);
+        } else {
+          this.$message.error(res.message);
+        }
+      });
+    },
     // 点击事件
     clickButton(val) {
       // 调用事件
@@ -121,9 +148,10 @@ export default {
       this[val.methods](val.formData);
     },
     confirm(formData) {
-      console.log(formData);
       // 请求接口提交数据 等等
       this.editorVisible = false;
+      formData.xxfbsjxxbz = `xxfbsj${this.pagination.total + 1}`;
+      this.postInsertInfo(formData);
     },
     // 切换当前一页展示多少条
     sizeChange(val) {
@@ -140,9 +168,9 @@ export default {
       this.getFeedbackInfo();
     },
     toView(row) {
-      console.log(row);
       this.editorType = "view";
-      this.editorVisible = true;
+      this.getSelectOneInfo(row);
+      // this.editorVisible = true;
     },
     add() {
       this.editorType = "add";

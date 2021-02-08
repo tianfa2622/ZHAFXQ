@@ -106,14 +106,15 @@ export default {
           this.tableData = res.data.records;
           this.pagination.total = res.data.total;
           Object.assign(this.$data.paramsData, this.$options.data().paramsData);
-          this.$message.success(res.message);
+          // this.$message.success(res.message);
         } else {
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
           this.$message.error(res.message);
         }
       });
     },
     getColumnData(row) {
-      getSelectOne({ xcyaxxbz: row.xcyaxxbz }).then(res => {
+      getSelectOne(row.xcyaxxbz).then(res => {
         if (res.code === 1) {
           this.editData = res.data;
           this.editorVisible = true;
@@ -127,17 +128,17 @@ export default {
       putUpdate(data).then(res => {
         if (res.code === 1) {
           this.editorVisible = false;
-          this.getTableInfo();
           this.$message.success(res.message);
+          this.getTableInfo();
         } else {
           this.$message.error(res.message);
         }
       });
     },
     addColumnData(data) {
+      data.xcyaxxbz = `xcya${this.pagination.total + 1}`;
       addInsert(data).then(res => {
         if (res.code === 1) {
-          console.log(res);
           this.$message.success(res.message);
         } else {
           this.$message.error(res.message);
@@ -174,11 +175,13 @@ export default {
       this.getTableInfo();
     },
     edit(val) {
+      this.title = "处理";
       this.editorType = "edit";
       this.getColumnData(val);
       // 我是处理
     },
     view(val) {
+      this.title = "处理结果";
       this.editorType = "view";
       this.getColumnData(val);
       // 我是处理结果

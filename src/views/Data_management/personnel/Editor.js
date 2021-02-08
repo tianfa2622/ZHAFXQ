@@ -213,7 +213,7 @@ const fields = [
   },
   {
     label: "联系电话：",
-    field: "Lxdh",
+    field: "djrLxdh",
     type: "input",
     dataType: "string"
   },

@@ -35,7 +35,11 @@
           <div slot="header">
             <span>预案事件类型统计图</span>
           </div>
-          <MyEcharts :option="options" class="h-100 w-100"></MyEcharts>
+          <MyEcharts
+            v-if="showEcharts"
+            :option="options"
+            class="h-100 w-100"
+          ></MyEcharts>
         </el-card>
       </div>
     </div>
@@ -67,6 +71,7 @@ import fields from "./editor";
 export default {
   data() {
     return {
+      showEcharts: false,
       MyformData,
       MytableData,
       options,
@@ -107,19 +112,20 @@ export default {
           for (const key in this.tableData) {
             let value = "clrXmDh";
             let xmdh = `${this.tableData[key].clrXm} | ${this.tableData[key].clrLxdh}`;
-            console.log(xmdh);
             this.tableData[key][value] = xmdh;
           }
           this.pagination.total = res.data.total;
           Object.assign(this.$data.paramsData, this.$options.data().paramsData);
           this.$message.success(res.message);
         } else {
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
           this.$message.error(res.message);
         }
       });
     },
     getColumnData(row) {
-      getGZSelectOne({ ...row }).then(res => {
+      console.log(row.gzyjxxbz);
+      getGZSelectOne(row.gzyjxxbz).then(res => {
         if (res.code === 1) {
           this.editData = res.data;
           this.editorVisible = true;
@@ -133,17 +139,18 @@ export default {
       putGZUpdate(data).then(res => {
         if (res.code === 1) {
           this.editorVisible = false;
-          this.getTableInfo();
           this.$message.success(res.message);
+          this.getTableInfo();
         } else {
           this.$message.error(res.message);
         }
       });
     },
     addColumnData(data) {
+      data.gzyjxxbz = `gzyj${this.pagination.total + 1}`;
       addGZInsert(data).then(res => {
+        console.log(res);
         if (res.code === 1) {
-          console.log(res);
           this.$message.success(res.message);
         } else {
           this.$message.error(res.message);

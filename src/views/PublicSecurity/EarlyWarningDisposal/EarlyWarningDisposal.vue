@@ -21,7 +21,7 @@
           <Inspection></Inspection>
         </el-tab-pane>
         <el-tab-pane label="感知预警" name="gzyj" class="tabs_content">
-          <perceived></perceived>
+          <perceived ref="perceived"></perceived>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -43,8 +43,11 @@ export default {
     };
   },
   methods: {
-    handleClick(tab, event) {
-      console.log(tab, event);
+    handleClick(tab) {
+      console.log(tab);
+      if (tab.name === "gzyj") {
+        this.$refs.perceived.showEcharts = true;
+      }
     }
   }
 };

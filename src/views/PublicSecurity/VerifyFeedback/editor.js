@@ -1,27 +1,90 @@
 const fields = [
   {
     label: "发布类型：",
-    field: "records[0].fblx",
-    type: "input",
-    dataType: "string"
+    field: "fblx",
+    type: "select",
+    options: [
+      {
+        label: "其他",
+        value: "0"
+      },
+      {
+        label: "机动车",
+        value: "1"
+      },
+      {
+        label: "电动车",
+        value: "2"
+      }
+    ]
   },
   {
     label: "发布时间：",
     field: "fbRqsj",
-    type: "input",
-    dataType: "string"
+    type: "datetime",
+    valueFormat: "yyyy-MM-dd HH:mm:ss",
+    pickerOptions: {
+      shortcuts: [
+        {
+          text: "今天",
+          onClick(picker) {
+            picker.$emit("pick", new Date());
+          }
+        },
+        {
+          text: "昨天",
+          onClick(picker) {
+            const date = new Date();
+            date.setTime(date.getTime() - 3600 * 1000 * 24);
+            picker.$emit("pick", date);
+          }
+        },
+        {
+          text: "一周前",
+          onClick(picker) {
+            const date = new Date();
+            date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
+            picker.$emit("pick", date);
+          }
+        }
+      ]
+    }
+  },
+  {
+    label: "发布方式：",
+    field: "fbfsdm",
+    type: "select",
+    options: [
+      {
+        label: "网络",
+        value: "0"
+      },
+      {
+        label: "媒体",
+        value: "1"
+      }
+    ]
   },
   {
     label: "发布内容：",
-    field: "fbRqsj",
+    field: "fbnr",
     type: "input",
     dataType: "string"
   },
   {
     label: "发布状态：",
     field: "fbzt",
-    type: "input",
-    dataType: "string"
+    type: "select",
+    options: [
+      {
+        label: "已发布",
+        value: "0"
+      },
+      {
+        label: "未发布",
+        value: "1"
+      }
+    ]
   },
   {
     label: "安装地址：",
@@ -43,19 +106,46 @@ const fields = [
   },
   {
     label: "发布人姓名：",
-    field: "dqwd",
+    field: "fbrXm",
     type: "input",
     dataType: "string"
   },
   {
     label: "采集时间：",
     field: "cjsj",
-    type: "input",
-    dataType: "string"
+    type: "datetime",
+    valueFormat: "yyyy-MM-dd HH:mm:ss",
+    pickerOptions: {
+      shortcuts: [
+        {
+          text: "今天",
+          onClick(picker) {
+            picker.$emit("pick", new Date());
+          }
+        },
+        {
+          text: "昨天",
+          onClick(picker) {
+            const date = new Date();
+            date.setTime(date.getTime() - 3600 * 1000 * 24);
+            picker.$emit("pick", date);
+          }
+        },
+        {
+          text: "一周前",
+          onClick(picker) {
+            const date = new Date();
+            date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
+            picker.$emit("pick", date);
+          }
+        }
+      ]
+    }
   },
   {
-    label: "采集系统时间：",
-    field: "cjxtsj",
+    label: "采集系统信息：",
+    span: 24,
+    field: "cjxtxxbz",
     type: "input",
     dataType: "string"
   }

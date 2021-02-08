@@ -51,7 +51,6 @@
       :type="editorType"
       :visible.sync="editorVisible"
       :fields="fields"
-      :width="width"
       @confirm="confirm"
       :editData="editData"
       :labelWidth="labelWidth"
@@ -98,7 +97,8 @@ export default {
         fkxxGmsfzhm: "",
         fwRqsj: null
       },
-      tableData: []
+      tableData: [],
+      title: "访客信息"
     };
   },
   created() {

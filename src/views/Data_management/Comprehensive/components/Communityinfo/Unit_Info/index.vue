@@ -82,6 +82,7 @@ export default {
       dialogVisible: false,
       fields,
       editorType: "view",
+      title: "单元信息",
       editorVisible: false,
       width: "60%",
       labelWidth: "210px",

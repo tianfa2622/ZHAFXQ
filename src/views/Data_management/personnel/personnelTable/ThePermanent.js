@@ -14,7 +14,7 @@ const options = {
     },
     {
       label: "身份证号码",
-      param: "zjhm",
+      param: "djrGmsfzhm",
       align: "center"
     },
     {
@@ -29,7 +29,7 @@ const options = {
     },
     {
       label: "现住地址",
-      param: "hjdzQhnxxdz",
+      param: "sjjzd",
       align: "center"
     }
   ],

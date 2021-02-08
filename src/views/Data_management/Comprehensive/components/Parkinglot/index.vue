@@ -22,7 +22,7 @@
           <el-button class="btncolor" @click="openEditor(item.tccxxbz)"
             >详情</el-button
           >
-          <el-button class="btncolor" @click="EntryExitInfo(itme.tccxxbz)"
+          <el-button class="btncolor" @click="EntryExitInfo(item.tccxxbz)"
             >出入口信息</el-button
           >
           <el-button class="btncolor" @click="changePage('4')">
@@ -193,7 +193,8 @@ export default {
       dialogVisible: false,
       labelWidth: "160px",
       type: "view",
-      editData: {}
+      editData: {},
+      title: "停车场详情"
     };
   },
   created() {
@@ -217,6 +218,7 @@ export default {
     getselectOneInfo(tccxxbz) {
       getSelectOne(tccxxbz).then(res => {
         if (res.code === 1) {
+          console.log(res.data);
           this.editData = res.data;
           this.editorVisible = true;
           this.$message.success(res.message);

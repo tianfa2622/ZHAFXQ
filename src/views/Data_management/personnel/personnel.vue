@@ -106,7 +106,58 @@ export default {
         xqxxbz: "",
         zjhm: ""
       },
-      editData: {}
+      editData: {},
+      personinfo: {
+        csrq: "",
+        cym: "",
+        cyzjdm: "",
+        djr: "",
+        djrGmsfzhm: "",
+        djrLxdh: "",
+        djrXm: "",
+        dwmc: "",
+        fwxxbz: "",
+        gjdm: "",
+        gxsj: "",
+        hjdz: "",
+        hjdzQhnxxdz: "",
+        hjdzXzqhdm: "",
+        hkxzflydm: "",
+        hlxdm: "",
+        hyzkdm: "",
+        jdchphm: "",
+        jgssxdm: "",
+        lxdh: "",
+        mzdm: "",
+        po: "",
+        poGmsfzhm: "",
+        poLxdh: "",
+        poXm: "",
+        rjLxdh: "",
+        rjRq: "",
+        rkdjlx: "",
+        rydjlx: "",
+        ryxxbz: "",
+        sjjzd: "",
+        sjjzdQhnxxdz: "",
+        sjjzdXzqhdm: "",
+        sjly: "",
+        sjzt: "",
+        syxqmc: "",
+        tssfdm: "",
+        wwm: "",
+        wwx: "",
+        xbdm: "",
+        xldm: "",
+        xm: "",
+        xp: "",
+        xqxxbz: "",
+        zaglxxssjwzrqdm: "",
+        zjhm: "",
+        zjxydm: "",
+        zylbdm: "",
+        zzmmdm: ""
+      }
     };
   },
   created() {
@@ -155,6 +206,16 @@ export default {
         }
       });
     },
+    postInsert(formData) {
+      getInsert(formData).then(res => {
+        if (res.code === 1) {
+          this.editorVisible = false;
+          this.getPersonnelInfo();
+        } else {
+          this.$message.error(res.message);
+        }
+      });
+    },
     // table点击事件
     clickButton(val) {
       this[val.methods](val.row);
@@ -174,28 +235,23 @@ export default {
       if (this.editorType !== "add") {
         this.putUpData(formData);
       } else {
-        let gxsj = getCurrentDate(true);
-        let rkdjlx = this.activeName;
-        // let ryxxbz = this.pagination.total + 1;
-        // let csrq = "2020-12-12";
-        formData.gxsj = gxsj;
-        // formData.csrq = csrq;
-        formData.rkdjlx = rkdjlx;
-        // formData.ryxxbz = ryxxbz;
-        formData.xqxxbz = "1";
-        formData.cyzjdm = "1";
-        formData.zjhm = "4565132158498";
-        formData.hjdzXzqhdm = "1";
+        formData.xqxxbz = "";
+        formData.cyzjdm = "";
+        formData.zjhm = "";
+        formData.hjdzXzqhdm = "";
+        formData.hjdzQhnxxdz = "";
+        formData.sjjzdXzqhdm = "";
+        formData.sjjzdQhnxxdz = "";
+        formData.rydjlx = "";
+        formData.rkdjlx = this.activeName;
+        formData.djrXm = "";
+        formData.djrLxdh = "";
+        formData.gxsj = getCurrentDate(true);
+        formData.sjly = "";
+        formData.sjzt = "";
+        formData.ryxxbz = `ry+${this.pagination.total + 1}`;
         console.log(formData);
-        getInsert(formData).then(res => {
-          if (res.code === 1) {
-            this.$message.success(res.message);
-            this.editorVisible = false;
-            this.getPersonnelInfo();
-          } else {
-            this.$message.error(res.message);
-          }
-        });
+        this.postInsert(formData);
       }
 
       // 请求接口提交数据 等等
@@ -230,7 +286,7 @@ export default {
       this.getPersonnelInfo();
     },
     // eslint-disable-next-line no-unused-vars
-    Increase(v) {
+    Increase() {
       this.editorType = "add";
       this.editorVisible = true;
     },

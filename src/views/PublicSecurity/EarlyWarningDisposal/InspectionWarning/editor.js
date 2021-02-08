@@ -1,5 +1,30 @@
 const fields = [
   {
+    label: "小区：",
+    span: 24,
+    field: "xqxxbz",
+    type: "select",
+    options: [
+      {
+        label: "xq001",
+        value: "xq001"
+      },
+      {
+        label: "xq002",
+        value: "xq002"
+      },
+      {
+        label: "xq003",
+        value: "xq003"
+      },
+      {
+        label: "xq004",
+        value: "xq004"
+      }
+    ],
+    hidden: ["edit", "view"]
+  },
+  {
     label: "巡查预案名称：",
     span: 24,
     field: "ycyaMc",
@@ -19,9 +44,10 @@ const fields = [
     label: "录入时间：",
     span: 24,
     field: "lrsj",
-    type: "input",
-    dataType: "string",
-    // type: "datetime",
+    // type: "input",
+    // dataType: "string",
+    type: "datetime",
+    valueFormat: "yyyy-MM-dd HH:mm:ss",
     hidden: ["edit", "view"]
   },
   {

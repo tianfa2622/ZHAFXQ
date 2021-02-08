@@ -23,27 +23,31 @@ export function getGZSelectAll(data) {
 }
 /**
  * 获取单列巡查预警表格数据
- * @param {object} data  获取传的值
+ * @param {string} xcyaxxbz  获取传的值
  * @returns {import("axios").AxiosPromise.data}
  */
-export function getSelectOne(data) {
+export function getSelectOne(xcyaxxbz) {
   return axios.get("/patrolplan/selectOne", {
-    params: data
+    params: {
+      xcyaxxbz: xcyaxxbz
+    }
   });
 }
 /**
  * 获取单列感知预警表格数据
- * @param {object} data  获取传的值
+ * @param {string} gzyjxxbz  获取传的值
  * @returns {import("axios").AxiosPromise.data}
  */
-export function getGZSelectOne(data) {
+export function getGZSelectOne(gzyjxxbz) {
   return axios.get("/perceptionwarning/selectOne", {
-    params: data
+    params: {
+      gzyjxxbz: gzyjxxbz
+    }
   });
 }
 
 /**
- * 获取单列感知预警表格数据
+ * 修改单列感知预警表格数据
  * @param {object} data  更新的值
  * @returns {import("axios").AxiosPromise.data}
  */
@@ -52,7 +56,7 @@ export function putGZUpdate(data) {
 }
 
 /**
- * 获取单列巡查预警表格数据
+ * 修改单列巡查预警表格数据
  * @param {object} data  更新的值
  * @returns {import("axios").AxiosPromise.data}
  */

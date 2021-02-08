@@ -3,8 +3,9 @@ const fields = [
     label: "预警日期：",
     span: 24,
     field: "yjRqsj",
-    type: "input",
-    dataType: "string",
+    type: "datetime",
+    valueFormat: "yyyy-MM-dd HH:mm:ss",
+    // dataType: "string",
     hidden: ["edit", "view"]
   },
   {
@@ -45,8 +46,8 @@ const fields = [
     label: "采集时间：",
     span: 24,
     field: "cjsj",
-    type: "input",
-    dataType: "string",
+    type: "datetime",
+    valueFormat: "yyyy-MM-dd HH:mm:ss",
     hidden: ["edit", "view"]
   },
   {
@@ -71,6 +72,14 @@ const fields = [
     field: "clrLxdh",
     type: "input",
     dataType: "string",
+    hidden: ["edit", "view"]
+  },
+  {
+    label: "处理时间：",
+    span: 24,
+    field: "ch1Clsj",
+    type: "datetime",
+    valueFormat: "yyyy-MM-dd HH:mm:ss",
     hidden: ["edit", "view"]
   },
   {

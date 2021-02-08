@@ -37,9 +37,9 @@
                 :style="field.style || ''"
                 :src="
                   formData[field.field] ||
-                    'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg'
+                  'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg'
                 "
-                :fit="fit"
+                fit="fill"
               ></el-image>
               <p class="demonstration">{{ field.title }}</p>
             </div>
@@ -51,11 +51,11 @@
             >
               <el-image
                 :lazy="true"
+                fit="fill"
                 :src="
                   formData[field.field] ||
-                    'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg'
+                  'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg'
                 "
-                :fit="fit"
               ></el-image>
               <el-button type="text" slot="reference">查看图片</el-button>
             </el-popover>
@@ -91,6 +91,15 @@
               resize="none"
             >
             </el-input>
+            <el-date-picker
+              v-else-if="field.type === 'datetime'"
+              v-model="formData[field.field]"
+              :style="field.style || ''"
+              type="datetime"
+              placeholder="选择日期时间"
+              :value-format="field.valueFormat"
+            >
+            </el-date-picker>
           </el-form-item>
         </el-col>
       </template>

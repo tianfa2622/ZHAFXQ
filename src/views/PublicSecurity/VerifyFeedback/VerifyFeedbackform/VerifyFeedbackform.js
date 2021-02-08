@@ -70,18 +70,20 @@ const options = {
     }
   ],
   btnData: {
-    span: 5,
-    style: "flex:auto;     text-align: end;",
+    span: 18,
+    style: "text-align: end;",
     BtndataList: [
       {
         type: "success",
         style: "",
+        class: "w100",
         size: "small",
         methods: "search",
         label: "搜索"
       },
       {
         type: "primary",
+        class: "w100",
         style: "",
         size: "small",
         methods: "add",
