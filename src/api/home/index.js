@@ -1,4 +1,4 @@
-import axios from "@/utils/axios";
+import axios from '@/utils/axios'
 
 /**
  * 获取人员概况数据
@@ -6,11 +6,11 @@ import axios from "@/utils/axios";
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getStaffProfile(communityClinic) {
-  return axios.get("/index/queryRk", {
+  return axios.get('/index/queryRk', {
     params: {
       communityClinic
     }
-  });
+  })
 }
 /**
  * 获取设备信息
@@ -18,11 +18,11 @@ export function getStaffProfile(communityClinic) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getqueryApe(communityClinic) {
-  return axios.get("/index/queryApe", {
+  return axios.get('/index/queryApe', {
     params: {
       communityClinic
     }
-  });
+  })
 }
 /**
  * 查询预警类型
@@ -30,11 +30,11 @@ export function getqueryApe(communityClinic) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getqueryYj(communityClinic) {
-  return axios.get("/index/queryYj", {
+  return axios.get('/index/queryYj', {
     params: {
       communityClinic
     }
-  });
+  })
 }
 /**
  * 查询巡查预警
@@ -42,11 +42,11 @@ export function getqueryYj(communityClinic) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getqueryPatrolplan(communityClinic) {
-  return axios.get("/index/queryPatrolplan", {
+  return axios.get('/index/queryPatrolplan', {
     params: {
       communityClinic
     }
-  });
+  })
 }
 /**
  * 查询感知预警
@@ -54,11 +54,11 @@ export function getqueryPatrolplan(communityClinic) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getqueryPerceptionwarning(communityClinic) {
-  return axios.get("/index/queryPerceptionwarning", {
+  return axios.get('/index/queryPerceptionwarning', {
     params: {
       communityClinic
     }
-  });
+  })
 }
 /**
  * 查询房屋使用情况
@@ -66,11 +66,11 @@ export function getqueryPerceptionwarning(communityClinic) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getqueryFwsyqk(communityClinic) {
-  return axios.get("/index/queryFwsyqk", {
+  return axios.get('/index/queryFwsyqk', {
     params: {
       communityClinic
     }
-  });
+  })
 }
 /**
  * 查询车辆类型
@@ -78,11 +78,11 @@ export function getqueryFwsyqk(communityClinic) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getqueryCl(communityClinic) {
-  return axios.get("/index/queryCl", {
+  return axios.get('/index/queryCl', {
     params: {
       communityClinic
     }
-  });
+  })
 }
 // export function queryByMap() {
 //   return axios.get("/index/queryByMap", {

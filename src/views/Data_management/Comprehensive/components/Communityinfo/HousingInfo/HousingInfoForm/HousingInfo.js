@@ -1,21 +1,21 @@
 const options = {
   rules: {},
   formData: {
-    BuildingName: ""
+    BuildingName: ''
   },
   form: {
     inline: true,
-    size: "small"
+    size: 'small'
   },
   itemColumns: [
     {
       span: 24,
-      label: "楼栋名称:",
-      prop: "BuildingName",
-      type: "text",
+      label: '楼栋名称:',
+      prop: 'BuildingName',
+      type: 'text',
       clearable: true,
-      class: ""
+      class: ''
     }
   ]
-};
-export default options;
+}
+export default options

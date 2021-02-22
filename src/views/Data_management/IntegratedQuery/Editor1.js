@@ -1,123 +1,123 @@
 const fields = [
   {
-    label: "车主姓名：",
+    label: '车主姓名：',
     span: 8,
-    field: "CommunityName1:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName1:',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "车主联系电话：",
+    label: '车主联系电话：',
     span: 8,
-    field: "CommunityName:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName:',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "机动车车辆类型：",
+    label: '机动车车辆类型：',
     span: 8,
-    field: "CommunityName:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName:',
+    type: 'input',
+    dataType: 'string'
   },
 
   {
-    label: "车主身份证号码：",
+    label: '车主身份证号码：',
     span: 8,
-    field: "CommunityName:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName:',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "机动车车牌号码：",
+    label: '机动车车牌号码：',
     span: 8,
-    field: "CommunityName:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName:',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "机动车号牌颜色：",
+    label: '机动车号牌颜色：',
     span: 8,
-    field: "CommunityName:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName:',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "机动车号牌种类：",
+    label: '机动车号牌种类：',
     span: 8,
-    field: "CommunityName:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName:',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "车辆体积(长*宽*高)：",
+    label: '车辆体积(长*宽*高)：',
     span: 8,
-    field: "CommunityName:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName:',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "车辆型号：",
+    label: '车辆型号：',
     span: 8,
-    field: "CommunityName:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName:',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "中文品牌名称：",
+    label: '中文品牌名称：',
     span: 8,
-    field: "CommunityName:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName:',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "机动车车身颜色：",
+    label: '机动车车身颜色：',
     span: 8,
-    field: "CommunityName:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName:',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "机动车简要情况：",
+    label: '机动车简要情况：',
     span: 8,
-    field: "CommunityName:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName:',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "登记人姓名：",
+    label: '登记人姓名：',
     span: 8,
-    field: "CommunityName:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName:',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "登记人电话号码：",
+    label: '登记人电话号码：',
     span: 8,
-    field: "CommunityName:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName:',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "数据更新时间：",
+    label: '数据更新时间：',
     span: 8,
-    field: "CommunityName:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName:',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "数据状态：",
+    label: '数据状态：',
     span: 8,
-    field: "CommunityName:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName:',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "数据来源：",
+    label: '数据来源：',
     span: 16,
-    field: "CommunityName:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName:',
+    type: 'input',
+    dataType: 'string'
   }
   // {
   //   label: "户口性质：",
@@ -134,8 +134,8 @@ const fields = [
   //     }
   //   ]
   // },
-];
-export default fields;
+]
+export default fields
 // [
 //   {
 //     label: "姓名",

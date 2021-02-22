@@ -53,11 +53,11 @@
 </template>
 
 <script>
-import MyformData from "./HousingInfoForm/HousingInfo";
-import MyTableData from "./HousingInfoTable/HousingInfo";
-import fields from "./editor";
+import MyformData from './HousingInfoForm/HousingInfo'
+import MyTableData from './HousingInfoTable/HousingInfo'
+import fields from './editor'
 export default {
-  name: "HousingInfo",
+  name: 'HousingInfo',
   props: {
     currentPage: {
       type: String,
@@ -69,57 +69,57 @@ export default {
       MyformData,
       MyTableData,
       fields,
-      editorType: "view",
+      editorType: 'view',
       editorVisible: false,
-      labelWidth: "210px",
-      width: "60%"
-    };
+      labelWidth: '210px',
+      width: '60%'
+    }
   },
   methods: {
     // 点击事件
     clickButton(val) {
       // 调用事件
       // this[val.methods](val.row);
-      if (val.methods === "details") {
-        this.openEditor(val.methods, val.row);
+      if (val.methods === 'details') {
+        this.openEditor(val.methods, val.row)
       } else {
-        this[val.methods](val.row);
+        this[val.methods](val.row)
       }
     },
     openEditor(type, row) {
-      console.log(type, row);
+      console.log(type, row)
       switch (type) {
-        case "Increase":
-          this.editorType = "add";
-          break;
+        case 'Increase':
+          this.editorType = 'add'
+          break
       }
-      this.editorVisible = true;
+      this.editorVisible = true
     },
     confirm(formData) {
-      console.log(formData);
+      console.log(formData)
       // 请求接口提交数据 等等
-      this.editorVisible = false;
+      this.editorVisible = false
     },
     // 切换当前一页展示多少条
     sizeChange(val) {
-      this.rows = val;
+      this.rows = val
     },
     // 翻页
     pageChange(val) {
-      this.page = val;
+      this.page = val
     },
     // eslint-disable-next-line no-unused-vars
     ViewRelationship(val) {
-      this.changePage("10");
+      this.changePage('10')
     },
     search() {},
     // 跳转页面
     changePage(target) {
       // 更新父组件传入的prop ‘currentPage’
-      this.$emit("update:currentPage", target);
+      this.$emit('update:currentPage', target)
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

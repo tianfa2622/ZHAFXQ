@@ -87,7 +87,7 @@
 </template>
 
 <script>
-import MyformData from "./HistoricalForm/HistoricalForm";
+import MyformData from './HistoricalForm/HistoricalForm'
 export default {
   props: {
     Page: {
@@ -101,26 +101,26 @@ export default {
       AreaSelection: [
         {
           id: 1,
-          title: "辉煌国际"
+          title: '辉煌国际'
         },
         {
           id: 2,
-          title: "中龙玉溪"
+          title: '中龙玉溪'
         },
         {
           id: 3,
-          title: "东玺门"
+          title: '东玺门'
         },
         {
           id: 4,
-          title: "中庭国际"
+          title: '中庭国际'
         }
       ],
       checkList: [1, 2],
-      EquipmentName: "XX设备",
-      IPaddress: "XX街",
+      EquipmentName: 'XX设备',
+      IPaddress: 'XX街',
       currentPage: 1
-    };
+    }
   },
   methods: {
     // onSubmit() {
@@ -129,25 +129,25 @@ export default {
     //   this.$router.push("/HistoricalMonitoring/DeviceInformation");
     // },
     handleSizeChange(val) {
-      console.log(val);
+      console.log(val)
     },
     handleCurrentChange(val) {
-      console.log(val);
+      console.log(val)
     },
     // 点击事件
     clickButton(val) {
       // 调用事件
-      this[val.methods](val.row);
+      this[val.methods](val.row)
     },
     search() {},
     // 跳转页面
     changePage(target) {
       // 更新父组件传入的prop ‘Page’
-      console.log(target);
-      this.$emit("update:Page", target);
+      console.log(target)
+      this.$emit('update:Page', target)
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

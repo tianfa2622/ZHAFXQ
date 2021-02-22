@@ -82,6 +82,7 @@
               v-bind="columns.bind"
               :class="columns.class"
               :placeholder="columns.placeholder || '请选择'"
+              @change="selectTrigger(editData[columns.prop])"
             >
               <el-option
                 v-for="(opt, j) in columns.options"
@@ -205,37 +206,37 @@ export default {
     formData: {
       type: Object,
       default: () => {
-        return {};
+        return {}
       }
     },
     rules: {
       type: Object,
       default: () => {
-        return {};
+        return {}
       }
     },
     form: {
       type: Object,
       default: () => {
-        return {};
+        return {}
       }
     },
     RowData: {
       type: Object,
       default: () => {
-        return {};
+        return {}
       }
     },
     itemColumns: {
       type: Array,
       default: () => {
-        return [];
+        return []
       }
     },
     btnData: {
       type: Object,
       default: () => {
-        return {};
+        return {}
       }
     }
   },
@@ -243,8 +244,8 @@ export default {
     formData: {
       handler: function() {
         this.itemColumns.map(column => {
-          this.$set(this.editData, column.prop, this.formData[column.prop]);
-        });
+          this.$set(this.editData, column.prop, this.formData[column.prop])
+        })
       },
       deep: true,
       immediate: true
@@ -253,30 +254,33 @@ export default {
   data() {
     return {
       editData: {}
-    };
+    }
   },
   methods: {
     // 按钮点击事件
     // methods方法名 row当前点击列数据 index当前点击的index
     handleButton(methods) {
-      this.$emit("clickButton", { methods: methods, formData: this.editData });
+      this.$emit('clickButton', { methods: methods, formData: this.editData })
+    },
+    selectTrigger(value) {
+      this.$emit('selectClick', value)
     },
     // 复选框勾选
     handleCheckedUserGroupChange(columns) {
-      const checkedCount = this.formData[columns.prop].length;
-      columns.checkAll = checkedCount === columns.options.length;
+      const checkedCount = this.formData[columns.prop].length
+      columns.checkAll = checkedCount === columns.options.length
       columns.isIndeterminate =
-        checkedCount > 0 && checkedCount < columns.options.length;
+        checkedCount > 0 && checkedCount < columns.options.length
     },
     // 复选框全选
     handleCheckAllChange(columns) {
       this.formData[columns.property] = columns.checkAll
         ? columns.options.map(columns => columns.id)
-        : [];
-      columns.isIndeterminate = false;
+        : []
+      columns.isIndeterminate = false
     }
   }
-};
+}
 </script>
 <style lang="less" scoped>
 ::v-deep .el-row {

@@ -50,12 +50,12 @@
 </template>
 
 <script>
-import { getSelectAll } from "@/api/Data_management/index/Accesscontrol/index";
-import MyformData from "./AccesscontrolForm/AccesscontrolForm";
-import MyTableData from "./AccesscontrolTable/AccesscontrolTable";
-import fields from "./editor";
+import { getSelectAll } from '@/api/Data_management/index/Accesscontrol/index'
+import MyformData from './AccesscontrolForm/AccesscontrolForm'
+import MyTableData from './AccesscontrolTable/AccesscontrolTable'
+import fields from './editor'
 export default {
-  name: "Accesscontrol",
+  name: 'Accesscontrol',
   props: {
     currentPage: {
       type: String,
@@ -67,9 +67,9 @@ export default {
       MyformData,
       MyTableData,
       fields,
-      editorType: "add",
+      editorType: 'add',
       editorVisible: false,
-      labelWidth: "150px",
+      labelWidth: '150px',
       pagination: {
         isBackC: true,
         isShow: true,
@@ -79,15 +79,15 @@ export default {
       },
       editData: {},
       paramsData: {
-        mc: "",
-        xjfx: ""
+        mc: '',
+        xjfx: ''
       },
       tableData: [],
-      width: ""
-    };
+      width: ''
+    }
   },
   created() {
-    this.getSelectInfo();
+    this.getSelectInfo()
   },
   methods: {
     getSelectInfo() {
@@ -97,65 +97,65 @@ export default {
         size: this.pagination.size
       }).then(res => {
         if (res.code === 1) {
-          this.tableData = res.data.records;
+          this.tableData = res.data.records
           for (const key in this.tableData) {
-            let value = "djrXmDh";
-            let XmDh = `${this.tableData[key].djrXm} | ${this.tableData[key].djrLxdh}`;
-            this.tableData[key][value] = XmDh;
+            const value = 'djrXmDh'
+            const XmDh = `${this.tableData[key].djrXm} | ${this.tableData[key].djrLxdh}`
+            this.tableData[key][value] = XmDh
           }
-          this.pagination.total = res.data.total;
-          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
-          this.$message.success(res.message);
+          this.pagination.total = res.data.total
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData)
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     // 切换当前一页展示多少条
     sizeChange(val) {
-      this.pagination.size = val;
-      this.getSelectInfo();
+      this.pagination.size = val
+      this.getSelectInfo()
     },
     // 翻页
     pageChange(val) {
-      this.paramsData.currentPage = val;
-      this.getSelectInfo();
+      this.paramsData.currentPage = val
+      this.getSelectInfo()
     },
     // 点击事件
     clickButton(val) {
       // 调用事件
-      this[val.methods](val.row);
+      this[val.methods](val.row)
     },
     FormclickButton(val) {
-      this[val.methods](val.formData);
+      this[val.methods](val.formData)
     },
     openEditor(type, row) {
-      console.log(type, row);
-      this.editorVisible = true;
+      console.log(type, row)
+      this.editorVisible = true
     },
     confirm(formData) {
-      console.log(formData);
+      console.log(formData)
       // 请求接口提交数据 等等
-      this.editorVisible = false;
+      this.editorVisible = false
     },
     search(v) {
-      this.paramsData = { ...v };
-      this.getSelectInfo();
+      this.paramsData = { ...v }
+      this.getSelectInfo()
     },
     Increase() {
-      this.editorType = "add";
-      this.editorVisible = true;
+      this.editorType = 'add'
+      this.editorVisible = true
     },
     record() {
-      this.changePage("7");
+      this.changePage('7')
     },
     // 跳转页面
     changePage(target) {
       // 更新父组件传入的prop ‘currentPage’
-      this.$emit("update:currentPage", target);
+      this.$emit('update:currentPage', target)
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

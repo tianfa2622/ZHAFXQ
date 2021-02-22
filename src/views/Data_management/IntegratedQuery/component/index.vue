@@ -31,36 +31,36 @@
 export default {
   data() {
     return {
-      date1: "",
-      date2: "",
+      date1: '',
+      date2: '',
       imgVuew: false,
-      imgUrl: "",
+      imgUrl: '',
       data1: [
         {
-          time: "20:10:23",
-          position: "XX小区",
-          imgUrl: "图片地址"
+          time: '20:10:23',
+          position: 'XX小区',
+          imgUrl: '图片地址'
         },
         {
-          time: "20:10:23",
-          position: "XX小区",
-          imgUrl: "图片地址"
+          time: '20:10:23',
+          position: 'XX小区',
+          imgUrl: '图片地址'
         },
         {
-          time: "20:10:23",
-          position: "XX小区",
-          imgUrl: "图片地址"
+          time: '20:10:23',
+          position: 'XX小区',
+          imgUrl: '图片地址'
         }
       ]
-    };
+    }
   },
   methods: {
     viewImage(row) {
-      this.imgUrl = row.imgUrl;
-      this.imgVuew = true;
+      this.imgUrl = row.imgUrl
+      this.imgVuew = true
     }
   }
-};
+}
 </script>
 <style lang="less" scoped>
 .table-box {

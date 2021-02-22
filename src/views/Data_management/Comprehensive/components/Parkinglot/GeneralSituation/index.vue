@@ -55,12 +55,12 @@
 import {
   getSelectAll,
   getSelectOne
-} from "@/api/Data_management/index/GeneralSituation/index";
-import MyformData from "./GeneralSituationform/GeneralSituationform";
-import MyTableData from "./GeneralSituationtable/GeneralSituationtable";
-import fields from "./editor";
+} from '@/api/Data_management/index/GeneralSituation/index'
+import MyformData from './GeneralSituationform/GeneralSituationform'
+import MyTableData from './GeneralSituationtable/GeneralSituationtable'
+import fields from './editor'
 export default {
-  name: "GeneralSituation",
+  name: 'GeneralSituation',
   props: {
     currentPage: {
       type: String,
@@ -72,10 +72,10 @@ export default {
       MyformData,
       MyTableData,
       fields,
-      width: "60%",
-      editorType: "view",
+      width: '60%',
+      editorType: 'view',
       editorVisible: false,
-      labelWidth: "210px",
+      labelWidth: '210px',
       // 表格数据
       tableData: [],
       pagination: {
@@ -92,11 +92,11 @@ export default {
         tcwbh: null
       },
       editData: {}
-    };
+    }
   },
   created() {
     // this.getGeneralInfo();
-    this.search();
+    this.search()
   },
   methods: {
     getGeneralInfo() {
@@ -106,71 +106,71 @@ export default {
         size: this.pagination.size
       }).then(res => {
         if (res.code === 1) {
-          this.tableData = res.data.records;
-          this.pagination.total = res.data.total;
-          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
-          this.$message.success(res.message);
+          this.tableData = res.data.records
+          this.pagination.total = res.data.total
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData)
+          this.$message.success(res.message)
         } else {
-          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
-          this.$message.error(res.message);
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData)
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     getGeneralInfoOne(row) {
       getSelectOne(row.tcwxxbz).then(res => {
         if (res.code === 1) {
-          console.log(res);
-          this.editData = res.data;
-          this.editorVisible = true;
-          this.$message.success(res.message);
+          console.log(res)
+          this.editData = res.data
+          this.editorVisible = true
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     // 点击事件
     clickButton(val) {
       // 调用事件
-      this[val.methods](val.row);
+      this[val.methods](val.row)
     },
     FormclickButton(val) {
-      this[val.methods](val.formData);
+      this[val.methods](val.formData)
     },
     openEditor(type, row) {
-      console.log(type, row);
+      console.log(type, row)
       switch (type) {
-        case "Increase":
-          this.editorType = "add";
-          break;
+        case 'Increase':
+          this.editorType = 'add'
+          break
       }
-      this.editorVisible = true;
+      this.editorVisible = true
     },
     // 切换当前一页展示多少条
     sizeChange(val) {
-      this.pagination.size = val;
-      this.getGeneralInfo();
+      this.pagination.size = val
+      this.getGeneralInfo()
     },
     // 翻页
     pageChange(val) {
-      this.pagination.currentPage = val;
-      this.getGeneralInfo();
+      this.pagination.currentPage = val
+      this.getGeneralInfo()
     },
     // eslint-disable-next-line no-unused-vars
     Details(val) {
-      this.editorType = "view";
-      this.getGeneralInfoOne(val);
+      this.editorType = 'view'
+      this.getGeneralInfoOne(val)
     },
     search(v) {
-      this.paramsData = { ...v };
-      this.getGeneralInfo();
+      this.paramsData = { ...v }
+      this.getGeneralInfo()
     },
     // 跳转页面
     changePage(target) {
       // 更新父组件传入的prop ‘currentPage’
-      this.$emit("update:currentPage", target);
+      this.$emit('update:currentPage', target)
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

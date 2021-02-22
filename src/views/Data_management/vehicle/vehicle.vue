@@ -11,6 +11,7 @@
           :itemColumns="MyformData.itemColumns"
           :btnData="MyformData.btnData"
           @clickButton="FormclickButton"
+          @selectClick='selectTrigger'
         ></Myform>
       </el-card>
     </div>
@@ -81,11 +82,11 @@ import {
   getMotorSelectOne,
   putMotorUpdate,
   putElectricUpdate
-} from "@/api/Data_management/vehicle/index";
-import MyformData from "./vehicleform/vehicle";
-import vehicleData from "./vehicletable/vehicletable";
-import options from "./vehicleEcharts/vehicleEcharts";
-import fields from "./editor";
+} from '@/api/Data_management/vehicle/index'
+import MyformData from './vehicleform/vehicle'
+import vehicleData from './vehicletable/vehicletable'
+import options from './vehicleEcharts/vehicleEcharts'
+import fields from './editor'
 export default {
   data() {
     return {
@@ -94,7 +95,7 @@ export default {
       options,
       tableData: [
         {
-          number: "数量",
+          number: '数量',
           MotorVehicles: 504,
           ElectricVehicle: 312
         }
@@ -108,24 +109,24 @@ export default {
       },
       paramsData: {
         area: [],
-        xqMc: "",
-        czXm: "",
-        cphm: "",
+        xqMc: '',
+        czXm: '',
+        cphm: '',
         cllb: null
       },
       editData: {},
-      editorType: "add",
+      editorType: 'add',
       editorVisible: false,
-      labelWidth: "160px",
+      labelWidth: '160px',
       fields,
-      title: "",
+      title: '',
       VehicleData: []
-    };
+    }
   },
-  mounted() {},
-  created() {
-    this.JudgmentType();
+  mounted() {
+    this.JudgmentType()
   },
+  created() {},
   methods: {
     getMotorVehicleData() {
       getMotorSelectAll({
@@ -134,19 +135,19 @@ export default {
         size: this.pagination.size
       }).then(res => {
         if (res.code === 1) {
-          this.VehicleData = res.data.records;
-          this.pagination.total = res.data.total;
+          this.VehicleData = res.data.records
+          this.pagination.total = res.data.total
           for (const key in this.VehicleData) {
-            let cphm = "cphm";
-            this.VehicleData[key][cphm] = this.VehicleData[key].jdchphm;
-            this.VehicleData[key].cllb = "机动车";
+            const cphm = 'cphm'
+            this.VehicleData[key][cphm] = this.VehicleData[key].jdchphm
+            this.VehicleData[key].cllb = '机动车'
           }
-          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
-          this.$message.success(res.message);
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData)
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     getElectricVehicleData() {
       getElectricSelectAll({
@@ -155,120 +156,125 @@ export default {
         size: this.pagination.size
       }).then(res => {
         if (res.code === 1) {
-          this.VehicleData = res.data.records;
-          this.pagination.total = res.data.total;
+          this.VehicleData = res.data.records
+          this.pagination.total = res.data.total
           for (const key in this.VehicleData) {
-            let cphm = "cphm";
-            this.VehicleData[key][cphm] = this.VehicleData[key].ddzxccphm;
-            this.VehicleData[key].cllb = "机动车";
+            const cphm = 'cphm'
+            this.VehicleData[key][cphm] = this.VehicleData[key].ddzxccphm
+            this.VehicleData[key].cllb = '电动车'
           }
-          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
-          this.$message.success(res.message);
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData)
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     JudgmentType() {
-      this.pagination.currentPage = 1;
+      this.pagination.currentPage = 1
       switch (this.paramsData.cllb) {
-        case 1:
-          return this.getMotorVehicleData();
-        case 2:
-          return this.getElectricVehicleData();
+        case '1':
+          return this.getMotorVehicleData()
+        case '2':
+          return this.getElectricVehicleData()
       }
     },
     openEditor(data) {
       // this.editorVisible = true;
       if (this.paramsData.cllb === 1) {
-        this.editMotorData(data);
+        const parkingmotorvehiclesinfo = data
+        this.editMotorData(parkingmotorvehiclesinfo)
       } else {
-        this.editElectricData(data);
+        this.editElectricData(data)
       }
     },
     getMotorColumnData(row) {
       getMotorSelectOne(row.jdcxxbz).then(res => {
         if (res.code === 1) {
-          let long = res.data.clcd;
-          let wide = res.data.clkd;
-          let high = res.data.clgd;
-          this.editData = res.data;
-          this.editData.cltj = long * wide * high;
-          this.editorVisible = true;
-          this.$message.success(res.message);
+          const long = res.data.clcd
+          const wide = res.data.clkd
+          const high = res.data.clgd
+          this.editData = res.data
+          this.editData.cltj = long * wide * high
+          this.editorVisible = true
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     getElectricColumnData(row) {
       getElectricSelectOne(row.ddzxcxxbz).then(res => {
         if (res.code === 1) {
-          this.editData = res.data;
-          this.editorVisible = true;
-          this.$message.success(res.message);
+          this.editData = res.data
+          this.editorVisible = true
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     editMotorData(data) {
       putMotorUpdate(data).then(res => {
         if (res.code === 1) {
-          console.log(res);
-          this.$message.success(res.message);
-          this.editorVisible = false;
-          this.getMotorVehicleData();
+          console.log(res)
+          this.$message.success(res.message)
+          this.editorVisible = false
+          this.getMotorVehicleData()
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     editElectricData(data) {
       putElectricUpdate(data).then(res => {
         if (res.code === 1) {
-          console.log(res);
-          this.$message.success(res.message);
-          this.editorVisible = false;
-          this.getElectricVehicleData();
+          console.log(res)
+          this.$message.success(res.message)
+          this.editorVisible = false
+          this.getElectricVehicleData()
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     confirm(formData) {
-      console.log(formData);
-      if (this.editorType !== "add") {
-        this.openEditor(formData);
+      console.log(formData)
+      if (this.editorType !== 'add') {
+        this.openEditor(formData)
       }
       // 请求接口提交数据 等等
-      this.editorVisible = false;
+      this.editorVisible = false
     },
     // 切换当前一页展示多少条
     sizeChange(val) {
-      this.pagination.size = val;
+      this.pagination.size = val
       if (this.paramsData.cllb === 1) {
-        this.getMotorVehicleData();
+        this.getMotorVehicleData()
       } else {
-        this.getElectricVehicleData();
+        this.getElectricVehicleData()
       }
     },
     // 翻页
     pageChange(val) {
-      this.pagination.currentPage = val;
+      this.pagination.currentPage = val
       if (this.paramsData.cllb === 1) {
-        this.getMotorVehicleData();
+        this.getMotorVehicleData()
       } else {
-        this.getElectricVehicleData();
+        this.getElectricVehicleData()
       }
     },
     // 点击事件
     clickButton(val) {
       // 调用事件
-      this[val.methods](val.row);
+      this[val.methods](val.row)
     },
     FormclickButton(val) {
-      this[val.methods](val.formData);
+      this[val.methods](val.formData)
+    },
+    selectTrigger(value) {
+      this.paramsData.cllb = value
+      this.JudgmentType()
     },
     search(v) {
       if (this.paramsData.cllb === 1) {
@@ -277,41 +283,42 @@ export default {
           xqMc: v.xqMc,
           jdchphm: v.cphm,
           czXm: v.czXm
-        };
-        this.getMotorVehicleData();
+        }
+        this.getMotorVehicleData()
       } else {
         this.paramsData = {
           area: v.area,
           xqMc: v.xqMc,
           ddzxccphm: v.cphm,
           czXm: v.czXm
-        };
-        this.getElectricVehicleData();
+        }
+        this.getElectricVehicleData()
       }
     },
     add() {
-      this.editorType = "add";
-      this.editorVisible = true;
+      this.editorType = 'add'
+      this.editorVisible = true
     },
     toView(row) {
-      this.editorType = "view";
-      if (row.cllb === "机动车") {
-        this.getMotorColumnData(row);
+      this.editorType = 'view'
+      console.log(row.cllb)
+      if (row.cllb === '机动车') {
+        this.getMotorColumnData(row)
       } else {
-        this.getElectricColumnData(row);
+        this.getElectricColumnData(row)
       }
     },
     editor(row) {
-      this.editorType = "edit";
-      if (row.cllb === "机动车") {
-        this.getMotorColumnData(row);
+      this.editorType = 'edit'
+      if (row.cllb === '机动车') {
+        this.getMotorColumnData(row)
       } else {
-        this.getElectricColumnData(row);
+        this.getElectricColumnData(row)
       }
     }
     // Increase() {}
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

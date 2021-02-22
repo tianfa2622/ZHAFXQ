@@ -1,4 +1,4 @@
-import axios from "@/utils/axios";
+import axios from '@/utils/axios'
 
 /**
  * 获取人员异常表格信息
@@ -6,9 +6,9 @@ import axios from "@/utils/axios";
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getPersonnelAll(data) {
-  return axios.get("/ryyc/selectAll", {
+  return axios.get('/ryyc/selectAll', {
     params: data
-  });
+  })
 }
 
 /**
@@ -17,9 +17,9 @@ export function getPersonnelAll(data) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getVehicleAll(data) {
-  return axios.get("/clyc/selectAll", {
+  return axios.get('/clyc/selectAll', {
     params: data
-  });
+  })
 }
 /**
  * 获取聚集异常表格信息
@@ -27,9 +27,9 @@ export function getVehicleAll(data) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getGatherAll(data) {
-  return axios.get("/jjyc/selectAll", {
+  return axios.get('/jjyc/selectAll', {
     params: data
-  });
+  })
 }
 
 /**
@@ -38,11 +38,11 @@ export function getGatherAll(data) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getPersonnelOne(id) {
-  return axios.get("/ryyc/selectOne", {
+  return axios.get('/ryyc/selectOne', {
     params: {
       id: id
     }
-  });
+  })
 }
 
 /**
@@ -51,11 +51,11 @@ export function getPersonnelOne(id) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getVehicleOne(id) {
-  return axios.get("/clyc/selectOne", {
+  return axios.get('/clyc/selectOne', {
     params: {
       id: id
     }
-  });
+  })
 }
 
 /**
@@ -64,11 +64,11 @@ export function getVehicleOne(id) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getGatherOne(id) {
-  return axios.get("/jjyc/selectOne", {
+  return axios.get('/jjyc/selectOne', {
     params: {
       id: id
     }
-  });
+  })
 }
 
 /**
@@ -77,7 +77,7 @@ export function getGatherOne(id) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function putPersonnelupdate(data) {
-  return axios.put("/ryyc/update", data);
+  return axios.put('/ryyc/update', data)
 }
 
 /**
@@ -86,7 +86,7 @@ export function putPersonnelupdate(data) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function putVehicleupdate(data) {
-  return axios.put("/clyc/update", data);
+  return axios.put('/clyc/update', data)
 }
 
 /**
@@ -95,7 +95,7 @@ export function putVehicleupdate(data) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function putGatherupdate(data) {
-  return axios.put("/jjyc/update", data);
+  return axios.put('/jjyc/update', data)
 }
 
 /**
@@ -104,7 +104,7 @@ export function putGatherupdate(data) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function postPersonnelinsert(data) {
-  return axios.post("/ryyc/insert", data);
+  return axios.post('/ryyc/insert', data)
 }
 
 /**
@@ -113,7 +113,7 @@ export function postPersonnelinsert(data) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function postVehicleinsert(data) {
-  return axios.post("/clyc/insert", data);
+  return axios.post('/clyc/insert', data)
 }
 
 /**
@@ -122,7 +122,7 @@ export function postVehicleinsert(data) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function postGatherinsert(data) {
-  return axios.post("/jjyc/insert", data);
+  return axios.post('/jjyc/insert', data)
 }
 
 /**
@@ -131,9 +131,9 @@ export function postGatherinsert(data) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function delectPersonnel(data) {
-  return axios.delete("/ryyc/delete", {
+  return axios.delete('/ryyc/delete', {
     params: data
-  });
+  })
 }
 
 /**
@@ -142,9 +142,9 @@ export function delectPersonnel(data) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function delectVehicle(data) {
-  return axios.delete("/clyc/delete", {
+  return axios.delete('/clyc/delete', {
     params: data
-  });
+  })
 }
 
 /**
@@ -153,7 +153,7 @@ export function delectVehicle(data) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function delectGather(data) {
-  return axios.delete("/jjyc/delete", {
+  return axios.delete('/jjyc/delete', {
     params: data
-  });
+  })
 }

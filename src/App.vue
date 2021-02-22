@@ -12,13 +12,13 @@
 </template>
 
 <script>
-import Header from "@/components/Header.vue";
+import Header from '@/components/Header.vue'
 export default {
-  name: "app",
+  name: 'App',
   components: {
     Header
   }
-};
+}
 </script>
 
 <style lang="less"></style>

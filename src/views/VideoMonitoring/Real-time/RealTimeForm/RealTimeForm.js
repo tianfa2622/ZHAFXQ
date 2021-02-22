@@ -5,15 +5,15 @@ const options = {
   },
   form: {
     inline: true,
-    size: "small"
+    size: 'small'
   },
   itemColumns: [
     {
-      label: "",
-      prop: "area",
-      type: "area",
+      label: '',
+      prop: 'area',
+      type: 'area',
       level: 2
     }
   ]
-};
-export default options;
+}
+export default options

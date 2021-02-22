@@ -2,55 +2,55 @@ const options = {
   rules: {},
   form: {
     inline: true,
-    size: "small"
+    size: 'small'
   },
   itemColumns: [
     {
       span: 7,
-      label: "巡查预案名称：",
-      prop: "ycyaMc",
-      type: "text",
+      label: '巡查预案名称：',
+      prop: 'ycyaMc',
+      type: 'text',
       clearable: true,
-      class: ""
+      class: ''
     },
     {
       span: 7,
-      label: "关键词：",
-      prop: "gjc",
-      type: "text",
+      label: '关键词：',
+      prop: 'gjc',
+      type: 'text',
       clearable: true,
-      class: ""
+      class: ''
     },
     {
       span: 8,
-      label: "录入时间：",
-      prop: "lrsj",
-      type: "datetime",
-      class: "",
+      label: '录入时间：',
+      prop: 'lrsj',
+      type: 'datetime',
+      class: '',
       clearable: true
     }
   ],
   btnData: {
     span: 16,
-    style: "text-align: end;",
+    style: 'text-align: end;',
     BtndataList: [
       {
-        type: "success",
-        style: "",
-        class: "w100",
-        size: "small",
-        methods: "search",
-        label: "搜索"
+        type: 'success',
+        style: '',
+        class: 'w100',
+        size: 'small',
+        methods: 'search',
+        label: '搜索'
       },
       {
-        type: "primary",
-        class: "w100",
-        style: "",
-        size: "small",
-        methods: "add",
-        label: "新增"
+        type: 'primary',
+        class: 'w100',
+        style: '',
+        size: 'small',
+        methods: 'add',
+        label: '新增'
       }
     ]
   }
-};
-export default options;
+}
+export default options

@@ -1,4 +1,4 @@
-import XLSX from "xlsx";
+import XLSX from 'xlsx'
 
 /**
  * 导出json数据为Excel表格的xlsx文件
@@ -7,24 +7,24 @@ import XLSX from "xlsx";
  * @param {string} fileName 导出的文件名
  */
 export function ExportToExcel(jsonData, headKey, fileName) {
-  let data;
+  let data
   if (headKey) {
-    data = filter(jsonData, headKey);
+    data = filter(jsonData, headKey)
   } else {
-    data = jsonData;
+    data = jsonData
   }
-  const workbook = XLSX.utils.book_new();
-  const workSheet = XLSX.utils.json_to_sheet(data);
-  XLSX.utils.book_append_sheet(workbook, workSheet, "Sheet1");
-  XLSX.writeFile(workbook, `${fileName}.xlsx`);
+  const workbook = XLSX.utils.book_new()
+  const workSheet = XLSX.utils.json_to_sheet(data)
+  XLSX.utils.book_append_sheet(workbook, workSheet, 'Sheet1')
+  XLSX.writeFile(workbook, `${fileName}.xlsx`)
 }
 
 function filter(jsonData, headKey) {
   return jsonData.map(data => {
-    const res = {};
+    const res = {}
     for (const key in headKey) {
-      res[headKey[key]] = data[key];
+      res[headKey[key]] = data[key]
     }
-    return res;
-  });
+    return res
+  })
 }

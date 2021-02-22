@@ -63,11 +63,11 @@ import {
   getSelectAll,
   postInsert,
   getSelectOne
-} from "@/api/PublicSecurity/VerifyFeedback/index";
-import MyformData from "./VerifyFeedbackform/VerifyFeedbackform";
-import MytableData from "./VerifyFeedbacktable/VerifyFeedbacktable";
-import fields from "./editor";
-import options from "./VerifyFeedbackEcharts/VerifyFeedbackEcharts";
+} from '@/api/PublicSecurity/VerifyFeedback/index'
+import MyformData from './VerifyFeedbackform/VerifyFeedbackform'
+import MytableData from './VerifyFeedbacktable/VerifyFeedbacktable'
+import fields from './editor'
+import options from './VerifyFeedbackEcharts/VerifyFeedbackEcharts'
 export default {
   data() {
     return {
@@ -75,8 +75,8 @@ export default {
       MytableData,
       options,
       fields,
-      editorType: "view",
-      labelWidth: "150px",
+      editorType: 'view',
+      labelWidth: '150px',
       // inline: false,
       editorVisible: false,
       tableData: [],
@@ -89,15 +89,15 @@ export default {
       },
       paramsData: {
         fblx: null,
-        fbRqsj: "",
-        fbnr: ""
+        fbRqsj: '',
+        fbnr: ''
       },
       editData: {},
-      title: ""
-    };
+      title: ''
+    }
   },
   created() {
-    this.getFeedbackInfo();
+    this.getFeedbackInfo()
   },
   methods: {
     getFeedbackInfo() {
@@ -107,77 +107,78 @@ export default {
         size: this.pagination.size
       }).then(res => {
         if (res.code === 1) {
-          this.tableData = res.data.records;
-          this.pagination.total = res.data.total;
-          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
-          this.$message.success(res.message);
+          this.tableData = res.data.records
+          this.pagination.total = res.data.total
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData)
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     getSelectOneInfo(row) {
       getSelectOne(row.xxfbsjxxbz).then(res => {
         if (res.code === 1) {
-          console.log(res);
-          this.editData = res.data;
-          this.editorVisible = true;
-          this.$message.success(res.message);
+          console.log(res)
+          this.editData = res.data
+          this.editorVisible = true
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     postInsertInfo(formData) {
       postInsert(formData).then(res => {
         if (res.code === 1) {
-          this.editorVisible = false;
-          this.getFeedbackInfo();
-          this.$message.success(res.message);
+          this.editorVisible = false
+          this.getFeedbackInfo()
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     // 点击事件
     clickButton(val) {
       // 调用事件
-      this[val.methods](val.row);
+      this[val.methods](val.row)
     },
     FormclickButton(val) {
-      this[val.methods](val.formData);
+      this[val.methods](val.formData)
     },
     confirm(formData) {
       // 请求接口提交数据 等等
-      this.editorVisible = false;
-      formData.xxfbsjxxbz = `xxfbsj${this.pagination.total + 1}`;
-      this.postInsertInfo(formData);
+      this.editorVisible = false
+      formData.xxfbsjxxbz = `xxfbsj${this.pagination.total + 1}`
+      this.postInsertInfo(formData)
     },
     // 切换当前一页展示多少条
     sizeChange(val) {
-      this.pagination.size = val;
-      this.getFeedbackInfo();
+      this.pagination.size = val
+      this.getFeedbackInfo()
     },
     // 翻页
     pageChange(val) {
-      this.paramsData.currentPage = val;
-      this.getFeedbackInfo();
+      console.log(val)
+      this.pagination.currentPage = val
+      this.getFeedbackInfo()
     },
     search(v) {
-      this.paramsData = { ...v };
-      this.getFeedbackInfo();
+      this.paramsData = { ...v }
+      this.getFeedbackInfo()
     },
     toView(row) {
-      this.editorType = "view";
-      this.getSelectOneInfo(row);
+      this.editorType = 'view'
+      this.getSelectOneInfo(row)
       // this.editorVisible = true;
     },
     add() {
-      this.editorType = "add";
-      this.editorVisible = true;
+      this.editorType = 'add'
+      this.editorVisible = true
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

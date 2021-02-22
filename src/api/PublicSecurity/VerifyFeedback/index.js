@@ -1,4 +1,4 @@
-import axios from "@/utils/axios";
+import axios from '@/utils/axios'
 
 /**
  * 获取信息核实反馈表格信息
@@ -6,9 +6,9 @@ import axios from "@/utils/axios";
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getSelectAll(data) {
-  return axios.get("/releaseevent/selectAll", {
+  return axios.get('/releaseevent/selectAll', {
     params: data
-  });
+  })
 }
 
 /**
@@ -17,11 +17,11 @@ export function getSelectAll(data) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getSelectOne(xxfbsjxxbz) {
-  return axios.get("/releaseevent/selectOne", {
+  return axios.get('/releaseevent/selectOne', {
     params: {
       xxfbsjxxbz: xxfbsjxxbz
     }
-  });
+  })
 }
 
 /**
@@ -30,5 +30,5 @@ export function getSelectOne(xxfbsjxxbz) {
  *
  */
 export function postInsert(data) {
-  return axios.post("/releaseevent/insert", data);
+  return axios.post('/releaseevent/insert', data)
 }

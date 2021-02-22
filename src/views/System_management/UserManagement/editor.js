@@ -1,46 +1,46 @@
 const fields = [
   {
-    label: "用户名：",
-    field: "userName",
-    type: "input",
-    dataType: "string"
+    label: '用户名：',
+    field: 'userName',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "姓名：",
-    field: "realName",
-    type: "input",
-    dataType: "string",
-    hidden: ["edit", "view"]
+    label: '姓名：',
+    field: 'realName',
+    type: 'input',
+    dataType: 'string',
+    hidden: ['edit', 'view']
   },
   {
-    label: "状态：",
-    field: "state",
-    type: "select",
+    label: '状态：',
+    field: 'state',
+    type: 'select',
     options: [
       {
-        label: "正常",
-        value: "0"
+        label: '正常',
+        value: '0'
       },
       {
-        label: "禁用",
-        value: "1"
+        label: '禁用',
+        value: '1'
       }
     ]
   },
   {
-    label: "所属单位：",
-    field: "dwmc",
-    type: "input",
-    dataType: "string",
-    hidden: ["edit", "view"]
+    label: '所属单位：',
+    field: 'dwmc',
+    type: 'input',
+    dataType: 'string',
+    hidden: ['edit', 'view']
   },
   {
-    label: "更新时间：",
-    field: "updateTime",
+    label: '更新时间：',
+    field: 'updateTime',
     span: 24,
-    type: "input",
-    dataType: "string",
-    hidden: ["edit", "view"]
+    type: 'input',
+    dataType: 'string',
+    hidden: ['edit', 'view']
   }
   // {
   //   label: "身份证号",
@@ -57,8 +57,8 @@ const fields = [
   //     }
   //   ]
   // },
-];
-export default fields;
+]
+export default fields
 // [
 //   {
 //     label: "姓名",

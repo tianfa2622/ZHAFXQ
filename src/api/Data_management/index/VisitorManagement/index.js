@@ -1,4 +1,4 @@
-import axios from "@/utils/axios";
+import axios from '@/utils/axios'
 
 /**
  * 获取访客登记信息
@@ -6,9 +6,9 @@ import axios from "@/utils/axios";
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getSelectAll(paramsData) {
-  return axios.get("/visitorevent/selectAll", {
+  return axios.get('/visitorevent/selectAll', {
     params: paramsData
-  });
+  })
 }
 /**
  * 通过主键查询访客登记信息
@@ -16,9 +16,9 @@ export function getSelectAll(paramsData) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getSelectOne(fkdjxxbz) {
-  return axios.get("/visitorevent/selectOne", {
+  return axios.get('/visitorevent/selectOne', {
     params: {
       fkdjxxbz: fkdjxxbz
     }
-  });
+  })
 }

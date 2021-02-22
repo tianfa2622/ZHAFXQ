@@ -1,9 +1,9 @@
 module.exports = {
-  publicPath: process.env.NODE_ENV === "production" ? "./" : "/",
+  publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
 
-  outputDir: "dist",
+  outputDir: 'dist',
 
-  assetsDir: "assets",
+  assetsDir: 'assets',
 
   filenameHashing: false,
 
@@ -13,30 +13,30 @@ module.exports = {
 
   configureWebpack: {
     externals: {
-      AMap: "AMap",
-      AMapUI: "AMapUI"
+      AMap: 'AMap',
+      AMapUI: 'AMapUI'
     }
   },
   chainWebpack: config => {
     config.module
-      .rule("swf")
+      .rule('swf')
       .test(/\.swf$/)
-      .use("url-loader")
-      .loader("url-loader")
+      .use('url-loader')
+      .loader('url-loader')
       .options({
         limit: 10000
-      });
+      })
   },
   devServer: {
     proxy: {
-      "/api": {
+      '/api': {
         // target: "http://pm2.winvers.com/zhnfxq",
-        target: "http://192.168.1.6:8081",
+        target: 'http://192.168.1.5:8081',
         changeOrigin: true,
         pathRewrite: {
-          "^/api": ""
+          '^/api': ''
         }
       }
     }
   }
-};
+}

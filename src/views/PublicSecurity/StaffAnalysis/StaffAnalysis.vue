@@ -56,11 +56,11 @@
 </template>
 
 <script>
-import MyformData from "./StaffAnalysisform/StaffAnalysisform";
-import MytableData from "./StaffAnalysistable/StaffAnalysistable";
-import options1 from "./StaffAnalysisEcharts/administrative";
-import options from "./StaffAnalysisEcharts/Community";
-import { getSelectAll } from "@/api/PublicSecurity/StaffAnalysis/index";
+import MyformData from './StaffAnalysisform/StaffAnalysisform'
+import MytableData from './StaffAnalysistable/StaffAnalysistable'
+import options1 from './StaffAnalysisEcharts/administrative'
+import options from './StaffAnalysisEcharts/Community'
+import { getSelectAll } from '@/api/PublicSecurity/StaffAnalysis/index'
 export default {
   data() {
     return {
@@ -79,12 +79,12 @@ export default {
       },
       paramsData: {
         area: [],
-        jlxxqmc: ""
+        jlxxqmc: ''
       }
-    };
+    }
   },
   created() {
-    this.getTableData();
+    this.getTableData()
   },
   methods: {
     getTableData() {
@@ -94,37 +94,37 @@ export default {
         size: this.pagination.size
       }).then(res => {
         if (res.code === 1) {
-          this.tableData = res.data.records;
-          this.pagination.total = res.data.total;
-          this.$message.success(res.message);
+          this.tableData = res.data.records
+          this.pagination.total = res.data.total
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
 
     // onSubmit() {
     // },
     // 切换当前一页展示多少条
     sizeChange(val) {
-      this.pagination.size = val;
-      this.getTableData();
+      this.pagination.size = val
+      this.getTableData()
     },
     // 翻页
     pageChange(val) {
-      this.pagination.currentPage = val;
-      this.getTableData();
+      this.pagination.currentPage = val
+      this.getTableData()
     },
     // 点击事件
     FormclickButton(val) {
-      this[val.methods](val.formData);
+      this[val.methods](val.formData)
     },
     search(v) {
-      this.paramsData = { ...v };
-      this.getTableData();
+      this.paramsData = { ...v }
+      this.getTableData()
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

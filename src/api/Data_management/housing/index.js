@@ -1,4 +1,4 @@
-import axios from "@/utils/axios";
+import axios from '@/utils/axios'
 
 /**
  * 获取小区房屋表格数据
@@ -6,9 +6,9 @@ import axios from "@/utils/axios";
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getSelectAll(data) {
-  return axios.get("/houseinfo/selectAll", {
+  return axios.get('/houseinfo/selectAll', {
     params: data
-  });
+  })
 }
 
 /**
@@ -17,9 +17,9 @@ export function getSelectAll(data) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getHousingCategory(data) {
-  return axios.get("/housingCategory/selectAll", {
+  return axios.get('/housingCategory/selectAll', {
     params: data
-  });
+  })
 }
 /**
  * 获取小区房屋表格每列数据
@@ -27,9 +27,9 @@ export function getHousingCategory(data) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getSelectOne(data) {
-  return axios.get("/houseinfo/selectOne", {
+  return axios.get('/houseinfo/selectOne', {
     params: data
-  });
+  })
 }
 /**
  * 编辑表格每列数据
@@ -37,15 +37,15 @@ export function getSelectOne(data) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function PutUpdate(housingodata) {
-  const data = {};
+  const data = {}
   for (const key in housingodata) {
-    if (key === "dqjd" || key === "dqwd" || key === "jzMjpfm") {
-      continue;
+    if (key === 'dqjd' || key === 'dqwd' || key === 'jzMjpfm') {
+      continue
     }
-    data[key] = housingodata[key];
+    data[key] = housingodata[key]
   }
 
-  return axios.put("/houseinfo/update", data);
+  return axios.put('/houseinfo/update', data)
 }
 /**
  * 添加房屋数据
@@ -53,15 +53,7 @@ export function PutUpdate(housingodata) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function PostInsert(housingodata) {
-  // const data = {};
-  // for (const key in housingodata) {
-  //   if (key === "dqjd" || key === "dqwd" || key === "jzMjpfm") {
-  //     continue;
-  //   }
-  //   data[key] = housingodata[key];
-  // }
-
-  return axios.post("/houseinfo/insert", housingodata);
+  return axios.post('/houseinfo/insert', housingodata)
 }
 // /**
 //  * 获取小区车辆档案表格信息

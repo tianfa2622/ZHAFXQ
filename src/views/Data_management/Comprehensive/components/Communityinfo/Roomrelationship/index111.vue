@@ -48,7 +48,7 @@
 
 <script>
 export default {
-  name: "Roomrelationship",
+  name: 'Roomrelationship',
   props: {
     currentPage: {
       type: String,
@@ -59,10 +59,10 @@ export default {
     // 跳转页面
     changePage(target) {
       // 更新父组件传入的prop ‘currentPage’
-      this.$emit("update:currentPage", target);
+      this.$emit('update:currentPage', target)
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

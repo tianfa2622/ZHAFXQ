@@ -60,12 +60,12 @@
 import {
   getSelectAll,
   getSelectOne
-} from "@/api/Data_management/index/buildinginfo/index";
-import MyformData from "./CommunityinfoForm/Communityinfo";
-import MyTableData from "./CommunityinfoTable/Communityinfo";
-import fields from "./editor";
+} from '@/api/Data_management/index/buildinginfo/index'
+import MyformData from './CommunityinfoForm/Communityinfo'
+import MyTableData from './CommunityinfoTable/Communityinfo'
+import fields from './editor'
 export default {
-  name: "Communityinfo",
+  name: 'Communityinfo',
   props: {
     currentPage: {
       type: String,
@@ -78,12 +78,12 @@ export default {
       MyTableData,
       dialogVisible: false,
       fields,
-      editorType: "view",
-      width: "60%",
+      editorType: 'view',
+      width: '60%',
       editorVisible: false,
-      labelWidth: "210px",
+      labelWidth: '210px',
       src:
-        "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",
+        'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg',
       pagination: {
         isBackC: true,
         isShow: true,
@@ -93,14 +93,14 @@ export default {
       },
       editData: {},
       paramsData: {
-        mc: ""
+        mc: ''
       },
       tableData: [],
-      title: "详情"
-    };
+      title: '详情'
+    }
   },
   created() {
-    this.getSelectInfo();
+    this.getSelectInfo()
   },
   methods: {
     getSelectInfo() {
@@ -109,93 +109,93 @@ export default {
         current: this.pagination.currentPage,
         size: this.pagination.size
       }).then(res => {
-        console.log(res);
+        console.log(res)
         if (res.code === 1) {
-          this.tableData = res.data.records;
+          this.tableData = res.data.records
           for (const key in this.tableData) {
-            const name = "jzwcs";
+            const name = 'jzwcs'
             // let jzwcszs =
             //   this.tableData[key].dmJzwcs + this.tableData[key].dxJzwcs;
-            let jzwcs = `${this.tableData[key].dmJzwcs} | ${this.tableData[key].dxJzwcs}`;
-            this.tableData[key][name] = jzwcs;
+            const jzwcs = `${this.tableData[key].dmJzwcs} | ${this.tableData[key].dxJzwcs}`
+            this.tableData[key][name] = jzwcs
           }
-          this.pagination.total = res.data.total;
-          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
-          this.$message.success(res.message);
+          this.pagination.total = res.data.total
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData)
+          this.$message.success(res.message)
         } else {
-          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
-          this.$message.error(res.message);
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData)
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     getSelectInfoOne(row) {
       getSelectOne(row.ldxxbz).then(res => {
         if (res.code === 1) {
-          this.editData = res.data;
-          this.editorVisible = true;
-          this.$message.success(res.message);
+          this.editData = res.data
+          this.editorVisible = true
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     // 点击事件
     clickButton(val) {
-      this[val.methods](val.row);
+      this[val.methods](val.row)
     },
     FormclickButton(val) {
-      this[val.methods](val.formData);
+      this[val.methods](val.formData)
     },
     openEditor(type, row) {
-      console.log(type, row);
+      console.log(type, row)
       switch (type) {
-        case "Increase":
-          this.editorType = "add";
-          break;
+        case 'Increase':
+          this.editorType = 'add'
+          break
       }
-      this.editorVisible = true;
+      this.editorVisible = true
     },
     confirm(formData) {
-      console.log(formData);
+      console.log(formData)
       // 请求接口提交数据 等等
-      this.editorVisible = false;
+      this.editorVisible = false
     },
     // 切换当前一页展示多少条
     sizeChange(val) {
-      this.pagination.size = val;
-      this.getSelectInfo();
+      this.pagination.size = val
+      this.getSelectInfo()
     },
     // 翻页
     pageChange(val) {
-      this.paramsData.currentPage = val;
-      this.getSelectInfo();
+      this.paramsData.currentPage = val
+      this.getSelectInfo()
     },
     // eslint-disable-next-line no-unused-vars
     BuildingImg(val) {
-      console.log(val);
+      console.log(val)
       // this.src = this.editData.tp;
-      this.dialogVisible = true;
+      this.dialogVisible = true
     },
     // eslint-disable-next-line no-unused-vars
     view(val) {
-      this.getSelectInfoOne(val);
+      this.getSelectInfoOne(val)
     },
     // eslint-disable-next-line no-unused-vars
     BuildingInfo(val) {
-      console.log(val);
-      this.changePage("8");
+      console.log(val)
+      this.changePage('8')
     },
     search(v) {
-      this.paramsData = { ...v };
-      this.getSelectInfo();
+      this.paramsData = { ...v }
+      this.getSelectInfo()
     },
     // 跳转页面
     changePage(target) {
       // 更新父组件传入的prop ‘currentPage’
-      this.$emit("update:currentPage", target);
+      this.$emit('update:currentPage', target)
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

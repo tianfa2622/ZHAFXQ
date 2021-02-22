@@ -1,4 +1,4 @@
-import axios from "@/utils/axios";
+import axios from '@/utils/axios'
 
 /**
  * 获取楼栋信息
@@ -6,9 +6,9 @@ import axios from "@/utils/axios";
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getSelectAll(paramsData) {
-  return axios.get("/buildinginfo/selectAll", {
+  return axios.get('/buildinginfo/selectAll', {
     params: paramsData
-  });
+  })
 }
 /**
  * 获取楼栋表格单列信息
@@ -16,9 +16,9 @@ export function getSelectAll(paramsData) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getSelectOne(ldxxbz) {
-  return axios.get("/buildinginfo/selectOne", {
+  return axios.get('/buildinginfo/selectOne', {
     params: {
       ldxxbz: ldxxbz
     }
-  });
+  })
 }

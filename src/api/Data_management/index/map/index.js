@@ -1,4 +1,4 @@
-import axios from "@/utils/axios";
+import axios from '@/utils/axios'
 
 /**
  * 获取小区综合信息
@@ -6,9 +6,9 @@ import axios from "@/utils/axios";
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getSelectAll(paramsData) {
-  return axios.get("/villageinfo/selectAll", {
+  return axios.get('/villageinfo/selectAll', {
     params: paramsData
-  });
+  })
 }
 /**
  * 获取小区物业信息
@@ -16,9 +16,9 @@ export function getSelectAll(paramsData) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getSelectOne(xqxxbz) {
-  return axios.get("/propertybaseinfo/selectWYOne", {
+  return axios.get('/propertybaseinfo/selectWYOne', {
     params: {
       xqxxbz: xqxxbz
     }
-  });
+  })
 }

@@ -63,11 +63,11 @@ import {
   getGZSelectOne,
   putGZUpdate,
   addGZInsert
-} from "@/api/PublicSecurity/EarlyWarningDisposal/index";
-import MyformData from "./formData/form";
-import MytableData from "./tableData/table";
-import options from "./EchartsData/Echarts";
-import fields from "./editor";
+} from '@/api/PublicSecurity/EarlyWarningDisposal/index'
+import MyformData from './formData/form'
+import MytableData from './tableData/table'
+import options from './EchartsData/Echarts'
+import fields from './editor'
 export default {
   data() {
     return {
@@ -76,10 +76,10 @@ export default {
       MytableData,
       options,
       fields,
-      editorType: "add",
+      editorType: 'add',
       editorVisible: false,
-      width: "30%",
-      labelWidth: "160px",
+      width: '30%',
+      labelWidth: '160px',
       tableData: [],
       pagination: {
         isBackC: true,
@@ -89,16 +89,16 @@ export default {
         total: 10
       },
       paramsData: {
-        gzyjsjlx: "",
-        yjzt: "",
-        yjRqsj: ""
+        gzyjsjlx: '',
+        yjzt: '',
+        yjRqsj: ''
       },
       editData: {},
-      title: ""
-    };
+      title: ''
+    }
   },
   created() {
-    this.getTableInfo();
+    this.getTableInfo()
   },
   methods: {
     getTableInfo() {
@@ -108,107 +108,107 @@ export default {
         ...this.paramsData
       }).then(res => {
         if (res.code === 1) {
-          this.tableData = res.data.records;
+          this.tableData = res.data.records
           for (const key in this.tableData) {
-            let value = "clrXmDh";
-            let xmdh = `${this.tableData[key].clrXm} | ${this.tableData[key].clrLxdh}`;
-            this.tableData[key][value] = xmdh;
+            const value = 'clrXmDh'
+            const xmdh = `${this.tableData[key].clrXm} | ${this.tableData[key].clrLxdh}`
+            this.tableData[key][value] = xmdh
           }
-          this.pagination.total = res.data.total;
-          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
-          this.$message.success(res.message);
+          this.pagination.total = res.data.total
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData)
+          this.$message.success(res.message)
         } else {
-          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
-          this.$message.error(res.message);
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData)
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     getColumnData(row) {
-      console.log(row.gzyjxxbz);
+      console.log(row.gzyjxxbz)
       getGZSelectOne(row.gzyjxxbz).then(res => {
         if (res.code === 1) {
-          this.editData = res.data;
-          this.editorVisible = true;
-          this.$message.success(res.message);
+          this.editData = res.data
+          this.editorVisible = true
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     editColumnData(data) {
       putGZUpdate(data).then(res => {
         if (res.code === 1) {
-          this.editorVisible = false;
-          this.$message.success(res.message);
-          this.getTableInfo();
+          this.editorVisible = false
+          this.$message.success(res.message)
+          this.getTableInfo()
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     addColumnData(data) {
-      data.gzyjxxbz = `gzyj${this.pagination.total + 1}`;
+      data.gzyjxxbz = `gzyj${this.pagination.total + 1}`
       addGZInsert(data).then(res => {
-        console.log(res);
+        console.log(res)
         if (res.code === 1) {
-          this.$message.success(res.message);
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     // 点击事件
     clickButton(val) {
       // 调用事件
-      this[val.methods](val.row);
+      this[val.methods](val.row)
     },
     FormclickButton(val) {
-      this[val.methods](val.formData);
+      this[val.methods](val.formData)
     },
     confirm(formData) {
       // 请求接口提交数据 等等
-      if (this.editorType === "add") {
-        this.addColumnData(formData);
+      if (this.editorType === 'add') {
+        this.addColumnData(formData)
       } else {
-        this.editColumnData(formData);
+        this.editColumnData(formData)
       }
       // 请求接口提交数据 等等
-      this.getTableInfo();
-      this.editorVisible = false;
+      this.getTableInfo()
+      this.editorVisible = false
     },
     // 切换当前一页展示多少条
     sizeChange(val) {
-      this.pagination.size = val;
-      this.getTableInfo();
+      this.pagination.size = val
+      this.getTableInfo()
     },
     // 翻页
     pageChange(val) {
-      this.paramsData.currentPage = val;
-      this.getTableInfo();
+      this.paramsData.currentPage = val
+      this.getTableInfo()
     },
     edit(val) {
-      this.title = "处理";
-      this.editorType = "edit";
-      this.getColumnData(val);
+      this.title = '处理'
+      this.editorType = 'edit'
+      this.getColumnData(val)
       // 我是处理
     },
     view(val) {
-      this.title = "处理结果";
-      this.editorType = "view";
-      this.getColumnData(val);
+      this.title = '处理结果'
+      this.editorType = 'view'
+      this.getColumnData(val)
       // 我是处理结果
     },
     search(v) {
-      this.paramsData = { ...v };
-      this.getTableInfo();
+      this.paramsData = { ...v }
+      this.getTableInfo()
     },
     add() {
-      this.title = "添加";
-      this.editorType = "add";
-      this.editorVisible = true;
+      this.title = '添加'
+      this.editorType = 'add'
+      this.editorVisible = true
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

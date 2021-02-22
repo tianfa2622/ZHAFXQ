@@ -1,4 +1,4 @@
-import axios from "@/utils/axios";
+import axios from '@/utils/axios'
 
 /**
  * 获取小区单位表格数据
@@ -6,9 +6,9 @@ import axios from "@/utils/axios";
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getSelectAll(data) {
-  return axios.get("/companyinfo/selectAll", {
+  return axios.get('/companyinfo/selectAll', {
     params: data
-  });
+  })
 }
 /**
  * 获取小区单位表格每列数据
@@ -16,9 +16,9 @@ export function getSelectAll(data) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getSelectOne(data) {
-  return axios.get("/companyinfo/selectOne", {
+  return axios.get('/companyinfo/selectOne', {
     params: data
-  });
+  })
 }
 /**
  * 编辑表格每列数据
@@ -34,7 +34,7 @@ export function PutUpdate(housingodata) {
   //   data[key] = housingodata[key];
   // }
 
-  return axios.put("/companyinfo/update", housingodata);
+  return axios.put('/companyinfo/update', housingodata)
 }
 /**
  * 添加单位数据
@@ -50,7 +50,7 @@ export function PostInsert(housingodata) {
   //   data[key] = housingodata[key];
   // }
 
-  return axios.post("/companyinfo/insert", housingodata);
+  return axios.post('/companyinfo/insert', housingodata)
 }
 // /**
 //  * 获取小区车辆档案表格信息

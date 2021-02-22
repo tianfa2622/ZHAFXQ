@@ -1,4 +1,4 @@
-import axios from "@/utils/axios";
+import axios from '@/utils/axios'
 
 /**
  * 获取小区综合表格数据
@@ -6,7 +6,7 @@ import axios from "@/utils/axios";
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getSelectAll(data) {
-  return axios.get("/personinfo/selectComPersons", {
+  return axios.get('/personinfo/selectComPersons', {
     params: data
-  });
+  })
 }

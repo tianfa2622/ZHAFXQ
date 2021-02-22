@@ -1,4 +1,4 @@
-//跳转代码
+// 跳转代码
 // import myChart from "echarts";
 // // eslint-disable-next-line prettier/prettier
 // myChart.on("click", function (params) {
@@ -8,72 +8,72 @@
 
 var colorList = [
   [
-    "#ff7f50",
-    "#87cefa",
-    "#da70d6",
-    "#32cd32",
-    "#6495ed",
-    "#ff69b4",
-    "#ba55d3",
-    "#cd5c5c",
-    "#ffa500",
-    "#40e0d0",
-    "#1e90ff",
-    "#ff6347",
-    "#7b68ee",
-    "#d0648a",
-    "#ffd700",
-    "#6b8e23",
-    "#4ea397",
-    "#3cb371",
-    "#b8860b",
-    "#7bd9a5"
+    '#ff7f50',
+    '#87cefa',
+    '#da70d6',
+    '#32cd32',
+    '#6495ed',
+    '#ff69b4',
+    '#ba55d3',
+    '#cd5c5c',
+    '#ffa500',
+    '#40e0d0',
+    '#1e90ff',
+    '#ff6347',
+    '#7b68ee',
+    '#d0648a',
+    '#ffd700',
+    '#6b8e23',
+    '#4ea397',
+    '#3cb371',
+    '#b8860b',
+    '#7bd9a5'
   ],
   [
-    "#ff7f50",
-    "#87cefa",
-    "#da70d6",
-    "#32cd32",
-    "#6495ed",
-    "#ff69b4",
-    "#ba55d3",
-    "#cd5c5c",
-    "#ffa500",
-    "#40e0d0",
-    "#1e90ff",
-    "#ff6347",
-    "#7b68ee",
-    "#00fa9a",
-    "#ffd700",
-    "#6b8e23",
-    "#ff00ff",
-    "#3cb371",
-    "#b8860b",
-    "#30e0e0"
+    '#ff7f50',
+    '#87cefa',
+    '#da70d6',
+    '#32cd32',
+    '#6495ed',
+    '#ff69b4',
+    '#ba55d3',
+    '#cd5c5c',
+    '#ffa500',
+    '#40e0d0',
+    '#1e90ff',
+    '#ff6347',
+    '#7b68ee',
+    '#00fa9a',
+    '#ffd700',
+    '#6b8e23',
+    '#ff00ff',
+    '#3cb371',
+    '#b8860b',
+    '#30e0e0'
   ],
   [
-    "#929fff",
-    "#9de0ff",
-    "#ffa897",
-    "#af87fe",
-    "#7dc3fe",
-    "#bb60b2",
-    "#433e7c",
-    "#f47a75",
-    "#009db2",
-    "#024b51",
-    "#0780cf",
-    "#765005",
-    "#e75840",
-    "#26ccd8",
-    "#3685fe",
-    "#9977ef",
-    "#f5616f",
-    "#f7b13f",
-    "#f9e264",
-    "#50c48f"
+    '#929fff',
+    '#9de0ff',
+    '#ffa897',
+    '#af87fe',
+    '#7dc3fe',
+    '#bb60b2',
+    '#433e7c',
+    '#f47a75',
+    '#009db2',
+    '#024b51',
+    '#0780cf',
+    '#765005',
+    '#e75840',
+    '#26ccd8',
+    '#3685fe',
+    '#9977ef',
+    '#f5616f',
+    '#f7b13f',
+    '#f9e264',
+    '#50c48f'
   ]
-][2];
+][2]
 
 const options = {
   // 图表标题
@@ -102,23 +102,22 @@ const options = {
   //         color: '#aaa'        // 副标题文字颜色
   //     }
   // },
-  backgroundColor: "#fff",
+  backgroundColor: '#fff',
   tooltip: {},
-  // eslint-disable-next-line prettier/prettier
-  animationDurationUpdate: function (idx) {
+  animationDurationUpdate: function(idx) {
     // 越往后的数据延迟越大
-    return idx * 100;
+    return idx * 100
   },
-  animationEasingUpdate: "bounceIn",
-  color: ["#fff", "#fff", "#fff"],
-  left: "5%",
-  right: "5%",
-  top: "5%",
-  bottom: "5%",
+  animationEasingUpdate: 'bounceIn',
+  color: ['#fff', '#fff', '#fff'],
+  left: '5%',
+  right: '5%',
+  top: '5%',
+  bottom: '5%',
   series: [
     {
-      type: "graph",
-      layout: "force",
+      type: 'graph',
+      layout: 'force',
       force: {
         repulsion: 150,
         edgeLength: 3
@@ -131,7 +130,7 @@ const options = {
       },
       data: [
         {
-          name: "新冠肺炎愈后一般6个月内不会再得",
+          name: '新冠肺炎愈后一般6个月内不会再得',
           value: 2373,
           symbolSize: 48,
           draggable: true,
@@ -144,7 +143,7 @@ const options = {
           }
         },
         {
-          name: "女篮两连胜后大喊武汉加油",
+          name: '女篮两连胜后大喊武汉加油',
           value: 5449,
           symbolSize: 73,
           draggable: true,
@@ -157,7 +156,7 @@ const options = {
           }
         },
         {
-          name: "火神山医院开微博",
+          name: '火神山医院开微博',
           value: 2289,
           symbolSize: 67,
           draggable: true,
@@ -170,7 +169,7 @@ const options = {
           }
         },
         {
-          name: "医疗队女队员集体理平头和光头",
+          name: '医疗队女队员集体理平头和光头',
           value: 2518,
           symbolSize: 50,
           draggable: true,
@@ -183,7 +182,7 @@ const options = {
           }
         },
         {
-          name: "缅怀疫情中逝去的人们",
+          name: '缅怀疫情中逝去的人们',
           value: 4730,
           symbolSize: 88,
           draggable: true,
@@ -196,7 +195,7 @@ const options = {
           }
         },
         {
-          name: "妨害疫情防控的违法行为",
+          name: '妨害疫情防控的违法行为',
           value: 1952,
           symbolSize: 55,
           draggable: true,
@@ -209,7 +208,7 @@ const options = {
           }
         },
         {
-          name: "66岁重症患者8天快速康复",
+          name: '66岁重症患者8天快速康复',
           value: 926,
           symbolSize: 70,
           draggable: true,
@@ -222,7 +221,7 @@ const options = {
           }
         },
         {
-          name: "别让快递小哥一直等在寒风中",
+          name: '别让快递小哥一直等在寒风中',
           value: 4536,
           symbolSize: 67,
           draggable: true,
@@ -235,7 +234,7 @@ const options = {
           }
         },
         {
-          name: "湖北以外地区新增病例数连降5天",
+          name: '湖北以外地区新增病例数连降5天',
           value: 750,
           symbolSize: 47,
           draggable: true,
@@ -248,7 +247,7 @@ const options = {
           }
         },
         {
-          name: "女儿写给战疫一线爸爸的信",
+          name: '女儿写给战疫一线爸爸的信',
           value: 493,
           symbolSize: 82,
           draggable: true,
@@ -261,7 +260,7 @@ const options = {
           }
         },
         {
-          name: "青海连续3天无新增病例",
+          name: '青海连续3天无新增病例',
           value: 385,
           symbolSize: 59,
           draggable: true,
@@ -274,7 +273,7 @@ const options = {
           }
         },
         {
-          name: "辽宁再派1000名医护人员驰援武汉",
+          name: '辽宁再派1000名医护人员驰援武汉',
           value: 4960,
           symbolSize: 90,
           draggable: true,
@@ -287,7 +286,7 @@ const options = {
           }
         },
         {
-          name: "抗击新型肺炎第一线",
+          name: '抗击新型肺炎第一线',
           value: 8694000,
           symbolSize: 73,
           draggable: true,
@@ -300,7 +299,7 @@ const options = {
           }
         },
         {
-          name: "12项疫情防控惠民政策",
+          name: '12项疫情防控惠民政策',
           value: 5668,
           symbolSize: 75,
           draggable: true,
@@ -313,7 +312,7 @@ const options = {
           }
         },
         {
-          name: "战疫一线的别样团圆",
+          name: '战疫一线的别样团圆',
           value: 339,
           symbolSize: 68,
           draggable: true,
@@ -326,7 +325,7 @@ const options = {
           }
         },
         {
-          name: "31省区市心理援助热线",
+          name: '31省区市心理援助热线',
           value: 671,
           symbolSize: 62,
           draggable: true,
@@ -339,7 +338,7 @@ const options = {
           }
         },
         {
-          name: "元宵节亮灯为武汉加油",
+          name: '元宵节亮灯为武汉加油',
           value: 27000,
           symbolSize: 73,
           draggable: true,
@@ -352,7 +351,7 @@ const options = {
           }
         },
         {
-          name: "抗击新型肺炎我们在行动",
+          name: '抗击新型肺炎我们在行动',
           value: 10777000,
           symbolSize: 73,
           draggable: true,
@@ -365,7 +364,7 @@ const options = {
           }
         },
         {
-          name: "疫情中的逆行者",
+          name: '疫情中的逆行者',
           value: 92000,
           symbolSize: 73,
           draggable: true,
@@ -378,7 +377,7 @@ const options = {
           }
         },
         {
-          name: "一张图看懂新冠肺炎",
+          name: '一张图看懂新冠肺炎',
           value: 20000,
           symbolSize: 73,
           draggable: true,
@@ -394,5 +393,5 @@ const options = {
       ]
     }
   ]
-};
-export default options;
+}
+export default options

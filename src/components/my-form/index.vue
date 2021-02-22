@@ -134,74 +134,74 @@ export default {
     return {
       formData: {},
       formRules: {}
-    };
+    }
   },
   created() {
     this.fields.map(field => {
       if (field.hidden && field.hidden.includes(this.type)) {
-        return;
+        return
       }
-      const rules = [];
+      const rules = []
       if (field.required) {
         rules.push({
           required: true,
           trigger:
-            field.validateTrigger || field.type === "select"
-              ? "change"
-              : "blur",
+            field.validateTrigger || field.type === 'select'
+              ? 'change'
+              : 'blur',
           message: `请${this.getMethod(field.type)}${field.label}`
-        });
+        })
       }
-      if (this.type === "add") {
+      if (this.type === 'add') {
         // for (const key in this.editData) {
         // this.$set(this.formData, key, "");
         // this.$set(this.formRules, key, rules);
         // }
-        this.$set(this.formData, field.field, "");
-        this.$set(this.formRules, field.field, rules);
+        this.$set(this.formData, field.field, '')
+        this.$set(this.formRules, field.field, rules)
       }
-    });
-    if (this.type !== "add") {
+    })
+    if (this.type !== 'add') {
       for (const key in this.editData) {
-        this.$set(this.formData, key, this.editData[key]);
+        this.$set(this.formData, key, this.editData[key])
       }
     }
   },
   methods: {
     valueToNumber(field, v) {
       if (/^[^.]\d*\.$/.test(v)) {
-        return;
+        return
       }
-      const num = parseFloat(v);
-      this.formData[field] = isNaN(num) ? 0 : num;
+      const num = parseFloat(v)
+      this.formData[field] = isNaN(num) ? 0 : num
     },
     getMethod(type) {
       switch (type) {
-        case "input":
-          return "输入";
-        case "select":
-          return "选择";
+        case 'input':
+          return '输入'
+        case 'select':
+          return '选择'
       }
     },
     validateForm() {
       return new Promise(resolve => {
         this.$refs.form.validate(valid => {
           if (valid) {
-            resolve();
+            resolve()
           }
-        });
-      });
+        })
+      })
     }
   },
   watch: {
     formData: {
       handler() {
-        this.$emit("change", { ...this.formData });
+        this.$emit('change', { ...this.formData })
       },
       deep: true
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

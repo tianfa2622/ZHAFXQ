@@ -62,13 +62,13 @@
 import {
   getSelectAll,
   getSelectOne
-} from "@/api/Data_management/index/VisitorManagement/index";
-import MyformData from "./VisitorManagementForm/VisitorManagementForm";
-import MytableData from "./VisitorManagementTable/VisitorManagementTable";
-import options from "./VisitorManagementEcharts/VisitorManagementEcharts";
-import fields from "./editor";
+} from '@/api/Data_management/index/VisitorManagement/index'
+import MyformData from './VisitorManagementForm/VisitorManagementForm'
+import MytableData from './VisitorManagementTable/VisitorManagementTable'
+import options from './VisitorManagementEcharts/VisitorManagementEcharts'
+import fields from './editor'
 export default {
-  name: "VisitorManagement",
+  name: 'VisitorManagement',
   props: {
     currentPage: {
       type: String,
@@ -81,9 +81,9 @@ export default {
       MytableData,
       options,
       fields,
-      editorType: "view",
+      editorType: 'view',
       editorVisible: false,
-      labelWidth: "150px",
+      labelWidth: '150px',
       pagination: {
         isBackC: true,
         isShow: true,
@@ -93,16 +93,16 @@ export default {
       },
       editData: {},
       paramsData: {
-        fkxxXm: "",
-        fkxxGmsfzhm: "",
+        fkxxXm: '',
+        fkxxGmsfzhm: '',
         fwRqsj: null
       },
       tableData: [],
-      title: "访客信息"
-    };
+      title: '访客信息'
+    }
   },
   created() {
-    this.getSelectInfo();
+    this.getSelectInfo()
   },
   methods: {
     getSelectInfo() {
@@ -112,70 +112,70 @@ export default {
         size: this.pagination.size
       }).then(res => {
         if (res.code === 1) {
-          this.tableData = res.data.records;
-          this.pagination.total = res.data.total;
-          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
-          this.$message.success(res.message);
+          this.tableData = res.data.records
+          this.pagination.total = res.data.total
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData)
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     getselectInfoOne(row) {
       getSelectOne(row.fkdjxxbz).then(res => {
         if (res.code === 1) {
-          console.log(res);
-          this.editData = res.data;
-          this.editorVisible = true;
-          this.$message.success(res.message);
+          console.log(res)
+          this.editData = res.data
+          this.editorVisible = true
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     // 点击事件
     clickButton(val) {
       // 调用事件
-      this[val.methods](val.row);
+      this[val.methods](val.row)
     },
     FormclickButton(val) {
-      this[val.methods](val.formData);
+      this[val.methods](val.formData)
     },
     openEditor(type, row) {
-      console.log(type, row);
-      this.editorVisible = true;
+      console.log(type, row)
+      this.editorVisible = true
     },
     confirm(formData) {
-      console.log(formData);
+      console.log(formData)
       // 请求接口提交数据 等等
-      this.editorVisible = false;
+      this.editorVisible = false
     },
     // 切换当前一页展示多少条
     sizeChange(val) {
-      this.pagination.size = val;
-      this.getSelectInfo();
+      this.pagination.size = val
+      this.getSelectInfo()
     },
     // 翻页
     pageChange(val) {
-      this.paramsData.currentPage = val;
-      this.getSelectInfo();
+      this.paramsData.currentPage = val
+      this.getSelectInfo()
     },
     // eslint-disable-next-line no-unused-vars
     toView(val) {
-      this.getselectInfoOne(val);
+      this.getselectInfoOne(val)
       // 我是查看
     },
     search(v) {
-      this.paramsData = { ...v };
-      this.getSelectInfo();
+      this.paramsData = { ...v }
+      this.getSelectInfo()
     },
     // 跳转页面
     changePage(target) {
       // 更新父组件传入的prop ‘currentPage’
-      this.$emit("update:currentPage", target);
+      this.$emit('update:currentPage', target)
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

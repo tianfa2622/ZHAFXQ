@@ -56,12 +56,12 @@
 import {
   getSelectAll,
   getSelectOne
-} from "@/api/Data_management/index/AccessControlRecord/index";
-import MyformData from "./BuildingAccessControlForm/BuildingAccessControl";
-import MyTableData from "./BuildingAccessControlTable/BuildingAccessControl";
-import fields from "./editor";
+} from '@/api/Data_management/index/AccessControlRecord/index'
+import MyformData from './BuildingAccessControlForm/BuildingAccessControl'
+import MyTableData from './BuildingAccessControlTable/BuildingAccessControl'
+import fields from './editor'
 export default {
-  name: "BuildingAccessControl",
+  name: 'BuildingAccessControl',
   props: {
     currentPage: {
       type: String,
@@ -73,9 +73,9 @@ export default {
       MyformData,
       MyTableData,
       fields,
-      editorType: "view",
+      editorType: 'view',
       editorVisible: false,
-      labelWidth: "150px",
+      labelWidth: '150px',
       pagination: {
         isBackC: true,
         isShow: true,
@@ -85,17 +85,17 @@ export default {
       },
       editData: {},
       paramsData: {
-        mc: "",
-        gmsfzhm: "",
-        xjfx: ""
+        mc: '',
+        gmsfzhm: '',
+        xjfx: ''
       },
       tableData: [],
-      width: "",
-      title: ""
-    };
+      width: '',
+      title: ''
+    }
   },
   created() {
-    this.getSelectInfo();
+    this.getSelectInfo()
   },
   methods: {
     getSelectInfo() {
@@ -104,66 +104,66 @@ export default {
         current: this.pagination.currentPage,
         size: this.pagination.size
       }).then(res => {
-        console.log(res);
+        console.log(res)
         if (res.code === 1) {
-          this.tableData = res.data.records;
+          this.tableData = res.data.records
           for (const key in this.tableData) {
-            let value = "djrXmDh";
-            let XmDh = `${this.tableData[key].djrXm} | ${this.tableData[key].djrLxdh}`;
-            this.tableData[key][value] = XmDh;
+            const value = 'djrXmDh'
+            const XmDh = `${this.tableData[key].djrXm} | ${this.tableData[key].djrLxdh}`
+            this.tableData[key][value] = XmDh
           }
-          this.pagination.total = res.data.total;
-          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
-          this.$message.success(res.message);
+          this.pagination.total = res.data.total
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData)
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     // 切换当前一页展示多少条
     sizeChange(val) {
-      this.pagination.size = val;
-      this.getSelectInfo();
+      this.pagination.size = val
+      this.getSelectInfo()
     },
     // 翻页
     pageChange(val) {
-      this.paramsData.currentPage = val;
-      this.getSelectInfo();
+      this.paramsData.currentPage = val
+      this.getSelectInfo()
     },
     // 点击事件
     clickButton(val) {
       // 调用事件
-      this[val.methods](val.row);
+      this[val.methods](val.row)
     },
     FormclickButton(val) {
-      this[val.methods](val.formData);
+      this[val.methods](val.formData)
     },
     openEditor(row) {
       getSelectOne({ mjjcjlxxbz: row.mjjcjlxxbz }).then(res => {
         if (res.code === 1) {
-          this.editData = res.data;
-          this.editorVisible = true;
-          this.$message.success(res.message);
+          this.editData = res.data
+          this.editorVisible = true
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     search(v) {
-      this.paramsData = { ...v };
-      this.getSelectInfo();
+      this.paramsData = { ...v }
+      this.getSelectInfo()
     },
     view(row) {
-      this.title = "详情";
-      this.openEditor(row);
+      this.title = '详情'
+      this.openEditor(row)
     },
     // 跳转页面
     changePage(target) {
       // 更新父组件传入的prop ‘currentPage’
-      this.$emit("update:currentPage", target);
+      this.$emit('update:currentPage', target)
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

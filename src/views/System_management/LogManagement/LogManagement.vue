@@ -55,28 +55,28 @@
           :resizable="false"
         ></el-table-column>
         <el-table-column
-          prop="TableName"
+          prop="tableName"
           :resizable="false"
           label="表名"
           align="center"
         >
         </el-table-column>
         <el-table-column
-          prop="FieldName"
+          prop="columnName"
           :resizable="false"
           label="字段名"
           align="center"
         >
         </el-table-column>
         <el-table-column
-          prop="ValueBeforeModification"
+          prop="updateFront"
           label="修改前的值"
           align="center"
           :resizable="false"
         >
         </el-table-column>
         <el-table-column
-          prop="ModifiedValue"
+          prop="updateEnd"
           label="修改后的值"
           align="center"
           :resizable="false"
@@ -91,9 +91,9 @@
 import {
   getSelectAll,
   getSelectOne
-} from "@/api/System_management/LogManagement/index";
-import MyformData from "./LogManagementform/LogManagementform";
-import MyTableData from "./LogManagementtable/LogManagementtable";
+} from '@/api/System_management/LogManagement/index'
+import MyformData from './LogManagementform/LogManagementform'
+import MyTableData from './LogManagementtable/LogManagementtable'
 export default {
   data() {
     return {
@@ -110,10 +110,10 @@ export default {
         total: 10
       },
       paramsData: { operationTime: null }
-    };
+    }
   },
   created() {
-    this.getSelectAllInfo();
+    this.getSelectAllInfo()
   },
   methods: {
     getSelectAllInfo() {
@@ -123,56 +123,56 @@ export default {
         size: this.pagination.size
       }).then(res => {
         if (res.code === 1) {
-          this.tableData = res.data.records;
-          this.pagination.total = res.data.total;
-          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
-          this.$message.success(res.message);
+          this.tableData = res.data.records
+          this.pagination.total = res.data.total
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData)
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     getSelectOneInfo(row) {
       getSelectOne(row.id).then(res => {
-        console.log(res);
+        console.log(res)
         if (res.code === 1) {
-          this.viewtableDate = res.data.records;
-          this.dialogVisible = true;
-          this.$message.success(res.message);
+          this.viewtableDate = [res.data]
+          this.dialogVisible = true
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     // onSubmit() {
     // },
     // 切换当前一页展示多少条
     sizeChange(val) {
-      this.pagination.size = val;
-      this.getSelectAllInfo();
+      this.pagination.size = val
+      this.getSelectAllInfo()
     },
     // 翻页
     pageChange(val) {
-      this.pagination.currentPage = val;
-      this.getSelectAllInfo();
+      this.pagination.currentPage = val
+      this.getSelectAllInfo()
     },
     // 点击事件
     clickButton(val) {
       // 调用事件
-      this[val.methods](val.row);
+      this[val.methods](val.row)
     },
     FormclickButton(val) {
-      this[val.methods](val.formData);
+      this[val.methods](val.formData)
     },
     view(row) {
-      this.getSelectOneInfo(row);
+      this.getSelectOneInfo(row)
     },
     search(v) {
-      this.paramsData = { ...v };
-      this.getSelectAllInfo();
+      this.paramsData = { ...v }
+      this.getSelectAllInfo()
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

@@ -130,14 +130,14 @@
 import {
   getSelectAll,
   getSelectOne
-} from "@/api/Data_management/index/map/index";
-import MyformData from "./Mapform";
-import options1 from "./Community.js";
-import fields from "./editor";
+} from '@/api/Data_management/index/map/index'
+import MyformData from './Mapform'
+import options1 from './Community.js'
+import fields from './editor'
 // import options from "../../../../VideoMonitoring/Real-time/RealTimeForm/RealTimeForm";
 
 export default {
-  name: "MapComponent",
+  name: 'MapComponent',
   props: {
     currentPage: {
       type: String,
@@ -165,74 +165,74 @@ export default {
       from: {},
       position: {},
       fields,
-      editorType: "view",
+      editorType: 'view',
       editorVisible: false,
       editData: {},
-      width: "50%",
-      labelWidth: "180px",
+      width: '50%',
+      labelWidth: '180px',
       paramsData: {
         area: [],
-        jlxxqmc: ""
+        jlxxqmc: ''
       },
       mapData: [],
-      title: "物业信息"
-    };
+      title: '物业信息'
+    }
   },
   created() {
-    this.getSelectInfo();
+    this.getSelectInfo()
   },
   methods: {
     getSelectInfo() {
       getSelectAll({
         ...this.paramsData
       }).then(res => {
-        console.log(res);
+        console.log(res)
         if (res.code === 1) {
-          this.mapData = res.data.records;
+          this.mapData = res.data.records
           for (const key in this.mapData) {
-            this.mapData[key].showFlag = false;
+            this.mapData[key].showFlag = false
             this.mapData[key].markerPoint = {
               lng: this.mapData[key].dqjd,
               lat: this.mapData[key].dqwd
-            };
+            }
           }
-          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
-          this.$message.success(res.message);
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData)
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     getSelectInfoOne(row) {
       getSelectOne(row.xqxxbz).then(res => {
         if (res.code === 1) {
-          console.log(res);
-          this.editData = res.data;
-          this.editorVisible = true;
-          this.$message.success(res.message);
+          console.log(res)
+          this.editData = res.data
+          this.editorVisible = true
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     // 点击事件
     infoWindowClose(item) {
-      item.showFlag = false;
+      item.showFlag = false
     },
     infoWindowOpen(item) {
-      item.showFlag = true;
+      item.showFlag = true
     },
     look(items) {
-      this.from = items;
-      this.position = items.markerPoint;
-      items.showFlag = true;
+      this.from = items
+      this.position = items.markerPoint
+      items.showFlag = true
     },
     FormclickButton(val) {
       // 调用事件
-      this[val.methods](val.row);
+      this[val.methods](val.row)
     },
     openEditor(row) {
-      this.getSelectInfoOne(row);
+      this.getSelectInfoOne(row)
     },
     // confirm(formData) {
     //   console.log(formData);
@@ -240,16 +240,16 @@ export default {
     //   this.editorVisible = false;
     // },
     search(v) {
-      this.paramsData = { ...v };
-      this.getSelectInfo();
+      this.paramsData = { ...v }
+      this.getSelectInfo()
     },
     // 跳转页面
     changePage(target) {
       // 更新父组件传入的prop ‘currentPage’
-      this.$emit("update:currentPage", target);
+      this.$emit('update:currentPage', target)
     }
   }
-};
+}
 </script>
 
 .<style lang="less" scoped>

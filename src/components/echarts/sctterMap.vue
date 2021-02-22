@@ -13,11 +13,11 @@
 </template>
 
 <script>
-import echarts from "echarts";
-import resize from "../mixins/resize";
-import AMapUI from "AMapUI";
+import echarts from 'echarts'
+import resize from '../mixins/resize'
+import AMapUI from 'AMapUI'
 export default {
-  name: "sctterMap",
+  name: 'SctterMap',
   mixins: [resize],
   data() {
     return {
@@ -27,37 +27,37 @@ export default {
       },
       parentInfo: [
         {
-          cityName: "全国",
+          cityName: '全国',
           code: 100000
         }
       ]
-    };
+    }
   },
   mounted() {
-    this.getGeoJson(100000);
+    this.getGeoJson(100000)
   },
   methods: {
     getGeoJson(adcode) {
-      const that = this;
-      AMapUI.loadUI(["geo/DistrictExplorer"], DistrictExplorer => {
-        var districtExplorer = new DistrictExplorer();
+      const that = this
+      AMapUI.loadUI(['geo/DistrictExplorer'], DistrictExplorer => {
+        var districtExplorer = new DistrictExplorer()
         districtExplorer.loadAreaNode(adcode, function(error, areaNode) {
           if (error) {
-            console.error(error);
-            return;
+            console.error(error)
+            return
           }
-          const Json = areaNode.getSubFeatures();
+          const Json = areaNode.getSubFeatures()
           if (Json.length > 0) {
-            that.geoJson.features = Json;
+            that.geoJson.features = Json
           } else if (Json.length === 0) {
             that.geoJson.features = that.geoJson.features.filter(
               item => item.properties.adcode === adcode
-            );
-            if (that.geoJson.features.length === 0) return;
+            )
+            if (that.geoJson.features.length === 0) return
           }
-          that.getMapData();
-        });
-      });
+          that.getMapData()
+        })
+      })
     },
     // 获取数据
     getMapData() {
@@ -66,41 +66,41 @@ export default {
           name: item.properties.name,
           value: Math.random() * 1000,
           cityCode: item.properties.adcode
-        };
-      });
+        }
+      })
       mapData = mapData.sort(function(a, b) {
-        return b.value - a.value;
-      });
-      this.initEcharts(mapData);
+        return b.value - a.value
+      })
+      this.initEcharts(mapData)
     },
     initEcharts(mapData) {
-      var min = mapData[mapData.length - 1].value;
-      var max = mapData[0].value;
+      var min = mapData[mapData.length - 1].value
+      var max = mapData[0].value
       if (mapData.length === 1) {
-        min = 0;
+        min = 0
       }
-      this.myChart = echarts.init(this.$refs.sctterMap);
-      echarts.registerMap("Map", this.geoJson); // 注册
+      this.myChart = echarts.init(this.$refs.sctterMap)
+      echarts.registerMap('Map', this.geoJson) // 注册
       this.myChart.setOption(
         {
           tooltip: {
-            trigger: "item",
+            trigger: 'item',
             formatter: p => {
-              let val = p.value;
+              let val = p.value
               if (!val) {
-                val = 0;
+                val = 0
               }
-              const txtCon = p.name + ":" + val.toFixed(2);
-              return txtCon;
+              const txtCon = p.name + ':' + val.toFixed(2)
+              return txtCon
             }
           },
           title: {
             show: true,
-            left: "center",
-            top: "15",
-            text: this.parentInfo[this.parentInfo.length - 1].cityName + "地图",
+            left: 'center',
+            top: '15',
+            text: this.parentInfo[this.parentInfo.length - 1].cityName + '地图',
             textStyle: {
-              color: "rgb(179, 239, 255)",
+              color: 'rgb(179, 239, 255)',
               fontSize: 16
             }
           },
@@ -111,27 +111,27 @@ export default {
               },
               dataView: {
                 optionToContent: function(opt) {
-                  const series = opt.series[0].data; // 折线图数据
+                  const series = opt.series[0].data // 折线图数据
                   const tdHeads =
-                    '<th  style="padding: 0 20px">所在地区</th><th style="padding: 0 20px">销售额</th>'; // 表头
+                    '<th  style="padding: 0 20px">所在地区</th><th style="padding: 0 20px">销售额</th>' // 表头
                   // eslint-disable-next-line no-unused-vars
-                  const tdBodys = ""; // 数据
-                  let table = `<table border="1" style="margin-left:20px;border-collapse:collapse;font-size:14px;text-align:left;"><tbody><tr>${tdHeads} </tr>`;
+                  const tdBodys = '' // 数据
+                  let table = `<table border="1" style="margin-left:20px;border-collapse:collapse;font-size:14px;text-align:left;"><tbody><tr>${tdHeads} </tr>`
                   for (let i = 0; i < series.length; i++) {
                     table += `<tr>
                               <td style="padding: 0 50px">${series[i].name}</td>
                               <td style="padding: 0 50px">${series[
-                                i
-                              ].value.toFixed(2)}万</td>
-                              </tr>`;
+    i
+  ].value.toFixed(2)}万</td>
+                              </tr>`
                   }
-                  table += "</tbody></table>";
-                  return table;
+                  table += '</tbody></table>'
+                  return table
                 }
               },
               saveAsImage: {
                 name:
-                  this.parentInfo[this.parentInfo.length - 1].cityName + "地图"
+                  this.parentInfo[this.parentInfo.length - 1].cityName + '地图'
               },
               dataZoom: {
                 show: false
@@ -142,7 +142,7 @@ export default {
             },
             iconStyle: {
               normal: {
-                borderColor: "#1990DA"
+                borderColor: '#1990DA'
               }
             },
             top: 15,
@@ -152,75 +152,75 @@ export default {
             show: false,
             min: min,
             max: max,
-            left: "3%",
-            bottom: "5%",
+            left: '3%',
+            bottom: '5%',
             calculable: true,
             seriesIndex: [0],
             inRange: {
-              color: ["#105389", "#3a8abc", "#0D96F1"]
+              color: ['#105389', '#3a8abc', '#0D96F1']
             },
             textStyle: {
-              color: "#24CFF4"
+              color: '#24CFF4'
             }
           },
           series: [
             {
-              name: "地图",
-              type: "map",
-              map: "Map",
+              name: '地图',
+              type: 'map',
+              map: 'Map',
               roam: true, // 是否可缩放
               zoom: 1.2, // 缩放比例
               data: mapData,
               label: {
                 normal: {
                   show: true,
-                  color: "rgb(249, 249, 249)", // 省份标签字体颜色
+                  color: 'rgb(249, 249, 249)', // 省份标签字体颜色
                   formatter: p => {
                     switch (p.name) {
-                      case "内蒙古自治区":
-                        p.name = "内蒙古";
-                        break;
-                      case "西藏自治区":
-                        p.name = "西藏";
-                        break;
-                      case "新疆维吾尔自治区":
-                        p.name = "新疆";
-                        break;
-                      case "宁夏回族自治区":
-                        p.name = "宁夏";
-                        break;
-                      case "广西壮族自治区":
-                        p.name = "广西";
-                        break;
-                      case "香港特别行政区":
-                        p.name = "香港";
-                        break;
-                      case "澳门特别行政区":
-                        p.name = "澳门";
-                        break;
+                      case '内蒙古自治区':
+                        p.name = '内蒙古'
+                        break
+                      case '西藏自治区':
+                        p.name = '西藏'
+                        break
+                      case '新疆维吾尔自治区':
+                        p.name = '新疆'
+                        break
+                      case '宁夏回族自治区':
+                        p.name = '宁夏'
+                        break
+                      case '广西壮族自治区':
+                        p.name = '广西'
+                        break
+                      case '香港特别行政区':
+                        p.name = '香港'
+                        break
+                      case '澳门特别行政区':
+                        p.name = '澳门'
+                        break
                       default:
-                        break;
+                        break
                     }
-                    return p.name;
+                    return p.name
                   }
                 },
                 emphasis: {
                   show: true,
-                  color: "#f75a00"
+                  color: '#f75a00'
                 }
               },
               itemStyle: {
                 normal: {
-                  areaColor: "#24CFF4",
-                  borderColor: "#53D9FF",
+                  areaColor: '#24CFF4',
+                  borderColor: '#53D9FF',
                   borderWidth: 1.3,
                   shadowBlur: 15,
-                  shadowColor: "rgb(58,115,192)",
+                  shadowColor: 'rgb(58,115,192)',
                   shadowOffsetX: 7,
                   shadowOffsetY: 6
                 },
                 emphasis: {
-                  areaColor: "#8dd7fc",
+                  areaColor: '#8dd7fc',
                   borderWidth: 1.6,
                   shadowBlur: 25
                 }
@@ -229,35 +229,35 @@ export default {
           ]
         },
         true
-      );
-      const that = this;
-      this.myChart.off("click");
-      this.myChart.on("click", params => {
+      )
+      const that = this
+      this.myChart.off('click')
+      this.myChart.on('click', params => {
         if (
           that.parentInfo[that.parentInfo.length - 1].code ===
           params.data.cityCode
         ) {
-          return;
+          return
         }
-        const data = params.data;
+        const data = params.data
         that.parentInfo.push({
           cityName: data.name,
           code: data.cityCode
-        });
-        that.getGeoJson(data.cityCode);
-      });
+        })
+        that.getGeoJson(data.cityCode)
+      })
     },
 
     // 选择切换市县
     chooseArea(val, index) {
       if (this.parentInfo.length === index + 1) {
-        return;
+        return
       }
-      this.parentInfo.splice(index + 1);
-      this.getGeoJson(this.parentInfo[this.parentInfo.length - 1].code);
+      this.parentInfo.splice(index + 1)
+      this.getGeoJson(this.parentInfo[this.parentInfo.length - 1].code)
     }
   }
-};
+}
 </script>
 <style lang="less" scoped>
 .echarts {

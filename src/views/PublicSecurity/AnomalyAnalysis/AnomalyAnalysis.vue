@@ -71,12 +71,12 @@ import {
   putPersonnelupdate,
   putVehicleupdate,
   putGatherupdate
-} from "@/api/PublicSecurity/AnomalyAnalysis/index";
-import MyformData from "./AnomalyAnalysisform/AnomalyAnalysisform";
-import personnelTable from "./AnomalyAnalysistable/personnelTable";
-import vehicleTable from "./AnomalyAnalysistable/vehicleTable";
-import GatherTable from "./AnomalyAnalysistable/GatherTable";
-import fields from "./editor";
+} from '@/api/PublicSecurity/AnomalyAnalysis/index'
+import MyformData from './AnomalyAnalysisform/AnomalyAnalysisform'
+import personnelTable from './AnomalyAnalysistable/personnelTable'
+import vehicleTable from './AnomalyAnalysistable/vehicleTable'
+import GatherTable from './AnomalyAnalysistable/GatherTable'
+import fields from './editor'
 
 export default {
   data() {
@@ -87,25 +87,25 @@ export default {
       GatherTable,
       tabsData: personnelTable,
       fields,
-      editorType: "edit",
+      editorType: 'edit',
       inline: false,
-      width: "25%",
+      width: '25%',
       editorVisible: false,
-      activeName: "ryyc",
+      activeName: 'ryyc',
       tabs: [
         {
-          label: "人员异常",
-          name: "ryyc",
+          label: '人员异常',
+          name: 'ryyc',
           number: 2182
         },
         {
-          label: "车辆异常",
-          name: "clyc",
+          label: '车辆异常',
+          name: 'clyc',
           number: 2182
         },
         {
-          label: "聚集异常",
-          name: "jjyc",
+          label: '聚集异常',
+          name: 'jjyc',
           number: 2182
         }
       ],
@@ -119,215 +119,215 @@ export default {
       },
       paramsData: {
         area: [],
-        xqxxbz: ""
+        xqxxbz: ''
       },
       editData: {},
-      title: ""
-    };
+      title: ''
+    }
   },
   created() {
-    this.getPersonnelInfo();
-    this.getVehicleInfo();
-    this.getGatherInfo();
+    this.getPersonnelInfo()
+    this.getVehicleInfo()
+    this.getGatherInfo()
   },
   computed: {},
   methods: {
     getPersonnelInfo() {
-      this.tableData = [];
+      this.tableData = []
       getPersonnelAll({
         ...this.paramsData,
         current: this.pagination.currentPage,
         size: this.pagination.size
       }).then(res => {
         if (res.code === 1) {
-          this.tabs[0].number = res.data.total;
-          this.tableData = res.data.records;
-          this.pagination.total = res.data.total;
-          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
+          this.tabs[0].number = res.data.total
+          this.tableData = res.data.records
+          this.pagination.total = res.data.total
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     getVehicleInfo() {
-      this.tableData = [];
+      this.tableData = []
       getVehicleAll({
         ...this.paramsData,
         current: this.pagination.currentPage,
         size: this.pagination.size
       }).then(res => {
         if (res.code === 1) {
-          this.tabs[1].number = res.data.total;
-          this.tableData = res.data.records;
-          this.pagination.total = res.data.total;
-          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
+          this.tabs[1].number = res.data.total
+          this.tableData = res.data.records
+          this.pagination.total = res.data.total
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     getGatherInfo() {
-      this.tableData = [];
+      this.tableData = []
       getGatherAll({
         ...this.paramsData,
         current: this.pagination.currentPage,
         size: this.pagination.size
       }).then(res => {
         if (res.code === 1) {
-          this.tabs[2].number = res.data.total;
-          this.tableData = res.data.records;
-          this.pagination.total = res.data.total;
-          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
+          this.tabs[2].number = res.data.total
+          this.tableData = res.data.records
+          this.pagination.total = res.data.total
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     putPersonnelData(formData) {
       putPersonnelupdate(formData).then(res => {
         if (res.code === 1) {
-          this.$message.success(res.message);
-          this.editorVisible = false;
-          this.getPersonnelInfo();
+          this.$message.success(res.message)
+          this.editorVisible = false
+          this.getPersonnelInfo()
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     putVehicleData(formData) {
       putVehicleupdate(formData).then(res => {
         if (res.code === 1) {
-          this.$message.success(res.message);
-          this.editorVisible = false;
-          this.getVehicleInfo();
+          this.$message.success(res.message)
+          this.editorVisible = false
+          this.getVehicleInfo()
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     putGatherData(formData) {
       putGatherupdate(formData).then(res => {
         if (res.code === 1) {
-          this.$message.success(res.message);
-          this.editorVisible = false;
-          this.putGatherupdate();
+          this.$message.success(res.message)
+          this.editorVisible = false
+          this.putGatherupdate()
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     getPersonneColumns(row) {
       getPersonnelOne(row.id).then(res => {
-        console.log(res);
+        console.log(res)
         if (res.code === 1) {
-          this.editData = res.data;
-          this.editorVisible = true;
-          this.$message.success(res.message);
+          this.editData = res.data
+          this.editorVisible = true
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     getVehicleColumns(row) {
       getVehicleOne(row.id).then(res => {
         if (res.code === 1) {
-          this.editData = res.data;
-          this.editorVisible = true;
-          this.$message.success(res.message);
+          this.editData = res.data
+          this.editorVisible = true
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     getGatherColumns(row) {
       getGatherOne(row.id).then(res => {
         if (res.code === 1) {
-          this.editData = res.data;
-          this.editorVisible = true;
-          this.$message.success(res.message);
+          this.editData = res.data
+          this.editorVisible = true
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     handleClick() {
-      if (this.activeName === "ryyc") {
-        this.tabsData = [];
-        this.title = "人员处理";
-        this.tabsData = personnelTable;
-        this.getPersonnelInfo();
-      } else if (this.activeName === "clyc") {
-        this.tabsData = [];
-        this.title = "车辆处理";
-        this.tabsData = vehicleTable;
-        this.getVehicleInfo();
+      if (this.activeName === 'ryyc') {
+        this.tabsData = []
+        this.title = '人员处理'
+        this.tabsData = personnelTable
+        this.getPersonnelInfo()
+      } else if (this.activeName === 'clyc') {
+        this.tabsData = []
+        this.title = '车辆处理'
+        this.tabsData = vehicleTable
+        this.getVehicleInfo()
       } else {
-        this.tabsData = [];
-        this.title = "聚集处理";
-        this.tabsData = GatherTable;
-        this.getGatherInfo();
+        this.tabsData = []
+        this.title = '聚集处理'
+        this.tabsData = GatherTable
+        this.getGatherInfo()
       }
     },
     // 点击事件
     clickButton(val) {
       // 调用事件
-      this[val.methods](val.row);
+      this[val.methods](val.row)
     },
     FormclickButton(val) {
-      this[val.methods](val.formData);
+      this[val.methods](val.formData)
     },
     confirm(formData) {
-      console.log(formData);
+      console.log(formData)
       // 请求接口提交数据 等等
-      this.editorVisible = false;
+      this.editorVisible = false
     },
     // 切换当前一页展示多少条
     sizeChange(val) {
-      this.pagination.size = val;
+      this.pagination.size = val
       switch (this.activeName) {
-        case "ryyc":
-          return this.getPersonnelInfo();
-        case "clyc":
-          return this.getVehicleInfo();
-        case "jjyc":
-          return this.getGatherInfo();
+        case 'ryyc':
+          return this.getPersonnelInfo()
+        case 'clyc':
+          return this.getVehicleInfo()
+        case 'jjyc':
+          return this.getGatherInfo()
       }
     },
     // 翻页
     pageChange(val) {
-      this.pagination.currentPage = val;
+      this.pagination.currentPage = val
       switch (this.activeName) {
-        case "ryyc":
-          return this.getPersonnelInfo();
-        case "clyc":
-          return this.getVehicleInfo();
-        case "jjyc":
-          return this.getGatherInfo();
+        case 'ryyc':
+          return this.getPersonnelInfo()
+        case 'clyc':
+          return this.getVehicleInfo()
+        case 'jjyc':
+          return this.getGatherInfo()
       }
     },
     search(v) {
-      this.paramsData = { ...v };
+      this.paramsData = { ...v }
       switch (this.activeName) {
-        case "ryyc":
-          return this.getPersonnelInfo();
-        case "clyc":
-          return this.getVehicleInfo();
-        case "jjyc":
-          return this.getGatherInfo();
+        case 'ryyc':
+          return this.getPersonnelInfo()
+        case 'clyc':
+          return this.getVehicleInfo()
+        case 'jjyc':
+          return this.getGatherInfo()
       }
     },
     dealWith(row) {
       switch (this.activeName) {
-        case "ryyc":
-          return this.getPersonneColumns(row);
-        case "clyc":
-          return this.getVehicleColumns(row);
-        case "jjyc":
-          return this.getGatherColumns(row);
+        case 'ryyc':
+          return this.getPersonneColumns(row)
+        case 'clyc':
+          return this.getVehicleColumns(row)
+        case 'jjyc':
+          return this.getGatherColumns(row)
       }
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

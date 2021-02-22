@@ -1,28 +1,28 @@
 const fields = [
   {
-    label: "处理人：",
+    label: '处理人：',
     span: 24,
-    field: "clr",
-    type: "input",
-    dataType: "string"
+    field: 'clr',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "处理时间：",
+    label: '处理时间：',
     span: 24,
     disabled: true,
-    field: "clsj",
-    type: "input",
-    dataType: "string"
+    field: 'clsj',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "处理结果：",
+    label: '处理结果：',
     span: 24,
-    field: "cljg",
-    type: "textarea",
-    dataType: "string"
+    field: 'cljg',
+    type: 'textarea',
+    dataType: 'string'
   }
-];
-export default fields;
+]
+export default fields
 // [
 //   {
 //     label: "姓名",

@@ -73,11 +73,11 @@ import {
   PutUpdate,
   PostInsert,
   getHousingCategory
-} from "@/api/Data_management/housing/index";
-import MyformData from "./Housingform/Housing";
-import HousingData from "./Housingtable/Housingtable";
-import options from "./HousingEcharts/HousingEcharts";
-import fields from "./editor";
+} from '@/api/Data_management/housing/index'
+import MyformData from './Housingform/Housing'
+import HousingData from './Housingtable/Housingtable'
+import options from './HousingEcharts/HousingEcharts'
+import fields from './editor'
 
 export default {
   data() {
@@ -86,10 +86,10 @@ export default {
       HousingData,
       options,
       fields,
-      editorType: "add",
+      editorType: 'add',
       editorVisible: false,
-      width: "60%",
-      labelWidth: "230px",
+      width: '60%',
+      labelWidth: '230px',
       tableData: [
         // {
         //   number: "数量",
@@ -108,28 +108,28 @@ export default {
       editData: {},
       paramsData: {
         area: [],
-        xqxxmc: "",
-        fwlbdm: "",
-        fzXm: "",
-        fzGmsfzhm: ""
+        xqxxmc: '',
+        fwlbdm: '',
+        fzXm: '',
+        fzGmsfzhm: ''
       }
-    };
+    }
   },
   created() {
-    this.getHousingInfo();
-    this.getCategoryData();
+    this.getHousingInfo()
+    this.getCategoryData()
   },
   computed: {
     title() {
       switch (this.editorType) {
-        case "add":
-          return "添加房屋信息";
-        case "edit":
-          return "编辑房屋信息";
-        case "view":
-          return "查看房屋信息";
+        case 'add':
+          return '添加房屋信息'
+        case 'edit':
+          return '编辑房屋信息'
+        case 'view':
+          return '查看房屋信息'
         default:
-          return "新增房屋信息";
+          return '新增房屋信息'
       }
     }
   },
@@ -141,46 +141,46 @@ export default {
         size: this.pagination.size
       }).then(res => {
         if (res.code === 1) {
-          this.tableData = res.data.records;
-          this.pagination.total = res.data.total;
-          this.$message.success(res.message);
+          this.tableData = res.data.records
+          this.pagination.total = res.data.total
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData)
         } else {
-          this.$message.error(res.message);
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData)
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     getColumnData(row) {
       getSelectOne({ fwxxbz: row.fwxxbz }).then(res => {
         if (res.code === 1) {
-          console.log(res);
-          this.editData = res.data;
-          this.editorVisible = true;
-          this.$message.success(res.message);
+          this.editData = res.data
+          this.editorVisible = true
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     editHousingData(data) {
       PutUpdate(data).then(res => {
         if (res.code === 1) {
-          this.editorVisible = false;
-          this.getHousingInfo();
-          this.$message.success(res.message);
+          this.editorVisible = false
+          this.getHousingInfo()
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     addHousingData(data) {
       PostInsert(data).then(res => {
         if (res.code === 1) {
-          console.log(res);
-          this.$message.success(res.message);
+          // this.$message.success(res.message)
+          this.$message.success('添加成功')
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     getCategoryData() {
       getHousingCategory({
@@ -188,7 +188,7 @@ export default {
         size: this.pagination.size
       }).then(res => {
         if (res.code === 1) {
-          this.classification = res.data.records;
+          this.classification = res.data.records
           // for (const key in data) {
           //   chartData.push({
           //     name: key,
@@ -196,54 +196,54 @@ export default {
           //     unit: "栋"
           //   });
         }
-      });
+      })
     },
     // 点击事件
     clickButton(val) {
-      this[val.methods](val.row);
+      this[val.methods](val.row)
     },
     FormclickButton(val) {
-      this[val.methods](val.formData);
+      this[val.methods](val.formData)
     },
     confirm(formData) {
-      console.log(formData);
-      if (this.editorType === "add") {
-        this.addHousingData(formData);
+      console.log(formData)
+      if (this.editorType === 'add') {
+        this.addHousingData(formData)
       } else {
-        this.editHousingData(formData);
+        this.editHousingData(formData)
       }
       // 请求接口提交数据 等等
-      this.getHousingInfo();
-      this.editorVisible = false;
+      this.getHousingInfo()
+      this.editorVisible = false
     },
     // 切换当前一页展示多少条
     sizeChange(val) {
-      this.pagination.size = val;
-      this.getHousingInfo();
+      this.pagination.size = val
+      this.getHousingInfo()
     },
     // 翻页
     pageChange(val) {
-      this.paramsData.currentPage = val;
-      this.getHousingInfo();
+      this.paramsData.currentPage = val
+      this.getHousingInfo()
     },
     search(v) {
-      this.paramsData = { ...v };
-      this.getHousingInfo();
+      this.paramsData = { ...v }
+      this.getHousingInfo()
     },
     add() {
-      this.editorType = "add";
-      this.editorVisible = true;
+      this.editorType = 'add'
+      this.editorVisible = true
     },
     toView(row) {
-      this.editorType = "view";
-      this.getColumnData(row);
+      this.editorType = 'view'
+      this.getColumnData(row)
     },
     editor(row) {
-      this.editorType = "edit";
-      this.getColumnData(row);
+      this.editorType = 'edit'
+      this.getColumnData(row)
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

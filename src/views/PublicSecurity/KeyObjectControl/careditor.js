@@ -1,21 +1,21 @@
 const fields = [
   {
-    label: "车牌号码：",
-    field: "cphm",
-    type: "input",
-    dataType: "string"
+    label: '车牌号码：',
+    field: 'cphm',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "品牌：",
-    field: "zwppmc",
-    type: "input",
-    dataType: "string"
+    label: '品牌：',
+    field: 'zwppmc',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "颜色：",
-    field: "clys",
-    type: "input",
-    dataType: "string"
+    label: '颜色：',
+    field: 'clys',
+    type: 'input',
+    dataType: 'string'
     // options: [
     //   {
     //     label: "黑色",
@@ -28,37 +28,37 @@ const fields = [
     // ]
   },
   {
-    label: "车主姓名：",
-    field: "xm",
-    type: "input",
-    dataType: "string"
+    label: '车主姓名：',
+    field: 'xm',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "身份证号：",
-    field: "gmsfzhm",
-    type: "input",
-    dataType: "string"
+    label: '身份证号：',
+    field: 'gmsfzhm',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "联系电话：",
-    field: "lxdh",
-    type: "input",
-    dataType: "string"
+    label: '联系电话：',
+    field: 'lxdh',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "管控事由：",
-    field: "gksy",
-    type: "input",
-    dataType: "string"
+    label: '管控事由：',
+    field: 'gksy',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "当前所在地：",
-    field: "jlxxqmc",
-    type: "input",
-    dataType: "string"
+    label: '当前所在地：',
+    field: 'jlxxqmc',
+    type: 'input',
+    dataType: 'string'
   }
-];
-export default fields;
+]
+export default fields
 // [
 //   {
 //     label: "姓名",

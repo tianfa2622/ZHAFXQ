@@ -1,4 +1,4 @@
-import axios from "@/utils/axios";
+import axios from '@/utils/axios'
 
 /**
  * 获取小区人员档案表格信息
@@ -6,9 +6,9 @@ import axios from "@/utils/axios";
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getSelectAll(paramsData) {
-  return axios.get("/personinfo/selectAll", {
+  return axios.get('/personinfo/selectAll', {
     params: paramsData
-  });
+  })
 }
 /**
  * 通过主键查询单条信息
@@ -16,11 +16,11 @@ export function getSelectAll(paramsData) {
  * @returns {import ("axios").AxiosPromise.data}
  */
 export function getSelectOne(ryxxbz) {
-  return axios.get("/personinfo/selectOne", {
+  return axios.get('/personinfo/selectOne', {
     params: {
       ryxxbz: ryxxbz
     }
-  });
+  })
 }
 /**
  * 更新小区人员信息
@@ -30,14 +30,14 @@ export function getSelectOne(ryxxbz) {
 export function getUpdate(personinfo) {
   // let data = JSON.stringify(personinfo);
   // console.log(data);
-  const data = {};
+  const data = {}
   for (const key in personinfo) {
     // if (key === "csrq" || key === "rjRq") {
     //   continue;
     // }
-    data[key] = personinfo[key];
+    data[key] = personinfo[key]
   }
-  return axios.put("/personinfo/update", data);
+  return axios.put('/personinfo/update', data)
 }
 /**
  * 添加小区人员信息
@@ -47,12 +47,12 @@ export function getUpdate(personinfo) {
 export function getInsert(personinfo) {
   // let data = JSON.stringify(personinfo);
   // console.log(data);
-  const data = {};
-  for (const key in personinfo) {
-    // if (key === "csrq" || key === "gxsj") {
-    //   continue;
-    // }
-    data[key] = personinfo[key];
-  }
-  return axios.post("/personinfo/insert", data);
+  // const data = {}
+  // for (const key in personinfo) {
+  //   // if (key === "csrq" || key === "gxsj") {
+  //   //   continue;
+  //   // }
+  //   data[key] = personinfo[key]
+  // }
+  return axios.post('/personinfo/insert', personinfo)
 }

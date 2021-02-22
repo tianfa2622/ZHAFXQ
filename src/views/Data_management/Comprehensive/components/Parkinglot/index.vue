@@ -19,10 +19,14 @@
           width="350"
           trigger="hover"
         >
-          <el-button class="btncolor" @click="openEditor(item.tccxxbz)"
+          <el-button
+class="btncolor"
+@click="openEditor(item.tccxxbz)"
             >详情</el-button
           >
-          <el-button class="btncolor" @click="EntryExitInfo(item.tccxxbz)"
+          <el-button
+class="btncolor"
+@click="EntryExitInfo(item.tccxxbz)"
             >出入口信息</el-button
           >
           <el-button class="btncolor" @click="changePage('4')">
@@ -162,15 +166,15 @@
 import {
   getSelectAll,
   getSelectOne
-} from "@/api/Data_management/index/Parkinglot/index";
-import MyEcharts from "@/components/echarts/index";
-import ParkingSpace from "./ParkinglotEcharts/ParkingSpaceEcharts";
-import UseStatus from "./ParkinglotEcharts/UseStatusEcharts";
-import fields from "./editor";
-import fields1 from "./ParkinglotForm/editor";
+} from '@/api/Data_management/index/Parkinglot/index'
+import MyEcharts from '@/components/echarts/index'
+import ParkingSpace from './ParkinglotEcharts/ParkingSpaceEcharts'
+import UseStatus from './ParkinglotEcharts/UseStatusEcharts'
+import fields from './editor'
+import fields1 from './ParkinglotForm/editor'
 
 export default {
-  name: "Parkinglot",
+  name: 'Parkinglot',
   props: {
     currentPage: {
       type: String,
@@ -188,44 +192,44 @@ export default {
       parkingData: [],
       fields,
       fields1,
-      editorType: "view",
+      editorType: 'view',
       editorVisible: false,
       dialogVisible: false,
-      labelWidth: "160px",
-      type: "view",
+      labelWidth: '160px',
+      type: 'view',
       editData: {},
-      title: "停车场详情"
-    };
+      title: '停车场详情'
+    }
   },
   created() {
-    this.getSelectAllInfo();
+    this.getSelectAllInfo()
   },
   computed: {
     disabled() {
-      return this.type === "view";
+      return this.type === 'view'
     }
   },
   methods: {
     getSelectAllInfo() {
       getSelectAll().then(res => {
         if (res.code === 1) {
-          this.parkingData = res.data.records;
+          this.parkingData = res.data.records
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     getselectOneInfo(tccxxbz) {
       getSelectOne(tccxxbz).then(res => {
         if (res.code === 1) {
-          console.log(res.data);
-          this.editData = res.data;
-          this.editorVisible = true;
-          this.$message.success(res.message);
+          console.log(res.data)
+          this.editData = res.data
+          this.editorVisible = true
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     getEntryExitInfo() {},
     openEditor(row) {
@@ -236,16 +240,16 @@ export default {
       //     break;
       // }
       // this.editorVisible = true;
-      this.editorType = "view";
-      this.getselectOneInfo(row);
+      this.editorType = 'view'
+      this.getselectOneInfo(row)
     },
     confirm(formData) {
-      console.log(formData);
+      console.log(formData)
       // 请求接口提交数据 等等
-      this.editorVisible = false;
+      this.editorVisible = false
     },
     handlerChange(formData) {
-      this.formData = { ...formData };
+      this.formData = { ...formData }
     },
     // confirm() {
     //   this.$refs.form.validateForm().then(() => {
@@ -253,15 +257,15 @@ export default {
     //   });
     // },
     EntryExitInfo() {
-      this.dialogVisible = true;
+      this.dialogVisible = true
     },
     // 跳转页面
     changePage(target) {
       // 更新父组件传入的prop ‘currentPage’
-      this.$emit("update:currentPage", target);
+      this.$emit('update:currentPage', target)
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

@@ -1,4 +1,4 @@
-import axios from "@/utils/axios";
+import axios from '@/utils/axios'
 
 /**
  * 获取小区综合停车场信息
@@ -6,9 +6,9 @@ import axios from "@/utils/axios";
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getSelectAll(paramsData) {
-  return axios.get("/parkinginfo/selectAll", {
+  return axios.get('/parkinginfo/selectAll', {
     params: paramsData
-  });
+  })
 }
 /**
  * 获取小区综合停车场详情信息
@@ -16,9 +16,9 @@ export function getSelectAll(paramsData) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getSelectOne(tccxxbz) {
-  return axios.get("/parkinginfo/selectOne", {
+  return axios.get('/parkinginfo/selectOne', {
     params: {
       tccxxbz: tccxxbz
     }
-  });
+  })
 }

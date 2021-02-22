@@ -99,14 +99,14 @@
 </template>
 
 <script>
-import { getSelectAll } from "@/api/Data_management/comprehensive/index";
-import MyformData from "./IntegratedQueryForm/IntegratedQueryForm";
-import MyTableData from "./IntegratedQueryTable/IntegratedQueryTable";
-import Peopletrack from "./component/index";
-import fields from "./Editor";
-import fields1 from "./Editor1";
-import fields2 from "./Editor2";
-import fields3 from "./Editor3";
+import { getSelectAll } from '@/api/Data_management/comprehensive/index'
+import MyformData from './IntegratedQueryForm/IntegratedQueryForm'
+import MyTableData from './IntegratedQueryTable/IntegratedQueryTable'
+import Peopletrack from './component/index'
+import fields from './Editor'
+import fields1 from './Editor1'
+import fields2 from './Editor2'
+import fields3 from './Editor3'
 export default {
   components: {
     Peopletrack
@@ -116,16 +116,16 @@ export default {
       MyformData,
       MyTableData,
       dialogVisible: false,
-      activeName1: "first1",
-      activeName11: "first11",
-      width: "85%",
+      activeName1: 'first1',
+      activeName11: 'first11',
+      width: '85%',
       formData: {},
       fields,
       fields1,
       fields2,
       fields3,
-      labelWidth: "220px",
-      type: "view",
+      labelWidth: '220px',
+      type: 'view',
       pagination: {
         isBackC: true,
         isShow: true,
@@ -135,20 +135,20 @@ export default {
       },
       paramsData: {
         area: [],
-        xqxxbz: "",
-        xm: "",
-        zjhm: ""
+        xqxxbz: '',
+        xm: '',
+        zjhm: ''
       },
       tableData: []
-    };
+    }
   },
   computed: {
     disabled() {
-      return this.type === "view";
+      return this.type === 'view'
     }
   },
   created() {
-    this.getselectInfo();
+    this.getselectInfo()
   },
   methods: {
     getselectInfo() {
@@ -158,33 +158,33 @@ export default {
         size: this.pagination.size
       }).then(res => {
         if (res.code === 1) {
-          this.tableData = res.data.records;
-          this.pagination.total = res.data.total;
-          this.$message.success(res.message);
+          this.tableData = res.data.records
+          this.pagination.total = res.data.total
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     // 点击事件
     clickButton(val) {
       // 调用事件
-      this[val.methods](val.row);
+      this[val.methods](val.row)
     },
     FormclickButton(val) {
-      this[val.methods](val.formData);
+      this[val.methods](val.formData)
     },
     openEditor(type, row) {
-      console.log(type, row);
-      this.dialogVisible = true;
+      console.log(type, row)
+      this.dialogVisible = true
     },
     confirm(formData) {
-      console.log(formData);
+      console.log(formData)
       // 请求接口提交数据 等等
-      this.dialogVisible = false;
+      this.dialogVisible = false
     },
     handlerChange(formData) {
-      this.formData = { ...formData };
+      this.formData = { ...formData }
     },
     handleClick() {},
     // confirm() {
@@ -194,23 +194,23 @@ export default {
     // },
     // 切换当前一页展示多少条
     sizeChange(val) {
-      this.pagination.size = val;
-      this.getselectInfo();
+      this.pagination.size = val
+      this.getselectInfo()
     },
     // 翻页
     pageChange(val) {
-      this.pagination.currentPage = val;
-      this.getselectInfo();
+      this.pagination.currentPage = val
+      this.getselectInfo()
     },
     search(v) {
-      this.paramsData = { ...v };
-      this.getselectInfo();
+      this.paramsData = { ...v }
+      this.getselectInfo()
     },
     view() {
-      this.dialogVisible = true;
+      this.dialogVisible = true
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

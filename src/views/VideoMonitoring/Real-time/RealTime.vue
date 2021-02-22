@@ -100,8 +100,8 @@
 </template>
 
 <script>
-import MyformData from "./RealTimeForm/RealTimeForm";
-import MytableData from "./RealTimeTable/RealTimeTable";
+import MyformData from './RealTimeForm/RealTimeForm'
+import MytableData from './RealTimeTable/RealTimeTable'
 export default {
   data() {
     return {
@@ -110,44 +110,44 @@ export default {
       AreaSelection: [
         {
           id: 1,
-          title: "辉煌国际"
+          title: '辉煌国际'
         },
         {
           id: 2,
-          title: "中龙玉溪"
+          title: '中龙玉溪'
         },
         {
           id: 3,
-          title: "东玺门"
+          title: '东玺门'
         },
         {
           id: 4,
-          title: "中庭国际"
+          title: '中庭国际'
         }
       ],
       checkList: [1, 2],
-      EquipmentName: "XX设备",
-      date: "2020-7-6 9:37:22",
+      EquipmentName: 'XX设备',
+      date: '2020-7-6 9:37:22',
       currentPage: 1
-    };
+    }
   },
   methods: {
     // onSubmit() {
     // },
     handleSizeChange(val) {
-      console.log(val);
+      console.log(val)
     },
     handleCurrentChange(val) {
-      console.log(val);
+      console.log(val)
     },
     // 点击事件
     clickButton(val) {
       // 调用事件
-      this[val.methods](val.row);
+      this[val.methods](val.row)
     },
     search() {}
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

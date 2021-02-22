@@ -29,28 +29,28 @@
 </template>
 
 <script>
-import Inspection from "./InspectionWarning/index";
-import perceived from "./PerceivedWarning/index";
+import Inspection from './InspectionWarning/index'
+import perceived from './PerceivedWarning/index'
 
 export default {
   components: {
     Inspection,
-    perceived,
+    perceived
   },
   data() {
     return {
-      activeName: "xcyj",
-    };
+      activeName: 'xcyj'
+    }
   },
   methods: {
     handleClick(tab) {
-      console.log(tab);
-      if (tab.name === "gzyj") {
-        this.$refs.perceived.showEcharts = true;
+      console.log(tab)
+      if (tab.name === 'gzyj') {
+        this.$refs.perceived.showEcharts = true
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <style lang="less" scoped>

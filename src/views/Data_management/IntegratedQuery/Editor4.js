@@ -1,100 +1,100 @@
 const fields = [
   {
-    label: "照片：",
+    label: '照片：',
     span: 24,
-    field: "CommunityName1:",
-    type: "avatar"
+    field: 'CommunityName1:',
+    type: 'avatar'
   },
   {
-    label: "姓名：",
+    label: '姓名：',
     span: 8,
-    field: "CommunityName1:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName1:',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "曾用名：",
+    label: '曾用名：',
     span: 8,
-    field: "CommunityName:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName:',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "身份证号：",
+    label: '身份证号：',
     span: 8,
-    field: "CommunityName:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName:',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "性别",
+    label: '性别',
     span: 8,
-    field: "sex",
-    type: "select",
+    field: 'sex',
+    type: 'select',
     options: [
       {
-        label: "男",
+        label: '男',
         value: 0
       },
       {
-        label: "女",
+        label: '女',
         value: 1
       }
     ]
   },
   {
-    label: "国籍",
+    label: '国籍',
     span: 8,
-    field: "sex",
-    type: "select",
+    field: 'sex',
+    type: 'select',
     options: [
       {
-        label: "中国",
+        label: '中国',
         value: 0
       },
       {
-        label: "美国",
+        label: '美国',
         value: 1
       }
     ]
   },
   {
-    label: "联系电话：",
+    label: '联系电话：',
     span: 8,
-    field: "CommunityName:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName:',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "民族：",
+    label: '民族：',
     span: 8,
-    field: "sex",
-    type: "select",
+    field: 'sex',
+    type: 'select',
     options: [
       {
-        label: "汉族",
+        label: '汉族',
         value: 0
       },
       {
-        label: "苗族",
+        label: '苗族',
         value: 1
       }
     ]
   },
   {
-    label: "户口性质：",
+    label: '户口性质：',
     span: 8,
-    field: "CommunityName:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName:',
+    type: 'input',
+    dataType: 'string'
   },
 
   {
-    label: "籍贯：",
+    label: '籍贯：',
     span: 8,
-    field: "ownersName",
-    type: "input",
-    dataType: "string"
+    field: 'ownersName',
+    type: 'input',
+    dataType: 'string'
   },
 
   // {
@@ -113,57 +113,57 @@ const fields = [
   //   ]
   // },
   {
-    label: "宗教信仰：",
+    label: '宗教信仰：',
     span: 8,
-    field: "Telephone",
-    type: "input",
-    dataType: "string"
+    field: 'Telephone',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "学历：",
+    label: '学历：',
     span: 8,
-    field: "sex",
-    type: "select",
+    field: 'sex',
+    type: 'select',
     options: [
       {
-        label: "本科",
+        label: '本科',
         value: 0
       },
       {
-        label: "大专",
+        label: '大专',
         value: 1
       }
     ]
   },
   {
-    label: "户籍地址：",
+    label: '户籍地址：',
     span: 8,
-    field: "idCard",
-    type: "input",
-    dataType: "string"
+    field: 'idCard',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "户口类型",
-    field: "motorVehicle",
+    label: '户口类型',
+    field: 'motorVehicle',
     span: 8,
-    type: "select",
+    type: 'select',
     options: [
       {
-        label: "城镇居民户口",
+        label: '城镇居民户口',
         value: 0
       },
       {
-        label: "农村居民户口",
+        label: '农村居民户口',
         value: 1
       }
     ]
   },
   {
-    label: "婚姻状况：",
+    label: '婚姻状况：',
     span: 8,
-    field: "Licenseplate",
-    type: "input",
-    dataType: "string"
+    field: 'Licenseplate',
+    type: 'input',
+    dataType: 'string'
   },
   // {
   //   label: "宗教信仰：",
@@ -210,46 +210,46 @@ const fields = [
   //   ]
   // },
   {
-    label: "实际居住地：",
+    label: '实际居住地：',
     span: 8,
-    field: "VehicleVolume",
-    type: "input",
-    dataType: "string"
+    field: 'VehicleVolume',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "政治面貌：",
+    label: '政治面貌：',
     span: 8,
-    field: "ColorCar:",
-    type: "input",
-    dataType: "string"
+    field: 'ColorCar:',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "配偶身份证号：",
+    label: '配偶身份证号：',
     span: 8,
-    field: "VehicleModel",
-    type: "input",
-    dataType: "string"
+    field: 'VehicleModel',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "名下机动车号牌号码：",
+    label: '名下机动车号牌号码：',
     span: 8,
-    field: "BriefSituation",
-    type: "input",
-    dataType: "string"
+    field: 'BriefSituation',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "配偶姓名：",
-    field: "RegistrantName",
+    label: '配偶姓名：',
+    field: 'RegistrantName',
     span: 8,
-    type: "input",
-    dataType: "string"
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "配偶联系电话：",
+    label: '配偶联系电话：',
     span: 8,
-    field: "RegistrantPhoneNumber:",
-    type: "input",
-    dataType: "string"
+    field: 'RegistrantPhoneNumber:',
+    type: 'input',
+    dataType: 'string'
   },
   // {
   //   label: "英文名：",
@@ -284,42 +284,42 @@ const fields = [
   //   hidden: ["add", "edit"]
   // },
   {
-    label: "英文名：",
+    label: '英文名：',
     span: 8,
-    field: "DataStatus1",
-    type: "input",
-    dataType: "string"
+    field: 'DataStatus1',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "联系电话：",
+    label: '联系电话：',
     span: 8,
-    field: "DataStatus1",
-    type: "input",
-    dataType: "string"
+    field: 'DataStatus1',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "人员登记类型：",
+    label: '人员登记类型：',
     span: 8,
-    field: "DataStatus1",
-    type: "input",
-    dataType: "string"
+    field: 'DataStatus1',
+    type: 'input',
+    dataType: 'string'
   },
   {
     span: 8,
-    label: "人口登记类型：",
-    field: "DataStatus1",
-    type: "input",
-    dataType: "string"
+    label: '人口登记类型：',
+    field: 'DataStatus1',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "治安管理信息所属警务责任区：",
+    label: '治安管理信息所属警务责任区：',
     span: 24,
-    field: "DataStatus1",
-    type: "input",
-    dataType: "string"
+    field: 'DataStatus1',
+    type: 'input',
+    dataType: 'string'
   }
-];
-export default fields;
+]
+export default fields
 // [
 //   {
 //     label: "姓名",

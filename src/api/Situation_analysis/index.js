@@ -1,4 +1,4 @@
-import axios from "@/utils/axios";
+import axios from '@/utils/axios'
 
 /**
  * 获取态势分析时间分类信息
@@ -6,9 +6,9 @@ import axios from "@/utils/axios";
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getTimeSelectAll(data) {
-  return axios.get("/tsfxKsh/selectAll", {
+  return axios.get('/tsfxKsh/selectAll', {
     params: data
-  });
+  })
 }
 /**
  * 获取态势分析区域分类信息
@@ -16,7 +16,7 @@ export function getTimeSelectAll(data) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getAreaSelectAll(data) {
-  return axios.get("/queryByArea", {
+  return axios.get('/queryByArea', {
     params: data
-  });
+  })
 }

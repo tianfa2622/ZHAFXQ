@@ -70,46 +70,46 @@ export default {
       markers: [
         {
           markerPoint: { lng: 116.404, lat: 39.915 },
-          name: "xiaoqu",
-          xianghao: "333",
-          adds: "444",
-          time: "555",
+          name: 'xiaoqu',
+          xianghao: '333',
+          adds: '444',
+          time: '555',
           showFlag: true
         },
         {
-          name: "xiaoqu1",
+          name: 'xiaoqu1',
           markerPoint: { lng: 116.39, lat: 39.915 },
-          xianghao: "222",
-          adds: "989",
-          time: "456",
+          xianghao: '222',
+          adds: '989',
+          time: '456',
           showFlag: false
         },
         {
-          name: "xiaoqu2",
+          name: 'xiaoqu2',
           markerPoint: { lng: 116.38, lat: 39.915 },
-          xianghao: "888",
-          adds: "666",
-          time: "100",
+          xianghao: '888',
+          adds: '666',
+          time: '100',
           showFlag: false
         }
       ]
-    };
+    }
   },
   methods: {
     // 点击事件
     infoWindowClose(item) {
-      item.showFlag = false;
+      item.showFlag = false
     },
     infoWindowOpen(item) {
-      item.showFlag = true;
+      item.showFlag = true
     },
     look(items) {
-      this.from = items;
-      this.position = items.markerPoint;
-      items.showFlag = true;
+      this.from = items
+      this.position = items.markerPoint
+      items.showFlag = true
     }
   }
-};
+}
 </script>
 
 .<style lang="less" scoped>

@@ -1,4 +1,4 @@
-import axios from "@/utils/axios";
+import axios from '@/utils/axios'
 
 /**
  * 获取门禁信息
@@ -6,7 +6,7 @@ import axios from "@/utils/axios";
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getSelectAll(paramsData) {
-  return axios.get("/doorinfo/selectAll", {
+  return axios.get('/doorinfo/selectAll', {
     params: paramsData
-  });
+  })
 }

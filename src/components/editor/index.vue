@@ -28,9 +28,9 @@ export default {
   props: {
     type: {
       type: String,
-      default: "add",
+      default: 'add',
       validator(v) {
-        return ["add", "edit", "view"].includes(v);
+        return ['add', 'edit', 'view'].includes(v)
       }
     },
     visible: {
@@ -59,28 +59,28 @@ export default {
   },
   computed: {
     disabled() {
-      return this.type === "view";
+      return this.type === 'view'
     }
   },
   data() {
     return {
       formData: {}
-    };
+    }
   },
   methods: {
     closeEditor() {
-      this.$emit("update:visible", false);
+      this.$emit('update:visible', false)
     },
     handlerChange(formData) {
-      this.formData = { ...formData };
+      this.formData = { ...formData }
     },
     confirm() {
       this.$refs.form.validateForm().then(() => {
-        this.$emit("confirm", { ...this.formData });
-      });
+        this.$emit('confirm', { ...this.formData })
+      })
     }
   }
-};
+}
 </script>
 
 <style></style>

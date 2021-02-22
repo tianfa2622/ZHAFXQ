@@ -1,4 +1,4 @@
-import axios from "@/utils/axios";
+import axios from '@/utils/axios'
 
 /**
  * 获取异常设置信息
@@ -6,9 +6,9 @@ import axios from "@/utils/axios";
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getSelectYcsz(data) {
-  return axios.get("/ycsz/selectYcsz", {
+  return axios.get('/ycsz/selectYcsz', {
     params: data
-  });
+  })
 }
 // /**
 //  * 获取日志表格单条信息

@@ -60,12 +60,12 @@ import {
   getSelectAll,
   getUpdate,
   getInsert
-} from "@/api/Data_management/personnel/index";
-import { getCurrentDate } from "@/utils/date.js";
-import ThePermanent from "./personnelTable/ThePermanent";
-import FloatingPopulation from "./personnelTable/FloatingPopulation";
-import MyformData from "./personnelForm/personnelform";
-import Permanent from "./Editor";
+} from '@/api/Data_management/personnel/index'
+import { getCurrentDate } from '@/utils/date.js'
+import ThePermanent from './personnelTable/ThePermanent'
+import FloatingPopulation from './personnelTable/FloatingPopulation'
+import MyformData from './personnelForm/personnelform'
+import Permanent from './Editor'
 
 export default {
   data() {
@@ -73,21 +73,21 @@ export default {
       ThePermanent,
       FloatingPopulation,
       MyformData,
-      editorType: "add",
+      editorType: 'add',
       editorVisible: false,
-      width: "60%",
-      labelWidth: "230px",
+      width: '60%',
+      labelWidth: '230px',
       fields: Permanent,
       tabsData: ThePermanent,
-      activeName: "1",
+      activeName: '1',
       tabs: [
         {
-          label: "常住人口",
-          name: "1"
+          label: '常住人口',
+          name: '1'
         },
         {
-          label: "流动人口",
-          name: "2"
+          label: '流动人口',
+          name: '2'
         }
       ],
       // 表格数据
@@ -101,205 +101,144 @@ export default {
       },
       paramsData: {
         area: [],
-        rkdjlx: "1",
-        xm: "",
-        xqxxbz: "",
-        zjhm: ""
+        rkdjlx: '1',
+        xm: '',
+        xqxxbz: '',
+        zjhm: ''
       },
-      editData: {},
-      personinfo: {
-        csrq: "",
-        cym: "",
-        cyzjdm: "",
-        djr: "",
-        djrGmsfzhm: "",
-        djrLxdh: "",
-        djrXm: "",
-        dwmc: "",
-        fwxxbz: "",
-        gjdm: "",
-        gxsj: "",
-        hjdz: "",
-        hjdzQhnxxdz: "",
-        hjdzXzqhdm: "",
-        hkxzflydm: "",
-        hlxdm: "",
-        hyzkdm: "",
-        jdchphm: "",
-        jgssxdm: "",
-        lxdh: "",
-        mzdm: "",
-        po: "",
-        poGmsfzhm: "",
-        poLxdh: "",
-        poXm: "",
-        rjLxdh: "",
-        rjRq: "",
-        rkdjlx: "",
-        rydjlx: "",
-        ryxxbz: "",
-        sjjzd: "",
-        sjjzdQhnxxdz: "",
-        sjjzdXzqhdm: "",
-        sjly: "",
-        sjzt: "",
-        syxqmc: "",
-        tssfdm: "",
-        wwm: "",
-        wwx: "",
-        xbdm: "",
-        xldm: "",
-        xm: "",
-        xp: "",
-        xqxxbz: "",
-        zaglxxssjwzrqdm: "",
-        zjhm: "",
-        zjxydm: "",
-        zylbdm: "",
-        zzmmdm: ""
-      }
-    };
+      editData: {}
+    }
   },
   created() {
-    this.getPersonnelInfo();
+    this.getPersonnelInfo()
   },
   mounted() {},
   computed: {
     title() {
       switch (this.editorType) {
-        case "add":
-          return "添加人员信息";
-        case "edit":
-          return "修改人员信息";
-        case "view":
-          return "查看人员信息";
+        case 'add':
+          return '添加人员信息'
+        case 'edit':
+          return '修改人员信息'
+        case 'view':
+          return '查看人员信息'
         default:
-          return "新增人员信息";
+          return '新增人员信息'
       }
     }
   },
   methods: {
     getPersonnelInfo() {
-      this.paramsData.rkdjlx = this.activeName;
+      this.paramsData.rkdjlx = this.activeName
       getSelectAll({
         ...this.paramsData,
         current: this.pagination.currentPage,
         size: this.pagination.size
       }).then(res => {
         if (res.code === 1) {
-          this.tableData = res.data.records;
-          this.pagination.total = res.data.total;
-          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
+          this.tableData = res.data.records
+          this.pagination.total = res.data.total
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData)
+          // this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData)
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     putUpData(formData) {
       getUpdate(formData).then(res => {
         if (res.code === 1) {
-          this.$message.success(res.message);
-          this.editorVisible = false;
-          this.getPersonnelInfo();
+          this.$message.success(res.message)
+          this.editorVisible = false
+          this.getPersonnelInfo()
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     postInsert(formData) {
       getInsert(formData).then(res => {
         if (res.code === 1) {
-          this.editorVisible = false;
-          this.getPersonnelInfo();
+          this.editorVisible = false
+          this.getPersonnelInfo()
+          this.$message.success('添加成功')
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     // table点击事件
     clickButton(val) {
-      this[val.methods](val.row);
+      this[val.methods](val.row)
     },
     // 弹出框数据
     openEditor(row) {
+      console.log(row)
       getSelectOne(row.ryxxbz).then(res => {
         if (res.code === 1) {
-          this.editData = res.data;
-          this.editorVisible = true;
+          this.editData = res.data
+          this.editorVisible = true
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     confirm(formData) {
-      if (this.editorType !== "add") {
-        this.putUpData(formData);
+      if (this.editorType !== 'add') {
+        this.putUpData(formData)
       } else {
-        formData.xqxxbz = "";
-        formData.cyzjdm = "";
-        formData.zjhm = "";
-        formData.hjdzXzqhdm = "";
-        formData.hjdzQhnxxdz = "";
-        formData.sjjzdXzqhdm = "";
-        formData.sjjzdQhnxxdz = "";
-        formData.rydjlx = "";
-        formData.rkdjlx = this.activeName;
-        formData.djrXm = "";
-        formData.djrLxdh = "";
-        formData.gxsj = getCurrentDate(true);
-        formData.sjly = "";
-        formData.sjzt = "";
-        formData.ryxxbz = `ry+${this.pagination.total + 1}`;
-        console.log(formData);
-        this.postInsert(formData);
+        formData.gxsj = getCurrentDate(true)
+        formData.ryxxbz = `ry${this.tableData.length + 1}`
+        this.postInsert(formData)
       }
 
       // 请求接口提交数据 等等
     },
     // 切换当前一页展示多少条
     sizeChange(val) {
-      this.pagination.size = val;
-      this.getPersonnelInfo();
+      this.pagination.size = val
+      this.getPersonnelInfo()
     },
     // 翻页
     pageChange(val) {
-      this.pagination.currentPage = val;
-      this.getPersonnelInfo();
+      this.pagination.currentPage = val
+      this.getPersonnelInfo()
     },
     handleClick() {
-      this.tableData = [];
-      if (this.activeName === "1") {
-        this.tabsData = ThePermanent;
-        this.pagination.currentPage = 1;
+      this.tableData = []
+      if (this.activeName === '1') {
+        this.tabsData = ThePermanent
+        this.pagination.currentPage = 1
       } else {
-        this.tabsData = FloatingPopulation;
-        this.pagination.currentPage = 1;
+        this.tabsData = FloatingPopulation
+        this.pagination.currentPage = 1
       }
-      this.getPersonnelInfo();
+      this.getPersonnelInfo()
     },
     FormclickButton(val) {
-      this[val.methods](val.formData);
+      this[val.methods](val.formData)
     },
     search(v) {
-      this.paramsData = { ...v };
+      this.paramsData = { ...v }
       // this.paramsData.push({ rkdjlx: this.activeName });
-      this.getPersonnelInfo();
+      this.getPersonnelInfo()
     },
     // eslint-disable-next-line no-unused-vars
     Increase() {
-      this.editorType = "add";
-      this.editorVisible = true;
+      this.editorType = 'add'
+      this.editorVisible = true
     },
     editor(row) {
-      this.editorType = "edit";
-      this.openEditor(row);
+      this.editorType = 'edit'
+      this.openEditor(row)
     },
     toView(row) {
-      this.editorType = "view";
-      this.openEditor(row);
+      this.editorType = 'view'
+      this.openEditor(row)
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

@@ -63,12 +63,12 @@
 import {
   getSelectAll,
   getSelectOne
-} from "@/api/Data_management/index/Unit_Info/index";
-import MyformData from "./Unit_InfoForm/Unit_Info";
-import MyTableData from "./Unit_InfoTable/Unit_Info";
-import fields from "./editor";
+} from '@/api/Data_management/index/Unit_Info/index'
+import MyformData from './Unit_InfoForm/Unit_Info'
+import MyTableData from './Unit_InfoTable/Unit_Info'
+import fields from './editor'
 export default {
-  name: "Unit_info",
+  name: 'UnitInfo',
   props: {
     currentPage: {
       type: String,
@@ -81,13 +81,13 @@ export default {
       MyTableData,
       dialogVisible: false,
       fields,
-      editorType: "view",
-      title: "单元信息",
+      editorType: 'view',
+      title: '单元信息',
       editorVisible: false,
-      width: "60%",
-      labelWidth: "210px",
+      width: '60%',
+      labelWidth: '210px',
       src:
-        "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",
+        'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg',
       pagination: {
         isBackC: true,
         isShow: true,
@@ -97,13 +97,13 @@ export default {
       },
       editData: {},
       paramsData: {
-        mc: ""
+        mc: ''
       },
       tableData: []
-    };
+    }
   },
   created() {
-    this.getSelectInfo();
+    this.getSelectInfo()
   },
   methods: {
     getSelectInfo() {
@@ -114,80 +114,80 @@ export default {
         size: this.pagination.size
       }).then(res => {
         if (res.code === 1) {
-          this.tableData = res.data.records;
-          this.pagination.total = res.data.total;
-          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
-          this.$message.success(res.message);
+          this.tableData = res.data.records
+          this.pagination.total = res.data.total
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData)
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     getSelectInfoOne(row) {
       getSelectOne(row.dyxxbz).then(res => {
         if (res.code === 1) {
-          this.editData = res.data;
-          this.editorVisible = true;
-          this.$message.success(res.message);
+          this.editData = res.data
+          this.editorVisible = true
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     // 点击事件
     clickButton(val) {
       // 调用事件
-      this[val.methods](val.row);
+      this[val.methods](val.row)
     },
     FormclickButton(val) {
-      this[val.methods](val.formData);
+      this[val.methods](val.formData)
     },
     openEditor(type, row) {
-      console.log(type, row);
+      console.log(type, row)
       switch (type) {
-        case "Increase":
-          this.editorType = "add";
-          break;
+        case 'Increase':
+          this.editorType = 'add'
+          break
       }
-      this.editorVisible = true;
+      this.editorVisible = true
     },
     view(val) {
-      this.getSelectInfoOne(val);
+      this.getSelectInfoOne(val)
     },
     confirm(formData) {
-      console.log(formData);
+      console.log(formData)
       // 请求接口提交数据 等等
-      this.editorVisible = false;
+      this.editorVisible = false
     },
     // 切换当前一页展示多少条
     sizeChange(val) {
-      this.pagination.size = val;
-      this.getSelectInfo();
+      this.pagination.size = val
+      this.getSelectInfo()
     },
     // 翻页
     pageChange(val) {
-      this.paramsData.currentPage = val;
-      this.getSelectInfo();
+      this.paramsData.currentPage = val
+      this.getSelectInfo()
     },
     // eslint-disable-next-line no-unused-vars
     unitImg(val) {
-      this.dialogVisible = true;
+      this.dialogVisible = true
     },
     // eslint-disable-next-line no-unused-vars
     HousingInfo(val) {
-      this.changePage("9");
+      this.changePage('9')
     },
     search(v) {
-      this.paramsData = { ...v };
-      this.getSelectInfo();
+      this.paramsData = { ...v }
+      this.getSelectInfo()
     },
     // 跳转页面
     changePage(target) {
       // 更新父组件传入的prop ‘currentPage’
-      this.$emit("update:currentPage", target);
+      this.$emit('update:currentPage', target)
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

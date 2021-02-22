@@ -1,109 +1,109 @@
 const fields = [
   {
-    label: "车主姓名：",
+    label: '车主姓名：',
     span: 8,
-    field: "CommunityName1:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName1:',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "车主联系电话：",
+    label: '车主联系电话：',
     span: 8,
-    field: "CommunityName:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName:',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "车主身份证号码：",
+    label: '车主身份证号码：',
     span: 8,
-    field: "CommunityName:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName:',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "电动自行车车牌号码：",
+    label: '电动自行车车牌号码：',
     span: 8,
-    field: "CommunityName:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName:',
+    type: 'input',
+    dataType: 'string'
   },
 
   {
-    label: "牌照发放日期：",
+    label: '牌照发放日期：',
     span: 8,
-    field: "CommunityName:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName:',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "RFID电子标识：",
+    label: 'RFID电子标识：',
     span: 8,
-    field: "CommunityName:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName:',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "电动自行车品牌：",
+    label: '电动自行车品牌：',
     span: 8,
-    field: "CommunityName:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName:',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "电动车车身颜色：",
+    label: '电动车车身颜色：',
     span: 8,
-    field: "CommunityName:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName:',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "电动车尺寸(长*宽*高)：",
+    label: '电动车尺寸(长*宽*高)：',
     span: 8,
-    field: "CommunityName:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName:',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "登记图片：",
+    label: '登记图片：',
     span: 8,
-    field: "CommunityName:",
-    type: "popover",
-    dataType: "string"
+    field: 'CommunityName:',
+    type: 'popover',
+    dataType: 'string'
   },
   {
-    label: "登记人",
+    label: '登记人',
     span: 8,
-    field: "CommunityName:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName:',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "登记人电话号码",
+    label: '登记人电话号码',
     span: 8,
-    field: "CommunityName:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName:',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "数据更新时间：",
+    label: '数据更新时间：',
     span: 8,
-    field: "CommunityName:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName:',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "数据状态：",
+    label: '数据状态：',
     span: 8,
-    field: "CommunityName:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName:',
+    type: 'input',
+    dataType: 'string'
   },
   {
-    label: "数据来源：",
+    label: '数据来源：',
     span: 8,
-    field: "CommunityName:",
-    type: "input",
-    dataType: "string"
+    field: 'CommunityName:',
+    type: 'input',
+    dataType: 'string'
   }
   // {
   //   label: "户口性质：",
@@ -120,8 +120,8 @@ const fields = [
   //     }
   //   ]
   // },
-];
-export default fields;
+]
+export default fields
 // [
 //   {
 //     label: "姓名",

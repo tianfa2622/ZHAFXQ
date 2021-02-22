@@ -110,31 +110,31 @@ export default {
     HeaderCellStyle: {
       type: Object,
       default: () => {
-        return {};
+        return {}
       }
     },
     RowStyle: {
       type: Object,
       default: () => {
-        return {};
+        return {}
       }
     },
     CardAttributes: {
       type: Object,
       default: () => {
-        return {};
+        return {}
       }
     },
     size: {
       // table表格尺寸
       type: String,
-      default: ""
+      default: ''
     },
     tableData: {
       // 表格数据
       type: Array,
       default: () => {
-        return [];
+        return []
       },
       required: true
     },
@@ -142,14 +142,14 @@ export default {
       // 表头数据
       type: Array,
       default: () => {
-        return [];
+        return []
       }
     },
     tableOption: {
       // 表格操作
       type: Object,
       default: () => {
-        return {};
+        return {}
       }
     },
     // currentPage: {
@@ -176,43 +176,43 @@ export default {
     pagination: {
       type: Object,
       default: () => {
-        return {};
+        return {}
       }
     }
   },
   methods: {
     // 切换当前一页展示多少条
     handleSizeChange(val) {
-      this.$emit("sizeChange", val);
+      this.$emit('sizeChange', val)
     },
     // 翻页
     handleCurrentChange(val) {
-      this.$emit("pageChange", val);
+      this.$emit('pageChange', val)
     },
     // 按钮点击事件
     // methods方法名 row当前点击列数据 index当前点击的index
     handleButton(methods, row, index) {
-      this.$emit("clickButton", { methods: methods, row: row, index: index });
+      this.$emit('clickButton', { methods: methods, row: row, index: index })
     },
     // 点击排序
     handleSortChange(val) {
-      this.$emit("sortChange", val);
+      this.$emit('sortChange', val)
     },
     // 某一行被点击
     handleRowClick(row) {
-      this.$emit("click-events", row);
+      this.$emit('click-events', row)
     },
     functionHandle(fn, row) {
       if (fn instanceof Function) {
-        return fn(row);
+        return fn(row)
       } else if (fn === undefined) {
-        return true;
+        return true
       } else {
-        return fn;
+        return fn
       }
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

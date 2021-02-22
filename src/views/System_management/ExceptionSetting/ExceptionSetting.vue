@@ -142,13 +142,13 @@
 </template>
 
 <script>
-import { getSelectYcsz } from "@/api/System_management/ExceptionSetting/index";
+import { getSelectYcsz } from '@/api/System_management/ExceptionSetting/index'
 export default {
   data() {
     return {
       Exception: [
         {
-          title: "人员预警",
+          title: '人员预警',
           similar: null,
           range: { day: null, frequency: null },
           range1: {
@@ -157,7 +157,7 @@ export default {
           }
         },
         {
-          title: "车辆预警",
+          title: '车辆预警',
           INandOut: null,
           range: { day: null, frequency: null },
           range1: {
@@ -167,46 +167,46 @@ export default {
           hours: null
         },
         {
-          title: "聚集预警",
+          title: '聚集预警',
           PeopleNum: null,
           GatheringTime: null
         }
       ],
       ExceptionData: {}
-    };
+    }
   },
   created() {
-    this.getSelectYcszInfo();
+    this.getSelectYcszInfo()
   },
   methods: {
     getSelectYcszInfo() {
       getSelectYcsz().then(res => {
         if (res.code === 1) {
           // console.log(res.data);
-          this.ExceptionData = [res.data.ryyj, res.data.clyj, res.data.jjyj];
+          this.ExceptionData = [res.data.ryyj, res.data.clyj, res.data.jjyj]
           for (let i = 0; i < this.ExceptionData.length; i++) {
-            this.Exception[i].similar = this.ExceptionData[i].rlbdxsl;
-            this.Exception[i].range.day = this.ExceptionData[i].jcts;
-            this.Exception[i].range.frequency = this.ExceptionData[i].jccs;
+            this.Exception[i].similar = this.ExceptionData[i].rlbdxsl
+            this.Exception[i].range.day = this.ExceptionData[i].jcts
+            this.Exception[i].range.frequency = this.ExceptionData[i].jccs
             this.Exception[i].range1.time = [
               this.ExceptionData[i].ksrq,
               this.ExceptionData[i].jsrq
-            ];
-            this.Exception[i].range1.frequency = this.ExceptionData[i].jscrcs;
-            this.Exception[i].hours = this.ExceptionData[i].jrsj;
-            this.Exception[i].PeopleNum = this.ExceptionData[i].jjrs;
-            this.Exception[i].GatheringTime = this.ExceptionData[i].jjsj;
+            ]
+            this.Exception[i].range1.frequency = this.ExceptionData[i].jscrcs
+            this.Exception[i].hours = this.ExceptionData[i].jrsj
+            this.Exception[i].PeopleNum = this.ExceptionData[i].jjrs
+            this.Exception[i].GatheringTime = this.ExceptionData[i].jjsj
           }
-          console.log(this.ExceptionData);
+          console.log(this.ExceptionData)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     Clear() {},
     Save() {}
   }
-};
+}
 </script>
 <style lang="less" scoped>
 .bgc {

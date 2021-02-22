@@ -86,29 +86,29 @@ export default {
   },
   data() {
     return {
-      EquipmentName: "XX设备",
-      date: "2020-7-6",
+      EquipmentName: 'XX设备',
+      date: '2020-7-6',
       currentPage: 1,
-      value1: ""
-    };
+      value1: ''
+    }
   },
   methods: {
     // onSubmit() {
     // },
     handleSizeChange(val) {
-      console.log(val);
+      console.log(val)
     },
     handleCurrentChange(val) {
-      console.log(val);
+      console.log(val)
     },
     // 点击事件
     clickButton(val) {
       // 调用事件
-      this[val.methods](val.row);
+      this[val.methods](val.row)
     },
     search() {}
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

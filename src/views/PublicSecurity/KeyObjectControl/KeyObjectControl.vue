@@ -72,35 +72,35 @@ import {
   getVehicleAll,
   getPersonnelOne,
   getVehicleOne
-} from "@/api/PublicSecurity/KeyObjectControl/index";
-import personnelTable from "./KeyObjectControltable/personnelTable";
-import vehicleTable from "./KeyObjectControltable/vehicleTable";
-import fields from "./editor";
-import carfields from "./careditor";
+} from '@/api/PublicSecurity/KeyObjectControl/index'
+import personnelTable from './KeyObjectControltable/personnelTable'
+import vehicleTable from './KeyObjectControltable/vehicleTable'
+import fields from './editor'
+import carfields from './careditor'
 export default {
   data() {
     return {
-      placeholder: "",
+      placeholder: '',
       personnelTable,
       vehicleTable,
       tabsData: personnelTable,
-      input: "",
+      input: '',
       fields,
       carfields,
       fieldsData: fields,
-      editorType: "view",
-      labelWidth: "170px",
+      editorType: 'view',
+      labelWidth: '170px',
       // inline: false,
       editorVisible: false,
-      activeName: "zdry",
+      activeName: 'zdry',
       tabs: [
         {
-          label: "重点人员",
-          name: "zdry"
+          label: '重点人员',
+          name: 'zdry'
         },
         {
-          label: "重点车辆",
-          name: "zdcl"
+          label: '重点车辆',
+          name: 'zdcl'
         }
       ],
       tableData: [],
@@ -112,102 +112,102 @@ export default {
         total: 10
       },
       paramsData: {
-        srk: ""
+        srk: ''
         // djrXm: "",
         // xm: "",
         // cphm: ""
       },
       editData: {},
-      title: ""
-    };
+      title: ''
+    }
   },
   created() {
     // this.getPersonnelInfo();
     // this.handleClick();
   },
   mounted() {
-    this.handleClick();
+    this.handleClick()
   },
   methods: {
     getPersonnelInfo() {
-      this.tableData = [];
+      this.tableData = []
       getPersonnelAll({
         ...this.paramsData,
         current: this.pagination.currentPage,
         size: this.pagination.size
       }).then(res => {
         if (res.code === 1) {
-          this.tableData = res.data.records;
-          this.pagination.total = res.data.total;
-          this.input = "";
-          this.$message.success(res.message);
+          this.tableData = res.data.records
+          this.pagination.total = res.data.total
+          this.input = ''
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     getVehicleInfo() {
-      this.tableData = [];
+      this.tableData = []
       getVehicleAll({
         ...this.paramsData,
         current: this.pagination.currentPage,
         size: this.pagination.size
       }).then(res => {
         if (res.code === 1) {
-          this.tableData = res.data.records;
-          this.pagination.total = res.data.total;
-          this.input = "";
-          this.$message.success(res.message);
+          this.tableData = res.data.records
+          this.pagination.total = res.data.total
+          this.input = ''
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     getPersonnelInfoOne(row) {
       getPersonnelOne(row.zdryxxbz).then(res => {
-        console.log(res);
+        console.log(res)
         if (res.code === 1) {
-          this.editData = res.data;
-          this.editorVisible = true;
-          this.$message.success(res.message);
+          this.editData = res.data
+          this.editorVisible = true
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     getVehicleInfoOne(row) {
       getVehicleOne(row.zdclxxbs).then(res => {
-        console.log(res);
+        console.log(res)
         if (res.code === 1) {
-          this.editData = res.data;
-          this.editorVisible = true;
-          this.$message.success(res.message);
+          this.editData = res.data
+          this.editorVisible = true
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     handleClick() {
-      if (this.activeName === "zdry") {
-        this.tabsData = [];
-        this.title = "查看重点人员";
-        this.placeholder = "请输入姓名、联系电话、身份证号";
-        this.tabsData = personnelTable;
-        this.fieldsData = fields;
-        this.getPersonnelInfo();
+      if (this.activeName === 'zdry') {
+        this.tabsData = []
+        this.title = '查看重点人员'
+        this.placeholder = '请输入姓名、联系电话、身份证号'
+        this.tabsData = personnelTable
+        this.fieldsData = fields
+        this.getPersonnelInfo()
       } else {
-        this.tabsData = [];
-        this.title = "查看重点车辆";
-        this.placeholder = "请输入姓名、车牌号码";
-        this.tabsData = vehicleTable;
-        this.fieldsData = carfields;
-        this.getVehicleInfo();
+        this.tabsData = []
+        this.title = '查看重点车辆'
+        this.placeholder = '请输入姓名、车牌号码'
+        this.tabsData = vehicleTable
+        this.fieldsData = carfields
+        this.getVehicleInfo()
       }
     },
     // 点击事件
     clickButton(val) {
       // 调用事件
-      this[val.methods](val.row);
+      this[val.methods](val.row)
     },
     // confirm(formData) {
     //   console.log(formData);
@@ -216,45 +216,45 @@ export default {
     // },
     // 切换当前一页展示多少条
     sizeChange(val) {
-      this.pagination.size = val;
+      this.pagination.size = val
       switch (this.activeName) {
-        case "zdry":
-          return this.getPersonnelInfo();
-        case "zdcl":
-          return this.getVehicleInfo();
+        case 'zdry':
+          return this.getPersonnelInfo()
+        case 'zdcl':
+          return this.getVehicleInfo()
       }
     },
     // 翻页
     pageChange(val) {
-      this.pagination.currentPage = val;
+      this.pagination.currentPage = val
       switch (this.activeName) {
-        case "zdry":
-          return this.getPersonnelInfo();
-        case "zdcl":
-          return this.getVehicleInfo();
+        case 'zdry':
+          return this.getPersonnelInfo()
+        case 'zdcl':
+          return this.getVehicleInfo()
       }
     },
     search() {
-      if (this.activeName === "zdry") {
-        this.paramsData.srk = this.input;
-        this.getPersonnelInfo();
-        this.paramsData.srk = "";
+      if (this.activeName === 'zdry') {
+        this.paramsData.srk = this.input
+        this.getPersonnelInfo()
+        this.paramsData.srk = ''
       } else {
-        this.paramsData.srk = this.input;
-        this.getVehicleInfo();
-        this.paramsData.srk = "";
+        this.paramsData.srk = this.input
+        this.getVehicleInfo()
+        this.paramsData.srk = ''
       }
     },
     toView(val) {
-      this.editorType = "view";
-      this.getPersonnelInfoOne(val);
+      this.editorType = 'view'
+      this.getPersonnelInfoOne(val)
     },
     cartoView(val) {
-      this.editorType = "view";
-      this.getVehicleInfoOne(val);
+      this.editorType = 'view'
+      this.getVehicleInfoOne(val)
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

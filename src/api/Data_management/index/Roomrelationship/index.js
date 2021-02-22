@@ -1,4 +1,4 @@
-import axios from "@/utils/axios";
+import axios from '@/utils/axios'
 
 /**
  * 获取人房关系信息
@@ -6,7 +6,7 @@ import axios from "@/utils/axios";
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getSelectAll(paramsData) {
-  return axios.get("/personhouserelation/selectAll", {
+  return axios.get('/personhouserelation/selectAll', {
     params: paramsData
-  });
+  })
 }

@@ -6,20 +6,20 @@
 </template>
 
 <script>
-import Historical from "./Historical";
-import DeviceInformation from "./DeviceInformation";
+import Historical from './Historical'
+import DeviceInformation from './DeviceInformation'
 export default {
-  name: "historical",
+  name: 'Historical',
   components: {
     Historical,
     DeviceInformation
   },
   data() {
     return {
-      Page: "1"
-    };
+      Page: '1'
+    }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

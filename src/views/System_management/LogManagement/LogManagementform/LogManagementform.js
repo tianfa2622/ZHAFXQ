@@ -2,42 +2,42 @@ const options = {
   rules: {},
   form: {
     inline: true,
-    size: "small"
+    size: 'small'
   },
   itemColumns: [
     {
       span: 19,
-      style: "text-align:end",
-      label: "",
-      prop: "Date",
-      type: "date",
-      class: "",
+      style: 'text-align:end',
+      label: '',
+      prop: 'Date',
+      type: 'date',
+      class: '',
       clearable: true,
       pickerOptions: {
         disabledDate(time) {
-          return time.getTime() > Date.now();
+          return time.getTime() > Date.now()
         },
         shortcuts: [
           {
-            text: "今天",
+            text: '今天',
             onClick(picker) {
-              picker.$emit("pick", new Date());
+              picker.$emit('pick', new Date())
             }
           },
           {
-            text: "昨天",
+            text: '昨天',
             onClick(picker) {
-              const date = new Date();
-              date.setTime(date.getTime() - 3600 * 1000 * 24);
-              picker.$emit("pick", date);
+              const date = new Date()
+              date.setTime(date.getTime() - 3600 * 1000 * 24)
+              picker.$emit('pick', date)
             }
           },
           {
-            text: "一周前",
+            text: '一周前',
             onClick(picker) {
-              const date = new Date();
-              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
-              picker.$emit("pick", date);
+              const date = new Date()
+              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7)
+              picker.$emit('pick', date)
             }
           }
         ]
@@ -49,13 +49,13 @@ const options = {
     // style: "flex:auto;     text-align: start;",
     BtndataList: [
       {
-        type: "success",
-        style: "",
-        size: "small",
-        methods: "search",
-        label: "搜索"
+        type: 'success',
+        style: '',
+        size: 'small',
+        methods: 'search',
+        label: '搜索'
       }
     ]
   }
-};
-export default options;
+}
+export default options

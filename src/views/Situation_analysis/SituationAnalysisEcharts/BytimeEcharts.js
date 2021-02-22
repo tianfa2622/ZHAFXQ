@@ -8,9 +8,9 @@
 //     value: "749"
 //   }
 // ];
-let data = {
-  date: ["7.1", "7.2", "7.3", "7.4", "7.5", "7.6", "7.7"],
-  legend: ["聚集异常", "人员异常", "车辆异常", "重点车辆", "重点人员"],
+const data = {
+  date: ['7.1', '7.2', '7.3', '7.4', '7.5', '7.6', '7.7'],
+  legend: ['聚集异常', '人员异常', '车辆异常', '重点车辆', '重点人员'],
   data: [
     [98, 123, 221, 111, 99, 67, 342],
     [123, 221, 232, 442, 232, 231, 121],
@@ -18,32 +18,32 @@ let data = {
     [345, 123, 321, 243, 342, 342, 234],
     [616, 213, 123, 321, 432, 234, 543]
   ],
-  color: ["#74a0fb", "#78deb3", "#7585a3", "#f7c74a", "#ec8067"]
-};
+  color: ['#74a0fb', '#78deb3', '#7585a3', '#f7c74a', '#ec8067']
+}
 
 const options = {
   tooltip: {
-    trigger: "axis",
+    trigger: 'axis',
     axisPointer: {
       // 坐标轴指示器，坐标轴触发有效
-      type: "shadow" // 默认为直线，可选为：'line' | 'shadow'
+      type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
     }
   },
-  color: ["#fa6e86", "#5ab1ef"],
+  color: ['#fa6e86', '#5ab1ef'],
   legend: {
     data: data.legend
   },
   grid: {
-    left: "2%",
-    right: "4%",
-    bottom: "2%",
+    left: '2%',
+    right: '4%',
+    bottom: '2%',
     containLabel: true
   },
   xAxis: {
-    type: "value"
+    type: 'value'
   },
   yAxis: {
-    type: "category",
+    type: 'category',
     data: data.date
   },
   series: [
@@ -136,13 +136,13 @@ const options = {
     //   data: [616, 213, 123, 321, 432, 234, 543]
     // }
   ]
-};
+}
 for (let i = 0; i < data.legend.length; i++) {
   options.series.push({
     name: data.legend[i],
-    type: "bar",
+    type: 'bar',
     barWidth: 20,
-    stack: "总量",
+    stack: '总量',
     itemStyle: {
       normal: {
         color: data.color[i]
@@ -151,19 +151,18 @@ for (let i = 0; i < data.legend.length; i++) {
     label: {
       normal: {
         show: true,
-        position: "inside",
-        // eslint-disable-next-line prettier/prettier
-        formatter: function (params) {
+        position: 'inside',
+        formatter: function(params) {
           if (params.value > 0) {
-            return params.value;
+            return params.value
           } else {
-            return "";
+            return ''
           }
         }
       }
     },
     z: 20,
     data: data.data[i]
-  });
+  })
 }
-export default options;
+export default options

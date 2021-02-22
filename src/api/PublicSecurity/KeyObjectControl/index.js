@@ -1,4 +1,4 @@
-import axios from "@/utils/axios";
+import axios from '@/utils/axios'
 
 /**
  * 获取重点人员表格信息
@@ -6,9 +6,9 @@ import axios from "@/utils/axios";
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getPersonnelAll(data) {
-  return axios.get("/keypersoninfo/selectAll", {
+  return axios.get('/keypersoninfo/selectAll', {
     params: data
-  });
+  })
 }
 /**
  * 获取重点车辆表格信息
@@ -16,9 +16,9 @@ export function getPersonnelAll(data) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getVehicleAll(data) {
-  return axios.get("/focusVehicle/selectAll", {
+  return axios.get('/focusVehicle/selectAll', {
     params: data
-  });
+  })
 }
 /**
  * 获取重点人员表格信息
@@ -26,11 +26,11 @@ export function getVehicleAll(data) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getPersonnelOne(data) {
-  return axios.get("/keypersoninfo/selectOne", {
+  return axios.get('/keypersoninfo/selectOne', {
     params: {
       zdryxxbz: data
     }
-  });
+  })
 }
 /**
  * 获取重点车辆表格信息
@@ -38,9 +38,9 @@ export function getPersonnelOne(data) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getVehicleOne(data) {
-  return axios.get("/focusVehicle/selectOne", {
+  return axios.get('/focusVehicle/selectOne', {
     params: {
       zdclxxbs: data
     }
-  });
+  })
 }

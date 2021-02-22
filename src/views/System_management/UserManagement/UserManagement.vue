@@ -95,9 +95,9 @@
 </template>
 
 <script>
-import { getSelectAll } from "@/api/System_management/UserManagement/index";
-import MyformData from "./UserManagementform/UserManagementform";
-import MyTableData from "./UserManagementtable/UserManagementtable";
+import { getSelectAll } from '@/api/System_management/UserManagement/index'
+import MyformData from './UserManagementform/UserManagementform'
+import MyTableData from './UserManagementtable/UserManagementtable'
 // import fields from "./editor";
 export default {
   data() {
@@ -105,106 +105,106 @@ export default {
       collapse: [
         {
           id: 1,
-          title: "社区权限",
+          title: '社区权限',
           Authority: [
             {
               id: 1,
-              title: "荷花园社区",
+              title: '荷花园社区',
               checked: true
             },
             {
               id: 2,
-              title: "马王堆社区",
+              title: '马王堆社区',
               checked: true
             }
           ]
         },
         {
           id: 2,
-          title: "功能权限",
+          title: '功能权限',
           Authority: [
             {
               id: 1,
-              title: "实时监控",
+              title: '实时监控',
               checked: false
             },
             {
               id: 2,
-              title: "历史监控",
+              title: '历史监控',
               checked: false
             },
             {
               id: 3,
-              title: "综合数据管理",
+              title: '综合数据管理',
               checked: false
             },
             {
               id: 4,
-              title: "人员管理",
+              title: '人员管理',
               checked: false
             },
             {
               id: 5,
-              title: "车辆管理",
+              title: '车辆管理',
               checked: false
             },
             {
               id: 6,
-              title: "房屋管理",
+              title: '房屋管理',
               checked: false
             }
           ]
         }
       ],
       form: {
-        RoleName: "",
-        dataPermission: "1",
+        RoleName: '',
+        dataPermission: '1',
         FunctionPermissions: [
           {
             id: 1,
-            label: "首页",
+            label: '首页',
             disabled: true,
             children: []
           },
           {
             id: 4,
-            label: "车辆核验预警",
+            label: '车辆核验预警',
             children: [
               {
                 id: 9,
-                label: "访问"
+                label: '访问'
               },
               {
                 id: 10,
-                label: "添加"
+                label: '添加'
               },
               {
                 id: 11,
-                label: "删除"
+                label: '删除'
               },
               {
                 id: 12,
-                label: "修改"
+                label: '修改'
               },
               {
                 id: 13,
-                label: "处理"
+                label: '处理'
               }
             ]
           }
         ],
         defaultProps: {
-          children: "children",
-          label: "label"
+          children: 'children',
+          label: 'label'
         }
       },
       MyformData,
       MyTableData,
       // fields,
-      editorType: "add",
+      editorType: 'add',
       editorVisible: false,
       // width: "30%",
-      labelWidth: "160px",
+      labelWidth: '160px',
       AuthorityDialogVisible: false,
       activeNames: [1, 2],
       tableData: [],
@@ -216,43 +216,46 @@ export default {
         total: 10
       },
       paramsData: {
-        area: [],
-        userName: "",
-        realName: "",
-        state: ""
+        area: []
+        // userName: "",
+        // realName: "",
+        // state: ""
       }
       // editData: {},
       // title: ""
-    };
+    }
   },
   created() {
-    this.getTableInfo();
+    this.getTableInfo()
   },
   methods: {
     getTableInfo() {
       // this.tableData = [];
       getSelectAll({
-        ...this.paramsData,
         current: this.pagination.currentPage,
-        size: this.pagination.size
+        size: this.pagination.size,
+        ...this.paramsData
       }).then(res => {
         if (res.code === 1) {
-          this.tableData = res.data.records;
-          this.pagination.total = res.data.total;
-          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
-          this.$message.success(res.message);
+          this.tableData = res.data.records
+          this.pagination.total = res.data.total
+          // Object.assign(this.$data.paramsData, this.$options.data().paramsData);
+          this.paramsData = {}
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          // Object.assign(this.$data.paramsData, this.$options.data().paramsData);
+          this.paramsData = {}
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     // 点击事件
     clickButton(val) {
       // 调用事件
-      this[val.methods](val.row);
+      this[val.methods](val.row)
     },
     FormclickButton(val) {
-      this[val.methods](val.formData);
+      this[val.methods](val.formData)
     },
     // openEditor(type, row) {
     //   console.log(type, row);
@@ -266,59 +269,59 @@ export default {
 
     // 切换当前一页展示多少条
     sizeChange(val) {
-      this.pagination.size = val;
-      this.getTableInfo();
+      this.pagination.size = val
+      this.getTableInfo()
     },
     // 翻页
     pageChange(val) {
-      this.paramsData.currentPage = val;
-      this.getTableInfo();
+      this.paramsData.currentPage = val
+      this.getTableInfo()
     },
     // eslint-disable-next-line no-unused-vars
     Authority(val) {
       // 我是权限
-      this.AuthorityDialogVisible = true;
+      this.AuthorityDialogVisible = true
     },
-    handleChange(val) {
-      console.log(val);
-    },
+    // handleChange(val) {
+    //   console.log(val);
+    // },
     // eslint-disable-next-line no-unused-vars
     Disable(val) {
       // 我是禁用
-      let mystatus;
-      if (val.status === "禁用") {
-        mystatus = val.status;
+      let mystatus
+      if (val.status === '禁用') {
+        mystatus = val.status
       } else {
-        mystatus = "解禁";
+        mystatus = '解禁'
       }
-      this.$confirm(`确定${mystatus}该用户?`, "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning",
+      this.$confirm(`确定${mystatus}该用户?`, '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
         center: true
       })
         .then(() => {
           this.$message({
-            type: "success",
+            type: 'success',
             message: `${mystatus}成功!`
-          });
+          })
         })
         .catch(() => {
           this.$message({
-            type: "info",
+            type: 'info',
             message: `已取消${mystatus}`
-          });
-        });
+          })
+        })
     },
     search(v) {
-      this.paramsData = { ...v };
-      this.getTableInfo();
+      this.paramsData = { ...v }
+      this.getTableInfo()
     },
     add() {
-      this.AuthorityDialogVisible = true;
+      this.AuthorityDialogVisible = true
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

@@ -1,4 +1,4 @@
-import axios from "@/utils/axios";
+import axios from '@/utils/axios'
 
 /**
  * 获取小区车辆机动车档案表格信息
@@ -6,9 +6,9 @@ import axios from "@/utils/axios";
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getMotorSelectAll(data) {
-  return axios.get("/parkingmotorvehiclesinfo/selectAll", {
+  return axios.get('/parkingmotorvehiclesinfo/selectAll', {
     params: data
-  });
+  })
 }
 /**
  * 获取小区车辆电动车档案表格信息
@@ -16,9 +16,9 @@ export function getMotorSelectAll(data) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getElectricSelectAll(data) {
-  return axios.get("/electricbicycleinfo/selectAll", {
+  return axios.get('/electricbicycleinfo/selectAll', {
     params: data
-  });
+  })
 }
 /**
  * 获取小区车辆电动车档案表格单列信息
@@ -26,11 +26,11 @@ export function getElectricSelectAll(data) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getElectricSelectOne(ddzxcxxbz) {
-  return axios.get("/electricbicycleinfo/selectOne", {
+  return axios.get('/electricbicycleinfo/selectOne', {
     params: {
       ddzxcxxbz: ddzxcxxbz
     }
-  });
+  })
 }
 /**
  * 获取小区车辆机动车档案表格单列信息
@@ -38,11 +38,11 @@ export function getElectricSelectOne(ddzxcxxbz) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getMotorSelectOne(jdcxxbz) {
-  return axios.get("/parkingmotorvehiclesinfo/selectOne", {
+  return axios.get('/parkingmotorvehiclesinfo/selectOne', {
     params: {
       jdcxxbz: jdcxxbz
     }
-  });
+  })
 }
 
 /**
@@ -51,7 +51,7 @@ export function getMotorSelectOne(jdcxxbz) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function putMotorUpdate(data) {
-  return axios.put("/parkingmotorvehiclesinfo/update", data);
+  return axios.put('/parkingmotorvehiclesinfo/update', data)
 }
 /**
  * 编辑小区车辆电动车档案表格单列信息
@@ -59,5 +59,5 @@ export function putMotorUpdate(data) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function putElectricUpdate(data) {
-  return axios.put("/electricbicycleinfo/update", data);
+  return axios.put('/electricbicycleinfo/update', data)
 }

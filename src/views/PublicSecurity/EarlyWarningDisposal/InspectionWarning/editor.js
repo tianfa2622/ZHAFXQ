@@ -1,110 +1,110 @@
 const fields = [
   {
-    label: "小区：",
+    label: '小区：',
     span: 24,
-    field: "xqxxbz",
-    type: "select",
+    field: 'xqxxbz',
+    type: 'select',
     options: [
       {
-        label: "xq001",
-        value: "xq001"
+        label: 'xq001',
+        value: 'xq001'
       },
       {
-        label: "xq002",
-        value: "xq002"
+        label: 'xq002',
+        value: 'xq002'
       },
       {
-        label: "xq003",
-        value: "xq003"
+        label: 'xq003',
+        value: 'xq003'
       },
       {
-        label: "xq004",
-        value: "xq004"
+        label: 'xq004',
+        value: 'xq004'
       }
     ],
-    hidden: ["edit", "view"]
+    hidden: ['edit', 'view']
   },
   {
-    label: "巡查预案名称：",
+    label: '巡查预案名称：',
     span: 24,
-    field: "ycyaMc",
-    type: "input",
-    dataType: "string",
-    hidden: ["edit", "view"]
+    field: 'ycyaMc',
+    type: 'input',
+    dataType: 'string',
+    hidden: ['edit', 'view']
   },
   {
-    label: "关键词：",
+    label: '关键词：',
     span: 24,
-    field: "gjc",
-    type: "input",
-    dataType: "string",
-    hidden: ["edit", "view"]
+    field: 'gjc',
+    type: 'input',
+    dataType: 'string',
+    hidden: ['edit', 'view']
   },
   {
-    label: "录入时间：",
+    label: '录入时间：',
     span: 24,
-    field: "lrsj",
+    field: 'lrsj',
     // type: "input",
     // dataType: "string",
-    type: "datetime",
-    valueFormat: "yyyy-MM-dd HH:mm:ss",
-    hidden: ["edit", "view"]
+    type: 'datetime',
+    valueFormat: 'yyyy-MM-dd HH:mm:ss',
+    hidden: ['edit', 'view']
   },
   {
-    label: "简要情况：",
+    label: '简要情况：',
     span: 24,
-    field: "jyqk",
-    type: "input",
-    dataType: "string",
-    hidden: ["edit", "view"]
+    field: 'jyqk',
+    type: 'input',
+    dataType: 'string',
+    hidden: ['edit', 'view']
   },
   {
-    label: "详细情况：",
+    label: '详细情况：',
     span: 24,
-    field: "xxqk",
-    type: "input",
-    dataType: "string",
-    hidden: ["edit", "view"]
+    field: 'xxqk',
+    type: 'input',
+    dataType: 'string',
+    hidden: ['edit', 'view']
   },
   {
-    label: "电子文件URL：",
+    label: '电子文件URL：',
     span: 24,
-    field: "dzwjurl",
-    type: "input",
-    dataType: "string",
-    hidden: ["edit", "view"]
+    field: 'dzwjurl',
+    type: 'input',
+    dataType: 'string',
+    hidden: ['edit', 'view']
   },
   {
-    label: "登记人姓名：",
+    label: '登记人姓名：',
     span: 24,
-    field: "djrXm",
-    type: "input",
-    dataType: "string",
-    hidden: ["edit", "view"]
+    field: 'djrXm',
+    type: 'input',
+    dataType: 'string',
+    hidden: ['edit', 'view']
   },
   {
-    label: "登记人联系电话：",
+    label: '登记人联系电话：',
     span: 24,
-    field: "djrLxdh",
-    type: "input",
-    dataType: "string",
-    hidden: ["edit", "view"]
+    field: 'djrLxdh',
+    type: 'input',
+    dataType: 'string',
+    hidden: ['edit', 'view']
   },
   {
-    label: "处理人：",
+    label: '处理人：',
     span: 24,
-    field: "clr",
-    type: "input",
-    dataType: "string",
-    hidden: ["add"]
+    field: 'clr',
+    type: 'input',
+    dataType: 'string',
+    hidden: ['add']
   },
   {
-    label: "处理结果：",
+    label: '处理结果：',
     span: 24,
-    field: "cljg",
-    type: "textarea",
-    dataType: "string",
-    hidden: ["add"]
+    field: 'cljg',
+    type: 'textarea',
+    dataType: 'string',
+    hidden: ['add']
   }
   // {
   //   label: "身份证号",
@@ -121,8 +121,8 @@ const fields = [
   //     }
   //   ]
   // },
-];
-export default fields;
+]
+export default fields
 // [
 //   {
 //     label: "姓名",

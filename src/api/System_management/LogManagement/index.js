@@ -1,4 +1,4 @@
-import axios from "@/utils/axios";
+import axios from '@/utils/axios'
 
 /**
  * 获取日常设置信息
@@ -6,9 +6,9 @@ import axios from "@/utils/axios";
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getSelectAll(data) {
-  return axios.get("/log/selectAll", {
+  return axios.get('/log/selectAll', {
     params: data
-  });
+  })
 }
 /**
  * 获取日志表格单条信息
@@ -16,9 +16,9 @@ export function getSelectAll(data) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getSelectOne(data) {
-  return axios.get("/log/selectOne", {
+  return axios.get('/log/selectOne', {
     params: {
       id: data
     }
-  });
+  })
 }

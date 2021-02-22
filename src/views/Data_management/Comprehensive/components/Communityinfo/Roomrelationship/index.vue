@@ -80,9 +80,9 @@
 </template>
 
 <script>
-import { getSelectAll } from "@/api/Data_management/index/Roomrelationship/index";
+import { getSelectAll } from '@/api/Data_management/index/Roomrelationship/index'
 export default {
-  name: "Roomrelationship",
+  name: 'Roomrelationship',
   props: {
     currentPage: {
       type: String,
@@ -100,26 +100,26 @@ export default {
       // 显示出来的卡片盒子的宽度
       viewWidth: 0,
       SelectAllData: []
-    };
+    }
   },
   watch: {
     scrollLeft: {
       handler() {
         if (this.scrollLeft < 0) {
-          this.scrollLeft = 0;
+          this.scrollLeft = 0
         }
         if (this.scrollLeft + this.viewWidth > this.cardsWidth) {
-          this.scrollLeft = this.cardsWidth - this.viewWidth;
+          this.scrollLeft = this.cardsWidth - this.viewWidth
         }
         this.$refs.cards.scrollTo({
           left: this.scrollLeft,
-          behavior: "smooth"
-        });
+          behavior: 'smooth'
+        })
       }
     }
   },
   created() {
-    this.getSelectInfo();
+    this.getSelectInfo()
   },
   methods: {
     getSelectInfo() {
@@ -128,42 +128,42 @@ export default {
         // current: this.pagination.currentPage,
         // size: this.pagination.size
       }).then(res => {
-        console.log(res);
+        console.log(res)
         if (res.code === 1) {
-          this.SelectAllData = res.data.records;
+          this.SelectAllData = res.data.records
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     changeActive(i) {
       if (i === this.active) {
-        this.active = 0;
+        this.active = 0
       } else {
-        this.active = i;
+        this.active = i
       }
       setTimeout(() => {
-        this.initData();
-      }, 200);
+        this.initData()
+      }, 200)
     },
     initData() {
-      this.cardsWidth = this.$refs.cards.scrollWidth;
-      this.viewWidth = this.$refs.cards.clientWidth;
+      this.cardsWidth = this.$refs.cards.scrollWidth
+      this.viewWidth = this.$refs.cards.clientWidth
     },
     // 跳转页面
     changePage(target) {
       // 更新父组件传入的prop ‘currentPage’
-      this.$emit("update:currentPage", target);
+      this.$emit('update:currentPage', target)
     }
   },
   mounted() {
-    this.initData();
-    window.addEventListener("resize", this.initData);
+    this.initData()
+    window.addEventListener('resize', this.initData)
   },
   destroyed() {
-    window.removeEventListener("resize", this.initData);
+    window.removeEventListener('resize', this.initData)
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

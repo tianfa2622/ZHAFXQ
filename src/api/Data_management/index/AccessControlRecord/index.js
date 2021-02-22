@@ -1,4 +1,4 @@
-import axios from "@/utils/axios";
+import axios from '@/utils/axios'
 
 /**
  * 获取门禁记录信息
@@ -6,9 +6,9 @@ import axios from "@/utils/axios";
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getSelectAll(paramsData) {
-  return axios.get("/doorevent/selectAll", {
+  return axios.get('/doorevent/selectAll', {
     params: paramsData
-  });
+  })
 }
 
 /**
@@ -17,7 +17,7 @@ export function getSelectAll(paramsData) {
  * @returns {import("axios").AxiosPromise.data}
  */
 export function getSelectOne(paramsData) {
-  return axios.get("/doorevent/selectOne", {
+  return axios.get('/doorevent/selectOne', {
     params: paramsData
-  });
+  })
 }

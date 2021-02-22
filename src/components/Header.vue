@@ -21,49 +21,49 @@
 </template>
 
 <script>
-import { getCurrentDate } from "@/utils/date.js";
-import NavMenu from "./NavMenu";
+import { getCurrentDate } from '@/utils/date.js'
+import NavMenu from './NavMenu'
 export default {
   components: {
     NavMenu
   },
   data() {
     return {
-      nowDate: "",
-      period: ""
-    };
+      nowDate: '',
+      period: ''
+    }
   },
   mounted() {
     this.timer = setInterval(() => {
-      this.nowDate = getCurrentDate();
-      this.period = this.PeriodofTime();
-    }, 1000);
+      this.nowDate = getCurrentDate()
+      this.period = this.PeriodofTime()
+    }, 1000)
   },
   methods: {
     PeriodofTime() {
-      let time = new Date();
-      let Hour = time.getHours(); // 时
+      const time = new Date()
+      const Hour = time.getHours() // 时
       if (Hour >= 6 && Hour < 9) {
-        return "早上好";
-      } else if (9 <= Hour && Hour < 11) {
-        return "上午好";
-      } else if (11 <= Hour && Hour < 14) {
-        return "中午好";
-      } else if (14 <= Hour && Hour < 18) {
-        return "下午好";
-      } else if (18 <= Hour && Hour < 22) {
-        return "晚上好";
+        return '早上好'
+      } else if (Hour >= 9 && Hour < 11) {
+        return '上午好'
+      } else if (Hour >= 11 && Hour < 14) {
+        return '中午好'
+      } else if (Hour >= 14 && Hour < 18) {
+        return '下午好'
+      } else if (Hour >= 18 && Hour < 22) {
+        return '晚上好'
       } else {
-        return "您好";
+        return '您好'
       }
     }
   },
   beforeDestroy() {
     if (this.timer) {
-      clearInterval(this.timer);
+      clearInterval(this.timer)
     }
   }
-};
+}
 </script>
 
 <style lang="less">

@@ -118,16 +118,16 @@
 </template>
 
 <script>
-import vehicle, { echartData } from "./indexEchartsData/VehicleStatistics"; // echarts 车辆统计数据
+import vehicle, { echartData } from './indexEchartsData/VehicleStatistics' // echarts 车辆统计数据
 import housing, {
   trafficWay,
   housingData
-} from "./indexEchartsData/HousingUsage"; // echarts 房屋使用情况数据
-import IndexMap from "./map/indexMap"; // 地图
-import tableoptions from "./tableData/Equipment"; // 设备table数据
-import Inspection from "./tableData/Inspection"; // 巡查table数据
-import Perceive from "./tableData/Perceive"; // 感知table数据
-import { getStaffProfile, getqueryCl, getqueryFwsyqk } from "@/api/home";
+} from './indexEchartsData/HousingUsage' // echarts 房屋使用情况数据
+import IndexMap from './map/indexMap' // 地图
+import tableoptions from './tableData/Equipment' // 设备table数据
+import Inspection from './tableData/Inspection' // 巡查table数据
+import Perceive from './tableData/Perceive' // 感知table数据
+import { getStaffProfile, getqueryCl, getqueryFwsyqk } from '@/api/home'
 export default {
   components: {
     IndexMap
@@ -139,72 +139,72 @@ export default {
       tableoptions,
       tabsData: {},
       StaffProfile: [],
-      activeName: "first",
+      activeName: 'first',
       tabs: [
         {
-          label: "巡查预警",
-          name: "first"
+          label: '巡查预警',
+          name: 'first'
         },
         {
-          label: "感知预警",
-          name: "second"
+          label: '感知预警',
+          name: 'second'
         }
       ]
-    };
+    }
   },
   created() {
-    this.tabsdata();
+    this.tabsdata()
   },
   mounted() {
-    getStaffProfile("1").then(res => {
+    getStaffProfile('1').then(res => {
       if (res.code === 1) {
-        const data = res.data;
+        const data = res.data
         for (const key in data) {
           this.StaffProfile.push({
             name: key,
             number: data[key]
-          });
+          })
         }
       }
-    }),
-      getqueryCl("1").then(res => {
-        if (res.code === 1) {
-          const data = res.data;
-          for (const key in data) {
-            echartData.push({
-              name: key,
-              value: data[key],
-              unit: "辆"
-            });
-          }
-        }
-      });
-    getqueryFwsyqk("1").then(res => {
+    })
+    getqueryCl('1').then(res => {
       if (res.code === 1) {
-        const data = res.data;
+        const data = res.data
+        for (const key in data) {
+          echartData.push({
+            name: key,
+            value: data[key],
+            unit: '辆'
+          })
+        }
+      }
+    })
+    getqueryFwsyqk('1').then(res => {
+      if (res.code === 1) {
+        const data = res.data
         for (const key in data) {
           trafficWay.push({
             name: key,
             value: data[key]
-          });
+          })
         }
-        housingData();
+        housingData()
       }
-    });
+    })
   },
   methods: {
     handleClick() {
-      this.tabsdata();
+      this.tabsdata()
     },
     tabsdata() {
-      if (this.activeName === "first") {
-        this.tabsData = Inspection;
+      if (this.activeName === 'first') {
+        this.tabsData = Inspection
       } else {
-        this.tabsData = Perceive;
+        this.tabsData = Perceive
       }
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

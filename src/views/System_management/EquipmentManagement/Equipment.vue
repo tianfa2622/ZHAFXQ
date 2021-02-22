@@ -66,8 +66,8 @@
 </template>
 
 <script>
-import { getSelectAll } from "@/api/System_management/Equipment/index";
-import MyformData from "./Equipmentform/Equipmentform";
+import { getSelectAll } from '@/api/System_management/Equipment/index'
+import MyformData from './Equipmentform/Equipmentform'
 export default {
   data() {
     return {
@@ -84,10 +84,10 @@ export default {
         sbmc: null
         // ipdz: ""
       }
-    };
+    }
   },
   created() {
-    this.getselectAllInfo();
+    this.getselectAllInfo()
   },
   methods: {
     getselectAllInfo() {
@@ -97,37 +97,37 @@ export default {
         ...this.paramsData
       }).then(res => {
         if (res.code === 1) {
-          this.equipmentData = res.data.records;
-          this.total = res.data.total;
-          Object.assign(this.$data.paramsData, this.$options.data().paramsData);
-          this.$message.success(res.message);
+          this.equipmentData = res.data.records
+          this.total = res.data.total
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData)
+          this.$message.success(res.message)
         } else {
-          this.$message.error(res.message);
+          this.$message.error(res.message)
         }
-      });
+      })
     },
     // onSubmit() {
     // },
     // 切换当前一页展示多少条
     handleSizeChange(val) {
-      this.size = val;
-      this.getselectAllInfo();
+      this.size = val
+      this.getselectAllInfo()
     },
     handleCurrentChange(val) {
-      this.currentPage = val;
-      this.getselectAllInfo();
+      this.currentPage = val
+      this.getselectAllInfo()
     },
     // 点击事件
     clickButton(val) {
       // 调用事件
-      this[val.methods](val.formData);
+      this[val.methods](val.formData)
     },
     search(v) {
-      this.paramsData = { ...v };
-      this.getselectAllInfo();
+      this.paramsData = { ...v }
+      this.getselectAllInfo()
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>
