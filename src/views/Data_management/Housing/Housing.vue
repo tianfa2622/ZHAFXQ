@@ -74,6 +74,7 @@ import {
   PostInsert,
   getHousingCategory
 } from '@/api/Data_management/housing/index'
+import { getCurrentDate } from '@/utils/date'
 import MyformData from './Housingform/Housing'
 import HousingData from './Housingtable/Housingtable'
 import options from './HousingEcharts/HousingEcharts'
@@ -108,7 +109,7 @@ export default {
       editData: {},
       paramsData: {
         area: [],
-        xqxxmc: '',
+        xqxxbz: '',
         fwlbdm: '',
         fzXm: '',
         fzGmsfzhm: ''
@@ -162,6 +163,7 @@ export default {
       })
     },
     editHousingData(data) {
+      data.gxsj = getCurrentDate(true)
       PutUpdate(data).then(res => {
         if (res.code === 1) {
           this.editorVisible = false
@@ -173,6 +175,7 @@ export default {
       })
     },
     addHousingData(data) {
+      data.gxsj = getCurrentDate(true)
       PostInsert(data).then(res => {
         if (res.code === 1) {
           // this.$message.success(res.message)
@@ -206,7 +209,6 @@ export default {
       this[val.methods](val.formData)
     },
     confirm(formData) {
-      console.log(formData)
       if (this.editorType === 'add') {
         this.addHousingData(formData)
       } else {

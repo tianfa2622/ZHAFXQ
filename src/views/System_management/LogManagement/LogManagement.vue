@@ -129,6 +129,7 @@ export default {
           this.$message.success(res.message)
         } else {
           this.$message.error(res.message)
+          Object.assign(this.$data.paramsData, this.$options.data().paramsData)
         }
       })
     },

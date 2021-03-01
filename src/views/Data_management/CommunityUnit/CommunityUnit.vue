@@ -52,7 +52,7 @@ import {
   PutUpdate,
   PostInsert
 } from '@/api/Data_management/Residential_units'
-import { getCurrentDate } from '@/utils/date'
+import { getCurrentDate, dateAddYear } from '@/utils/date'
 import MyformData from './Unitform/Unitform'
 import UnitData from './Unittable/Unittable'
 import fields from './editor'
@@ -120,8 +120,8 @@ export default {
     },
     getColumnData(row) {
       getSelectOne({ dwxxbz: row.dwxxbz }).then(res => {
-        console.log(res)
         if (res.code === 1) {
+          // this.editData.yyzzyxqYxqjsrq = dateAddYear(res.data.yyzzyxqYxqqsrq, res.yyzzyxq)
           this.editData = res.data
           this.editorVisible = true
         } else {
@@ -130,6 +130,7 @@ export default {
       })
     },
     editUnitData(data) {
+      data.gxsj = getCurrentDate(true)
       PutUpdate(data).then(res => {
         if (res.code === 1) {
           this.$message.success(res.message)
@@ -141,6 +142,7 @@ export default {
       })
     },
     addUnitData(data) {
+      data.gxsj = getCurrentDate(true)
       PostInsert(data).then(res => {
         if (res.code === 1) {
           this.$message.success(res.message)
@@ -158,6 +160,7 @@ export default {
     },
     confirm(formData) {
       formData.gxsj = getCurrentDate(true)
+      formData.yyzzyxqYxqjzrq = dateAddYear(formData.yyzzyxqYxqqsrq, formData.yyzzyxq)
       if (this.editorType === 'add') {
         this.addUnitData(formData)
       } else {

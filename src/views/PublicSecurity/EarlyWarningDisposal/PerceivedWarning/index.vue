@@ -91,7 +91,9 @@ export default {
       paramsData: {
         gzyjsjlx: '',
         yjzt: '',
-        yjRqsj: ''
+        yjRqsj: '',
+        yjRqsjjs: '',
+        yjRqsjks: ''
       },
       editData: {},
       title: ''
@@ -102,12 +104,16 @@ export default {
   },
   methods: {
     getTableInfo() {
+      this.paramsData.yjRqsjks = this.paramsData.yjRqsj[0]
+      this.paramsData.yjRqsjjs = this.paramsData.yjRqsj[1]
+      this.paramsData.yjRqsj = ''
       getGZSelectAll({
-        currentPage: this.pagination.currentPage,
+        current: this.pagination.currentPage,
         size: this.pagination.size,
         ...this.paramsData
       }).then(res => {
         if (res.code === 1) {
+          console.log(res)
           this.tableData = res.data.records
           for (const key in this.tableData) {
             const value = 'clrXmDh'
@@ -124,7 +130,6 @@ export default {
       })
     },
     getColumnData(row) {
-      console.log(row.gzyjxxbz)
       getGZSelectOne(row.gzyjxxbz).then(res => {
         if (res.code === 1) {
           this.editData = res.data
@@ -170,6 +175,7 @@ export default {
       if (this.editorType === 'add') {
         this.addColumnData(formData)
       } else {
+        formData.ztm = 1
         this.editColumnData(formData)
       }
       // 请求接口提交数据 等等
@@ -183,7 +189,7 @@ export default {
     },
     // 翻页
     pageChange(val) {
-      this.paramsData.currentPage = val
+      this.pagination.currentPage = val
       this.getTableInfo()
     },
     edit(val) {

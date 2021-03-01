@@ -96,6 +96,7 @@ import Bytimetabel from './SituationAnalysistable/Bytimetabel'
 import ByAreatabel from './SituationAnalysistable/ByAreatabel'
 import BytimeEcharts from './SituationAnalysisEcharts/BytimeEcharts'
 import ByAreaEcharts from './SituationAnalysisEcharts/ByAreaEcharts'
+import { ExportToExcel } from '@/vendor/Export2Excel'
 export default {
   data() {
     return {
@@ -152,7 +153,9 @@ export default {
         rq: ''
       },
       xqxxdm: '',
-      area: '北京,北京市,东城区'
+      area: '北京,北京市,东城区',
+      exportKey: {},
+      exportTitle: ''
     }
   },
   created() {
@@ -169,6 +172,7 @@ export default {
         if (res.code === 1) {
           this.tableData = res.data.records
           this.pagination.total = res.data.total
+          this.exportTitle = '时间态势分析'
           Object.assign(this.$data.paramsData, this.$options.data().paramsData)
           this.$message.success(res.message)
         } else {
@@ -186,6 +190,7 @@ export default {
         if (res.code === 1) {
           this.tableData = res.data
           this.pagination.total = res.data.total
+          this.exportTitle = '区域态势分析'
           Object.assign(this.$data.paramsData, this.$options.data().paramsData)
           this.$message.success(res.message)
         } else {
@@ -233,6 +238,7 @@ export default {
     // },
     search(v) {
       this.paramsData = { ...v }
+      console.log({ ...v })
       switch (this.activeName) {
         case 'first':
           return this.getTimeInfo()
@@ -240,7 +246,42 @@ export default {
           return this.getAreaInfo()
       }
     },
-    Increase() {}
+    export() {
+      this.$confirm('该操作将数据导出为excel文件, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        if (this.activeName === 'first') {
+          this.exportKey = {
+            rq: '日期',
+            jjyc: '聚集异常',
+            ryyc: '人员异常',
+            clyc: '车俩异常',
+            zdry: '重点人员',
+            zdcl: '重点车辆'
+          }
+          ExportToExcel(this.tableData, this.exportKey, this.exportTitle)
+        } else {
+          this.exportKey = {
+            area: '区域',
+            jjyc: '聚集异常',
+            ryyc: '人员异常',
+            clyc: '车俩异常',
+            zdry: '重点人员',
+            zdcl: '重点车辆'
+          }
+          ExportToExcel(this.tableData, this.exportKey, this.exportTitle)
+        }
+        this.$message.success('文件导出成功')
+        this.exportKey = {}
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消操作'
+        })
+      })
+    }
   }
 }
 </script>

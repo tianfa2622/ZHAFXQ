@@ -22,20 +22,19 @@
               url: 'http://developer.baidu.com/map/jsdemo/img/fox.gif',
               size: { width: 300, height: 157 }
             }" -->
-          <template>
+          <template v-for="(item, index) in mapData">
             <bm-marker
-              v-for="(item, index) in mapData"
               :key="index"
               :position="item.markerPoint"
               :title="item.jlxxqmc"
-              @click="look(item)"
+              @click="infoWindowClose(item)"
             >
               <bm-info-window
                 :position="item.markerPoint"
                 :show="item.showFlag"
                 @close="infoWindowClose(item)"
-                @open="infoWindowOpen(item)"
               >
+                <!-- @open="infoWindowOpen(item)" -->
                 <div>
                   <div>
                     <el-form label-width="120px" size="mini" :model="from">
@@ -186,9 +185,10 @@ export default {
       getSelectAll({
         ...this.paramsData
       }).then(res => {
-        console.log(res)
         if (res.code === 1) {
           this.mapData = res.data.records
+          // this.mapData = [res.data.records[0]]
+          // console.log(this.mapData)
           for (const key in this.mapData) {
             this.mapData[key].showFlag = false
             this.mapData[key].markerPoint = {
@@ -222,7 +222,7 @@ export default {
     infoWindowOpen(item) {
       item.showFlag = true
     },
-    look(items) {
+    lookDetail(items) {
       this.from = items
       this.position = items.markerPoint
       items.showFlag = true

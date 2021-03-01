@@ -16,7 +16,7 @@ const options = {
     {
       span: 5,
       label: '小区名称:',
-      prop: 'xqxxmc',
+      prop: 'xqxxbz',
       type: 'text',
       clearable: true,
       class: ''

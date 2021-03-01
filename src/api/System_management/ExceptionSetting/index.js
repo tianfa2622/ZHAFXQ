@@ -10,6 +10,15 @@ export function getSelectYcsz(data) {
     params: data
   })
 }
+
+/**
+ * 保存异常设置信息
+ * @param {string} userId  操作用户id
+ * @param {object} data  更改的值
+ */
+export function updateYcsz(userId, data) {
+  return axios.put(`/ycsz/update?userId=${userId}`, data)
+}
 // /**
 //  * 获取日志表格单条信息
 //  * @param {string} data  查询传的值

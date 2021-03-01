@@ -9,8 +9,8 @@ const options = {
       span: 19,
       style: 'text-align:end',
       label: '',
-      prop: 'Date',
-      type: 'date',
+      prop: 'operationTime',
+      type: 'datetime',
       class: '',
       clearable: true,
       pickerOptions: {

@@ -57,20 +57,20 @@ const options = {
         type: 'text',
         size: 'mini',
         methods: 'edit',
-        style: 'color:#39c5aa'
-        // condition: row => {
-        //   return row.status === 1;
-        // }
+        style: 'color:#39c5aa',
+        condition: row => {
+          return row.ztm === 0
+        }
       },
       {
         label: '处理结果',
         type: 'text',
         size: 'mini',
         methods: 'view',
-        style: 'color:#39c5aa'
-        // condition: row => {
-        //   return row.status === 0;
-        // }
+        style: 'color:#39c5aa',
+        condition: row => {
+          return row.ztm === 1
+        }
       }
     ]
   }

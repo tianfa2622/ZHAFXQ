@@ -96,17 +96,17 @@ export default {
         {
           label: '人员异常',
           name: 'ryyc',
-          number: 2182
+          number: 0
         },
         {
           label: '车辆异常',
           name: 'clyc',
-          number: 2182
+          number: 0
         },
         {
           label: '聚集异常',
           name: 'jjyc',
-          number: 2182
+          number: 0
         }
       ],
       tableData: [],
@@ -126,6 +126,7 @@ export default {
     }
   },
   created() {
+    this.handleClick()
     this.getPersonnelInfo()
     this.getVehicleInfo()
     this.getGatherInfo()

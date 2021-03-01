@@ -25,13 +25,13 @@ const options = {
       span: 8,
       label: '录入时间：',
       prop: 'lrsj',
-      type: 'datetime',
+      type: 'datetimerange',
       class: '',
       clearable: true
     }
   ],
   btnData: {
-    span: 16,
+    span: 22,
     style: 'text-align: end;',
     BtndataList: [
       {

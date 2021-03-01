@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import { getSelectAll } from '@/api/Data_management/index/Accesscontrol/index'
+import { getSelectAll, putupdate } from '@/api/Data_management/index/Accesscontrol/index'
 import MyformData from './AccesscontrolForm/AccesscontrolForm'
 import MyTableData from './AccesscontrolTable/AccesscontrolTable'
 import fields from './editor'
@@ -64,6 +64,7 @@ export default {
   },
   data() {
     return {
+      title: '新增',
       MyformData,
       MyTableData,
       fields,
@@ -111,6 +112,15 @@ export default {
         }
       })
     },
+    AddputUpdata(data) {
+      putupdate(data).then(res => {
+        if (res.code === 1) {
+          this.$message.success('添加成功')
+        } else {
+          this.$message.error(res.message)
+        }
+      })
+    },
     // 切换当前一页展示多少条
     sizeChange(val) {
       this.pagination.size = val
@@ -129,13 +139,16 @@ export default {
     FormclickButton(val) {
       this[val.methods](val.formData)
     },
-    openEditor(type, row) {
-      console.log(type, row)
-      this.editorVisible = true
-    },
+    // openEditor(type, row) {
+    //   console.log(type, row)
+    //   this.editorVisible = true
+    // },
     confirm(formData) {
       console.log(formData)
       // 请求接口提交数据 等等
+      formData.mjdxxbz = `${this.pagination.total + 1}`
+      this.AddputUpdata(formData)
+      this.getSelectInfo()
       this.editorVisible = false
     },
     search(v) {

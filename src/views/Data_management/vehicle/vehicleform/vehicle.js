@@ -23,7 +23,7 @@ const options = {
     {
       span: 5,
       label: '车主姓名：',
-      prop: ' czXm',
+      prop: 'czXm',
       type: 'text',
       clearable: true,
       class: ''

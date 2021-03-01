@@ -19,7 +19,7 @@
       <div class="h-100 w-69">
         <Mytable
           :size="vehicleData.size"
-          :tableData="VehicleData"
+          :tableData="VehicleTabelData"
           :tableColumns="vehicleData.tableColumns"
           :tableOption="vehicleData.tableOption"
           :HeaderCellStyle="vehicleData.HeaderCellStyle"
@@ -67,7 +67,7 @@
       :type="editorType"
       :editData="editData"
       :visible.sync="editorVisible"
-      :fields="fields"
+      :fields="editvehicleData"
       @confirm="confirm"
       :labelWidth="labelWidth"
     />
@@ -81,18 +81,24 @@ import {
   getElectricSelectOne,
   getMotorSelectOne,
   putMotorUpdate,
-  putElectricUpdate
+  putElectricUpdate,
+  postMotorInsert,
+  postElectricInsert
 } from '@/api/Data_management/vehicle/index'
+import { getCurrentDate } from '@/utils/date'
 import MyformData from './vehicleform/vehicle'
 import vehicleData from './vehicletable/vehicletable'
 import options from './vehicleEcharts/vehicleEcharts'
-import fields from './editor'
+import fields from './Motoreditor'
+import fields1 from './Electriceditor'
 export default {
   data() {
     return {
       MyformData,
       vehicleData,
       options,
+      fields1,
+      fields,
       tableData: [
         {
           number: '数量',
@@ -112,15 +118,16 @@ export default {
         xqMc: '',
         czXm: '',
         cphm: '',
-        cllb: null
+        cllb: '1'
       },
       editData: {},
       editorType: 'add',
       editorVisible: false,
       labelWidth: '160px',
-      fields,
+      editvehicleData: fields,
       title: '',
-      VehicleData: []
+      VehicleTabelData: [],
+      rowsData: null
     }
   },
   mounted() {
@@ -135,15 +142,15 @@ export default {
         size: this.pagination.size
       }).then(res => {
         if (res.code === 1) {
-          this.VehicleData = res.data.records
+          this.VehicleTabelData = res.data.records
           this.pagination.total = res.data.total
-          for (const key in this.VehicleData) {
+          for (const key in this.VehicleTabelData) {
             const cphm = 'cphm'
-            this.VehicleData[key][cphm] = this.VehicleData[key].jdchphm
-            this.VehicleData[key].cllb = '机动车'
+            this.VehicleTabelData[key][cphm] = this.VehicleTabelData[key].jdchphm
+            this.VehicleTabelData[key].cllb = '机动车'
           }
-          Object.assign(this.$data.paramsData, this.$options.data().paramsData)
-          this.$message.success(res.message)
+          // Object.assign(this.$data.paramsData, this.$options.data().paramsData)
+          // this.$message.success(res.message)
         } else {
           this.$message.error(res.message)
         }
@@ -156,46 +163,54 @@ export default {
         size: this.pagination.size
       }).then(res => {
         if (res.code === 1) {
-          this.VehicleData = res.data.records
+          this.VehicleTabelData = res.data.records
           this.pagination.total = res.data.total
-          for (const key in this.VehicleData) {
+          for (const key in this.VehicleTabelData) {
             const cphm = 'cphm'
-            this.VehicleData[key][cphm] = this.VehicleData[key].ddzxccphm
-            this.VehicleData[key].cllb = '电动车'
+            this.VehicleTabelData[key][cphm] = this.VehicleTabelData[key].ddzxccphm
+            this.VehicleTabelData[key].cllb = '电动车'
           }
-          Object.assign(this.$data.paramsData, this.$options.data().paramsData)
-          this.$message.success(res.message)
+          // Object.assign(this.$data.paramsData, this.$options.data().paramsData)
+          // this.$message.success(res.message)
         } else {
           this.$message.error(res.message)
         }
       })
     },
+    // 判断车辆类型调用接口
     JudgmentType() {
       this.pagination.currentPage = 1
-      switch (this.paramsData.cllb) {
-        case '1':
-          return this.getMotorVehicleData()
-        case '2':
-          return this.getElectricVehicleData()
+      if (this.paramsData.cllb === '1') {
+        this.getMotorVehicleData()
+      } else if (this.paramsData.cllb === '2') {
+        this.getElectricVehicleData()
       }
     },
     openEditor(data) {
-      // this.editorVisible = true;
-      if (this.paramsData.cllb === 1) {
-        const parkingmotorvehiclesinfo = data
-        this.editMotorData(parkingmotorvehiclesinfo)
+      // // this.editorVisible = true;
+      // if (this.paramsData.cllb === 1) {
+      //   const parkingmotorvehiclesinfo = data
+      //   this.editMotorData(parkingmotorvehiclesinfo)
+      // } else {
+      //   this.editElectricData(data)
+      // }
+
+      if (this.rowsData.cllb === '机动车') {
+        this.editMotorData(data)
       } else {
         this.editElectricData(data)
       }
     },
     getMotorColumnData(row) {
+      this.rowsData = row
       getMotorSelectOne(row.jdcxxbz).then(res => {
         if (res.code === 1) {
+          this.editData = res.data
           const long = res.data.clcd
           const wide = res.data.clkd
           const high = res.data.clgd
-          this.editData = res.data
           this.editData.cltj = long * wide * high
+          console.log(this.editData.cltj)
           this.editorVisible = true
           this.$message.success(res.message)
         } else {
@@ -204,9 +219,15 @@ export default {
       })
     },
     getElectricColumnData(row) {
+      this.rowsData = row
       getElectricSelectOne(row.ddzxcxxbz).then(res => {
         if (res.code === 1) {
           this.editData = res.data
+          const long = res.data.cd
+          const wide = res.data.kd
+          const high = res.data.gd
+          this.editData.cltj = long * wide * high
+          console.log(this.editData.cltj)
           this.editorVisible = true
           this.$message.success(res.message)
         } else {
@@ -215,9 +236,37 @@ export default {
       })
     },
     editMotorData(data) {
+      data.gxsj = getCurrentDate(true)
       putMotorUpdate(data).then(res => {
         if (res.code === 1) {
-          console.log(res)
+          this.$message.success(res.message)
+          this.editorVisible = false
+          this.getMotorVehicleData()
+          // this.JudgmentType()
+        } else {
+          this.$message.error(res.message)
+        }
+      })
+    },
+    editElectricData(data) {
+      data.gxsj = getCurrentDate(true)
+      putElectricUpdate(data).then(res => {
+        if (res.code === 1) {
+          this.$message.success(res.message)
+          this.editorVisible = false
+          this.getElectricVehicleData()
+          // this.JudgmentType()
+        } else {
+          this.$message.error(res.message)
+        }
+      })
+    },
+    AddMotorData(data) {
+      data.jdcxxbz = `${this.pagination.total + 1}`
+      data.cltj = data.clcd * data.clkd * data.clgd
+      data.gxsj = getCurrentDate(true)
+      postMotorInsert(data).then(res => {
+        if (res.code === 1) {
           this.$message.success(res.message)
           this.editorVisible = false
           this.getMotorVehicleData()
@@ -226,10 +275,11 @@ export default {
         }
       })
     },
-    editElectricData(data) {
-      putElectricUpdate(data).then(res => {
+    AddElectricData(data) {
+      data.ddzxcxxbz = `${this.pagination.total + 1}`
+      data.gxsj = getCurrentDate(true)
+      postElectricInsert(data).then(res => {
         if (res.code === 1) {
-          console.log(res)
           this.$message.success(res.message)
           this.editorVisible = false
           this.getElectricVehicleData()
@@ -239,12 +289,20 @@ export default {
       })
     },
     confirm(formData) {
-      console.log(formData)
       if (this.editorType !== 'add') {
         this.openEditor(formData)
+      } else {
+        this.addVehicle(formData)
       }
       // 请求接口提交数据 等等
       this.editorVisible = false
+    },
+    addVehicle(data) {
+      if (this.paramsData.cllb === '1') {
+        this.AddMotorData(data)
+      } else {
+        this.AddElectricData(data)
+      }
     },
     // 切换当前一页展示多少条
     sizeChange(val) {
@@ -272,47 +330,57 @@ export default {
     FormclickButton(val) {
       this[val.methods](val.formData)
     },
+    // 切换类型点击事件
     selectTrigger(value) {
       this.paramsData.cllb = value
       this.JudgmentType()
     },
     search(v) {
-      if (this.paramsData.cllb === 1) {
-        this.paramsData = {
+      if (this.paramsData.cllb === '1') {
+        Object.assign(this.paramsData, {
           area: v.area,
           xqMc: v.xqMc,
           jdchphm: v.cphm,
           czXm: v.czXm
-        }
+        })
         this.getMotorVehicleData()
-      } else {
-        this.paramsData = {
+      } else if (this.paramsData.cllb === '2') {
+        Object.assign(this.paramsData, {
           area: v.area,
           xqMc: v.xqMc,
           ddzxccphm: v.cphm,
           czXm: v.czXm
-        }
+        })
         this.getElectricVehicleData()
       }
     },
     add() {
       this.editorType = 'add'
-      this.editorVisible = true
+      if (this.paramsData.cllb === '1') {
+        this.editvehicleData = this.fields
+        this.editorVisible = true
+      } else {
+        this.editvehicleData = this.fields1
+        this.editorVisible = true
+      }
     },
     toView(row) {
       this.editorType = 'view'
-      console.log(row.cllb)
       if (row.cllb === '机动车') {
+        this.editvehicleData = this.fields
         this.getMotorColumnData(row)
       } else {
+        this.editvehicleData = this.fields1
         this.getElectricColumnData(row)
       }
     },
     editor(row) {
       this.editorType = 'edit'
       if (row.cllb === '机动车') {
+        this.editvehicleData = this.fields
         this.getMotorColumnData(row)
       } else {
+        this.editvehicleData = this.fields1
         this.getElectricColumnData(row)
       }
     }

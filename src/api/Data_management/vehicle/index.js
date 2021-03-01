@@ -28,7 +28,7 @@ export function getElectricSelectAll(data) {
 export function getElectricSelectOne(ddzxcxxbz) {
   return axios.get('/electricbicycleinfo/selectOne', {
     params: {
-      ddzxcxxbz: ddzxcxxbz
+      id: ddzxcxxbz
     }
   })
 }
@@ -60,4 +60,21 @@ export function putMotorUpdate(data) {
  */
 export function putElectricUpdate(data) {
   return axios.put('/electricbicycleinfo/update', data)
+}
+
+/**
+ * 添加小区车辆机动车档案表格信息
+ * @param {JSON} data 添加的数据
+ *
+ */
+export function postMotorInsert(data) {
+  return axios.post('/parkingmotorvehiclesinfo/insert', data)
+}
+/**
+ * 添加小区车辆电动车档案表格信息
+ * @param {JSON} data 添加的数据
+ *
+ */
+export function postElectricInsert(data) {
+  return axios.post('/electricbicycleinfo/insert', data)
 }

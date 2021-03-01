@@ -98,7 +98,8 @@
               align="right"
               :type="columns.type"
               placeholder="请选择日期"
-              value-format="yyyy-MM-dd"
+              format="yyyy-MM-dd"
+              :value-format="columns.valueFormat"
               :clearable="columns.clearable"
               :picker-options="columns.pickerOptions"
             >
@@ -111,6 +112,7 @@
               align="right"
               unlink-panels
               format="yyyy-MM-dd"
+              value-format="yyyy-MM-dd"
               :class="columns.class"
               :range-separator="columns.range"
               start-placeholder="开始日期"
@@ -123,7 +125,8 @@
             <el-date-picker
               v-else-if="columns.type === 'datetimerange'"
               v-model="editData[columns.prop]"
-              format="yyyy:MM:dd HH:mm:ss"
+              format="yyyy-MM-dd HH:mm:ss"
+              value-format="yyyy-MM-dd HH:mm:ss"
               :type="columns.type"
               :range-separator="columns.range"
               :class="columns.class"

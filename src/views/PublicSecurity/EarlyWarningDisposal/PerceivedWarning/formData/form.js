@@ -66,14 +66,14 @@ const options = {
       span: 8,
       label: '预警时间：',
       prop: 'yjRqsj',
-      type: 'datetime',
+      type: 'datetimerange',
       valueFormat: 'yyyy-MM-dd HH:mm:ss',
       class: '',
       clearable: true
     }
   ],
   btnData: {
-    span: 16,
+    span: 22,
     style: 'text-align: end;',
     BtndataList: [
       {

@@ -81,7 +81,7 @@ export default {
       paramsData: {
         area: [],
         // xqxxbz: "",
-        sbmc: null
+        search: ''
         // ipdz: ""
       }
     }

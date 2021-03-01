@@ -35,42 +35,42 @@ const options = {
       class: ''
     },
     {
-      span: 7,
+      span: 8,
       label: '发布时间：',
       prop: 'fbRqsj',
-      type: 'datetime',
+      type: 'datetimerange',
       class: '',
-      clearable: true,
-      pickerOptions: {
-        shortcuts: [
-          {
-            text: '今天',
-            onClick(picker) {
-              picker.$emit('pick', new Date())
-            }
-          },
-          {
-            text: '昨天',
-            onClick(picker) {
-              const date = new Date()
-              date.setTime(date.getTime() - 3600 * 1000 * 24)
-              picker.$emit('pick', date)
-            }
-          },
-          {
-            text: '一周前',
-            onClick(picker) {
-              const date = new Date()
-              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7)
-              picker.$emit('pick', date)
-            }
-          }
-        ]
-      }
+      clearable: true
+      // pickerOptions: {
+      //   shortcuts: [
+      //     {
+      //       text: '今天',
+      //       onClick(picker) {
+      //         picker.$emit('pick', new Date())
+      //       }
+      //     },
+      //     {
+      //       text: '昨天',
+      //       onClick(picker) {
+      //         const date = new Date()
+      //         date.setTime(date.getTime() - 3600 * 1000 * 24)
+      //         picker.$emit('pick', date)
+      //       }
+      //     },
+      //     {
+      //       text: '一周前',
+      //       onClick(picker) {
+      //         const date = new Date()
+      //         date.setTime(date.getTime() - 3600 * 1000 * 24 * 7)
+      //         picker.$emit('pick', date)
+      //       }
+      //     }
+      //   ]
+      // }
     }
   ],
   btnData: {
-    span: 18,
+    span: 22,
     style: 'text-align: end;',
     BtndataList: [
       {

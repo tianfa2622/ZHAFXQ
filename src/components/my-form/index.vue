@@ -1,20 +1,19 @@
 <template>
   <el-form
     ref="form"
-    size="mini"
+    size="small"
     :model="formData"
     :disabled="disabled"
     :inline="inline || true"
     :label-width="labelWidth || '100px'"
     :rules="formRules"
   >
-    <el-row type="flex" justify="center">
+    <el-row type="flex">
       <!-- v-for 与 v-if 不可同时使用，所以使用不会渲染的template标签进行循环，再在el-form-item里面判断 -->
       <template v-for="field in fields">
-        <el-col :span="field.span || 12" :key="field.field">
+        <el-col v-if="!(field.hidden && field.hidden.includes(type))" :span="field.span || 12" :key="field.field">
           <!-- 如果field中存在hidden字段，并且hidden中包含type会返回true，会显示这个字段，所以使用感叹号反向，让他不显示 -->
           <el-form-item
-            v-if="!(field.hidden && field.hidden.includes(type))"
             :label="field.label"
             :prop="field.field"
             :style="field.formItemStyle"
@@ -92,6 +91,14 @@
             >
             </el-input>
             <el-date-picker
+              v-else-if="field.type === 'date'"
+              v-model="formData[field.field]"
+              :style="field.style || ''"
+              :value-format="field.valueFormat"
+              type="date"
+              placeholder="选择日期">
+            </el-date-picker>
+            <el-date-picker
               v-else-if="field.type === 'datetime'"
               v-model="formData[field.field]"
               :style="field.style || ''"
@@ -99,6 +106,33 @@
               placeholder="选择日期时间"
               :value-format="field.valueFormat"
             >
+            </el-date-picker>
+            <el-date-picker
+              v-else-if="field.type === 'datetimerange'"
+              v-model="formData[field.field]"
+              format="yyyy-MM-dd HH:mm:ss"
+              :value-format="field.valueFormat"
+              type="datetimerange"
+              range-separator="-"
+              :class="field.class || ''"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期"
+              placeholder="请选择"
+              :style="field.style || ''"
+            >
+            </el-date-picker>
+            <el-date-picker
+              v-else-if="field.type === 'daterange'"
+              v-model="formData[field.field]"
+              format="yyyy-MM-dd"
+              type="daterange"
+              :value-format="field.valueFormat"
+              placeholder="请选择"
+              range-separator="-"
+              start-placeholder="开始日期"
+              :class="field.class || ''"
+              :style="field.style || ''"
+              end-placeholder="结束日期">
             </el-date-picker>
           </el-form-item>
         </el-col>

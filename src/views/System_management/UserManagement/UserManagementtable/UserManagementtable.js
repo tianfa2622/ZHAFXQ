@@ -25,16 +25,34 @@ const options = {
     {
       label: '更新时间',
       param: 'updateTime',
-      align: 'center'
+      align: 'center',
+      render: row => {
+        function formatDateTime(inputTime) {
+          var date = new Date(inputTime)
+          var y = date.getFullYear()
+          var m = date.getMonth() + 1
+          m = m < 10 ? ('0' + m) : m
+          var d = date.getDate()
+          d = d < 10 ? ('0' + d) : d
+          var h = date.getHours()
+          h = h < 10 ? ('0' + h) : h
+          var minute = date.getMinutes()
+          var second = date.getSeconds()
+          minute = minute < 10 ? ('0' + minute) : minute
+          second = second < 10 ? ('0' + second) : second
+          return y + '-' + m + '-' + d + ' ' + ' ' + h + ':' + minute + ':' + second
+        }
+        return formatDateTime(row.updateTime)
+      }
     },
     {
       label: '状态',
       param: 'state',
       align: 'center',
       render: row => {
-        if (row.state === '0') {
+        if (row.state === '1') {
           return '正常'
-        } else if (row.state === '1') {
+        } else if (row.state === '0') {
           return '禁用'
         }
       }

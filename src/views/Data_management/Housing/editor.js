@@ -266,7 +266,8 @@ const fields = [
     label: '数据更新时间：',
     field: 'gxsj',
     type: 'input',
-    dataType: 'string'
+    dataType: 'string',
+    hidden: ['edit', 'add']
   },
   {
     label: '数据来源：',

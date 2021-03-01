@@ -90,7 +90,9 @@ export default {
       paramsData: {
         fblx: null,
         fbRqsj: '',
-        fbnr: ''
+        fbnr: '',
+        fbRqsjks: '',
+        fbRqsjjs: ''
       },
       editData: {},
       title: ''
@@ -101,6 +103,9 @@ export default {
   },
   methods: {
     getFeedbackInfo() {
+      this.paramsData.fbRqsjks = this.paramsData.fbRqsj[0]
+      this.paramsData.fbRqsjjs = this.paramsData.fbRqsj[1]
+      this.paramsData.fbRqsj = ''
       getSelectAll({
         ...this.paramsData,
         current: this.pagination.currentPage,
@@ -160,9 +165,9 @@ export default {
     },
     // 翻页
     pageChange(val) {
-      console.log(val)
       this.pagination.currentPage = val
       this.getFeedbackInfo()
+      this.pagination.currentPage = 1
     },
     search(v) {
       this.paramsData = { ...v }

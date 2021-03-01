@@ -19,7 +19,7 @@ const options = {
     },
     {
       label: '法人姓名',
-      param: 'djr',
+      param: 'djrXm',
       align: 'center'
     },
     {

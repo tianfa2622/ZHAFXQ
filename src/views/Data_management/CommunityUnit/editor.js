@@ -19,7 +19,7 @@ const fields = [
     ]
   },
   {
-    label: '房屋信息标识:',
+    label: '房屋信息标识：',
     field: 'fwxxbz',
     type: 'input',
     dataType: 'string'
@@ -31,7 +31,7 @@ const fields = [
     dataType: 'string'
   },
   {
-    label: '单位信息标识',
+    label: '单位信息标识：',
     field: 'dwxxbz',
     type: 'input',
     dataType: 'string'
@@ -82,16 +82,30 @@ const fields = [
     dataType: 'string'
   },
   {
-    label: '营业执照有效日期：',
-    field: 'yyzzyxq',
-    type: 'input',
-    dataType: 'string'
-  },
-  {
     label: '经济类型：',
     field: 'jjlxdm',
     type: 'input',
     dataType: 'string'
+  },
+  {
+    label: '营业执照有效日期(年)：',
+    // span: 24,
+    formItemStyle: 'width:100%',
+    field: 'yyzzyxq',
+    type: 'input',
+    // dataType: 'string',
+    // style: 'width:50%',
+    valueFormat: 'yyyy-MM-dd'
+  },
+  {
+    label: '有效期起始日期：',
+    // span: 24,
+    formItemStyle: 'width:100%',
+    field: 'yyzzyxqYxqqsrq',
+    type: 'date',
+    // dataType: 'string',
+    // style: 'width:50%',
+    valueFormat: 'yyyy-MM-dd'
   },
   {
     label: '经营范围(主营)：',
@@ -193,8 +207,8 @@ const fields = [
     label: '数据更新时间：',
     field: 'gxsj',
     type: 'input',
-    dataType: 'string'
-    // hidden: ['add', 'edit']
+    dataType: 'string',
+    hidden: ['add', 'edit']
   },
   {
     label: '数据来源：',

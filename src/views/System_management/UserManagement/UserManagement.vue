@@ -49,7 +49,7 @@
       center
     >
       <el-form :model="form" label-width="130px">
-        <el-form-item label="权限设置：">
+        <el-form-item label="角色设置：">
           <el-input
             v-model="form.RoleName"
             placeholder="请输入角色名称"
@@ -274,7 +274,7 @@ export default {
     },
     // 翻页
     pageChange(val) {
-      this.paramsData.currentPage = val
+      this.pagination.currentPage = val
       this.getTableInfo()
     },
     // eslint-disable-next-line no-unused-vars

@@ -23,7 +23,7 @@ const options = {
     {
       span: 5,
       label: '法人姓名：',
-      prop: 'djr',
+      prop: 'djrXm',
       type: 'text',
       clearable: true,
       class: ''

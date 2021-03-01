@@ -42,7 +42,7 @@ const options = {
         },
         {
           label: '禁用',
-          value: '2'
+          value: '0'
         }
       ]
     }

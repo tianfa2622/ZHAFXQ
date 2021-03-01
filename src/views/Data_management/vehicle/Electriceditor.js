@@ -2,9 +2,33 @@ const fields = [
   {
     label: '小区名称：',
     field: 'xqxxbz',
-    type: 'input',
-    dataType: 'string'
+    type: 'select',
+    options: [
+      {
+        label: '万家丽小区',
+        value: 'xq001'
+      },
+      {
+        label: '万丽小区',
+        value: 'xq002'
+      }
+    ]
   },
+  // {
+  //   label: '车辆类别：',
+  //   field: 'cllb',
+  //   type: 'select',
+  //   options: [
+  //     {
+  //       label: '机动车',
+  //       value: 0
+  //     },
+  //     {
+  //       label: '电动车',
+  //       value: 1
+  //     }
+  //   ]
+  // },
   {
     label: '车主姓名：',
     field: 'czXm',
@@ -24,59 +48,38 @@ const fields = [
     dataType: 'string'
   },
   {
-    label: '机动车车牌号码：',
-    field: 'jdchphm',
+    label: '电动车车牌号码：',
+    field: 'ddzxccphm',
     type: 'input',
     dataType: 'string'
   },
   {
-    label: '机动车车辆类型：',
-    field: 'jdccllxdm',
-    type: 'select',
-    options: [
-      {
-        label: '机动车',
-        value: 0
-      },
-      {
-        label: '电动车',
-        value: 1
-      }
-    ]
-  },
-  {
-    label: '机动车号牌种类：',
-    field: 'jdchpzldm',
-    type: 'input',
-    dataType: 'string'
-  },
-  {
-    label: '机动车号牌颜色：',
-    field: 'jdchpysdm',
+    label: '电动自行车尺寸：',
+    field: 'ddzxccc',
     type: 'input',
     dataType: 'string'
   },
   {
     label: '中文品牌名称：',
-    field: 'zwppmc',
+    field: 'ddzxcpp',
     type: 'input',
     dataType: 'string'
   },
   {
     label: '车辆长度：',
-    field: 'clcd',
+    field: 'cd',
     type: 'input',
     dataType: 'number'
   },
   {
     label: '车辆高度：',
-    field: 'clgd',
+    field: 'gd',
     type: 'input',
     dataType: 'number'
   },
   {
     label: '车辆宽度：',
-    field: 'clkd',
+    field: 'kd',
     type: 'input',
     dataType: 'number'
   },
@@ -84,26 +87,30 @@ const fields = [
     label: '车辆体积(长*宽*高)：',
     field: 'cltj',
     type: 'input',
-    dataType: 'string'
+    dataType: 'string',
+    disabled: true
     // hidden: ["edit", "add"]
   },
   {
-    label: '机动车车身颜色：',
-    field: 'jdccsysdm',
+    label: '电动车车身颜色：',
+    field: 'wpysdm',
     type: 'input',
     dataType: 'string'
   },
   {
-    label: '车辆型号：',
-    field: 'clxh',
-    type: 'input',
-    dataType: 'string'
-  },
-  {
-    label: '机动车简要情况：',
-    field: 'jyqk',
-    type: 'input',
-    dataType: 'string'
+    label: '有无车牌：',
+    field: 'ywcpPdbz',
+    type: 'select',
+    options: [
+      {
+        label: '有',
+        value: '0'
+      },
+      {
+        label: '无',
+        value: '1'
+      }
+    ]
   },
   {
     label: '登记人姓名：',
@@ -121,7 +128,8 @@ const fields = [
     label: '数据更新时间：',
     field: 'gxsj',
     type: 'input',
-    dataType: 'string'
+    dataType: 'string',
+    hidden: ['edit', 'add']
   },
   {
     label: '数据来源：',
@@ -131,7 +139,7 @@ const fields = [
   },
   {
     label: '数据状态：',
-    span: 24,
+    // span: 24,
     field: 'sjzt',
     type: 'input',
     dataType: 'string'

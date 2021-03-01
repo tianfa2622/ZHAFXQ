@@ -54,8 +54,13 @@ const fields = [
     label: '采集系统信息：',
     span: 24,
     field: 'cjxtxxbz',
-    type: 'input',
-    dataType: 'string',
+    type: 'select',
+    options: [
+      {
+        label: '系统1',
+        value: 'cjxt001'
+      }
+    ],
     hidden: ['edit', 'view']
   },
   {
