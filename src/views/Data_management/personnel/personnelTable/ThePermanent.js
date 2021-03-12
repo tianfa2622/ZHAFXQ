@@ -13,7 +13,7 @@ const options = {
       align: 'center'
     },
     {
-      label: '身份证号码',
+      label: '证件号码',
       param: 'zjhm',
       align: 'center'
     },

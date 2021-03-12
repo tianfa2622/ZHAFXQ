@@ -306,19 +306,24 @@ export default {
     },
     // 切换当前一页展示多少条
     sizeChange(val) {
-      this.pagination.size = val
-      if (this.paramsData.cllb === 1) {
+      this.pagination.size = 0
+      if (this.paramsData.cllb === '1') {
+        this.pagination.size = val
         this.getMotorVehicleData()
       } else {
+        this.pagination.size = val
         this.getElectricVehicleData()
       }
     },
     // 翻页
     pageChange(val) {
-      this.pagination.currentPage = val
-      if (this.paramsData.cllb === 1) {
+      this.pagination.currentPage = 1
+      console.log('🚀 ~ file: vehicle.vue ~ line 323 ~ this.paramsData.cllb', this.paramsData.cllb)
+      if (this.paramsData.cllb === '1') {
+        this.pagination.currentPage = val
         this.getMotorVehicleData()
-      } else {
+      } else if (this.paramsData.cllb === '2') {
+        this.pagination.currentPage = val
         this.getElectricVehicleData()
       }
     },

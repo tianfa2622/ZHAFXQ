@@ -7,6 +7,38 @@ const fields = [
     type: 'avatar'
   },
   {
+    label: '人口登记类型：',
+    field: 'rkdjlx',
+    type: 'select',
+    options: [
+      {
+        label: '流动',
+        value: '2'
+      },
+      {
+        label: '常住',
+        value: '1'
+      }
+    ]
+    // hidden: ["edit"]
+  },
+  {
+    label: '人员登记类型：',
+    field: 'rydjlx',
+    type: 'select',
+    options: [
+      {
+        label: '重点',
+        value: '0'
+      },
+      {
+        label: '轻量',
+        value: '1'
+      }
+    ]
+    // hidden: ["edit"]
+  },
+  {
     label: '小区信息标识：',
     field: 'xqxxbz',
     type: 'select',
@@ -104,12 +136,12 @@ const fields = [
     type: 'input',
     dataType: 'string'
   },
-  {
-    label: '身份证号：',
-    field: 'djrGmsfzhm',
-    type: 'input',
-    dataType: 'string'
-  },
+  // {
+  //   label: '身份证号：',
+  //   field: 'djrGmsfzhm',
+  //   type: 'input',
+  //   dataType: 'string'
+  // },
   {
     label: '民族：',
     field: 'mzdm',
@@ -201,19 +233,19 @@ const fields = [
     ]
   },
   {
-    label: '实际居住地：',
+    label: '现住地址：',
     field: 'sjjzd',
     type: 'input',
     dataType: 'string'
   },
   {
-    label: '行政区划：',
+    label: '实际居住行政区划：',
     field: 'sjjzdXzqhdm',
     type: 'input',
     dataType: 'string'
   },
   {
-    label: '区划内详细地址：',
+    label: '实际区划内详细地址：',
     field: 'sjjzdQhnxxdz',
     type: 'input',
     dataType: 'string'
@@ -298,38 +330,6 @@ const fields = [
     field: 'jdchphm',
     type: 'input',
     dataType: 'string'
-  },
-  {
-    label: '人员登记类型：',
-    field: 'rydjlx',
-    type: 'select',
-    options: [
-      {
-        label: '重点',
-        value: '0'
-      },
-      {
-        label: '轻量',
-        value: '1'
-      }
-    ]
-    // hidden: ["edit"]
-  },
-  {
-    label: '人口登记类型：',
-    field: 'rkdjlx',
-    type: 'select',
-    options: [
-      {
-        label: '流动',
-        value: '2'
-      },
-      {
-        label: '常住',
-        value: '1'
-      }
-    ]
-    // hidden: ["edit"]
   },
   {
     label: '数据来源：',
