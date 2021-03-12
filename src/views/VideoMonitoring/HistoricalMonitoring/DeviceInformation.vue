@@ -2,9 +2,10 @@
   <div class="h-100 w-100 bgc dflex direction-column">
     <div class="felx1">
       <el-breadcrumb separator=">>">
-        <!-- :to="{ path: '/StaffAnalysis' }" -->
-        <!-- :to="{ path: '/HistoricalMonitoring' }" -->
-        <el-breadcrumb-item>历史监控</el-breadcrumb-item>
+        <!-- :to="{ path: '/HistoricalMonitoring'}" -->
+        <el-breadcrumb-item>
+          <span @click="changePage('1')" class="pointer"> 历史监控 </span>
+        </el-breadcrumb-item>
         <el-breadcrumb-item>{{ EquipmentName }}</el-breadcrumb-item>
       </el-breadcrumb>
       <el-divider class="mt-5"></el-divider>
@@ -106,7 +107,12 @@ export default {
       // 调用事件
       this[val.methods](val.row)
     },
-    search() {}
+    search() {},
+    // 跳转页面
+    changePage(target) {
+      // 更新父组件传入的prop ‘Page’
+      this.$emit('update:page', target)
+    }
   }
 }
 </script>

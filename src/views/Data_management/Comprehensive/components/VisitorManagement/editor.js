@@ -1,15 +1,19 @@
 const fields = [
   {
     label: '',
+    span: 12,
     field: 'djrlbz',
     type: 'image',
-    style: 'width: 200px; height: 200px',
+    imageStyle: 'text-align:center',
+    style: 'width: 200px; height: 200px;',
     title: '设备抓拍照'
   },
   {
     label: '',
+    span: 12,
     field: 'djzjzbz',
     type: 'image',
+    imageStyle: 'text-align:center',
     style: 'width: 200px; height: 200px',
     title: '证件照'
   },

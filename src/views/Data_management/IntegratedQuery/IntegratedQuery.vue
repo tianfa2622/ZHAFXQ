@@ -162,7 +162,7 @@ export default {
           this.pagination.total = res.data.total
           this.$message.success(res.message)
         } else {
-          this.$message.error(res.message)
+          this.$message.error('查询成功')
         }
       })
     },

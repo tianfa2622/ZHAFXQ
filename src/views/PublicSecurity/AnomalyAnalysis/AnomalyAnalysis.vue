@@ -146,7 +146,7 @@ export default {
           this.pagination.total = res.data.total
           Object.assign(this.$data.paramsData, this.$options.data().paramsData)
         } else {
-          this.$message.error(res.message)
+          this.$message.error('查询成功')
         }
       })
     },
@@ -163,7 +163,7 @@ export default {
           this.pagination.total = res.data.total
           Object.assign(this.$data.paramsData, this.$options.data().paramsData)
         } else {
-          this.$message.error(res.message)
+          this.$message.error('查询成功')
         }
       })
     },
@@ -180,7 +180,7 @@ export default {
           this.pagination.total = res.data.total
           Object.assign(this.$data.paramsData, this.$options.data().paramsData)
         } else {
-          this.$message.error(res.message)
+          this.$message.error('查询成功')
         }
       })
     },

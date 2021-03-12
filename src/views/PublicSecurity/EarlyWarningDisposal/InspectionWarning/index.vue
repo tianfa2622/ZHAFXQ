@@ -114,7 +114,7 @@ export default {
           // this.$message.success(res.message);
         } else {
           Object.assign(this.$data.paramsData, this.$options.data().paramsData)
-          this.$message.error(res.message)
+          this.$message.error('查询成功')
         }
       })
     },

@@ -2,17 +2,17 @@
   <div class="h-100 w-100 bgc dflex direction-column">
     <div class="felx1">
       <el-breadcrumb separator=">>">
-        <!-- :to="{ path: '/StaffAnalysis' }" -->
         <el-breadcrumb-item>视频监控</el-breadcrumb-item>
         <el-breadcrumb-item>历史监控</el-breadcrumb-item>
       </el-breadcrumb>
       <el-divider class="mt-5"></el-divider>
       <Myform
-        :formData="MyformData.formData"
+        :formData="paramsData"
         :form="MyformData.form"
         :itemColumns="MyformData.itemColumns"
+        :btnData="MyformData.btnData"
+        @clickButton="FormclickButton"
       ></Myform>
-        <!-- @clickButton="clickButton" -->
     </div>
     <div class="vehicle_bottom dflex">
       <div class="w-20">
@@ -73,9 +73,9 @@
               @current-change="handleCurrentChange"
               :current-page="currentPage"
               :page-sizes="[10, 15, 20, 25]"
-              :page-size="10"
+              :page-size="size"
               layout="total, sizes, prev, pager, next, jumper"
-              :total="20"
+              :total="total"
               class="posi-abs b-10 ta-c offset"
             >
             </el-pagination>
@@ -98,6 +98,9 @@ export default {
   data() {
     return {
       MyformData,
+      paramsData: {
+        area: []
+      },
       AreaSelection: [
         {
           id: 1,
@@ -119,32 +122,31 @@ export default {
       checkList: [1, 2],
       EquipmentName: 'XX设备',
       IPaddress: 'XX街',
-      currentPage: 1
+      currentPage: 1,
+      total: 6,
+      size: 10
     }
   },
+  created() {
+
+  },
   methods: {
-    // onSubmit() {
-    // },
-    // Jump() {
-    //   this.$router.push("/HistoricalMonitoring/DeviceInformation");
-    // },
     handleSizeChange(val) {
       console.log(val)
     },
     handleCurrentChange(val) {
       console.log(val)
     },
-    // // 点击事件
-    // clickButton(val) {
-    //   // 调用事件
-    //   this[val.methods](val.row)
-    // },
-    // search() {},
+    FormclickButton(val) {
+      this[val.methods](val.formData)
+    },
+    search(v) {
+      this.paramsData = { ...v }
+    },
     // 跳转页面
     changePage(target) {
       // 更新父组件传入的prop ‘Page’
-      // console.log(target)
-      this.$emit('update:Page', target)
+      this.$emit('update:page', target)
     }
   }
 }

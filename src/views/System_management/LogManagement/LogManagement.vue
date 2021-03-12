@@ -128,7 +128,7 @@ export default {
           Object.assign(this.$data.paramsData, this.$options.data().paramsData)
           this.$message.success(res.message)
         } else {
-          this.$message.error(res.message)
+          this.$message.error('查询成功')
           Object.assign(this.$data.paramsData, this.$options.data().paramsData)
         }
       })

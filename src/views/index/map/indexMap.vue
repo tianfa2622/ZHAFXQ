@@ -17,15 +17,17 @@
           :key="index"
           :position="item.markerPoint"
           :title="item.name"
-          @click="look(item)"
+          @click="infoWindowOpen(item)"
         >
+          <!-- @click="look(item)" -->
           <bm-info-window
             autoPan
+            :closeOnClick="false"
             :position="item.markerPoint"
             :show="item.showFlag"
             @close="infoWindowClose(item)"
-            @open="infoWindowOpen(item)"
           >
+            <!-- @open="infoWindowOpen(item)" -->
             <div>
               <el-form size="mini" :model="from">
                 <el-form-item label="楼栋数量："> </el-form-item>

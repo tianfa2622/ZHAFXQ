@@ -20,15 +20,15 @@
           trigger="hover"
         >
           <el-button
-class="btncolor"
-@click="openEditor(item.tccxxbz)"
-            >详情</el-button
-          >
+            class="btncolor"
+            @click="openEditor(item.tccxxbz)">
+            详情
+          </el-button>
           <el-button
-class="btncolor"
-@click="EntryExitInfo(item.tccxxbz)"
-            >出入口信息</el-button
-          >
+            class="btncolor"
+            @click="EntryExitInfo(item.tccxxbz)">
+            出入口信息
+          </el-button>
           <el-button class="btncolor" @click="changePage('4')">
             停车位信息
           </el-button>
@@ -137,26 +137,29 @@ class="btncolor"
     <!-- @confirm="confirm" -->
     <el-dialog :visible.sync="dialogVisible">
       <el-tabs type="border-card">
-        <el-tab-pane label="出入口1">
+        <template v-for=" (item, index) in editData1">
+          <el-tab-pane :key="index" label="item.mc">
+            <my-form
+              ref="form"
+              :disabled="disabled"
+              :type="type"
+              :fields="fields1"
+              :editData="item"
+              @change="handlerChange"
+              :labelWidth="labelWidth"
+            />
+          </el-tab-pane>
+        </template>
+        <!-- <el-tab-pane label="出入口2">
           <my-form
             ref="form"
             :disabled="disabled"
             :type="type"
             :fields="fields1"
-            @change="handlerChange"
+            :editData="editData"
             :labelWidth="labelWidth"
           />
-        </el-tab-pane>
-        <el-tab-pane label="出入口2">
-          <my-form
-            ref="form"
-            :disabled="disabled"
-            :type="type"
-            :fields="fields1"
-            @change="handlerChange"
-            :labelWidth="labelWidth"
-          />
-        </el-tab-pane>
+        </el-tab-pane> -->
       </el-tabs>
     </el-dialog>
   </div>
@@ -165,7 +168,8 @@ class="btncolor"
 <script>
 import {
   getSelectAll,
-  getSelectOne
+  getSelectOne,
+  parkinggateinfo
 } from '@/api/Data_management/index/Parkinglot/index'
 import MyEcharts from '@/components/echarts/index'
 import ParkingSpace from './ParkinglotEcharts/ParkingSpaceEcharts'
@@ -198,7 +202,8 @@ export default {
       labelWidth: '160px',
       type: 'view',
       editData: {},
-      title: '停车场详情'
+      title: '停车场详情',
+      editData1: []
     }
   },
   created() {
@@ -215,7 +220,7 @@ export default {
         if (res.code === 1) {
           this.parkingData = res.data.records
         } else {
-          this.$message.error(res.message)
+          this.$message.error('查询成功')
         }
       })
     },
@@ -231,7 +236,17 @@ export default {
         }
       })
     },
-    getEntryExitInfo() {},
+    getEntryExitInfo() {
+      parkinggateinfo().then(res => {
+        console.log(res)
+        if (res.code === 1) {
+          this.editData1 = res.data.records
+          this.$message.success('cg')
+        } else {
+          this.$message.error('查询成功')
+        }
+      })
+    },
     openEditor(row) {
       // console.log(row);
       // switch (type) {
@@ -257,6 +272,7 @@ export default {
     //   });
     // },
     EntryExitInfo() {
+      this.getEntryExitInfo()
       this.dialogVisible = true
     },
     // 跳转页面

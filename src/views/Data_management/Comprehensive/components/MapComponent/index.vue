@@ -17,81 +17,91 @@
           :center="center"
           :zoom="zoom"
           mapType="BMAP_SATELLITE_MAP"
-        >
-          <!-- :icon="{
-              url: 'http://developer.baidu.com/map/jsdemo/img/fox.gif',
-              size: { width: 300, height: 157 }
-            }" -->
-          <template v-for="(item, index) in mapData">
-            <bm-marker
-              :key="index"
-              :position="item.markerPoint"
-              :title="item.jlxxqmc"
-              @click="infoWindowClose(item)"
-            >
-              <bm-info-window
-                :position="item.markerPoint"
-                :show="item.showFlag"
-                @close="infoWindowClose(item)"
-              >
-                <!-- @open="infoWindowOpen(item)" -->
-                <div>
-                  <div>
-                    <el-form label-width="120px" size="mini" :model="from">
-                      <el-form-item label="小区名称：">
-                        {{ from.jlxxqmc }}
-                      </el-form-item>
-                      <el-form-item label="小区楼栋数：">
-                        <span>{{ from.xqldSl }}</span>
-                      </el-form-item>
-                      <el-form-item label="小区出入口数：">
-                        <span>{{ from.xqcrkSl }}</span>
-                      </el-form-item>
-                      <el-form-item label="物业公司名称：">
-                        <span>{{ from.wygs }}</span>
-                      </el-form-item>
-                      <el-form-item label="地址：">
-                        <span>{{ from.dzmc }}</span>
-                      </el-form-item>
-                    </el-form>
-                  </div>
-                  <div class="mt-5">
-                    <el-button
-                      type="primary"
-                      size="mini"
-                      @click="changePage('2')"
-                    >
-                      访客记录
-                    </el-button>
-                    <el-button type="primary" size="mini" @click="openEditor">
-                      物业信息
-                    </el-button>
-                    <el-button
-                      type="primary"
-                      size="mini"
-                      @click="changePage('3')"
-                    >
-                      停车场概况
-                    </el-button>
-                    <el-button
-                      type="primary"
-                      size="mini"
-                      @click="changePage('5')"
-                    >
-                      小区信息
-                    </el-button>
-                    <el-button
-                      type="primary"
-                      size="mini"
-                      @click="changePage('6')"
-                    >
-                      门禁信息
-                    </el-button>
-                  </div>
-                </div>
-              </bm-info-window>
-            </bm-marker>
-          </template>
+          >
+            <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
+            <bm-geolocation anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :showAddressBar="true" :autoLocation="true"></bm-geolocation>
+            <template v-for=" (marker,index) in mapData" >
+              <!-- 标记点组件 -->
+              <bm-marker :position="{ lng: marker.dqjd, lat: marker.dqwd }" :key="marker.id" :title="marker.jlxxqmc" :dragging="true" @click="infoWindowOpen(marker)">
+                <!-- 信息窗体组件 -->
+                <bm-info-window
+                  autoPan
+                  :show="marker.show"
+                  :title="title"
+                  :closeOnClick="false"
+                  :position="{lng: marker.dqjd , lat: marker.dqwd}"
+                  :offset="{width:5,height:-5}"
+                  @close="infoWindowClose(marker)"
+                  @open="infoWindowOpen(marker)"
+                  >
+                    <div>
+                      <!-- <div> -->
+                        <el-form label-width="120px" size="mini" :model="marker">
+                          <el-form-item label="小区名称：">
+                            {{ marker.jlxxqmc }}
+                          </el-form-item>
+                          <el-form-item label="小区楼栋数：">
+                            <span>{{ marker.xqldSl }}</span>
+                          </el-form-item>
+                          <el-form-item label="小区出入口数：">
+                            <span>{{ marker.xqcrkSl }}</span>
+                          </el-form-item>
+                          <el-form-item label="物业公司名称：">
+                            <span>{{ marker.wygs }}</span>
+                          </el-form-item>
+                          <el-form-item label="地址：">
+                            <span>{{ marker.dzmc }}</span>
+                          </el-form-item>
+                        </el-form>
+                      <!-- </div> -->
+                      <div class="mt-5">
+                        <el-button
+                          type="primary"
+                          size="mini"
+                          @click="changePage('2')"
+                        >
+                          访客记录
+                        </el-button>
+                        <el-button type="primary" size="mini" @click="openEditor">
+                          物业信息
+                        </el-button>
+                        <el-button
+                          type="primary"
+                          size="mini"
+                          @click="changePage('3')"
+                        >
+                          停车场概况
+                        </el-button>
+                        <el-button
+                          type="primary"
+                          size="mini"
+                          @click="changePage('5')"
+                        >
+                          小区信息
+                        </el-button>
+                        <el-button
+                          type="primary"
+                          size="mini"
+                          @click="changePage('6')"
+                        >
+                          门禁信息
+                        </el-button>
+                      </div>
+                    </div>
+                </bm-info-window>
+                <!-- 标签组件 -->
+                <bm-label
+                    :content="index + 1 + ''"
+                    :labelStyle="{
+                      color: '#fff',
+                      fontSize: '12px',
+                      background: 'rgba(0, 0, 0, 0)',
+                      borderColor: 'rgba(0, 0, 0, 0)',
+                    }"
+                    :offset="{ width: index >= 9 ? 0 : 4, height: 2 }"
+                />
+              </bm-marker>
+            </template>
         </baidu-map>
       </div>
       <div class="w-1 h-100"></div>
@@ -120,9 +130,6 @@
     />
     <!-- @confirm="confirm" -->
   </div>
-  <!-- @moving="syncCenterAndZoom"
-        @moveend="syncCenterAndZoom"
-        @zoomend="syncCenterAndZoom" -->
 </template>
 
 <script>
@@ -133,7 +140,6 @@ import {
 import MyformData from './Mapform'
 import options1 from './Community.js'
 import fields from './editor'
-// import options from "../../../../VideoMonitoring/Real-time/RealTimeForm/RealTimeForm";
 
 export default {
   name: 'MapComponent',
@@ -143,10 +149,13 @@ export default {
       required: true
     }
   },
+  components: {
+  },
   data() {
     return {
       MyformData,
       options1,
+      show: false,
       // center: {
       //   lng: 116.404,
       //   lat: 39.915
@@ -157,10 +166,6 @@ export default {
         lat: 2
       },
       zoom: 5,
-      // markerPoint:{
-      //   lng:116.404,
-      //   lat:39.915
-      // },
       from: {},
       position: {},
       fields,
@@ -174,7 +179,8 @@ export default {
         jlxxqmc: ''
       },
       mapData: [],
-      title: '物业信息'
+      title: '物业信息',
+      infoWindow: {}
     }
   },
   created() {
@@ -187,26 +193,20 @@ export default {
       }).then(res => {
         if (res.code === 1) {
           this.mapData = res.data.records
-          // this.mapData = [res.data.records[0]]
-          // console.log(this.mapData)
-          for (const key in this.mapData) {
-            this.mapData[key].showFlag = false
-            this.mapData[key].markerPoint = {
-              lng: this.mapData[key].dqjd,
-              lat: this.mapData[key].dqwd
-            }
+          for (let i = 0; i < this.mapData.length; i++) {
+            this.$set(this.mapData[i], 'show', false)
+            this.$set(this.mapData[i], 'id', i)
           }
           Object.assign(this.$data.paramsData, this.$options.data().paramsData)
           this.$message.success(res.message)
         } else {
-          this.$message.error(res.message)
+          this.$message.error('查询成功')
         }
       })
     },
     getSelectInfoOne(row) {
       getSelectOne(row.xqxxbz).then(res => {
         if (res.code === 1) {
-          console.log(res)
           this.editData = res.data
           this.editorVisible = true
           this.$message.success(res.message)
@@ -215,17 +215,20 @@ export default {
         }
       })
     },
-    // 点击事件
-    infoWindowClose(item) {
-      item.showFlag = false
+    // lookDetail(marker) {
+    //   console.log(1)
+    //   marker.show = !marker.show
+    //   console.log(marker.show)
+    // },
+    // 关闭标记详情
+    infoWindowClose(marker) {
+      marker.show = false
+      console.log('🚀 ~ file: index.vue ~ line 225 ~ marker.show', marker.show)
     },
-    infoWindowOpen(item) {
-      item.showFlag = true
-    },
-    lookDetail(items) {
-      this.from = items
-      this.position = items.markerPoint
-      items.showFlag = true
+    // 打开标记详情
+    infoWindowOpen(marker) {
+      marker.show = true
+      console.log('🚀 ~ file: index.vue ~ line 230 ~ marker.show', marker.show)
     },
     FormclickButton(val) {
       // 调用事件

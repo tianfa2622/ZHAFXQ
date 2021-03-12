@@ -142,7 +142,7 @@ export default {
           this.input = ''
           this.$message.success(res.message)
         } else {
-          this.$message.error(res.message)
+          this.$message.error('查询成功')
         }
       })
     },
@@ -159,7 +159,7 @@ export default {
           this.input = ''
           this.$message.success(res.message)
         } else {
-          this.$message.error(res.message)
+          this.$message.error('查询成功')
         }
       })
     },

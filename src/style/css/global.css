@@ -44,7 +44,7 @@ a {
   text-decoration: none;
 }
 
-@media screen and (min-width:1600px) {
+@media screen and (min-width: 1600px) {
   .tablebtn {
     margin-left: 0px !important;
   }
@@ -306,7 +306,6 @@ a {
 
 .px-20 {
   padding: 0 20px !important;
-
 }
 
 .px-30 {

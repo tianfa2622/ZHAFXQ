@@ -2,8 +2,7 @@ import Axios from 'axios'
 // import Cookies from 'js-cookie'
 
 const axios = Axios.create({
-  // 你这里加了一个前缀了
-  baseURL: process.env.NODE_ENV === 'development' ? '/api' : '',
+  baseURL: process.env.NODE_ENV === 'development' ? '/api' : 'http://pm2.winvers.com/zhnfxq',
   timeout: process.env.NODE_ENV === 'development' ? 60 * 1000 : 10 * 1000
 })
 

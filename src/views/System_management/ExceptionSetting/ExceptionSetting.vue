@@ -293,7 +293,7 @@ export default {
           this.formData2 = res.data.jjyj
           // this.$message.success(res.message)
         } else {
-          this.$message.error(res.message)
+          this.$message.error('查询成功')
         }
       })
     },

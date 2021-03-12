@@ -6,10 +6,10 @@
 </template>
 
 <script>
-import Historical from './Historical'
+import Historical from './Historical1'
 import DeviceInformation from './DeviceInformation'
 export default {
-  name: 'Historical',
+  name: 'Historicalvioed',
   components: {
     Historical,
     DeviceInformation

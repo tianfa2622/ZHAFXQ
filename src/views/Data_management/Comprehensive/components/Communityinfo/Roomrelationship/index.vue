@@ -132,7 +132,7 @@ export default {
         if (res.code === 1) {
           this.SelectAllData = res.data.records
         } else {
-          this.$message.error(res.message)
+          this.$message.error('查询成功')
         }
       })
     },
