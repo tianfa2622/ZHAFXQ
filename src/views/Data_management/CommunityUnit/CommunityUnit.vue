@@ -112,7 +112,7 @@ export default {
           this.tableData = res.data.records
           this.pagination.total = res.data.total
           Object.assign(this.$data.paramsData, this.$options.data().paramsData)
-          this.$message.success(res.message)
+          // this.$message.success(res.message)
         } else {
           this.$message.error('查询成功')
         }
@@ -133,7 +133,7 @@ export default {
       data.gxsj = getCurrentDate(true)
       PutUpdate(data).then(res => {
         if (res.code === 1) {
-          this.$message.success(res.message)
+          // this.$message.success(res.message)
           this.editorVisible = false
           this.getUnitInfo()
         } else {
@@ -145,7 +145,7 @@ export default {
       data.gxsj = getCurrentDate(true)
       PostInsert(data).then(res => {
         if (res.code === 1) {
-          this.$message.success(res.message)
+          // this.$message.success(res.message)
         } else {
           this.$message.error(res.message)
         }

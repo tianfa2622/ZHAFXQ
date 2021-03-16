@@ -100,7 +100,7 @@ export default {
           this.equipmentData = res.data.records
           this.total = res.data.total
           Object.assign(this.$data.paramsData, this.$options.data().paramsData)
-          this.$message.success(res.message)
+          // this.$message.success(res.message)
         } else {
           this.$message.error('查询成功')
         }

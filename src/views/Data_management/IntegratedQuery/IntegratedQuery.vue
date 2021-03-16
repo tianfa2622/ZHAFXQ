@@ -160,7 +160,7 @@ export default {
         if (res.code === 1) {
           this.tableData = res.data.records
           this.pagination.total = res.data.total
-          this.$message.success(res.message)
+          // this.$message.success(res.message)
         } else {
           this.$message.error('查询成功')
         }

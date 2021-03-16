@@ -230,7 +230,7 @@ export default {
           console.log(res.data)
           this.editData = res.data
           this.editorVisible = true
-          this.$message.success(res.message)
+          // this.$message.success(res.message)
         } else {
           this.$message.error(res.message)
         }

@@ -99,3 +99,83 @@ export function dateAddYear(date, years) {
   var strEndDate = intYear + '-' + strMonth + '-' + strDay
   return strEndDate
 }
+
+/**
+ * 获取"年-月-日"
+ */
+export function getDate() {
+  var ddd = new Date()
+  var month, day
+  if (ddd.getMonth() < 9) {
+    month = '0' + (ddd.getMonth() + 1)
+  } else {
+    month = (ddd.getMonth() + 1)
+  }
+  if (ddd.getDate() < 10) {
+    day = '0' + ddd.getDate()
+  } else {
+    day = ddd.getDate()
+  }
+  var date = ddd.getFullYear() + '-' + month + '-' + day
+  return date
+}
+
+/**
+ * 获取"年-月-日 时：分：秒"
+ */
+export function getDatetime() {
+  var ddd = new Date()
+  var month, day, hours, minutes, seconds
+  if (ddd.getMonth() < 9) {
+    month = '0' + (ddd.getMonth() + 1)
+  } else {
+    month = (ddd.getMonth() + 1)
+  }
+  if (ddd.getDate() < 10) {
+    day = '0' + ddd.getDate()
+  } else {
+    day = ddd.getDate()
+  }
+  if (ddd.getHours() < 10) {
+    hours = '0' + ddd.getHours()
+  } else {
+    hours = ddd.getHours()
+  }
+  if (ddd.getMinutes() < 10) {
+    minutes = '0' + ddd.getMinutes()
+  } else {
+    minutes = ddd.getMinutes()
+  }
+  if (ddd.getSeconds() < 10) {
+    seconds = '0' + ddd.getSeconds()
+  } else {
+    seconds = ddd.getSeconds()
+  }
+  var datew = ddd.getFullYear() + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds
+  return datew
+}
+
+/**
+ * 获取"时：分：秒"
+ */
+export function hms() {
+  var ddd = new Date()
+  var hours, minutes, seconds
+  if (ddd.getHours() < 10) {
+    hours = '0' + ddd.getHours()
+  } else {
+    hours = ddd.getHours()
+  }
+  if (ddd.getMinutes() < 10) {
+    minutes = '0' + ddd.getMinutes()
+  } else {
+    minutes = ddd.getMinutes()
+  }
+  if (ddd.getSeconds() < 10) {
+    seconds = '0' + ddd.getSeconds()
+  } else {
+    seconds = ddd.getSeconds()
+  }
+  var datew = hours + ':' + minutes + ':' + seconds
+  return datew
+}

@@ -139,7 +139,7 @@ export default {
           this.tableData = res.data.records
           this.pagination.total = res.data.total
           Object.assign(this.$data.paramsData, this.$options.data().paramsData)
-          // this.$message.success(res.message)
+          // // this.$message.success(res.message)
         } else {
           Object.assign(this.$data.paramsData, this.$options.data().paramsData)
           this.$message.error('查询成功')
@@ -149,7 +149,7 @@ export default {
     putUpData(formData) {
       getUpdate(formData).then(res => {
         if (res.code === 1) {
-          this.$message.success(res.message)
+          // this.$message.success(res.message)
           this.editorVisible = false
           this.getPersonnelInfo()
         } else {

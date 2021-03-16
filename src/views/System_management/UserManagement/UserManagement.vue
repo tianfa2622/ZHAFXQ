@@ -241,7 +241,7 @@ export default {
           this.pagination.total = res.data.total
           // Object.assign(this.$data.paramsData, this.$options.data().paramsData);
           this.paramsData = {}
-          this.$message.success(res.message)
+          // this.$message.success(res.message)
         } else {
           // Object.assign(this.$data.paramsData, this.$options.data().paramsData);
           this.paramsData = {}

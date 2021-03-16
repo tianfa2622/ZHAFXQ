@@ -150,7 +150,7 @@ export default {
             this.VehicleTabelData[key].cllb = '机动车'
           }
           // Object.assign(this.$data.paramsData, this.$options.data().paramsData)
-          // this.$message.success(res.message)
+          // // this.$message.success(res.message)
         } else {
           this.$message.error('查询成功')
         }
@@ -171,7 +171,7 @@ export default {
             this.VehicleTabelData[key].cllb = '电动车'
           }
           // Object.assign(this.$data.paramsData, this.$options.data().paramsData)
-          // this.$message.success(res.message)
+          // // this.$message.success(res.message)
         } else {
           this.$message.error('查询成功')
         }
@@ -212,7 +212,7 @@ export default {
           this.editData.cltj = long * wide * high
           console.log(this.editData.cltj)
           this.editorVisible = true
-          this.$message.success(res.message)
+          // this.$message.success(res.message)
         } else {
           this.$message.error(res.message)
         }
@@ -229,7 +229,7 @@ export default {
           this.editData.cltj = long * wide * high
           console.log(this.editData.cltj)
           this.editorVisible = true
-          this.$message.success(res.message)
+          // this.$message.success(res.message)
         } else {
           this.$message.error(res.message)
         }
@@ -239,7 +239,7 @@ export default {
       data.gxsj = getCurrentDate(true)
       putMotorUpdate(data).then(res => {
         if (res.code === 1) {
-          this.$message.success(res.message)
+          // this.$message.success(res.message)
           this.editorVisible = false
           this.getMotorVehicleData()
           // this.JudgmentType()
@@ -252,7 +252,7 @@ export default {
       data.gxsj = getCurrentDate(true)
       putElectricUpdate(data).then(res => {
         if (res.code === 1) {
-          this.$message.success(res.message)
+          // this.$message.success(res.message)
           this.editorVisible = false
           this.getElectricVehicleData()
           // this.JudgmentType()
@@ -267,7 +267,7 @@ export default {
       data.gxsj = getCurrentDate(true)
       postMotorInsert(data).then(res => {
         if (res.code === 1) {
-          this.$message.success(res.message)
+          // this.$message.success(res.message)
           this.editorVisible = false
           this.getMotorVehicleData()
         } else {
@@ -280,7 +280,7 @@ export default {
       data.gxsj = getCurrentDate(true)
       postElectricInsert(data).then(res => {
         if (res.code === 1) {
-          this.$message.success(res.message)
+          // this.$message.success(res.message)
           this.editorVisible = false
           this.getElectricVehicleData()
         } else {

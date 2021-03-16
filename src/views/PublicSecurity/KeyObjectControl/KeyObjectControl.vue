@@ -140,7 +140,7 @@ export default {
           this.tableData = res.data.records
           this.pagination.total = res.data.total
           this.input = ''
-          this.$message.success(res.message)
+          // this.$message.success(res.message)
         } else {
           this.$message.error('查询成功')
         }
@@ -157,7 +157,7 @@ export default {
           this.tableData = res.data.records
           this.pagination.total = res.data.total
           this.input = ''
-          this.$message.success(res.message)
+          // this.$message.success(res.message)
         } else {
           this.$message.error('查询成功')
         }
@@ -169,7 +169,7 @@ export default {
         if (res.code === 1) {
           this.editData = res.data
           this.editorVisible = true
-          this.$message.success(res.message)
+          // this.$message.success(res.message)
         } else {
           this.$message.error(res.message)
         }
@@ -181,7 +181,7 @@ export default {
         if (res.code === 1) {
           this.editData = res.data
           this.editorVisible = true
-          this.$message.success(res.message)
+          // this.$message.success(res.message)
         } else {
           this.$message.error(res.message)
         }

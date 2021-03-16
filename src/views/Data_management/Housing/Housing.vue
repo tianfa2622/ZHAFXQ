@@ -156,7 +156,7 @@ export default {
         if (res.code === 1) {
           this.editData = res.data
           this.editorVisible = true
-          this.$message.success(res.message)
+          // this.$message.success(res.message)
         } else {
           this.$message.error(res.message)
         }
@@ -168,7 +168,7 @@ export default {
         if (res.code === 1) {
           this.editorVisible = false
           this.getHousingInfo()
-          this.$message.success(res.message)
+          // this.$message.success(res.message)
         } else {
           this.$message.error(res.message)
         }
@@ -178,7 +178,7 @@ export default {
       data.gxsj = getCurrentDate(true)
       PostInsert(data).then(res => {
         if (res.code === 1) {
-          // this.$message.success(res.message)
+          // // this.$message.success(res.message)
           this.$message.success('添加成功')
         } else {
           this.$message.error(res.message)

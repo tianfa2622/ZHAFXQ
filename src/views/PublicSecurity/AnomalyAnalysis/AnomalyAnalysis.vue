@@ -77,6 +77,7 @@ import personnelTable from './AnomalyAnalysistable/personnelTable'
 import vehicleTable from './AnomalyAnalysistable/vehicleTable'
 import GatherTable from './AnomalyAnalysistable/GatherTable'
 import fields from './editor'
+// import { getDatetime } from '@/utils/date'
 
 export default {
   data() {
@@ -178,6 +179,7 @@ export default {
           this.tabs[2].number = res.data.total
           this.tableData = res.data.records
           this.pagination.total = res.data.total
+          console.log(this.tabsData.cljg)
           Object.assign(this.$data.paramsData, this.$options.data().paramsData)
         } else {
           this.$message.error('查询成功')
@@ -187,7 +189,7 @@ export default {
     putPersonnelData(formData) {
       putPersonnelupdate(formData).then(res => {
         if (res.code === 1) {
-          this.$message.success(res.message)
+          // this.$message.success(res.message)
           this.editorVisible = false
           this.getPersonnelInfo()
         } else {
@@ -198,7 +200,7 @@ export default {
     putVehicleData(formData) {
       putVehicleupdate(formData).then(res => {
         if (res.code === 1) {
-          this.$message.success(res.message)
+          // this.$message.success(res.message)
           this.editorVisible = false
           this.getVehicleInfo()
         } else {
@@ -207,11 +209,13 @@ export default {
       })
     },
     putGatherData(formData) {
+      // formData.clsj = getDatetime()
+      // console.log(formData.clsj)
       putGatherupdate(formData).then(res => {
         if (res.code === 1) {
-          this.$message.success(res.message)
+          // this.$message.success(res.message)
           this.editorVisible = false
-          this.putGatherupdate()
+          this.getGatherInfo()
         } else {
           this.$message.error(res.message)
         }
@@ -223,7 +227,7 @@ export default {
         if (res.code === 1) {
           this.editData = res.data
           this.editorVisible = true
-          this.$message.success(res.message)
+          // this.$message.success(res.message)
         } else {
           this.$message.error(res.message)
         }
@@ -234,7 +238,7 @@ export default {
         if (res.code === 1) {
           this.editData = res.data
           this.editorVisible = true
-          this.$message.success(res.message)
+          // this.$message.success(res.message)
         } else {
           this.$message.error(res.message)
         }
@@ -245,7 +249,7 @@ export default {
         if (res.code === 1) {
           this.editData = res.data
           this.editorVisible = true
-          this.$message.success(res.message)
+          // this.$message.success(res.message)
         } else {
           this.$message.error(res.message)
         }
@@ -280,6 +284,14 @@ export default {
     confirm(formData) {
       console.log(formData)
       // 请求接口提交数据 等等
+      switch (this.activeName) {
+        case 'ryyc':
+          return this.putPersonnelData(formData)
+        case 'clyc':
+          return this.putVehicleData(formData)
+        case 'jjyc':
+          return this.putGatherData(formData)
+      }
       this.editorVisible = false
     },
     // 切换当前一页展示多少条

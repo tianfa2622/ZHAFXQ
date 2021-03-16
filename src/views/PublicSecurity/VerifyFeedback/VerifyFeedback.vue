@@ -115,7 +115,7 @@ export default {
           this.tableData = res.data.records
           this.pagination.total = res.data.total
           Object.assign(this.$data.paramsData, this.$options.data().paramsData)
-          this.$message.success(res.message)
+          // this.$message.success(res.message)
         } else {
           this.$message.error('查询成功')
         }
@@ -127,7 +127,7 @@ export default {
           console.log(res)
           this.editData = res.data
           this.editorVisible = true
-          this.$message.success(res.message)
+          // this.$message.success(res.message)
         } else {
           this.$message.error(res.message)
         }
@@ -138,7 +138,7 @@ export default {
         if (res.code === 1) {
           this.editorVisible = false
           this.getFeedbackInfo()
-          this.$message.success(res.message)
+          // this.$message.success(res.message)
         } else {
           this.$message.error(res.message)
         }

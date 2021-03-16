@@ -156,7 +156,7 @@ export default {
     this.tabsdata()
   },
   mounted() {
-    getStaffProfile('1').then(res => {
+    getStaffProfile('2').then(res => {
       if (res.code === 1) {
         const data = res.data
         for (const key in data) {
@@ -167,7 +167,7 @@ export default {
         }
       }
     })
-    getqueryCl('1').then(res => {
+    getqueryCl('2').then(res => {
       if (res.code === 1) {
         const data = res.data
         for (const key in data) {
@@ -179,7 +179,7 @@ export default {
         }
       }
     })
-    getqueryFwsyqk('1').then(res => {
+    getqueryFwsyqk('2').then(res => {
       if (res.code === 1) {
         const data = res.data
         for (const key in data) {

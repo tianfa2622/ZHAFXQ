@@ -174,7 +174,7 @@ export default {
           this.pagination.total = res.data.total
           this.exportTitle = '时间态势分析'
           Object.assign(this.$data.paramsData, this.$options.data().paramsData)
-          this.$message.success(res.message)
+          // this.$message.success(res.message)
         } else {
           this.$message.error('查询成功')
         }
@@ -192,7 +192,7 @@ export default {
           this.pagination.total = res.data.total
           this.exportTitle = '区域态势分析'
           Object.assign(this.$data.paramsData, this.$options.data().paramsData)
-          this.$message.success(res.message)
+          // this.$message.success(res.message)
         } else {
           this.$message.error('查询成功')
         }

@@ -291,7 +291,7 @@ export default {
           this.formData = res.data.ryyj
           this.formData1 = res.data.clyj
           this.formData2 = res.data.jjyj
-          // this.$message.success(res.message)
+          // // this.$message.success(res.message)
         } else {
           this.$message.error('查询成功')
         }
@@ -312,7 +312,7 @@ export default {
       }
       updateYcsz(this.userId, ycsz).then(res => {
         if (res.code === 1) {
-          this.$message.success(res.message)
+          // this.$message.success(res.message)
           this.getSelectYcszInfo()
         } else {
           this.$message.error(res.message)

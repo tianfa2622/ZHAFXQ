@@ -87,7 +87,7 @@ const fields = [
     ]
   },
   {
-    label: '安装地址：',
+    label: '采集设备安装地址：',
     field: 'azdzQhnxxdz',
     type: 'input',
     dataType: 'string'
