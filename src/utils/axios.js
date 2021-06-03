@@ -2,7 +2,7 @@ import Axios from 'axios'
 // import Cookies from 'js-cookie'
 
 const axios = Axios.create({
-  baseURL: process.env.NODE_ENV === 'development' ? '/api' : 'http://pm2.winvers.com/zhnfxq',
+  baseURL: process.env.NODE_ENV === 'development' ? '/api' : 'http://pm2.winvers.com/zhdxhd',
   timeout: process.env.NODE_ENV === 'development' ? 60 * 1000 : 10 * 1000
 })
 
